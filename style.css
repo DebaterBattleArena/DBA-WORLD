@@ -163,14 +163,18 @@ section p {
 
 /* Gaya untuk Section Main Event */
 #main-event {
-    background-color: var(--secondary-bg);
+    background-color: var(--secondary-bg); /* Warna latar belakang umum */
     padding: 0; /* Padding diatur di dalam content */
     position: relative;
-    /* Path background image main event */
-    background-image: url('main-event-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.7); /* Memberi efek gelap pada gambar latar */
+    /* GAMBAR UTAMA SEKARANG SEBAGAI BACKGROUND UNTUK SECTION INI */
+    background-image: url('7a47b236-a78a-4b2f-bbce-9cadecef6843.jpeg'); /* <-- GANTI DENGAN GAMBAR BARU */
+    background-size: cover; /* Pastikan gambar menutupi seluruh area */
+    background-position: center; /* Pusatkan gambar */
+    background-repeat: no-repeat; /* Jangan ulangi gambar */
+    min-height: 700px; /* Tingkatkan tinggi minimum section agar gambar lebih dominan */
+    display: flex; /* Gunakan flex untuk memusatkan konten vertikal */
+    align-items: center; /* Pusatkan konten vertikal di tengah */
+    justify-content: center; /* Pusatkan konten horizontal di tengah */
 }
 #main-event .main-event-content {
     position: relative;
@@ -178,20 +182,64 @@ section p {
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Konten diposisikan di bagian bawah section */
-    min-height: 600px; /* Tinggi minimum section */
+    justify-content: center; /* Pusatkan konten secara vertikal di dalam content box */
+    align-items: center; /* Pusatkan konten secara horizontal */
+    width: 100%; /* Lebar penuh */
+    max-width: 800px; /* Lebar maksimum konten */
     gap: 20px;
-    filter: brightness(1.0); /* Kembalikan brightness untuk konten */
+    /* TIDAK PERLU FILTER BRIGHTNESS DI SINI JIKA DI SECTION UTAMA */
+}
+/* Efek overlay gelap di atas gambar latar belakang untuk kontras teks */
+#main-event::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Overlay hitam transparan */
+    z-index: 0;
+}
+/* HAPUS .main-event-banner CSS ini karena sudah tidak pakai tag <img> terpisah */
+/* .main-event-banner { ... } (baris ini dan isinya dihapus) */
+
+
+/* Perbaikan gaya untuk teks di main-event agar lebih kontras */
+#main-event .event-title,
+#main-event .contestants,
+#main-event .countdown {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Tambahkan shadow ke teks */
+}
+#main-event .contestants .vs {
+    text-shadow: none; /* Hilangkan shadow dari teks 'vs' */
+}
+/* Perbaikan gaya untuk tombol di main-event agar tetap terlihat baik */
+#main-event .cta-button {
+    z-index: 2; /* Pastikan tombol di atas overlay */
 }
 
-/* Gaya untuk banner di bagian Main Event */
-.main-event-banner {
-    width: 100%; /* Lebar penuh dari container */
-    max-height: 250px; /* Tinggi maksimum, sesuaikan jika perlu */
-    object-fit: cover; /* Memastikan gambar mengisi area tanpa terdistorsi */
-    margin-bottom: 30px; /* Jarak antara banner dan teks di bawahnya */
-    border-radius: 8px; /* Sudut membulat, opsional */
+/* Penyesuaian untuk tampilan mobile pada main event */
+@media (max-width: 767px) {
+    #main-event {
+        min-height: 500px; /* Kurangi tinggi minimum di mobile */
+    }
+    #main-event .main-event-content {
+        padding-top: 20px; /* Ini sudah ada, biarkan */
+    }
+    #main-event .event-title {
+        font-size: 1.2em; /* Sesuaikan ukuran font di mobile */
+    }
+    #main-event .contestants {
+        font-size: 2em; /* Sesuaikan ukuran font di mobile */
+    }
+    #main-event .countdown-item .number {
+        font-size: 2em; /* Sesuaikan ukuran font di mobile */
+    }
+    #main-event .countdown-item .label {
+        font-size: 0.7em; /* Sesuaikan ukuran font di mobile */
+    }
 }
+
 /* Penyesuaian untuk tampilan mobile pada banner main event */
 @media (max-width: 767px) {
     #main-event .main-event-content {
