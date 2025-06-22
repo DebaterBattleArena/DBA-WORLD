@@ -4,15 +4,15 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "HIROO",
-            "photo": "img/IMG_0524.jpeg",
+            "photo": "IMG_0524.jpeg",  
             "country": "indonesia",
-            "flag": "img/IMG_0417.png"
+            "flag": "IMG_0417.png"   
         },
         "debater2": {
             "name": "RENJI",
-            "photo": "img/IMG_0523.jpeg",
+            "photo": "IMG_0523.jpeg",  
             "country": "malaysia",
-            "flag": "img/IMG_0418.png"
+            "flag": "IMG_0418.png"   
         },
         "type": "MID TIER DEBATE",  
         "winner": {
@@ -28,15 +28,15 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "ZOGRATIS",
-            "photo": "img/IMG_0526.jpeg",
+            "photo": "IMG_0526.jpeg",  
             "country": "indonesia",
-            "flag": "img/IMG_0417.png"
+            "flag": "IMG_0417.png"   
         },
         "debater2": {
             "name": "MUCHIBEI",
-            "photo": "img/IMG_0530.jpeg",
+            "photo": "IMG_0530.jpeg",  
             "country": "malaysia",
-            "flag": "img/IMG_0418.png"
+            "flag": "IMG_0418.png"   
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -52,15 +52,15 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "ARYANWT",
-            "photo": "img/IMG_0525.jpeg",
+            "photo": "IMG_0525.jpeg",  
             "country": "indonesia",
-            "flag": "img/IMG_0417.png"
+            "flag": "IMG_0417.png"   
         },
         "debater2": {
             "name": "RIM",
-            "photo": "img/IMG_0527.jpeg",
+            "photo": "IMG_0527.jpeg",  
             "country": "malaysia",
-            "flag": "img/IMG_0418.png"
+            "flag": "IMG_0418.png"   
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -76,15 +76,15 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "RANZT",
-            "photo": "img/ranzt.jpg",  
+            "photo": "ranzt.jpg",  
             "country": "indonesia",
-            "flag": "img/IMG_0417.png"
+            "flag": "IMG_0417.png"   
         },
         "debater2": {
             "name": "RYUU",
-            "photo": "img/ryuu.jpg",  
+            "photo": "ryuu.jpg",  
             "country": "malaysia",
-            "flag": "img/IMG_0418.png"
+            "flag": "IMG_0418.png"   
         },
         "type": "MID TIER DEBATE",
         "winner": {
