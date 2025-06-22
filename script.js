@@ -149,7 +149,7 @@ const debatesData = [
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "RANZT",
-            "photo": "ranzt.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "IMG_0555.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
             "country": "indonesia",
             "flag": "IMG_0417.png",   
             "profile": {
@@ -167,7 +167,7 @@ const debatesData = [
         },
         "debater2": {
             "name": "RYUU",
-            "photo": "ryuu.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "IMG_0556.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
             "country": "malaysia",
             "flag": "IMG_0418.png",   
             "profile": {
@@ -339,33 +339,11 @@ function renderProfilePage() {
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN RANKING (UNTUK ranking.html) ======
 function renderRankingPage() {
-    const rankingBody = document.getElementById('ranking-body');
+    const rankingContainer = document.getElementById('ranking-container'); // Menggunakan container div
+    if (!rankingContainer) return; 
 
-    if (!rankingBody) return; // Keluar jika ini bukan ranking.html
-
-    const allDebatersByTier = {
-        "Low Tier": [],
-        "Mid Tier": [],
-        "High Tier": []
-    };
-
-    // 1. Kumpulkan semua debater unik dan kelompokkan berdasarkan tier
-    debatesData.forEach(debate => {
-        if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
-            allDebaters[debate.debater1.name] = debate.debater1;
-            if (debate.debater1.tier && allDebatersByTier[debate.debater1.tier]) {
-                allDebatersByTier[debate.debater1.tier].push(debate.debater1);
-            }
-        }
-        if (debate.debater2 && debate.debater2.name && !allDebaters[debate.debater2.name]) {
-            allDebaters[debate.debeter2.name] = debate.debater2; // Typo here, should be debater2.name
-            if (debate.debater2.tier && allDebatersByTier[debate.debater2.tier]) {
-                allDebatersByTier[debate.debater2.tier].push(debate.debater2);
-            }
-        }
-    });
-    // Correcting allDebaters build for debater2:
-    allDebaters = {}; // Reset to rebuild correctly
+    // Membangun allDebaters map terlebih dahulu
+    const allDebaters = {}; 
     debatesData.forEach(debate => {
         if (debate.debater1 && debate.debater1.name) {
             allDebaters[debate.debater1.name] = debate.debater1;
@@ -374,17 +352,23 @@ function renderRankingPage() {
             allDebaters[debate.debater2.name] = debate.debater2;
         }
     });
-    // Now populate allDebatersByTier from the correct allDebaters map
+
+    const allDebatersByTier = {
+        "Low Tier": [],
+        "Mid Tier": [],
+        "High Tier": []
+    };
+
+    // Kelompokkan debater berdasarkan tier
     Object.values(allDebaters).forEach(debater => {
         if (debater.tier && allDebatersByTier[debater.tier]) {
             allDebatersByTier[debater.tier].push(debater);
         }
     });
 
-
-    // 2. Buat HTML untuk tabel ranking per tier
     let rankingHtml = '';
     const tiersOrder = ["Low Tier", "Mid Tier", "High Tier"]; // Urutan tier
+
     tiersOrder.forEach(tierName => {
         const debatersInTier = allDebatersByTier[tierName];
         
@@ -402,7 +386,7 @@ function renderRankingPage() {
                             <th>Rhetoric</th>
                             <th>Critical Thinking</th>
                             <th>General Knowledge</th>
-                            </tr>
+                        </tr>
                     </thead>
                     <tbody>
             `;
@@ -419,7 +403,7 @@ function renderRankingPage() {
                         <td>${debater.profile['Rhetoric']}</td>
                         <td>${debater.profile['Critical Thinking']}</td>
                         <td>${debater.profile['General Knowledge']}</td>
-                        </tr>
+                    </tr>
                 `;
             });
             rankingHtml += `
@@ -429,13 +413,7 @@ function renderRankingPage() {
         }
     });
 
-    rankingBody.innerHTML = rankingHtml;
-
-    // Remove the default "Memuat data peringkat..." text if data is rendered
-    const defaultLoadingRow = rankingBody.querySelector('tr[colspan="5"]');
-    if (defaultLoadingRow) {
-        defaultLoadingRow.remove();
-    }
+    rankingContainer.innerHTML = rankingHtml; // Render semua tier ke dalam container
 }
 
 
@@ -454,4 +432,3 @@ document.addEventListener('DOMContentLoaded', () => {
         renderRankingPage();
     }
 });
-    ```
