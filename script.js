@@ -1,9 +1,196 @@
 // ====== Global variable to store all debater profiles for easy lookup ======
-let allDebaters = {}; // Akan menyimpan { 'HIROO': { ...profil Hiroo... }, 'RENJI': { ...profil Renji... }, ... }
+let allDebaters = {}; 
+
+// ====== DATA DEBAT SEKARANG LANGSUNG ADA DI SINI (BUKAN DARI data.json) ======
+const debatesData = [
+    {
+        "id": "debate-001",
+        "category": "FICTIONAL DEBATE",
+        "debater1": {
+            "name": "HIROO",
+            "photo": "IMG_0524.jpeg",  
+            "country": "indonesia",
+            "flag": "IMG_0417.png",   
+            "profile": {
+                "Rhetoric": "9/10",
+                "Typing Structure": "9/10",
+                "Critical Thinking": "10/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "9/10",
+                "Tiering Sistem": "8/10",
+                "Calculation": "8/10",
+                "Philisophy": "9/10",
+                "General Knowledge": "10/10"
+            }
+        },
+        "debater2": {
+            "name": "RENJI",
+            "photo": "IMG_0523.jpeg",  
+            "country": "malaysia",
+            "flag": "IMG_0418.png",   
+            "profile": {
+                "Rhetoric": "3/10",
+                "Typing Structure": "2/10",
+                "Critical Thinking": "1/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "1/10",
+                "Tiering Sistem": "1/10",
+                "Calculation": "0/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "1/10"
+            }
+        },
+        "type": "MID TIER DEBATE",  
+        "winner": {
+            "name": "HIROO",
+            "method": "limit"
+        },
+        "loser": {
+            "name": "RENJI"
+        }
+    },
+    {
+        "id": "debate-002",
+        "category": "FICTIONAL DEBATE",
+        "debater1": {
+            "name": "ZOGRATIS",
+            "photo": "IMG_0526.jpeg",  
+            "country": "indonesia",
+            "flag": "IMG_0417.png",   
+            "profile": {
+                "Rhetoric": "6/10",
+                "Typing Structure": "5/10",
+                "Critical Thinking": "7/10",
+                "Logical Fallacies": "3/10",
+                "Typing Strenght": "5/10",
+                "Tiering Sistem": "6/10",
+                "Calculation": "2/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "7/10"
+            }
+        },
+        "debater2": {
+            "name": "MUCHIBEI",
+            "photo": "IMG_0530.jpeg",  
+            "country": "malaysia",
+            "flag": "IMG_0418.png",   
+            "profile": {
+                "Rhetoric": "5/10",
+                "Typing Structure": "5/10",
+                "Critical Thinking": "7/10",
+                "Logical Fallacies": "2/10",
+                "Typing Strenght": "7/10",
+                "Tiering Sistem": "4/10",
+                "Calculation": "4/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "8/10"
+            }
+        },
+        "type": "MID TIER DEBATE",
+        "winner": {
+            "name": "ZOGRATIS",
+            "method": "point"
+        },
+        "loser": {
+            "name": "MUCHIBEI"
+        }
+    },
+    {
+        "id": "debate-003",
+        "category": "FICTIONAL DEBATE",
+        "debater1": {
+            "name": "ARYANWT",
+            "photo": "IMG_0525.jpeg",  
+            "country": "indonesia",
+            "flag": "IMG_0417.png",   
+            "profile": {
+                "Rhetoric": "8/10",
+                "Typing Structure": "7/10",
+                "Critical Thinking": "9/10",
+                "Logical Fallacies": "1/10",
+                "Typing Strenght": "7/10",
+                "Tiering Sistem": "9/10",
+                "Calculation": "0/10",
+                "Philisophy": "7/10",
+                "General Knowledge": "10/10"
+            }
+        },
+        "debater2": {
+            "name": "RIM",
+            "photo": "IMG_0527.jpeg",  
+            "country": "malaysia",
+            "flag": "IMG_0418.png",   
+            "profile": {
+                "Rhetoric": "4/10",
+                "Typing Structure": "5/10",
+                "Critical Thinking": "4.5/10",
+                "Logical Fallacies": "2/10",
+                "Typing Strenght": "3.5/10",
+                "Tiering Sistem": "4.3/10",
+                "Calculation": "3.6/10",
+                "Philisophy": "3/10",
+                "General Knowledge": "7/10"
+            }
+        },
+        "type": "MID TIER DEBATE",
+        "winner": {
+            "name": "ARYANWT",
+            "method": "point"
+        },
+        "loser": {
+            "name": "RIM"
+        }
+    },
+    {
+        "id": "debate-004",
+        "category": "FICTIONAL DEBATE",
+        "debater1": {
+            "name": "RANZT",
+            "photo": "ranzt.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "country": "indonesia",
+            "flag": "IMG_0417.png",   
+            "profile": {
+                "Rhetoric": "10/10",
+                "Typing Structure": "8/10",
+                "Critical Thinking": "8/10",
+                "Logical Fallacies": "8/10",
+                "Typing Strenght": "9/10",
+                "Tiering Sistem": "8/10",
+                "Calculation": "5/10",
+                "Philisophy": "9/10",
+                "General Knowledge": "10/10"
+            }
+        },
+        "debater2": {
+            "name": "RYUU",
+            "photo": "ryuu.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "country": "malaysia",
+            "flag": "IMG_0418.png",   
+            "profile": {
+                "Rhetoric": "8.5/10",
+                "Typing Structure": "8/10",
+                "Critical Thinking": "7/10",
+                "Logical Fallacies": "6/10",
+                "Typing Strenght": "5/10",
+                "Tiering Sistem": "5/10",
+                "Calculation": "7/10",
+                "Philisophy": "4/10",
+                "General Knowledge": "10/10"
+            }
+        },
+        "type": "MID TIER DEBATE",
+        "winner": {
+            "name": "RANZT",
+            "method": "point"
+        },
+        "loser": {
+            "name": "RYUU"
+        }
+    }
+];
 
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
-    // ... (kode countdown yang sudah ada, tidak berubah) ...
     const now = new Date();
     const targetDate = new Date(now.getTime() + (2 * 24 * 60 * 60 * 1000)).getTime(); 
 
@@ -37,33 +224,22 @@ function startCountdown() {
     }, 1000);
 }
 
-// ====== FUNGSI UNTUK MEMUAT DATA DEBAT DARI JSON ======
-async function loadDebates() {
-    try {
-        const response = await fetch('data.json');
-        if (!response.ok) {
-            throw new Error(`Gagal memuat data JSON: ${response.status} ${response.statusText}. Mungkin masalah CORS jika dibuka langsung dari file lokal.`);
-        }
-        const debates = await response.json();
-        
-        // Memproses data untuk membuat daftar debater global yang unik
-        debates.forEach(debate => {
-            if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
-                allDebaters[debate.debater1.name] = debate.debater1;
-            }
-            if (debate.debater2 && debate.debater2.name && !allDebaters[debate.debater2.name]) {
-                allDebaters[debate.debater2.name] = debate.debater2;
-            }
-        });
+// ====== FUNGSI UNTUK MEMUAT DATA DEBAT DARI DATA YANG DI-EMBED ======
+function loadDebates() {
+    // Data sudah tersedia di debatesData, tidak perlu fetch
+    const debates = debatesData; // Langsung gunakan variabel debatesData
 
-        renderDebates(debates); // Memanggil fungsi untuk menampilkan debat
-    } catch (error) {
-        console.error("Kesalahan saat memuat data debat:", error);
-        const container = document.getElementById('debates-container');
-        if(container) {
-            container.innerHTML = '<p style="color: red; padding: 20px;">Maaf, jadwal debat tidak dapat dimuat saat ini. Mohon pastikan file JSON ada dan periksa <a href="javascript:void(0)" onclick="console.log(\'Buka developer console (F12) untuk melihat pesan error lebih detail\')">konsol browser</a> untuk detail error.</p>';
+    // Memproses data untuk membuat daftar debater global yang unik
+    debates.forEach(debate => {
+        if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
+            allDebaters[debate.debater1.name] = debate.debater1;
         }
-    }
+        if (debate.debater2 && debate.debater2.name && !allDebaters[debate.debater2.name]) {
+            allDebaters[debate.debater2.name] = debate.debater2;
+        }
+    });
+
+    renderDebates(debates); // Memanggil fungsi untuk menampilkan debat
 }
 
 // ====== FUNGSI UNTUK MERENDER (MENAMPILKAN) DEBAT KE HTML ======
@@ -113,15 +289,15 @@ function renderDebates(debates) {
     const clickableDebaters = document.querySelectorAll('.clickable-debater');
     clickableDebaters.forEach(debaterEl => {
         debaterEl.addEventListener('click', function() {
-            const debaterName = this.dataset.debaterName; // Mengambil nama debater dari atribut data
-            showDebaterProfile(debaterName); // Panggil fungsi untuk menampilkan profil
+            const debaterName = this.dataset.debaterName;
+            showDebaterProfile(debaterName);
         });
     });
 }
 
 // ====== FUNGSI UNTUK MENAMPILKAN MODAL PROFIL DEBATER ======
 function showDebaterProfile(debaterName) {
-    const debater = allDebaters[debaterName]; // Mengambil data debater dari objek global
+    const debater = allDebaters[debaterName];
     const modal = document.getElementById('debater-modal');
     const profileDetailsDiv = document.getElementById('modal-profile-details');
 
@@ -130,7 +306,6 @@ function showDebaterProfile(debaterName) {
         return;
     }
 
-    // Bangun konten HTML untuk profil
     let profileHtml = `
         <img src="${debater.photo}" alt="Foto ${debater.name}">
         <h3>${debater.name}</h3>
@@ -143,45 +318,41 @@ function showDebaterProfile(debaterName) {
     }
     profileHtml += `</ul>`;
 
-    profileDetailsDiv.innerHTML = profileHtml; // Masukkan HTML profil ke dalam modal
-    modal.style.display = 'flex'; // Tampilkan modal (menggunakan flex untuk pemusatan)
+    profileDetailsDiv.innerHTML = profileHtml;
+    modal.style.display = 'flex';
 
-    // Untuk animasi, tambahkan kelas setelah display flex
     setTimeout(() => {
         modal.querySelector('.modal-content').style.opacity = 1;
         modal.querySelector('.modal-content').style.transform = 'scale(1)';
-    }, 50); // Sedikit delay untuk memicu animasi
+    }, 50);
 }
 
 // ====== FUNGSI UNTUK MENYEMBUNYIKAN MODAL PROFIL DEBATER ======
 function hideDebaterProfile() {
     const modal = document.getElementById('debater-modal');
     if (modal) {
-        // Animasi fade out
         modal.querySelector('.modal-content').style.opacity = 0;
         modal.querySelector('.modal-content').style.transform = 'scale(0.95)';
         setTimeout(() => {
-            modal.style.display = 'none'; // Sembunyikan setelah animasi
-        }, 400); // Sesuaikan dengan durasi animasi CSS
+            modal.style.display = 'none';
+        }, 400);
     }
 }
 
 // ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
 document.addEventListener('DOMContentLoaded', () => {
     startCountdown();
-    loadDebates();
+    loadDebates(); // Sekarang ini memanggil data yang sudah ada di dalam JS
 
-    // ====== MENAMBAHKAN EVENT LISTENER UNTUK TOMBOL TUTUP MODAL ======
     const closeButton = document.querySelector('.modal .close-button');
     if (closeButton) {
         closeButton.addEventListener('click', hideDebaterProfile);
     }
 
-    // ====== MENUTUP MODAL JIKA KLIK DI LUAR KONTEN MODAL ======
     const modal = document.getElementById('debater-modal');
     if (modal) {
         modal.addEventListener('click', function(event) {
-            if (event.target === modal) { // Hanya jika target klik adalah overlay modal, bukan konten di dalamnya
+            if (event.target === modal) {
                 hideDebaterProfile();
             }
         });
