@@ -3,117 +3,577 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBA — Debaters Battle Arena</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Debater Battle Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #1a1a1a; /* Background gelap */
+            --secondary-bg: #2a2a2a; /* Background elemen */
+            --text-color: #ffffff;
+            --highlight-color: #ff4500; /* Orange/merah cerah untuk highlight */
+            --light-grey: #cccccc;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+        }
+
+        /* Header / Logo */
+        .header-logo {
+            background-color: black;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .header-logo h1 {
+            margin: 0;
+            font-size: 2.5em; /* Ukuran font lebih besar untuk logo */
+            color: var(--text-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        /* Memberi efek visual pada bagian 'Arena' */
+        .header-logo h1 span {
+            color: var(--highlight-color);
+        }
+
+        /* Section Styling Umum */
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5em;
+            color: var(--text-color);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+        }
+        section p {
+            color: var(--light-grey);
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+
+        /* Achievement Section */
+        #achievement {
+            background-color: var(--primary-bg);
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden; /* Untuk background image jika ada */
+        }
+        #achievement::before {
+             /* Placeholder untuk gambar latar belakang */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://via.placeholder.com/800x1200/333333/ffffff?text=Debater+Background'); /* Ganti dengan gambar latar belakang asli */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1; /* Sedikit transparan */
+            z-index: 0;
+        }
+        #achievement .content-overlay {
+            position: relative;
+            z-index: 1; /* Pastikan konten di atas background */
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .achievement-item {
+            margin-bottom: 25px;
+        }
+        .achievement-item .number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 4em;
+            color: var(--highlight-color);
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+        .achievement-item .label {
+            font-size: 1.2em;
+            color: var(--light-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Event Section (Jaden vs Andi) */
+        #main-event {
+            background-color: var(--secondary-bg);
+            padding: 0; /* Padding diatur di dalam content */
+            position: relative;
+        }
+        .main-event-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://via.placeholder.com/800x1200/000000/ffffff?text=Main+Debate+Background'); /* Ganti dengan gambar duel yang sebenarnya */
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            filter: brightness(0.7); /* Gelapkan sedikit background */
+        }
+        .main-event-content {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Pusatkan konten ke bawah */
+            min-height: 600px; /* Tinggi minimum untuk section ini */
+            gap: 20px;
+        }
+        .event-title {
+            font-size: 1.5em;
+            color: var(--light-grey);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .contestants {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            color: var(--text-color);
+        }
+        .contestants .vs {
+            color: var(--highlight-color);
+            font-size: 0.8em;
+            margin: 0 10px;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            background-color: rgba(0, 0, 0, 0.5); /* Background untuk countdown agar lebih jelas */
+            padding: 15px;
+            border-radius: 8px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .countdown-item {
+            text-align: center;
+        }
+        .countdown-item .number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5em;
+            color: var(--highlight-color);
+            line-height: 1;
+        }
+        .countdown-item .label {
+            font-size: 0.8em;
+            color: var(--light-grey);
+            text-transform: uppercase;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--highlight-color);
+            color: var(--text-color);
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cta-button:hover {
+            background-color: #ff6622; /* Sedikit lebih terang saat hover */
+        }
+        .cta-button .arrow {
+            margin-left: 10px;
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--secondary-bg);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        #about h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5em;
+            color: var(--text-color);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+        }
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            color: var(--light-grey);
+        }
+        .about-video {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            background-color: #000; /* Placeholder untuk video */
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: var(--light-grey);
+        }
+
+        /* Match List Section */
+        #match-list {
+            background-color: var(--primary-bg);
+            padding: 60px 20px;
+        }
+        .match-card {
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column; /* Untuk mobile, stack vertically */
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .match-card .category {
+            font-size: 0.9em;
+            color: var(--highlight-color);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: left;
+        }
+        .match-details {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 10px;
+            flex-wrap: wrap; /* Untuk memastikan item di wrap jika layar kecil */
+        }
+        .debater-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 5px;
+            flex: 1; /* Ambil ruang yang tersedia */
+            min-width: 120px; /* Lebar minimum agar tidak terlalu sempit */
+        }
+        .debater-info img {
+            width: 100px; /* Ukuran gambar debater */
+            height: 100px;
+            border-radius: 5px;
+            object-fit: cover;
+            border: 2px solid var(--highlight-color); /* Border highlight */
+        }
+        .debater-info .name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3em;
+            color: var(--text-color);
+            text-transform: uppercase;
+        }
+        .debater-info .origin {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--light-grey);
+            font-size: 0.9em;
+        }
+        .debater-info .origin img {
+            width: 20px; /* Ukuran bendera */
+            height: 15px;
+            border-radius: 2px;
+        }
+        .match-vs {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8em;
+            color: var(--highlight-color);
+            margin: 0 10px;
+        }
+        .match-type {
+            font-size: 0.9em;
+            color: var(--light-grey);
+            text-transform: uppercase;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: black;
+            color: var(--light-grey);
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        footer a {
+            color: var(--light-grey);
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: var(--highlight-color);
+        }
+
+        /* Media Queries untuk Responsif */
+        @media (min-width: 768px) {
+            .header-logo h1 {
+                font-size: 3.5em;
+            }
+            .achievement-item .number {
+                font-size: 5em;
+            }
+            .achievement-item .label {
+                font-size: 1.5em;
+            }
+            #main-event .main-event-content {
+                min-height: 800px; /* Lebih tinggi di desktop */
+                justify-content: center;
+            }
+            .event-title {
+                font-size: 2em;
+            }
+            .contestants {
+                font-size: 3.5em;
+            }
+            .countdown {
+                gap: 30px;
+            }
+            .countdown-item .number {
+                font-size: 3em;
+            }
+            .match-card {
+                flex-direction: row; /* Kembali ke horizontal di desktop */
+                justify-content: space-between;
+                padding: 30px;
+            }
+            .match-card .category {
+                width: auto;
+                text-align: left;
+                margin-bottom: 0;
+            }
+            .match-details {
+                flex-wrap: nowrap;
+            }
+            .debater-info {
+                min-width: unset;
+                flex: none; /* Jangan ambil ruang penuh */
+            }
+            .match-type {
+                width: auto;
+                border-top: none;
+                padding-top: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>DBA — Debaters Battle Arena</h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#recent-matches">Recent Matches</a></li>
-                    <li><a href="#compare-debaters">Compare Debaters</a></li>
-                    <li><a href="#leaderboard">Leaderboard</a></li>
-                    <li><a href="#events">Events</a></li>
-                </ul>
-            </nav>
-        </div>
+
+    <header class="header-logo">
+        <h1>DEBATER BATTLE <span>ARENA.</span></h1>
     </header>
 
-    <main>
-        <section id="home" class="hero">
-            <p>Selamat datang di Debaters Battle Arena! Pusat informasi terlengkap untuk debaters, pertandingan terkini, dan rekor debat.</p>
-            <button onclick="window.location.href='#recent-matches'">Lihat Pertandingan Terbaru</button>
-        </section>
+    <section id="about" style="background-color: #2a2a2a; border-bottom: 5px solid var(--highlight-color);">
+        <div class="about-video">
+            Video Highlight Debat Terbaru
+        </div>
+        <h2>TENTANG KAMI</h2>
+        <p>
+            **DEBATER BATTLE ARENA** adalah platform debat komprehensif yang didedikasikan untuk menampilkan dan memberdayakan talenta-talenta muda pendebat di Indonesia. Kami adalah arena utama untuk pertarungan gagasan dan argumentasi yang sengit.
+        </p>
+        <p>
+            Event kami yang lalu, **DEBATER BATTLE ARENA SERIES 1**, yang diselenggarakan pada Juni 2025, memecahkan rekor penonton online, mengumpulkan lebih dari **25 JUTA VIEWS** di YouTube dan **500.000 PEMBELIAN TIKET VIRTUAL** melalui platform streaming kami.
+        </p>
+        <a href="#" class="cta-button">
+            INFORMASI LEBIH LANJUT <span class="arrow">&rarr;</span>
+        </a>
+    </section>
 
-        <section id="recent-matches">
-            <h2>Recent Matches</h2>
-            <div id="recent-matches-list" class="matches-grid">
+    <section id="main-event">
+        <div class="main-event-bg"></div>
+        <div class="main-event-content">
+            <p class="event-title">ICB NASIONAL DEBAT GELAR</p>
+            <div class="contestants">
+                <span>JADEN</span> <span class="vs">VS</span> <span>ANDI</span>
+            </div>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="number" id="days">6</div>
+                    <div class="label">HARI</div>
                 </div>
-        </section>
-
-        <section id="top-low-records">
-            <h2>Top & Low Records Debaters</h2>
-            <div class="records-container">
-                <div class="top-records">
-                    <h3>Top Debaters</h3>
-                    <ul id="top-debaters-list">
-                        </ul>
+                <div class="countdown-item">
+                    <div class="number" id="hours">00</div>
+                    <div class="label">JAM</div>
                 </div>
-                <div class="low-records">
-                    <h3>Emerging Debaters</h3>
-                    <ul id="low-debaters-list">
-                        </ul>
+                <div class="countdown-item">
+                    <div class="number" id="minutes">49</div>
+                    <div class="label">MENIT</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="number" id="seconds">46</div>
+                    <div class="label">DETIK</div>
                 </div>
             </div>
-        </section>
+            <a href="#" class="cta-button">
+                BELI TIKET DEBAT <span class="arrow">&rarr;</span>
+            </a>
+        </div>
+    </section>
 
-        <section id="debater-quick-review">
-            <h2>Debater Profile Quick Review</h2>
-            <div id="debater-quick-review-list" class="grid-container">
-                </div>
-        </section>
-
-        <section id="leaderboard">
-            <h2>Leaderboard</h2>
-            <table id="leaderboard-table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Debater</th>
-                        <th>Wins</th>
-                        <th>Losses</th>
-                        <th>Win Rate</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    </tbody>
-            </table>
-        </section>
-
-        <section id="individual-match-history">
-            <h2>Individual Match History</h2>
-            <div class="select-debater">
-                <label for="selectDebater">Pilih Debater:</label>
-                <select id="selectDebater">
-                    </select>
+    <section id="achievement">
+        <div class="content-overlay">
+            <h2>PENCAPAIAN</h2>
+            <p>
+                DEBATER BATTLE ARENA adalah platform olahraga debat 360 derajat terkemuka yang didedikasikan untuk menampilkan dan memberdayakan pendebat muda Indonesia.
+            </p>
+            <div class="achievement-item">
+                <div class="number">4</div>
+                <div class="label">EVENT</div>
             </div>
-            <div id="selected-debater-match-history">
-                </div>
-        </section>
+            <div class="achievement-item">
+                <div class="number">20M+</div>
+                <div class="label">TOTAL STREAM</div>
+            </div>
+            <div class="achievement-item">
+                <div class="number">300K+</div>
+                <div class="label">PEMBELIAN TIKET VIRTUAL</div>
+            </div>
+            <div class="achievement-item">
+                <div class="number">10K+</div>
+                <div class="label">TIKET TERJUAL</div>
+            </div>
+        </div>
+    </section>
 
-        <section id="compare-debaters">
-            <h2>Compare Debaters</h2>
-            <div class="compare-container">
-                <div class="debater-select-box">
-                    <label for="compareDebater1">Debater 1:</label>
-                    <select id="compareDebater1"></select>
+
+    <section id="match-list">
+        <h2>JADWAL DEBAT</h2>
+
+        <div class="match-card">
+            <div class="category">DEBAT KEBIJAKAN NASIONAL</div>
+            <div class="match-details">
+                <div class="debater-info">
+                    <img src="https://via.placeholder.com/100x100?text=Debater1" alt="Foto Debater 1">
+                    <span class="name">JEKSON KARMELA</span>
+                    <span class="origin"><img src="https://flagcdn.com/id.svg" alt="Bendera Indonesia"> INDONESIA</span>
                 </div>
-                <div class="debater-vs">VS</div>
-                <div class="debater-select-box">
-                    <label for="compareDebater2">Debater 2:</label>
-                    <select id="compareDebater2"></select>
+                <span class="match-vs">VS</span>
+                <div class="debater-info">
+                    <img src="https://via.placeholder.com/100x100?text=Debater2" alt="Foto Debater 2">
+                    <span class="name">AZIZ CALIM</span>
+                    <span class="origin"><img src="https://flagcdn.com/id.svg" alt="Bendera Indonesia"> INDONESIA</span>
                 </div>
             </div>
-            <button id="compareButton">Compare</button>
-            <div id="comparison-results">
-                </div>
-        </section>
+            <div class="match-type">FORMAT DEBAT PARLIAMEN</div>
+        </div>
 
-        <section id="events">
-            <h2>Upcoming Events</h2>
-            <div id="events-list">
+        <div class="match-card">
+            <div class="category">DEBAT SEMIFINAL KATEGORI RETORIKA</div>
+            <div class="match-details">
+                <div class="debater-info">
+                    <img src="https://via.placeholder.com/100x100?text=Debater3" alt="Foto Debater 3">
+                    <span class="name">JADEN BACHTERA</span>
+                    <span class="origin"><img src="https://flagcdn.com/id.svg" alt="Bendera Indonesia"> INDONESIA</span>
                 </div>
-        </section>
+                <span class="match-vs">VS</span>
+                <div class="debater-info">
+                    <img src="https://via.placeholder.com/100x100?text=Debater4" alt="Foto Debater 4">
+                    <span class="name">ANDI COBRA</span>
+                    <span class="origin"><img src="https://flagcdn.com/id.svg" alt="Bendera Indonesia"> INDONESIA</span>
+                </div>
+            </div>
+            <div class="match-type">DEBAT BERSAMA</div>
+        </div>
 
-    </main>
+        <div class="match-card">
+            <div class="category">DEBAT PENYISIHAN KATEGORI LOGIKA</div>
+            <div class="match-details">
+                <div class="debater-info">
+                    <img src="https://via.placeholder.com/100x100?text=Debater5" alt="Foto Debater 5">
+                    <span class="name">PUTRA ABDULLAH</span>
+                    <span class="origin"><img src="https://flagcdn.com/my.svg" alt="Bendera Malaysia"> MALAYSIA</span>
+                </div>
+                <span class="match-vs">VS</span>
+                <div class="debater-info">
+                    <img src="https://via.placeholder.com/100x100?text=Debater6" alt="Foto Debater 6">
+                    <span class="name">RACHMAT GOZALI</span>
+                    <span class="origin"><img src="https://flagcdn.com/id.svg" alt="Bendera Indonesia"> INDONESIA</span>
+                </div>
+            </div>
+            <div class="match-type">DEBAT PERORANGAN</div>
+        </div>
+
+        <div class="match-card">
+            <div class="category">DEBAT GELAR RETORIKA NASIONAL</div>
+            <div class="match-details">
+                <div class="debater-info">
+                    <img src="https://via.placeholder.com/100x100?text=Debater7" alt="Foto Debater 7">
+                    <span class="name">DANAR ILMAWAN</span>
+                    <span class="origin"><img src="https://flagcdn.com/id.svg" alt="Bendera Indonesia"> INDONESIA</span>
+                </div>
+                <span class="match-vs">VS</span>
+                <div class="debater-info">
+                    <img src="https://via.placeholder.com/100x100?text=Debater8" alt="Foto Debater 8">
+                    <span class="name">M. RAMADHANI</span>
+                    <span class="origin"><img src="https://flagcdn.com/id.svg" alt="Bendera Indonesia"> INDONESIA</span>
+                </div>
+            </div>
+            <div class="match-type">DEBAT TIM</div>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2025 DBA — Debaters Battle Arena. All Rights Reserved.</p>
+        <a href="https://debaterbattlearena.com" target="_blank">debaterbattlearena.com</a>
+        <p>&copy; 2025 Debater Battle Arena. Hak Cipta Dilindungi.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // JavaScript untuk Countdown (Opsional)
+        // Set tanggal dan waktu target (Ganti dengan tanggal acara debat utama)
+        const targetDate = new Date("June 28, 2025 00:00:00").getTime();
+
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("days").innerHTML = "0";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+                // Atau tampilkan pesan "DEBAT TELAH DIMULAI!"
+            }
+        }, 1000);
+    </script>
+
 </body>
 </html>
