@@ -161,7 +161,7 @@ const debatesData = [
                 "Typing Structure": "10/10",
                 "Critical Thinking": "10/10",
                 "Logical Fallacies": "10/10",
-                "Typing Strenght": "10/10",
+                "Typing Strenght": "9/10",
                 "Tiering Sistem": "8/10",
                 "Calculation": "5/10",
                     "Philisophy": "9/10",
@@ -198,16 +198,48 @@ const debatesData = [
     }
 ];
 
-// ====== Global variable to store all debater profiles for easy lookup ======
+// ====== Global variable to store all debater profiles and calculated stats for easy lookup ======
 let allDebaters = {}; 
 
-// ====== POPULATE ALLDEBATERS MAP ONCE AT SCRIPT INITIALIZATION ======
+// ====== POPULATE ALLDEBATERS MAP AND ADD RECORDS / MATCH HISTORY ONCE AT SCRIPT INITIALIZATION ======
 debatesData.forEach(debate => {
-    if (debate.debater1 && debate.debater1.name) {
-        allDebaters[debate.debater1.name] = debate.debater1;
+    // Pastikan debater1 dan debater2 ada di allDebaters
+    const debater1Name = debate.debater1.name;
+    const debater2Name = debate.debater2.name;
+
+    if (!allDebaters[debater1Name]) {
+        allDebaters[debater1Name] = { ...debate.debater1, wins: 0, losses: 0, matchHistory: [] };
     }
-    if (debate.debater2 && debate.debater2.name) {
-        allDebaters[debate.debater2.name] = debate.debater2;
+    if (!allDebaters[debater2Name]) {
+        allDebaters[debater2Name] = { ...debate.debater2, wins: 0, losses: 0, matchHistory: [] };
+    }
+
+    // Tambahkan riwayat pertandingan dan hitung menang/kalah jika debat sudah selesai
+    if (debate.winner && debate.loser) {
+        const winnerName = debate.winner.name;
+        const loserName = debate.loser.name;
+
+        // Untuk pemenang
+        allDebaters[winnerName].wins += 1;
+        allDebaters[winnerName].matchHistory.push({
+            opponent: loserName,
+            result: "Win",
+            method: debate.winner.method,
+            date: debate.date,
+            category: debate.category,
+            id: debate.id // ID debat untuk referensi
+        });
+
+        // Untuk yang kalah
+        allDebaters[loserName].losses += 1;
+        allDebaters[loserName].matchHistory.push({
+            opponent: winnerName,
+            result: "Loss",
+            method: "", // Biasanya tidak ada 'metode' kekalahan
+            date: debate.date,
+            category: debate.category,
+            id: debate.id // ID debat untuk referensi
+        });
     }
 });
 
@@ -255,10 +287,8 @@ function loadAndRenderDebatesForIndexPage() {
     if (!container) return; 
 
     let htmlContent = '';
-    // FILTER DIHAPUS: Sekarang menampilkan semua debat di halaman utama
-    // const upcomingDebates = debates.filter(debate => !debate.winner || !debate.loser);
     
-    debates.forEach(debate => { // Menggunakan 'debates' untuk menampilkan semua
+    debates.forEach(debate => { // Menampilkan semua debat di halaman utama
         const winnerInfo = debate.winner ? `
             <div class="result-info winner">
                 <strong>Winner:</strong> ${debate.winner.name} by ${debate.winner.method}
@@ -310,26 +340,79 @@ function renderProfilePage() {
         return;
     }
 
-    const foundDebater = allDebaters[debaterName]; 
+    const debater = allDebaters[debaterName]; // Menggunakan allDebaters yang sudah terisi secara global
 
-    if (!foundDebater || !foundDebater.profile) {
+    if (!debater || !debater.profile) {
         profileCard.innerHTML = `<p style="color: red;">Profil untuk ${debaterName} tidak ditemukan.</p>`;
         return;
     }
 
+    // Bangun HTML untuk halaman profil berdasarkan desain baru
     let profileHtml = `
-        <img src="${foundDebater.photo}" alt="Foto ${foundDebater.name}">
-        <h2>${foundDebater.name}</h2>
-        <p class="origin"><img src="${foundDebater.flag}" alt="Bendera ${foundDebater.country}"> ${foundDebater.country.toUpperCase()}</p>
-        <h3>Statistik Debat</h3>
-        <ul>
+        <div class="profile-header">
+            <img src="${debater.photo}" alt="Foto ${debater.name}" class="profile-avatar">
+            <h2 class="profile-name">${debater.name}</h2>
+            <p class="profile-tier">${debater.tier} Debater</p>
+            <div class="profile-record">
+                Record: <span>${debater.wins}W - ${debater.losses}L</span>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-section-title">Match History</div>
+            <div class="match-history-list">
     `;
-    for (const skill in foundDebater.profile) {
-        if (foundDebater.profile.hasOwnProperty(skill)) {
-            profileHtml += `<li><strong>${skill}:</strong> <span>${foundDebater.profile[skill]}</span></li>`;
+
+    if (debater.matchHistory && debater.matchHistory.length > 0) {
+        // Sort match history by date (newest first)
+        debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        debater.matchHistory.forEach(match => {
+            const resultClass = match.result === "Win" ? "win" : "loss";
+            const methodDisplay = match.method ? `(${match.method})` : '';
+            profileHtml += `
+                <div class="match-history-item">
+                    <span class="match-date">${match.date}</span>
+                    <span class="match-vs-opponent">Vs. ${match.opponent}</span>
+                    <span class="match-result ${resultClass}">${match.result} ${methodDisplay}</span>
+                </div>
+            `;
+        });
+    } else {
+        profileHtml += `<p class="no-history-message">Belum ada riwayat pertandingan.</p>`;
+    }
+
+    profileHtml += `
+            </div>
+
+            <div class="profile-section-title">Stats Breakdown</div>
+            <ul class="stats-list">
+    `;
+
+    if (debater.profile) {
+        for (const skill in debater.profile) {
+            if (debater.profile.hasOwnProperty(skill)) {
+                // Konversi skor "X/10" menjadi angka (misal: 9)
+                const scoreValue = parseFloat(debater.profile[skill]);
+                const scorePercentage = (scoreValue / 10) * 100; // Untuk progress bar
+
+                profileHtml += `
+                    <li>
+                        <strong>${skill}:</strong> 
+                        <div class="skill-bar-container">
+                            <div class="skill-bar" style="width: ${scorePercentage}%;"></div>
+                            <span class="skill-score">${debater.profile[skill]}</span>
+                        </div>
+                    </li>
+                `;
+            }
         }
     }
-    profileHtml += `</ul>`;
+
+    profileHtml += `
+            </ul>
+        </div>
+    `;
 
     profileCard.innerHTML = profileHtml;
 }
@@ -378,8 +461,7 @@ function renderRankingPage() {
 
             rankingHtml += `
                 <h3 class="tier-heading">${tierName}</h3>
-                <div class="table-responsive"> <!-- WRAPPER BARU UNTUK SCROLL HORIZONTAL -->
-                    <table class="ranking-table">
+                <div class="table-responsive"> <table class="ranking-table">
                         <thead>
                             <tr>
                                 <th>Peringkat</th>
@@ -410,8 +492,7 @@ function renderRankingPage() {
             rankingHtml += `
                     </tbody>
                 </table>
-            </div> <!-- AKHIR WRAPPER BARU -->
-            `;
+            </div> `;
         }
     });
 
