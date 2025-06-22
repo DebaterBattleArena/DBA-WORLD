@@ -46,6 +46,50 @@ body {
     color: var(--highlight-color); /* Warna aksen untuk kata "ARENA" */
 }
 
+/* Gaya untuk Navigation Bar */
+.main-nav {
+    background-color: #222; /* Latar belakang nav bar */
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: sticky; /* Membuat nav bar sticky di atas */
+    top: 0;
+    width: 100%;
+    z-index: 999; /* Memastikan nav bar di atas konten saat scroll */
+}
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Izinkan wrap di layar kecil */
+}
+.main-nav ul li {
+    margin: 0 15px;
+}
+.main-nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transisi halus */
+}
+.main-nav ul li a:hover {
+    background-color: var(--highlight-color);
+    color: #fff; /* Teks putih saat hover */
+}
+
+/* --- Penyesuaian untuk Animasi dan Transisi Halus (Umum) --- */
+/* Tambahkan transisi ke semua elemen yang interaktif/berubah gaya */
+a, button, .cta-button, .match-card, .profile-card, .achievement-item, .main-nav ul li a {
+    transition: all 0.3s ease-in-out;
+}
+/* Anda bisa tambahkan lebih banyak efek hover/animasi sesuai keinginan di masa depan */
+
+
 /* Gaya umum untuk semua section */
 section {
     padding: 40px 20px; /* Mengurangi padding vertikal untuk mengurangi spasi antar section */
@@ -76,7 +120,6 @@ section p {
     width: 100%;
     max-width: 600px;
     margin: 0 auto 30px auto;
-    /* Hapus background-color dan height yang memengaruhi gambar */
     display: flex; /* Biarkan ini jika ingin flexbox tetap aktif */
     align-items: center;
     justify-content: center;
@@ -470,10 +513,21 @@ section p {
 .profile-details ul li span {
     color: var(--highlight-color);
     font-weight: bold;
+    font-size: 1.1em;
 }
 
-/* Penyesuaian untuk tampilan mobile pada modal */
+/* Media Query untuk Mobile Navigation */
 @media (max-width: 767px) {
+    .main-nav {
+        padding: 10px 0;
+    }
+    .main-nav ul li {
+        margin: 5px 10px; /* Jarak lebih kecil di mobile */
+    }
+    .main-nav ul li a {
+        font-size: 0.9em;
+        padding: 5px 8px;
+    }
     .modal-content {
         padding: 20px;
         width: 95%; /* Lebih lebar di mobile */
@@ -485,6 +539,25 @@ section p {
         font-size: 25px;
         top: 5px;
         right: 15px;
+    }
+    /* Penyesuaian tabel untuk layar mobile */
+    .ranking-table th, .ranking-table td {
+        padding: 10px; /* Kurangi padding */
+        font-size: 0.85em; /* Kurangi ukuran font */
+        white-space: nowrap; /* Mencegah teks wrapping di dalam sel */
+    }
+    .ranking-table th:nth-child(1), .ranking-table td:nth-child(1) { /* Peringkat */
+        width: 10%;
+    }
+    .ranking-table th:nth-child(2), .ranking-table td:nth-child(2) { /* Debater */
+        width: 40%;
+    }
+    .ranking-table th:nth-child(n+3), .ranking-table td:nth-child(n+3) { /* Kolom skill */
+        width: 15%; /* Beri lebar tetap untuk kolom skill */
+    }
+    .debater-cell img {
+        width: 40px; /* Perkecil foto debater di tabel */
+        height: 40px;
     }
 }
 
@@ -536,62 +609,5 @@ section p {
         width: auto;
         border-top: none;
         padding-top: 0;
-    }
-}
-
-/* Gaya untuk Navigation Bar */
-.main-nav {
-    background-color: #222; /* Latar belakang nav bar */
-    padding: 15px 0;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    position: sticky; /* Membuat nav bar sticky di atas */
-    top: 0;
-    width: 100%;
-    z-index: 999; /* Memastikan nav bar di atas konten saat scroll */
-}
-.main-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Izinkan wrap di layar kecil */
-}
-.main-nav ul li {
-    margin: 0 15px;
-}
-.main-nav ul li a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transisi halus */
-}
-.main-nav ul li a:hover {
-    background-color: var(--highlight-color);
-    color: #fff; /* Teks putih saat hover */
-}
-
-/* --- Penyesuaian untuk Animasi dan Transisi Halus (Umum) --- */
-/* Tambahkan transisi ke semua elemen yang interaktif/berubah gaya */
-a, button, .cta-button, .match-card, .profile-card, .achievement-item, .main-nav ul li a {
-    transition: all 0.3s ease-in-out;
-}
-/* Anda bisa tambahkan lebih banyak efek hover/animasi sesuai keinginan di masa depan */
-
-/* Media Query untuk Mobile Navigation (opsional, jika Anda ingin menu hamburger) */
-@media (max-width: 767px) {
-    .main-nav {
-        padding: 10px 0;
-    }
-    .main-nav ul li {
-        margin: 5px 10px; /* Jarak lebih kecil di mobile */
-    }
-    .main-nav ul li a {
-        font-size: 0.9em;
-        padding: 5px 8px;
     }
 }
