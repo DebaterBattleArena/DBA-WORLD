@@ -1,13 +1,15 @@
+:/* Variabel CSS untuk warna dan styling, memudahkan kustomisasi */
 :root {
-    --primary-bg: #1a1a1a; /* Background gelap */
-    --secondary-bg: #2a2a2a; /* Background elemen */
-    --text-color: #ffffff;
-    --highlight-color: #ff4500; /* Orange/merah cerah untuk highlight */
-    --light-grey: #cccccc;
+    --primary-bg: #1a1a1a; /* Background gelap utama */
+    --secondary-bg: #2a2a2a; /* Background elemen/section */
+    --text-color: #ffffff; /* Warna teks utama */
+    --highlight-color: #ff4500; /* Warna aksen/highlight (oranye/merah cerah) */
+    --light-grey: #cccccc; /* Warna abu-abu terang untuk teks sekunder */
 }
 
+/* Gaya dasar untuk body */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Font utama */
     margin: 0;
     padding: 0;
     background-color: var(--primary-bg);
@@ -16,7 +18,7 @@ body {
     overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
 }
 
-/* Header / Logo */
+/* Gaya untuk Header/Logo */
 .header-logo {
     background-color: black;
     padding: 20px 0;
@@ -24,23 +26,22 @@ body {
 }
 .header-logo h1 {
     margin: 0;
-    font-size: 2.5em; /* Ukuran font lebih besar untuk logo */
+    font-size: 2.5em; /* Ukuran font logo */
     color: var(--text-color);
     letter-spacing: 2px;
     text-transform: uppercase;
 }
-/* Memberi efek visual pada bagian 'Arena' */
 .header-logo h1 span {
-    color: var(--highlight-color);
+    color: var(--highlight-color); /* Warna aksen untuk kata "ARENA" */
 }
 
-/* Section Styling Umum */
+/* Gaya umum untuk semua section */
 section {
     padding: 40px 20px;
     text-align: center;
 }
 section h2 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Oswald', sans-serif; /* Font untuk judul section */
     font-size: 2.5em;
     color: var(--text-color);
     text-transform: uppercase;
@@ -53,70 +54,46 @@ section p {
     margin: 0 auto 20px auto;
 }
 
-/* Achievement Section */
-#achievement {
-    background-color: var(--primary-bg);
+/* Gaya untuk Section About */
+#about {
+    background-color: var(--secondary-bg);
     padding: 60px 20px;
-    position: relative;
-    overflow: hidden; /* Untuk background image jika ada */
+    text-align: center;
+    border-bottom: 5px solid var(--highlight-color); /* Garis bawah aksen */
 }
-#achievement::before {
-     /* Placeholder untuk gambar latar belakang */
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+.about-video {
     width: 100%;
-    height: 100%;
-    background-image: url('../img/background-achievement.jpg'); /* Ganti dengan gambar latar belakang asli */
-    background-size: cover;
-    background-position: center;
-    opacity: 0.1; /* Sedikit transparan */
-    z-index: 0;
-}
-#achievement .content-overlay {
-    position: relative;
-    z-index: 1; /* Pastikan konten di atas background */
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    background-color: #000; /* Placeholder hitam untuk video */
+    height: 250px;
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-.achievement-item {
-    margin-bottom: 25px;
-}
-.achievement-item .number {
-    font-family: 'Oswald', sans-serif;
-    font-size: 4em;
-    color: var(--highlight-color);
-    margin-bottom: 5px;
-    line-height: 1;
-}
-.achievement-item .label {
-    font-size: 1.2em;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
     color: var(--light-grey);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    border-radius: 8px; /* Sudut membulat */
 }
 
-/* Main Event Section (Jaden vs Andi) */
+/* Gaya untuk Section Main Event */
 #main-event {
     background-color: var(--secondary-bg);
-    padding: 0; /* Padding diatur di dalam content */
+    padding: 0;
     position: relative;
-    background-image: url('../img/main-event-bg.jpg'); /* Ganti dengan gambar duel yang sebenarnya */
+    /* Background image untuk main event. Path relatif dari style.css */
+    background-image: url('../img/main-event-bg.jpg');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.7); /* Gelapkan sedikit background */
+    filter: brightness(0.7); /* Memberi efek gelap pada gambar latar */
 }
-/* Hapus .main-event-bg jika background langsung di #main-event */
 #main-event .main-event-content {
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Pastikan konten di atas gambar latar */
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Pusatkan konten ke bawah */
-    min-height: 600px; /* Tinggi minimum untuk section ini */
+    justify-content: flex-end; /* Konten diposisikan di bagian bawah section */
+    min-height: 600px; /* Tinggi minimum section */
     gap: 20px;
     filter: brightness(1.0); /* Kembalikan brightness untuk konten */
 }
@@ -146,10 +123,10 @@ section p {
     justify-content: center;
     gap: 15px;
     margin-top: 30px;
-    background-color: rgba(0, 0, 0, 0.5); /* Background untuk countdown agar lebih jelas */
+    background-color: rgba(0, 0, 0, 0.5); /* Background transparan untuk countdown */
     padding: 15px;
     border-radius: 8px;
-    width: fit-content;
+    width: fit-content; /* Lebar sesuai konten */
     margin-left: auto;
     margin-right: auto;
 }
@@ -177,50 +154,63 @@ section p {
     font-weight: bold;
     font-size: 1.1em;
     margin-top: 30px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; /* Efek hover halus */
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 .cta-button:hover {
-    background-color: #ff6622; /* Sedikit lebih terang saat hover */
+    background-color: #ff6622;
 }
 .cta-button .arrow {
     margin-left: 10px;
 }
 
-/* About Section */
-#about {
-    background-color: var(--secondary-bg);
+/* Gaya untuk Section Achievement */
+#achievement {
+    background-color: var(--primary-bg);
     padding: 60px 20px;
-    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
-#about h2 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.5em;
-    color: var(--text-color);
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    letter-spacing: 3px;
-}
-#about p {
-    max-width: 800px;
-    margin: 0 auto 30px auto;
-    color: var(--light-grey);
-}
-.about-video {
+#achievement::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto 30px auto;
-    background-color: #000; /* Placeholder untuk video */
-    height: 250px;
+    height: 100%;
+    /* Background image untuk achievement. Path relatif dari style.css */
+    background-image: url('../img/background-achievement.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1; /* Sedikit transparan */
+    z-index: 0;
+}
+#achievement .content-overlay {
+    position: relative;
+    z-index: 1;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
+    flex-direction: column;
+    gap: 30px;
+}
+.achievement-item {
+    margin-bottom: 25px;
+}
+.achievement-item .number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 4em;
+    color: var(--highlight-color);
+    margin-bottom: 5px;
+    line-height: 1;
+}
+.achievement-item .label {
+    font-size: 1.2em;
     color: var(--light-grey);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Match List Section */
+/* Gaya untuk Section Match List (Daftar Debat) */
 #match-list {
     background-color: var(--primary-bg);
     padding: 60px 20px;
@@ -231,7 +221,7 @@ section p {
     margin-bottom: 20px;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Untuk mobile, stack vertically */
+    flex-direction: column; /* Default: susun vertikal untuk mobile */
     align-items: center;
     gap: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -250,7 +240,7 @@ section p {
     justify-content: center;
     width: 100%;
     gap: 10px;
-    flex-wrap: wrap; /* Untuk memastikan item di wrap jika layar kecil */
+    flex-wrap: wrap; /* Izinkan wrap jika layar kecil */
 }
 .debater-info {
     display: flex;
@@ -258,15 +248,15 @@ section p {
     align-items: center;
     text-align: center;
     gap: 5px;
-    flex: 1; /* Ambil ruang yang tersedia */
-    min-width: 120px; /* Lebar minimum agar tidak terlalu sempit */
+    flex: 1;
+    min-width: 120px; /* Lebar minimum untuk setiap debater info */
 }
 .debater-info img {
     width: 100px; /* Ukuran gambar debater */
     height: 100px;
     border-radius: 5px;
     object-fit: cover;
-    border: 2px solid var(--highlight-color); /* Border highlight */
+    border: 2px solid var(--highlight-color);
 }
 .debater-info .name {
     font-family: 'Oswald', sans-serif;
@@ -299,8 +289,26 @@ section p {
     width: 100%;
     text-align: center;
     margin-top: 10px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.1); /* Garis pemisah */
     padding-top: 10px;
+}
+
+/* Gaya untuk info pemenang/kalah */
+.result-info {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 5px 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px dashed rgba(255,255,255,0.1);
+    padding-top: 10px;
+}
+.result-info.winner {
+    color: #4CAF50; /* Hijau untuk pemenang */
+}
+.result-info.loser {
+    color: #f44336; /* Merah untuk kalah */
 }
 
 /* Footer */
@@ -319,7 +327,7 @@ footer a:hover {
     color: var(--highlight-color);
 }
 
-/* Media Queries untuk Responsif */
+/* Media Queries untuk Responsif (untuk layar lebih besar dari 768px) */
 @media (min-width: 768px) {
     .header-logo h1 {
         font-size: 3.5em;
@@ -331,7 +339,7 @@ footer a:hover {
         font-size: 1.5em;
     }
     #main-event .main-event-content {
-        min-height: 800px; /* Lebih tinggi di desktop */
+        min-height: 800px;
         justify-content: center;
     }
     .event-title {
@@ -347,7 +355,7 @@ footer a:hover {
         font-size: 3em;
     }
     .match-card {
-        flex-direction: row; /* Kembali ke horizontal di desktop */
+        flex-direction: row; /* Susun horizontal untuk desktop */
         justify-content: space-between;
         padding: 30px;
     }
@@ -361,28 +369,11 @@ footer a:hover {
     }
     .debater-info {
         min-width: unset;
-        flex: none; /* Jangan ambil ruang penuh */
+        flex: none;
     }
     .match-type {
         width: auto;
         border-top: none;
         padding-top: 0;
     }
-}
-/* Tambahan di assets/css/style.css */
-.result-info {
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 10px;
-    padding: 5px 0;
-    width: 100%;
-    text-align: center;
-    border-top: 1px dashed rgba(255,255,255,0.1);
-    padding-top: 10px;
-}
-.result-info.winner {
-    color: #4CAF50; /* Hijau untuk pemenang */
-}
-.result-info.loser {
-    color: #f44336; /* Merah untuk kalah */
 }
