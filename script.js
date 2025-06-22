@@ -45,9 +45,8 @@ function startCountdown() {
 // ====== FUNGSI UNTUK MEMUAT DATA DEBAT DARI JSON ======
 async function loadDebates() {
     try {
-        // Mengambil data dari file debates.json
-        // Pastikan path 'data/debates.json' sudah benar relatif terhadap index.html
-        const response = await fetch('data/debates.json');
+        // MENGUBAH PATH JSON: Sekarang mencari data.json di folder yang sama
+        const response = await fetch('data.json');
         
         // Memeriksa apakah request berhasil (status 200 OK)
         if (!response.ok) {
