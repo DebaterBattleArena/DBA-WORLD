@@ -156,7 +156,7 @@ const debatesData = [
                 "Rhetoric": "10/10",
                 "Typing Structure": "10/10",
                 "Critical Thinking": "10/10",
-                "Logical Fallacies": "8/10",
+                "Logical Fallacies": "10/10",
                 "Typing Strenght": "9/10",
                 "Tiering Sistem": "8/10",
                 "Calculation": "5/10",
@@ -352,8 +352,22 @@ function renderRankingPage() {
         const debatersInTier = allDebatersByTier[tierName];
         
         if (debatersInTier && debatersInTier.length > 0) {
-            // Sort debaters within tier alphabetically by name
-            debatersInTier.sort((a, b) => a.name.localeCompare(b.name));
+            // Pengurutan kustom untuk Mid Tier
+            if (tierName === "Mid Tier") {
+                const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"];
+                debatersInTier.sort((a, b) => {
+                    const indexA = midTierCustomOrder.indexOf(a.name);
+                    const indexB = midTierCustomOrder.indexOf(b.name);
+                    if (indexA === -1 || indexB === -1) {
+                         // Fallback ke urutan alfabetis jika ada debater yang tidak terdaftar dalam urutan kustom
+                        return a.name.localeCompare(b.name);
+                    }
+                    return indexA - indexB;
+                });
+            } else {
+                // Urutan alfabetis default untuk tier lainnya
+                debatersInTier.sort((a, b) => a.name.localeCompare(b.name));
+            }
 
             rankingHtml += `
                 <h3 class="tier-heading">${tierName}</h3>
@@ -411,7 +425,7 @@ function renderComparePage() {
     }
 
     // Populate dropdowns using the already built global allDebaters map
-    const debaterNames = Object.keys(allDebaters).sort(); // Menggunakan allDebaters yang sudah terisi secara global
+    const debaterNames = Object.keys(allDebaters).sort(); 
     
     // Clear existing options, but keep the first placeholder option
     debater1Select.innerHTML = '<option value="">Pilih Debater 1</option>';
@@ -443,8 +457,8 @@ function renderComparePage() {
             return;
         }
 
-        const debater1 = allDebaters[selectedDebater1Name]; // Menggunakan allDebaters
-        const debater2 = allDebaters[selectedDebater2Name]; // Menggunakan allDebaters
+        const debater1 = allDebaters[selectedDebater1Name]; 
+        const debater2 = allDebaters[selectedDebater2Name]; 
 
         if (!debater1 || !debater2 || !debater1.profile || !debater2.profile) {
             chartArea.innerHTML = '<p class="chart-message" style="color: red;">Statistik debater tidak lengkap.</p>';
@@ -510,7 +524,7 @@ function renderComparePage() {
                             color: 'rgba(255, 255, 255, 0.3)' 
                         },
                         pointLabels: {
-                            color: 'var(--text-color)', // Menggunakan variabel CSS di sini
+                            color: 'var(--text-color)', 
                             font: {
                                 size: 12
                             }
@@ -519,7 +533,7 @@ function renderComparePage() {
                             beginAtZero: true,
                             max: 10, 
                             stepSize: 2, 
-                            color: 'var(--light-grey)', // Menggunakan variabel CSS di sini
+                            color: 'var(--light-grey)', 
                             backdropColor: 'transparent', 
                             showLabelBackdrop: false 
                         }
@@ -528,7 +542,7 @@ function renderComparePage() {
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'var(--text-color)' // Menggunakan variabel CSS di sini
+                            color: 'var(--text-color)' 
                         }
                     },
                     tooltip: {
@@ -546,7 +560,7 @@ function renderComparePage() {
     debater1Select.addEventListener('change', updateComparison);
     debater2Select.addEventListener('change', updateComparison);
 
-    updateComparison(); // Panggil sekali untuk merender chart awal jika sudah ada nilai terpilih
+    updateComparison(); 
 }
 
 
@@ -568,5 +582,3 @@ document.addEventListener('DOMContentLoaded', () => {
         renderComparePage();
     }
 });
-
-
