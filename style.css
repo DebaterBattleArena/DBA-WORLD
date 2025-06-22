@@ -5,6 +5,8 @@
     --text-color: #ffffff; /* Warna teks utama */
     --highlight-color: #ff4500; /* Warna aksen/highlight (oranye/merah cerah) */
     --light-grey: #cccccc; /* Warna abu-abu terang untuk teks sekunder */
+    --win-color: #4CAF50; /* Warna hijau untuk kemenangan */
+    --loss-color: #f44336; /* Warna merah untuk kekalahan */
 }
 
 /* Gaya dasar untuk body */
@@ -86,24 +88,9 @@ body {
     color: #fff; /* Teks putih saat hover */
 }
 
-/* Media Query untuk Navigation Bar di Layar Mobile (Lebih Ramping) */
-@media (max-width: 767px) {
-    .main-nav {
-        padding: 5px 0; /* Lebih kecil lagi padding di mobile */
-    }
-    .main-nav ul {
-        gap: 5px 10px; /* Sesuaikan gap untuk mobile agar lebih rapat */
-    }
-    .main-nav ul li a {
-        font-size: 0.8em; /* Kurangi ukuran font di mobile agar muat lebih banyak */
-        padding: 3px 6px; /* Kurangi padding di mobile */
-    }
-}
-
-
 /* --- Penyesuaian untuk Animasi dan Transisi Halus (Umum) --- */
 /* Tambahkan transisi ke semua elemen yang interaktif/berubah gaya */
-a, button, .cta-button, .match-card, .profile-card, .achievement-item, .main-nav ul li a {
+a, button, .cta-button, .match-card, .profile-card, .archive-item, .achievement-item, .main-nav ul li a {
     transition: all 0.3s ease-in-out;
 }
 /* Anda bisa tambahkan lebih banyak efek hover/animasi sesuai keinginan di masa depan */
@@ -436,7 +423,6 @@ section p {
     top: 0;
     width: 100%; /* Lebar penuh */
     height: 100%; /* Tinggi penuh */
-    /* Hapus 'overflow: auto;' dari sini */
     background-color: rgba(0,0,0,0.8); /* Latar belakang hitam transparan */
     display: flex; /* Gunakan flexbox untuk pemusatan */
     justify-content: center; /* Pusatkan konten secara horizontal */
@@ -446,7 +432,6 @@ section p {
 
 .modal-content {
     background-color: var(--secondary-bg); /* Warna latar modal */
-    /* Hapus 'margin: auto;' karena sudah dihandle oleh flexbox parent */
     padding: 30px;
     border-radius: 10px;
     max-width: 500px; /* Lebar maksimum modal */
@@ -459,7 +444,7 @@ section p {
     transform: scale(0.95); /* Sedikit efek zoom saat muncul */
     opacity: 0; /* Mulai dengan transparan */
 
-    /* BARU: Batasi tinggi konten modal dan aktifkan scroll internal */
+    /* Batasi tinggi konten modal dan aktifkan scroll internal */
     max-height: 90vh; /* Tinggi maksimum 90% dari tinggi viewport */
     overflow-y: auto; /* Aktifkan scroll vertikal jika konten melebihi max-height */
     -webkit-overflow-scrolling: touch; /* Untuk scrolling yang lebih halus di iOS */
@@ -535,17 +520,26 @@ section p {
     font-size: 1.1em;
 }
 
-/* Media Query untuk Mobile Navigation */
+/* Gaya untuk tabel responsif (di halaman ranking) */
+.table-responsive {
+    overflow-x: auto; /* Memungkinkan tabel di-scroll horizontal jika terlalu lebar */
+    -webkit-overflow-scrolling: touch; /* Untuk scrolling yang lebih halus di iOS */
+    margin-left: auto; /* Untuk memusatkan wrapper jika ada sisa ruang */
+    margin-right: auto;
+    max-width: 100%; /* Pastikan tidak melebihi lebar parent */
+}
+
+/* Penyesuaian Media Queries untuk Mobile (maksimum 767px) */
 @media (max-width: 767px) {
     .main-nav {
-        padding: 10px 0;
+        padding: 5px 0; /* Lebih kecil lagi padding di mobile */
     }
-    .main-nav ul li {
-        margin: 5px 10px; /* Jarak lebih kecil di mobile */
+    .main-nav ul {
+        gap: 5px 10px; /* Sesuaikan gap untuk mobile agar lebih rapat */
     }
     .main-nav ul li a {
-        font-size: 0.9em;
-        padding: 5px 8px;
+        font-size: 0.8em; /* Kurangi ukuran font di mobile agar muat lebih banyak */
+        padding: 3px 6px; /* Kurangi padding di mobile */
     }
     .modal-content {
         padding: 20px;
@@ -559,7 +553,7 @@ section p {
         top: 5px;
         right: 15px;
     }
-    /* Penyesuaian tabel untuk layar mobile */
+    /* Penyesuaian tabel ranking untuk layar mobile */
     .ranking-table th, .ranking-table td {
         padding: 10px; /* Kurangi padding */
         font-size: 0.85em; /* Kurangi ukuran font */
@@ -577,6 +571,29 @@ section p {
     .debater-cell img {
         width: 40px; /* Perkecil foto debater di tabel */
         height: 40px;
+    }
+    /* Gaya untuk halaman profil (mobile) */
+    .profile-card {
+        padding: 20px;
+        max-width: 100%; /* Lebar penuh di mobile */
+    }
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+    }
+    .profile-name {
+        font-size: 2em;
+    }
+    .profile-section-title {
+        font-size: 1.5em;
+    }
+    .match-history-item {
+        flex-direction: column; /* Tumpuk vertikal di mobile */
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .skill-bar-container {
+        height: 8px; /* Lebih tipis di mobile */
     }
 }
 
