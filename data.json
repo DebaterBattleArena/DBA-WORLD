@@ -1,70 +1,98 @@
 [
     {
         "id": "debate-001",
-        "category": "DEBAT KEBIJAKAN NASIONAL",
+        "category": "FICTIONAL DEBATE",
         "debater1": {
-            "name": "JEKSON KARMELA",
-            "photo": "assets/img/debater1.jpg",
+            "name": "HIROO",
+            "photo": "assets/img/hiroo.jpg",
             "country": "indonesia",
             "flag": "https://flagcdn.com/id.svg"
         },
         "debater2": {
-            "name": "AZIZ CALIM",
-            "photo": "assets/img/debater2.jpg",
-            "country": "indonesia",
-            "flag": "https://flagcdn.com/id.svg"
-        },
-        "type": "FORMAT DEBAT PARLIAMEN"
-    },
-    {
-        "id": "debate-002",
-        "category": "DEBAT SEMIFINAL KATEGORI RETORIKA",
-        "debater1": {
-            "name": "JADEN BACHTERA",
-            "photo": "assets/img/debater3.jpg",
-            "country": "indonesia",
-            "flag": "https://flagcdn.com/id.svg"
-        },
-        "debater2": {
-            "name": "ANDI COBRA",
-            "photo": "assets/img/debater4.jpg",
-            "country": "indonesia",
-            "flag": "https://flagcdn.com/id.svg"
-        },
-        "type": "DEBAT BERSAMA"
-    },
-    {
-        "id": "debate-003",
-        "category": "DEBAT PENYISIHAN KATEGORI LOGIKA",
-        "debater1": {
-            "name": "PUTRA ABDULLAH",
-            "photo": "assets/img/debater5.jpg",
+            "name": "RENJI",
+            "photo": "assets/img/renji.jpg",
             "country": "malaysia",
             "flag": "https://flagcdn.com/my.svg"
         },
-        "debater2": {
-            "name": "RACHMAT GOZALI",
-            "photo": "assets/img/debater6.jpg",
+        "type": "ONE-ON-ONE DEBATE",
+        "winner": {
+            "name": "HIROO",
+            "method": "limit"
+        },
+        "loser": {
+            "name": "RENJI"
+        }
+    },
+    {
+        "id": "debate-002",
+        "category": "FICTIONAL DEBATE",
+        "debater1": {
+            "name": "ZOGRATIS",
+            "photo": "assets/img/zogratis.jpg",
             "country": "indonesia",
             "flag": "https://flagcdn.com/id.svg"
         },
-        "type": "DEBAT PERORANGAN"
+        "debater2": {
+            "name": "MUCHIBEI",
+            "photo": "assets/img/muchibei.jpg",
+            "country": "malaysia",
+            "flag": "https://flagcdn.com/my.svg"
+        },
+        "type": "ONE-ON-ONE DEBATE",
+        "winner": {
+            "name": "ZOGRATIS",
+            "method": "point"
+        },
+        "loser": {
+            "name": "MUCHIBEI"
+        }
+    },
+    {
+        "id": "debate-003",
+        "category": "FICTIONAL DEBATE",
+        "debater1": {
+            "name": "ARYANWT",
+            "photo": "assets/img/aryanwt.jpg",
+            "country": "indonesia",
+            "flag": "https://flagcdn.com/id.svg"
+        },
+        "debater2": {
+            "name": "RIM",
+            "photo": "assets/img/rim.jpg",
+            "country": "malaysia",
+            "flag": "https://flagcdn.com/my.svg"
+        },
+        "type": "ONE-ON-ONE DEBATE",
+        "winner": {
+            "name": "ARYANWT",
+            "method": "point"
+        },
+        "loser": {
+            "name": "RIM"
+        }
     },
     {
         "id": "debate-004",
-        "category": "DEBAT GELAR RETORIKA NASIONAL",
+        "category": "FICTIONAL DEBATE",
         "debater1": {
-            "name": "DANAR ILMAWAN",
-            "photo": "assets/img/debater7.jpg",
+            "name": "RANZT",
+            "photo": "assets/img/ranzt.jpg",
             "country": "indonesia",
             "flag": "https://flagcdn.com/id.svg"
         },
         "debater2": {
-            "name": "M. RAMADHANI",
-            "photo": "assets/img/debater8.jpg",
-            "country": "indonesia",
-            "flag": "https://flagcdn.com/id.svg"
+            "name": "RYUU",
+            "photo": "assets/img/ryuu.jpg",
+            "country": "malaysia",
+            "flag": "https://flagcdn.com/my.svg"
         },
-        "type": "DEBAT TIM"
+        "type": "ONE-ON-ONE DEBATE",
+        "winner": {
+            "name": "RANZT",
+            "method": "point"
+        },
+        "loser": {
+            "name": "RYUU"
+        }
     }
 ]
