@@ -173,12 +173,22 @@ section p {
     margin-left: 10px;
 }
 
+/* Achievement Section */
 #achievement {
     background-color: var(--primary-bg);
-    padding: 60px 20px;
+    padding: 40px 20px; /* DIUBAH: Mengurangi padding atas/bawah */
     position: relative;
     overflow: hidden;
 }
+
+/* ... kode lain ... */
+
+/* Match List Section */
+#match-list {
+    background-color: var(--primary-bg);
+    padding: 40px 20px; /* DIUBAH: Mengurangi padding atas/bawah */
+}
+
 #achievement::before {
     content: '';
     position: absolute;
