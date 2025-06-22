@@ -14,7 +14,7 @@
             "country": "malaysia",
             "flag": "https://flagcdn.com/my.svg"
         },
-        "type": "ONE-ON-ONE DEBATE",
+        "type": "MID TIER DEBATE",
         "winner": {
             "name": "HIROO",
             "method": "limit"
@@ -38,7 +38,7 @@
             "country": "malaysia",
             "flag": "https://flagcdn.com/my.svg"
         },
-        "type": "ONE-ON-ONE DEBATE",
+        "type": "HIGH TIER DEBATE",
         "winner": {
             "name": "ZOGRATIS",
             "method": "point"
@@ -62,7 +62,7 @@
             "country": "malaysia",
             "flag": "https://flagcdn.com/my.svg"
         },
-        "type": "ONE-ON-ONE DEBATE",
+        "type": "LOW TIER DEBATE",
         "winner": {
             "name": "ARYANWT",
             "method": "point"
@@ -86,7 +86,7 @@
             "country": "malaysia",
             "flag": "https://flagcdn.com/my.svg"
         },
-        "type": "ONE-ON-ONE DEBATE",
+        "type": "MID TIER DEBATE",
         "winner": {
             "name": "RANZT",
             "method": "point"
