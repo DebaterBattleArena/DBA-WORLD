@@ -14,7 +14,7 @@
             "country": "malaysia",
             "flag": "img/IMG_0418.png"
         },
-        "type": "ONE-ON-ONE DEBATE",
+        "type": "MID TIER DEBATE",  
         "winner": {
             "name": "HIROO",
             "method": "limit"
@@ -38,7 +38,7 @@
             "country": "malaysia",
             "flag": "img/IMG_0418.png"
         },
-        "type": "ONE-ON-ONE DEBATE",
+        "type": "MID TIER DEBATE",
         "winner": {
             "name": "ZOGRATIS",
             "method": "point"
@@ -62,7 +62,7 @@
             "country": "malaysia",
             "flag": "img/IMG_0418.png"
         },
-        "type": "ONE-ON-ONE DEBATE",
+        "type": "MID TIER DEBATE",
         "winner": {
             "name": "ARYANWT",
             "method": "point"
@@ -76,15 +76,17 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "RANZT",
-            "photo": "img/ranzt.jpg",  "country": "indonesia",
+            "photo": "img/ranzt.jpg",  
+            "country": "indonesia",
             "flag": "img/IMG_0417.png"
         },
         "debater2": {
             "name": "RYUU",
-            "photo": "img/ryuu.jpg",  "country": "malaysia",
+            "photo": "img/ryuu.jpg",  
+            "country": "malaysia",
             "flag": "img/IMG_0418.png"
         },
-        "type": "ONE-ON-ONE DEBATE",
+        "type": "MID TIER DEBATE",
         "winner": {
             "name": "RANZT",
             "method": "point"
