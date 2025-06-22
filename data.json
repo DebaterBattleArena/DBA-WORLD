@@ -1,0 +1,146 @@
+{
+  "debaters": [
+    {
+      "id": 1,
+      "name": "Rizky Ramadhan",
+      "specialty": "Geopolitik & Hubungan Internasional",
+      "bio": "Debaters taktis dengan kemampuan analisis mendalam pada isu-isu global.",
+      "imageUrl": "https://via.placeholder.com/120/007bff/FFFFFF?text=RR",
+      "wins": 15,
+      "losses": 3,
+      "matchHistory": [
+        {"opponentId": 2, "date": "2024-11-05", "result": "win", "topic": "Dampak AI pada Pasar Kerja Global"},
+        {"opponentId": 3, "date": "2024-10-20", "result": "win", "topic": "Regulasi Media Sosial"},
+        {"opponentId": 4, "date": "2024-09-10", "result": "loss", "topic": "Masa Depan Energi Terbarukan"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Putri Lestari",
+      "specialty": "Lingkungan & Pembangunan Berkelanjutan",
+      "bio": "Bersemangat menyuarakan keadilan lingkungan dan solusi berkelanjutan.",
+      "imageUrl": "https://via.placeholder.com/120/007bff/FFFFFF?text=PL",
+      "wins": 12,
+      "losses": 5,
+      "matchHistory": [
+        {"opponentId": 1, "date": "2024-11-05", "result": "loss", "topic": "Dampak AI pada Pasar Kerja Global"},
+        {"opponentId": 5, "date": "2024-10-15", "result": "win", "topic": "Pentingnya Pendidikan Inklusif"},
+        {"opponentId": 3, "date": "2024-09-25", "result": "win", "topic": "Peran Pemerintah dalam Ekonomi Kreatif"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Bagas Wijaya",
+      "specialty": "Hukum & Etika",
+      "bio": "Analisis tajam dan argumen berbasis hukum yang kokoh.",
+      "imageUrl": "https://via.placeholder.com/120/007bff/FFFFFF?text=BW",
+      "wins": 10,
+      "losses": 6,
+      "matchHistory": [
+        {"opponentId": 1, "date": "2024-10-20", "result": "loss", "topic": "Regulasi Media Sosial"},
+        {"opponentId": 2, "date": "2024-09-25", "result": "loss", "topic": "Peran Pemerintah dalam Ekonomi Kreatif"},
+        {"opponentId": 6, "date": "2024-08-18", "result": "win", "topic": "Etika Penggunaan Teknologi Biometrik"}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Dewi Sartika",
+      "specialty": "Ekonomi Digital & Inovasi",
+      "bio": "Menguasai dinamika ekonomi digital dan tren inovasi terbaru.",
+      "imageUrl": "https://via.placeholder.com/120/007bff/FFFFFF?text=DS",
+      "wins": 8,
+      "losses": 4,
+      "matchHistory": [
+        {"opponentId": 1, "date": "2024-09-10", "result": "win", "topic": "Masa Depan Energi Terbarukan"},
+        {"opponentId": 5, "date": "2024-08-01", "result": "loss", "topic": "Pajak Karbon dan Dampaknya"}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Joko Susilo",
+      "specialty": "Kesehatan Masyarakat & Kebijakan",
+      "bio": "Fokus pada isu-isu kesehatan dan implementasi kebijakan publik.",
+      "imageUrl": "https://via.placeholder.com/120/007bff/FFFFFF?text=JS",
+      "wins": 7,
+      "losses": 8,
+      "matchHistory": [
+        {"opponentId": 2, "date": "2024-10-15", "result": "loss", "topic": "Pentingnya Pendidikan Inklusif"},
+        {"opponentId": 4, "date": "2024-08-01", "result": "win", "topic": "Pajak Karbon dan Dampaknya"}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Sinta Bella",
+      "specialty": "Pendidikan & Kebudayaan",
+      "bio": "Membawa perspektif segar tentang reformasi pendidikan dan pelestarian budaya.",
+      "imageUrl": "https://via.placeholder.com/120/007bff/FFFFFF?text=SB",
+      "wins": 6,
+      "losses": 9,
+      "matchHistory": [
+        {"opponentId": 3, "date": "2024-08-18", "result": "loss", "topic": "Etika Penggunaan Teknologi Biometrik"},
+        {"opponentId": 1, "date": "2024-07-01", "result": "win", "topic": "Peran Seni dalam Masyarakat Modern"}
+      ]
+    }
+  ],
+  "recentMatches": [
+    {
+      "id": 201,
+      "debater1Id": 1,
+      "debater2Id": 2,
+      "winnerId": 1,
+      "date": "2024-11-05",
+      "topic": "Dampak AI pada Pasar Kerja Global",
+      "location": "Online - Zoom Arena"
+    },
+    {
+      "id": 202,
+      "debater1Id": 3,
+      "debater2Id": 6,
+      "winnerId": 3,
+      "date": "2024-11-02",
+      "topic": "Urgensi Regulasi Kripto di Indonesia",
+      "location": "Jakarta Debate Club"
+    },
+    {
+      "id": 203,
+      "debater1Id": 4,
+      "debater2Id": 5,
+      "winnerId": 4,
+      "date": "2024-10-28",
+      "topic": "Manfaat dan Risiko Kendaraan Otonom",
+      "location": "Bandung Debaters Forum"
+    },
+    {
+      "id": 204,
+      "debater1Id": 1,
+      "debater2Id": 3,
+      "winnerId": 1,
+      "date": "2024-10-20",
+      "topic": "Regulasi Media Sosial",
+      "location": "Surabaya Debate League"
+    }
+  ],
+  "events": [
+    {
+      "id": 101,
+      "name": "DBA National Championship 2025",
+      "date": "2025-07-15",
+      "location": "Jakarta Convention Center",
+      "description": "Kompetisi debat terbesar tingkat nasional untuk memperebutkan gelar juara DBA."
+    },
+    {
+      "id": 102,
+      "name": "Workshop Strategi Argumentasi Tingkat Lanjut",
+      "date": "2025-08-01",
+      "location": "Online via Zoom",
+      "description": "Pelatihan mendalam tentang pengembangan argumen yang kokoh dan teknik persuasi."
+    },
+    {
+      "id": 103,
+      "name": "DBA Rookie Challenge",
+      "date": "2025-09-10",
+      "location": "Universitas Gadjah Mada, Yogyakarta",
+      "description": "Turnamen khusus untuk debaters baru untuk mendapatkan pengalaman kompetitif."
+    }
+  ]
+}
