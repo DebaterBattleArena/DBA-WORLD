@@ -122,20 +122,19 @@ section p {
     text-align: center;
     border-bottom: 5px solid var(--highlight-color); /* Garis bawah aksen */
 }
-.about-video {
+.about-video { /* Gaya untuk gambar di about (jika ada) */
     width: 100%;
     max-width: 600px;
     margin: 0 auto 30px auto;
-    display: flex; /* Biarkan ini jika ingin flexbox tetap aktif */
+    display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5em;
     color: var(--light-grey);
     border-radius: 8px;
-    overflow: hidden; /* Penting agar gambar membulat mengikuti border-radius */
+    overflow: hidden;
 }
-/* Tambahan gaya untuk gambar di dalam about-video */
-.about-video img {
+.about-video img { /* Pastikan gambar di about-video memenuhi container */
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -167,7 +166,7 @@ section p {
     padding: 0; /* Padding diatur di dalam content */
     position: relative;
     /* GAMBAR UTAMA SEKARANG SEBAGAI BACKGROUND UNTUK SECTION INI */
-    background-image: url('60bd86fc-0490-445e-843b-79298aa84ed3.jpeg'); /* <-- NAMA FILE GAMBAR YANG BENAR */
+    background-image: url('60bd86fc-0490-445e-843b-79298aa84ed3.jpeg'); /* <-- NAMA FILE GAMBAR BANNER UTAMA */
     background-size: cover; /* Pastikan gambar menutupi seluruh area */
     background-position: center; /* Pusatkan gambar */
     background-repeat: no-repeat; /* Jangan ulangi gambar */
@@ -200,10 +199,6 @@ section p {
     background-color: rgba(0, 0, 0, 0.4); /* Overlay hitam transparan */
     z-index: 0;
 }
-/* HAPUS .main-event-banner CSS ini karena sudah tidak pakai tag <img> terpisah */
-/* .main-event-banner { ... } (baris ini dan isinya dihapus) */
-
-
 /* Perbaikan gaya untuk teks di main-event agar lebih kontras */
 #main-event .event-title,
 #main-event .contestants,
@@ -218,34 +213,48 @@ section p {
     z-index: 2; /* Pastikan tombol di atas overlay */
 }
 
-/* Penyesuaian untuk tampilan mobile pada main event */
-@media (max-width: 767px) {
-    #main-event {
-        min-height: 500px; /* Kurangi tinggi minimum di mobile */
-    }
-    #main-event .main-event-content {
-        padding-top: 20px; /* Ini sudah ada, biarkan */
-    }
-    #main-event .event-title {
-        font-size: 1.2em; /* Sesuaikan ukuran font di mobile */
-    }
-    #main-event .contestants {
-        font-size: 2em; /* Sesuaikan ukuran font di mobile */
-    }
-    #main-event .countdown-item .number {
-        font-size: 2em; /* Sesuaikan ukuran font di mobile */
-    }
-    #main-event .countdown-item .label {
-        font-size: 0.7em; /* Sesuaikan ukuran font di mobile */
-    }
+/* Gaya Countdown */
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Menyelaraskan item vertikal di tengah */
+    gap: 10px; /* Jarak antara item countdown dan kolon */
+    margin-top: 30px;
+    background-color: transparent; /* Hapus background dari container, pindahkan ke item */
+    padding: 0; /* Hapus padding dari container */
+    border-radius: 0; /* Hapus border-radius dari container */
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
-/* Penyesuaian untuk tampilan mobile pada banner main event */
-@media (max-width: 767px) {
-    #main-event .main-event-content {
-        padding-top: 20px; /* Tambahkan sedikit padding di bagian atas mobile */
-    }
+.countdown-item {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Background gelap transparan untuk setiap kotak */
+    padding: 10px 15px; /* Padding di dalam setiap kotak */
+    border-radius: 8px; /* Sudut membulat untuk setiap kotak */
+    min-width: 60px; /* Lebar minimum untuk kotak agar seragam */
 }
-
+.countdown-item .number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.8em; /* Ukuran angka lebih besar */
+    color: var(--highlight-color); /* Warna highlight (merah/oranye) */
+    line-height: 1;
+    margin-bottom: 5px; /* Jarak antara angka dan label */
+}
+.countdown-item .label {
+    font-size: 0.8em;
+    color: #fff; /* Warna label jadi putih */
+    text-transform: uppercase;
+    font-weight: bold; /* Label lebih tebal */
+}
+/* Gaya untuk kolon pemisah */
+.countdown-colon {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5em; /* Ukuran kolon */
+    color: var(--text-color); /* Warna kolon putih */
+    line-height: 1;
+    margin: 0 -5px; /* Sesuaikan margin untuk memposisikan kolon */
+}
 
 .event-title {
     font-size: 1.5em;
@@ -262,38 +271,18 @@ section p {
     font-size: 2.5em;
     text-transform: uppercase;
     color: var(--text-color);
+    margin-bottom: 10px; /* Tambahkan sedikit jarak bawah */
 }
 .contestants .vs {
     color: var(--highlight-color);
     font-size: 0.8em;
     margin: 0 10px;
 }
-.countdown {
-    display: flex; /* Pastikan ini flex */
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-    background-color: rgba(0, 0, 0, 0.5); /* Warna latar kotak countdown */
-    padding: 15px;
-    border-radius: 8px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-.countdown-item {
-    text-align: center;
-}
-.countdown-item .number {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.5em;
-    color: var(--highlight-color); /* Pastikan warnanya bukan hitam atau transparan */
-    line-height: 1;
-}
-.countdown-item .label {
-    font-size: 0.8em;
-    color: var(--light-grey); /* Pastikan warnanya bukan hitam atau transparan */
-    text-transform: uppercase;
-}
+/* Tambahan margin untuk elemen di main-event-content jika perlu */
+#main-event .event-title { margin-bottom: 15px; }
+#main-event .countdown { margin-top: 30px; margin-bottom: 20px; } /* Sesuaikan margin */
+
+
 .cta-button {
     display: inline-block;
     background-color: var(--highlight-color);
