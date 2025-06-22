@@ -161,7 +161,7 @@ const debatesData = [
                 "Typing Structure": "10/10",
                 "Critical Thinking": "10/10",
                 "Logical Fallacies": "10/10",
-                "Typing Strenght": "9/10",
+                "Typing Strenght": "10/10",
                 "Tiering Sistem": "8/10",
                 "Calculation": "5/10",
                     "Philisophy": "9/10",
@@ -255,10 +255,10 @@ function loadAndRenderDebatesForIndexPage() {
     if (!container) return; 
 
     let htmlContent = '';
-    // Filter untuk menampilkan debat yang belum selesai di halaman utama
-    const upcomingDebates = debates.filter(debate => !debate.winner || !debate.loser); // Jika tidak ada winner/loser, anggap belum selesai
+    // FILTER DIHAPUS: Sekarang menampilkan semua debat di halaman utama
+    // const upcomingDebates = debates.filter(debate => !debate.winner || !debate.loser);
     
-    upcomingDebates.forEach(debate => { // Render hanya debat yang belum selesai
+    debates.forEach(debate => { // Menggunakan 'debates' untuk menampilkan semua
         const winnerInfo = debate.winner ? `
             <div class="result-info winner">
                 <strong>Winner:</strong> ${debate.winner.name} by ${debate.winner.method}
@@ -619,7 +619,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (window.location.pathname.endsWith('ranking.html')) {
         // Ini adalah halaman ranking.html
         renderRankingPage();
-    } else if (window.location.pathname.endsWith('archive.html')) { // BARU: Panggil renderArchivePage
+    } else if (window.location.pathname.endsWith('archive.html')) { 
         // Ini adalah halaman archive.html
         renderArchivePage();
     } else if (window.location.pathname.endsWith('compare.html')) {
