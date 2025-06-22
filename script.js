@@ -19,7 +19,7 @@ const debatesData = [
                 "Philisophy": "9/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier" // Ditambahkan
+            "tier": "Mid Tier" 
         },
         "debater2": {
             "name": "RENJI",
@@ -37,7 +37,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Mid Tier" // Ditambahkan
+            "tier": "Mid Tier" 
         },
         "type": "MID TIER DEBATE",  
         "winner": {
@@ -67,7 +67,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "7/10"
             },
-            "tier": "High Tier" // Ditambahkan
+            "tier": "High Tier" 
         },
         "debater2": {
             "name": "MUCHIBEI",
@@ -85,7 +85,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "8/10"
             },
-            "tier": "High Tier" // Ditambahkan
+            "tier": "High Tier" 
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -115,7 +115,7 @@ const debatesData = [
                 "Philisophy": "7/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Low Tier" // Ditambahkan
+            "tier": "Low Tier" 
         },
         "debater2": {
             "name": "RIM",
@@ -133,7 +133,7 @@ const debatesData = [
                 "Philisophy": "3/10",
                 "General Knowledge": "7/10"
             },
-            "tier": "Low Tier" // Ditambahkan
+            "tier": "Low Tier" 
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -154,16 +154,16 @@ const debatesData = [
             "flag": "IMG_0417.png",   
             "profile": {
                 "Rhetoric": "10/10",
-                "Typing Structure": "8/10",
+                "Typing Structure": "10/10",
                 "Critical Thinking": "10/10",
-                "Logical Fallacies": "10/10",
+                "Logical Fallacies": "8/10",
                 "Typing Strenght": "9/10",
                 "Tiering Sistem": "8/10",
                 "Calculation": "5/10",
                     "Philisophy": "9/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier" // Ditambahkan
+            "tier": "Mid Tier" 
         },
         "debater2": {
             "name": "RYUU",
@@ -181,7 +181,7 @@ const debatesData = [
                 "Philisophy": "4/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier" // Ditambahkan
+            "tier": "Mid Tier" 
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -303,16 +303,7 @@ function renderProfilePage() {
     }
 
     // Membangun allDebaters map (karena ini akan dijalankan terpisah dari index.html)
-    debatesData.forEach(debate => {
-        if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
-            allDebaters[debate.debater1.name] = debate.debater1;
-        }
-        if (debate.debater2 && debate.debater2.name && !allDebaters[debate.debater2.name]) {
-            allDebaters[debate.deb2.name] = debate.debater2; // Typo here, should be debater2.name
-        }
-    });
-    // Fix: Rebuild allDebaters map correctly
-    allDebaters = {};
+    allDebaters = {}; // Reset untuk memastikan hanya debater yang dibutuhkan
     debatesData.forEach(debate => {
         if (debate.debater1 && debate.debater1.name) {
             allDebaters[debate.debater1.name] = debate.debater1;
@@ -349,17 +340,17 @@ function renderProfilePage() {
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN RANKING (UNTUK ranking.html) ======
 function renderRankingPage() {
-    const rankingContainer = document.getElementById('ranking-container'); // Menggunakan container div
+    const rankingContainer = document.getElementById('ranking-container'); 
     if (!rankingContainer) return; 
 
-    // Membangun allDebaters map terlebih dahulu (diperlukan karena halaman ini mungkin dimuat langsung)
-    const allDebaters = {}; 
+    // Membangun allDebaters map (diperlukan karena halaman ini mungkin dimuat langsung)
+    const allDebatersInPage = {}; // Gunakan variabel lokal untuk halaman ini
     debatesData.forEach(debate => {
         if (debate.debater1 && debate.debater1.name) {
-            allDebaters[debate.debater1.name] = debate.debater1;
+            allDebatersInPage[debate.debater1.name] = debate.debater1;
         }
         if (debate.debater2 && debate.debater2.name) {
-            allDebaters[debate.debater2.name] = debate.debater2;
+            allDebatersInPage[debate.debater2.name] = debate.debater2;
         }
     });
 
@@ -370,7 +361,7 @@ function renderRankingPage() {
     };
 
     // Kelompokkan debater berdasarkan tier
-    Object.values(allDebaters).forEach(debater => {
+    Object.values(allDebatersInPage).forEach(debater => {
         if (debater.tier && allDebatersByTier[debater.tier]) {
             allDebatersByTier[debater.tier].push(debater);
         }
@@ -396,7 +387,7 @@ function renderRankingPage() {
                                 <th>Rhetoric</th>
                                 <th>Critical Thinking</th>
                                 <th>General Knowledge</th>
-                                </tr>
+                            </tr>
                         </thead>
                         <tbody>
             `;
@@ -413,7 +404,7 @@ function renderRankingPage() {
                         <td>${debater.profile['Rhetoric']}</td>
                         <td>${debater.profile['Critical Thinking']}</td>
                         <td>${debater.profile['General Knowledge']}</td>
-                        </tr>
+                    </tr>
                 `;
             });
             rankingHtml += `
@@ -440,5 +431,172 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (window.location.pathname.endsWith('ranking.html')) {
         // Ini adalah halaman ranking.html
         renderRankingPage();
+    } else if (window.location.pathname.endsWith('compare.html')) {
+        // Ini adalah halaman compare.html
+        renderComparePage(); // BARU: Panggil fungsi render Compare Page
     }
 });
+
+// ====== FUNGSI UNTUK MERENDER HALAMAN COMPARE (UNTUK compare.html) ======
+let chartInstance = null; // Variabel global untuk menyimpan instance chart agar bisa dihancurkan
+
+function renderComparePage() {
+    const debater1Select = document.getElementById('debater1-select');
+    const debater2Select = document.getElementById('debater2-select');
+    const chartArea = document.getElementById('chart-area');
+    const chartCanvas = document.getElementById('radarChart');
+
+    if (!debater1Select || !debater2Select || !chartArea || !chartCanvas) {
+        console.error("Elemen-elemen untuk halaman compare tidak ditemukan.");
+        return;
+    }
+
+    // Membangun allDebaters map (diperlukan karena halaman ini mungkin dimuat langsung)
+    const allDebatersForCompare = {};
+    debatesData.forEach(debate => {
+        if (debate.debater1 && debate.debater1.name) {
+            allDebatersForCompare[debate.debater1.name] = debate.debater1;
+        }
+        if (debate.debater2 && debate.debater2.name) {
+            allDebatersForCompare[debate.debater2.name] = debate.debater2;
+        }
+    });
+
+    // Populate dropdowns
+    const debaterNames = Object.keys(allDebatersForCompare).sort(); // Urutkan alfabetis
+    debaterNames.forEach(name => {
+        const option1 = document.createElement('option');
+        option1.value = name;
+        option1.textContent = name;
+        debater1Select.appendChild(option1);
+
+        const option2 = document.createElement('option');
+        option2.value = name;
+        option2.textContent = name;
+        debater2Select.appendChild(option2);
+    });
+
+    // Event listeners for dropdown changes
+    function updateComparison() {
+        const selectedDebater1Name = debater1Select.value;
+        const selectedDebater2Name = debater2Select.value;
+
+        if (!selectedDebater1Name || !selectedDebater2Name) {
+            chartArea.innerHTML = '<p class="chart-message">Pilih dua debater untuk membandingkan statistik mereka.</p>';
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
+            return;
+        }
+
+        const debater1 = allDebatersForCompare[selectedDebater1Name];
+        const debater2 = allDebatersForCompare[selectedDebater2Name];
+
+        if (!debater1 || !debater2 || !debater1.profile || !debater2.profile) {
+            chartArea.innerHTML = '<p class="chart-message" style="color: red;">Statistik debater tidak lengkap.</p>';
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
+            return;
+        }
+
+        // Hapus pesan dan tampilkan canvas
+        chartArea.innerHTML = '';
+        chartArea.appendChild(chartCanvas);
+
+        // Siapkan data untuk Chart.js (Radar Chart)
+        const labels = Object.keys(debater1.profile); // Misalnya, ambil semua nama skill
+        const data1 = labels.map(label => parseFloat(debater1.profile[label]));
+        const data2 = labels.map(label => parseFloat(debater2.profile[label]));
+
+        if (chartInstance) {
+            chartInstance.destroy(); // Hancurkan chart sebelumnya jika ada
+        }
+
+        // Buat Chart.js
+        const ctx = chartCanvas.getContext('2d');
+        chartInstance = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: debater1.name,
+                        data: data1,
+                        backgroundColor: 'rgba(54, 162, 235, 0.4)', // Biru transparan
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+                    },
+                    {
+                        label: debater2.name,
+                        data: data2,
+                        backgroundColor: 'rgba(255, 99, 132, 0.4)', // Merah transparan
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(255, 99, 132, 1)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Penting untuk kontrol ukuran di CSS
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: 'rgba(255, 255, 255, 0.2)' // Warna garis sudut
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.3)' // Warna grid
+                        },
+                        pointLabels: {
+                            color: var(--text-color), // Warna label skill
+                            font: {
+                                size: 12
+                            }
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            max: 10, // Maksimum nilai skill
+                            stepSize: 2, // Langkah per 2
+                            color: var(--light-grey), // Warna angka di sumbu
+                            backdropColor: 'transparent', // Hilangkan latar belakang di ticks
+                            showLabelBackdrop: false // Jangan tampilkan kotak latar belakang label
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: var(--text-color) // Warna label legend
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Panggil updateComparison saat halaman dimuat (jika ada pilihan default)
+    // dan saat pilihan dropdown berubah
+    debater1Select.addEventListener('change', updateComparison);
+    debater2Select.addEventListener('change', updateComparison);
+
+    // Panggil sekali untuk merender chart awal jika sudah ada nilai terpilih
+    updateComparison();
+}
+
