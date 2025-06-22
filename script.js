@@ -1,11 +1,12 @@
 // ====== FUNGSI COUNTDOWN (untuk Main Event) ======
 function startCountdown() {
-    // Set tanggal dan waktu target (Ganti dengan tanggal acara debat utama)
-    const targetDate = new Date("June 28, 2025 00:00:00").getTime(); // Contoh: 28 Juni 2025
+    // Set tanggal dan waktu target (2 hari dari sekarang)
+    const now = new Date();
+    const targetDate = new Date(now.getTime() + (2 * 24 * 60 * 60 * 1000)).getTime(); // Tambah 2 hari
 
     const countdownFunction = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+        const currentTime = new Date().getTime();
+        const distance = targetDate - currentTime;
 
         // Hitung waktu
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -31,7 +32,6 @@ function startCountdown() {
             if (hoursEl) hoursEl.innerHTML = "00";
             if (minutesEl) minutesEl.innerHTML = "00";
             if (secondsEl) secondsEl.innerHTML = "00";
-            // Opsional: tampilkan pesan "DEBAT TELAH DIMULAI!"
             console.log("Countdown Selesai!");
         }
     }, 1000);
@@ -60,6 +60,21 @@ function renderDebates(debates) {
 
     let htmlContent = '';
     debates.forEach(debate => {
+        // Logika untuk menampilkan pemenang/kalah jika ada
+        const winnerInfo = debate.winner ? `
+            <div class="result-info winner">
+                <strong>Winner:</strong> ${debate.winner.name} by ${debate.winner.method}
+            </div>
+        ` : '';
+
+        const loserInfo = debate.loser ? `
+            <div class="result-info loser">
+                <strong>Loss:</strong> ${debate.loser.name}
+            </div>
+        ` : '';
+
+        // Tambahkan style untuk result-info ke style.css juga
+        // Untuk saat ini, tambahkan secara inline jika perlu
         htmlContent += `
             <div class="match-card">
                 <div class="category">${debate.category}</div>
@@ -77,6 +92,8 @@ function renderDebates(debates) {
                     </div>
                 </div>
                 <div class="match-type">${debate.type}</div>
+                ${winnerInfo}
+                ${loserInfo}
             </div>
         `;
     });
