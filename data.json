@@ -137,50 +137,49 @@
             "name": "RIM"
         }
     },
-    {
-        "id": "debate-004",
-        "category": "FICTIONAL DEBATE",
-        "debater1": {
-            "name": "RANZT",
-            "photo": "ranzt.jpg",
-            "country": "indonesia",
-            "flag": "IMG_0417.png",
-            "profile": {
-                "Rhetoric": "10/10",
-                "Typing Structure": "8/10",
-                "Critical Thinking": "8/10",
-                "Logical Fallacies": "8/10",
-                "Typing Strenght": "9/10",
-                "Tiering Sistem": "8/10",
-                "Calculation": "5/10",
-                "Philisophy": "9/10",
-                "General Knowledge": "10/10"
-            }
-        },
-        "debater2": {
-            "name": "RYUU",
-            "photo": "ryuu.jpg",
-            "country": "malaysia",
-            "flag": "IMG_0418.png",
-            "profile": {
-                "Rhetoric": "8.5/10",
-                "Typing Structure": "8/10",
-                "Critical Thinking": "7/10",
-                "Logical Fallacies": "6/10",
-                "Typing Strenght": "5/10",
-                "Tiering Sistem": "5/10",
-                "Calculation": "7/10",
-                "Philisophy": "4/10",
-                "General Knowledge": "10/10"
-            }
-        },
-        "type": "MID TIER DEBATE",
-        "winner": {
-            "name": "RANZT",
-            "method": "point"
-        },
-        "loser": {
-            "name": "RYUU"
+   {
+    "id": "debate-004",
+    "category": "FICTIONAL DEBATE",
+    "debater1": {
+        "name": "RANZT",
+        "photo": "ranzt.jpg",
+        "country": "indonesia",
+        "flag": "IMG_0417.png",
+        "profile": {
+            "Rhetoric": "10/10",
+            "Typing Structure": "8/10",
+            "Critical Thinking": "8/10",
+            "Logical Fallacies": "8/10",
+            "Typing Strenght": "9/10",
+            "Tiering Sistem": "8/10",
+            "Calculation": "5/10",
+            "Philisophy": "9/10",
+            "General Knowledge": "10/10"
         }
+    },
+    "debater2": {
+        "name": "RYUU",
+        "photo": "ryuu.jpg",
+        "country": "malaysia",
+        "flag": "IMG_0418.png",
+        "profile": {
+            "Rhetoric": "8.5/10",
+            "Typing Structure": "8/10",
+            "Critical Thinking": "7/10",
+            "Logical Fallacies": "6/10",
+            "Typing Strenght": "5/10",
+            "Tiering Sistem": "5/10",
+            "Calculation": "7/10",
+            "Philisophy": "4/10",
+            "General Knowledge": "10/10"
+        }
+    },
+    "type": "MID TIER DEBATE",
+    "winner": {
+        "name": "RANZT",
+        "method": "point"
+    },
+    "loser": {
+        "name": "RYUU"
     }
-]
+}
