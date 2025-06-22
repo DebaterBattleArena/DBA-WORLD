@@ -60,15 +60,17 @@ section p {
     width: 100%;
     max-width: 600px;
     margin: 0 auto 30px auto;
-    background-color: #000;
-    height: 250px;
-    display: flex;
+    /* Hapus background-color: #000; dan height: 250px; */
+    /* Biarkan gambar di HTML yang mengatur tinggi dan latarnya */
+    display: flex; /* Biarkan ini jika ingin flexbox tetap aktif */
     align-items: center;
     justify-content: center;
     font-size: 1.5em;
     color: var(--light-grey);
     border-radius: 8px;
+    overflow: hidden; /* Penting agar gambar membulat mengikuti border-radius */
 }
+
 
 #main-event {
     background-color: var(--secondary-bg);
