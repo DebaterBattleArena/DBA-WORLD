@@ -143,7 +143,7 @@ const debatesData = [
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "RANZT",
-            "photo": "ranzt.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "IMG_0555.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
             "country": "indonesia",
             "flag": "IMG_0417.png",   
             "profile": {
@@ -160,7 +160,7 @@ const debatesData = [
         },
         "debater2": {
             "name": "RYUU",
-            "photo": "ryuu.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "IMG_0556.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
             "country": "malaysia",
             "flag": "IMG_0418.png",   
             "profile": {
