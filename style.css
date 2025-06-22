@@ -368,3 +368,19 @@ footer a:hover {
         padding-top: 0;
     }
 }
+/* Gaya untuk banner di bagian Main Event */
+.main-event-banner {
+    width: 100%; /* Lebar penuh dari container */
+    max-height: 250px; /* Tinggi maksimum, sesuaikan jika perlu */
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa terdistorsi */
+    margin-bottom: 30px; /* Jarak antara banner dan teks di bawahnya */
+    border-radius: 8px; /* Sudut membulat, opsional */
+}
+
+/* Anda mungkin juga ingin mengatur sedikit padding-top untuk .main-event-content */
+/* agar ada sedikit ruang di atas banner di mobile */
+@media (max-width: 767px) {
+    #main-event .main-event-content {
+        padding-top: 20px; /* Tambahkan sedikit padding di bagian atas mobile */
+    }
+}
