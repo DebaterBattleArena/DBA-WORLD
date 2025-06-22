@@ -18,7 +18,8 @@ const debatesData = [
                 "Calculation": "8/10",
                 "Philisophy": "9/10",
                 "General Knowledge": "10/10"
-            }
+            },
+            "tier": "Mid Tier" // Ditambahkan
         },
         "debater2": {
             "name": "RENJI",
@@ -35,7 +36,8 @@ const debatesData = [
                 "Calculation": "0/10",
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
-            }
+            },
+            "tier": "Mid Tier" // Ditambahkan
         },
         "type": "MID TIER DEBATE",  
         "winner": {
@@ -64,7 +66,8 @@ const debatesData = [
                 "Calculation": "2/10",
                 "Philisophy": "0/10",
                 "General Knowledge": "7/10"
-            }
+            },
+            "tier": "High Tier" // Ditambahkan
         },
         "debater2": {
             "name": "MUCHIBEI",
@@ -81,7 +84,8 @@ const debatesData = [
                 "Calculation": "4/10",
                 "Philisophy": "0/10",
                 "General Knowledge": "8/10"
-            }
+            },
+            "tier": "High Tier" // Ditambahkan
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -110,7 +114,8 @@ const debatesData = [
                 "Calculation": "0/10",
                 "Philisophy": "7/10",
                 "General Knowledge": "10/10"
-            }
+            },
+            "tier": "Low Tier" // Ditambahkan
         },
         "debater2": {
             "name": "RIM",
@@ -127,7 +132,8 @@ const debatesData = [
                 "Calculation": "3.6/10",
                 "Philisophy": "3/10",
                 "General Knowledge": "7/10"
-            }
+            },
+            "tier": "Low Tier" // Ditambahkan
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -143,7 +149,7 @@ const debatesData = [
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "RANZT",
-            "photo": "IMG_0555.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "ranzt.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
             "country": "indonesia",
             "flag": "IMG_0417.png",   
             "profile": {
@@ -154,13 +160,14 @@ const debatesData = [
                 "Typing Strenght": "9/10",
                 "Tiering Sistem": "8/10",
                 "Calculation": "5/10",
-                "Philisophy": "9/10",
+                    "Philisophy": "9/10",
                 "General Knowledge": "10/10"
-            }
+            },
+            "tier": "Mid Tier" // Ditambahkan
         },
         "debater2": {
             "name": "RYUU",
-            "photo": "IMG_0556.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "ryuu.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
             "country": "malaysia",
             "flag": "IMG_0418.png",   
             "profile": {
@@ -173,7 +180,8 @@ const debatesData = [
                 "Calculation": "7/10",
                 "Philisophy": "4/10",
                 "General Knowledge": "10/10"
-            }
+            },
+            "tier": "Mid Tier" // Ditambahkan
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -227,7 +235,8 @@ function startCountdown() {
 // ====== FUNGSI UNTUK MEMUAT DATA DEBAT DAN MERENDERNYA (UNTUK index.html) ======
 function loadAndRenderDebatesForIndexPage() {
     const debates = debatesData; // Mengakses data yang sudah tertanam
-
+    
+    // Memproses data untuk membuat daftar debater global yang unik
     debates.forEach(debate => {
         if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
             allDebaters[debate.debater1.name] = debate.debater1;
@@ -328,6 +337,108 @@ function renderProfilePage() {
     profileCard.innerHTML = profileHtml;
 }
 
+// ====== FUNGSI UNTUK MERENDER HALAMAN RANKING (UNTUK ranking.html) ======
+function renderRankingPage() {
+    const rankingBody = document.getElementById('ranking-body');
+
+    if (!rankingBody) return; // Keluar jika ini bukan ranking.html
+
+    const allDebatersByTier = {
+        "Low Tier": [],
+        "Mid Tier": [],
+        "High Tier": []
+    };
+
+    // 1. Kumpulkan semua debater unik dan kelompokkan berdasarkan tier
+    debatesData.forEach(debate => {
+        if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
+            allDebaters[debate.debater1.name] = debate.debater1;
+            if (debate.debater1.tier && allDebatersByTier[debate.debater1.tier]) {
+                allDebatersByTier[debate.debater1.tier].push(debate.debater1);
+            }
+        }
+        if (debate.debater2 && debate.debater2.name && !allDebaters[debate.debater2.name]) {
+            allDebaters[debate.debeter2.name] = debate.debater2; // Typo here, should be debater2.name
+            if (debate.debater2.tier && allDebatersByTier[debate.debater2.tier]) {
+                allDebatersByTier[debate.debater2.tier].push(debate.debater2);
+            }
+        }
+    });
+    // Correcting allDebaters build for debater2:
+    allDebaters = {}; // Reset to rebuild correctly
+    debatesData.forEach(debate => {
+        if (debate.debater1 && debate.debater1.name) {
+            allDebaters[debate.debater1.name] = debate.debater1;
+        }
+        if (debate.debater2 && debate.debater2.name) {
+            allDebaters[debate.debater2.name] = debate.debater2;
+        }
+    });
+    // Now populate allDebatersByTier from the correct allDebaters map
+    Object.values(allDebaters).forEach(debater => {
+        if (debater.tier && allDebatersByTier[debater.tier]) {
+            allDebatersByTier[debater.tier].push(debater);
+        }
+    });
+
+
+    // 2. Buat HTML untuk tabel ranking per tier
+    let rankingHtml = '';
+    const tiersOrder = ["Low Tier", "Mid Tier", "High Tier"]; // Urutan tier
+    tiersOrder.forEach(tierName => {
+        const debatersInTier = allDebatersByTier[tierName];
+        
+        if (debatersInTier && debatersInTier.length > 0) {
+            // Sort debaters within tier alphabetically by name
+            debatersInTier.sort((a, b) => a.name.localeCompare(b.name));
+
+            rankingHtml += `
+                <h3 style="text-align: center; color: var(--highlight-color); margin-top: 40px; margin-bottom: 20px; font-size: 1.8em; text-transform: uppercase;">${tierName}</h3>
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>Peringkat</th>
+                            <th>Debater</th>
+                            <th>Rhetoric</th>
+                            <th>Critical Thinking</th>
+                            <th>General Knowledge</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+            `;
+            debatersInTier.forEach((debater, index) => {
+                rankingHtml += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>
+                            <div class="debater-cell">
+                                <img src="${debater.photo}" alt="Foto ${debater.name}">
+                                <a href="profile.html?name=${encodeURIComponent(debater.name)}" class="debater-name">${debater.name}</a>
+                            </div>
+                        </td>
+                        <td>${debater.profile['Rhetoric']}</td>
+                        <td>${debater.profile['Critical Thinking']}</td>
+                        <td>${debater.profile['General Knowledge']}</td>
+                        </tr>
+                `;
+            });
+            rankingHtml += `
+                    </tbody>
+                </table>
+            `;
+        }
+    });
+
+    rankingBody.innerHTML = rankingHtml;
+
+    // Remove the default "Memuat data peringkat..." text if data is rendered
+    const defaultLoadingRow = rankingBody.querySelector('tr[colspan="5"]');
+    if (defaultLoadingRow) {
+        defaultLoadingRow.remove();
+    }
+}
+
+
 // ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
 document.addEventListener('DOMContentLoaded', () => {
     // Cek halaman saat ini untuk menjalankan logika yang sesuai
@@ -338,5 +449,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (window.location.pathname.endsWith('profile.html')) {
         // Ini adalah halaman profile.html
         renderProfilePage();
+    } else if (window.location.pathname.endsWith('ranking.html')) {
+        // Ini adalah halaman ranking.html
+        renderRankingPage();
     }
 });
+    ```
