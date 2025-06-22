@@ -192,6 +192,7 @@ const debatesData = [
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
     const now = new Date();
+    // Ini akan menghitung 2 hari dari waktu sekarang saat halaman dimuat
     const targetDate = new Date(now.getTime() + (2 * 24 * 60 * 60 * 1000)).getTime(); 
 
     const countdownInterval = setInterval(function() {
@@ -203,6 +204,7 @@ function startCountdown() {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+        // Pastikan elemen ditemukan sebelum memperbarui
         const daysEl = document.getElementById("days");
         const hoursEl = document.getElementById("hours");
         const minutesEl = document.getElementById("minutes");
@@ -228,7 +230,7 @@ function startCountdown() {
 function loadDebates() {
     // Data sudah tersedia di debatesData, tidak perlu fetch
     const debates = debatesData; // Langsung gunakan variabel debatesData
-
+    
     // Memproses data untuk membuat daftar debater global yang unik
     debates.forEach(debate => {
         if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
@@ -245,7 +247,10 @@ function loadDebates() {
 // ====== FUNGSI UNTUK MERENDER (MENAMPILKAN) DEBAT KE HTML ======
 function renderDebates(debates) {
     const container = document.getElementById('debates-container');
-    if (!container) return;
+    if (!container) {
+        console.error("Elemen 'debates-container' tidak ditemukan di HTML.");
+        return;
+    }
 
     let htmlContent = '';
     debates.forEach(debate => {
@@ -275,86 +280,89 @@ function renderDebates(debates) {
                         <img src="${debate.debater2.photo}" alt="Foto ${debate.debater2.name}">
                         <span class="name clickable-debater" data-debater-name="${debate.debater2.name}">${debate.debater2.name}</span>
                         <span class="origin"><img src="${debate.debater2.flag}" alt="Bendera ${debate.debater2.country}"> ${debate.debater2.country.toUpperCase()}</span>
+                        </div>
                     </div>
+                    <div class="match-type">${debate.type}</div>
+                    ${winnerInfo}
+                    ${loserInfo}
                 </div>
-                <div class="match-type">${debate.type}</div>
-                ${winnerInfo}
-                ${loserInfo}
-            </div>
-        `;
-    });
-    container.innerHTML = htmlContent;
-
-    // ====== MENAMBAHKAN EVENT LISTENER UNTUK KLIK DEBATER ======
-    const clickableDebaters = document.querySelectorAll('.clickable-debater');
-    clickableDebaters.forEach(debaterEl => {
-        debaterEl.addEventListener('click', function() {
-            const debaterName = this.dataset.debaterName;
-            showDebaterProfile(debaterName);
+            `;
         });
-    });
-}
+        container.innerHTML = htmlContent;
 
-// ====== FUNGSI UNTUK MENAMPILKAN MODAL PROFIL DEBATER ======
-function showDebaterProfile(debaterName) {
-    const debater = allDebaters[debaterName];
-    const modal = document.getElementById('debater-modal');
-    const profileDetailsDiv = document.getElementById('modal-profile-details');
-
-    if (!debater || !debater.profile || !modal || !profileDetailsDiv) {
-        console.error("Data debater atau elemen modal tidak ditemukan:", debaterName);
-        return;
+        // ====== MENAMBAHKAN EVENT LISTENER UNTUK KLIK DEBATER ======
+        const clickableDebaters = document.querySelectorAll('.clickable-debater');
+        clickableDebaters.forEach(debaterEl => {
+            debaterEl.addEventListener('click', function() {
+                const debaterName = this.dataset.debaterName;
+                showDebaterProfile(debaterName);
+            });
+        });
     }
 
-    let profileHtml = `
-        <img src="${debater.photo}" alt="Foto ${debater.name}">
-        <h3>${debater.name}</h3>
-        <ul>
-    `;
-    for (const skill in debater.profile) {
-        if (debater.profile.hasOwnProperty(skill)) {
-            profileHtml += `<li><strong>${skill}:</strong> <span>${debater.profile[skill]}</span></li>`;
+    // ====== FUNGSI UNTUK MENAMPILKAN MODAL PROFIL DEBATER ======
+    function showDebaterProfile(debaterName) {
+        const debater = allDebaters[debaterName];
+        const modal = document.getElementById('debater-modal');
+        const profileDetailsDiv = document.getElementById('modal-profile-details');
+
+        if (!debater || !debater.profile || !modal || !profileDetailsDiv) {
+            console.error("Data debater atau elemen modal tidak ditemukan:", debaterName);
+            // Ini akan muncul jika data profil tidak lengkap atau modal/div target tidak ada
+            return;
+        }
+
+        let profileHtml = `
+            <img src="${debater.photo}" alt="Foto ${debater.name}">
+            <h3>${debater.name}</h3>
+            <ul>
+        `;
+        for (const skill in debater.profile) {
+            if (debater.profile.hasOwnProperty(skill)) {
+                profileHtml += `<li><strong>${skill}:</strong> <span>${debater.profile[skill]}</span></li>`;
+            }
+        }
+        profileHtml += `</ul>`;
+
+        profileDetailsDiv.innerHTML = profileHtml;
+        modal.style.display = 'flex';
+
+        // Animasi muncul modal
+        setTimeout(() => {
+            modal.querySelector('.modal-content').style.opacity = 1;
+            modal.querySelector('.modal-content').style.transform = 'scale(1)';
+        }, 50);
+    }
+
+    // ====== FUNGSI UNTUK MENYEMBUNYIKAN MODAL PROFIL DEBATER ======
+    function hideDebaterProfile() {
+        const modal = document.getElementById('debater-modal');
+        if (modal) {
+            // Animasi fade out
+            modal.querySelector('.modal-content').style.opacity = 0;
+            modal.querySelector('.modal-content').style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 400);
         }
     }
-    profileHtml += `</ul>`;
 
-    profileDetailsDiv.innerHTML = profileHtml;
-    modal.style.display = 'flex';
+    // ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
+    document.addEventListener('DOMContentLoaded', () => {
+        startCountdown();
+        loadDebates(); // Sekarang ini memanggil data yang sudah ada di dalam JS
 
-    setTimeout(() => {
-        modal.querySelector('.modal-content').style.opacity = 1;
-        modal.querySelector('.modal-content').style.transform = 'scale(1)';
-    }, 50);
-}
+        const closeButton = document.querySelector('.modal .close-button');
+        if (closeButton) {
+            closeButton.addEventListener('click', hideDebaterProfile);
+        }
 
-// ====== FUNGSI UNTUK MENYEMBUNYIKAN MODAL PROFIL DEBATER ======
-function hideDebaterProfile() {
-    const modal = document.getElementById('debater-modal');
-    if (modal) {
-        modal.querySelector('.modal-content').style.opacity = 0;
-        modal.querySelector('.modal-content').style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            modal.style.display = 'none';
-        }, 400);
-    }
-}
-
-// ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
-document.addEventListener('DOMContentLoaded', () => {
-    startCountdown();
-    loadDebates(); // Sekarang ini memanggil data yang sudah ada di dalam JS
-
-    const closeButton = document.querySelector('.modal .close-button');
-    if (closeButton) {
-        closeButton.addEventListener('click', hideDebaterProfile);
-    }
-
-    const modal = document.getElementById('debater-modal');
-    if (modal) {
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                hideDebaterProfile();
-            }
-        });
-    }
-});
+        const modal = document.getElementById('debater-modal');
+        if (modal) {
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    hideDebaterProfile();
+                }
+            });
+        }
+    });
