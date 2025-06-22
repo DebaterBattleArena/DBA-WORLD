@@ -406,3 +406,119 @@ footer a:hover {
         padding-top: 20px; /* Tambahkan sedikit padding di bagian atas mobile */
     }
 }
+/* Gaya untuk Modal (Pop-up Profil Debater) */
+.modal {
+    display: none; /* Sembunyikan modal secara default */
+    position: fixed; /* Tetap di layar saat scroll */
+    z-index: 1000; /* Posisikan di atas semua elemen lain */
+    left: 0;
+    top: 0;
+    width: 100%; /* Lebar penuh */
+    height: 100%; /* Tinggi penuh */
+    overflow: auto; /* Aktifkan scroll jika konten terlalu panjang */
+    background-color: rgba(0,0,0,0.8); /* Latar belakang hitam transparan */
+    justify-content: center; /* Pusatkan konten secara horizontal */
+    align-items: center; /* Pusatkan konten secara vertikal */
+    padding: 20px; /* Padding di sekitar modal content */
+}
+
+.modal-content {
+    background-color: var(--secondary-bg); /* Warna latar modal */
+    margin: auto; /* Pusatkan secara otomatis */
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px; /* Lebar maksimum modal */
+    width: 90%; /* Ambil 90% lebar layar */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    position: relative;
+    color: var(--text-color);
+    animation-name: animatemodal; /* Animasi muncul */
+    animation-duration: 0.4s;
+    transform: scale(0.95); /* Sedikit efek zoom saat muncul */
+    opacity: 0; /* Mulai dengan transparan */
+}
+
+/* Animasi muncul modal */
+@keyframes animatemodal {
+    from {transform: scale(0.7); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+/* Tombol Tutup Modal */
+.close-button {
+    color: var(--light-grey);
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--highlight-color);
+    text-decoration: none;
+}
+
+/* Gaya untuk detail profil di dalam modal */
+.profile-details {
+    text-align: left;
+    padding-top: 15px;
+}
+.profile-details img {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Bulat untuk foto profil */
+    object-fit: cover;
+    border: 3px solid var(--highlight-color);
+}
+.profile-details h3 {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2em;
+    color: var(--highlight-color);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.profile-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.profile-details ul li {
+    background-color: var(--primary-bg); /* Latar belakang item profil */
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between; /* Rata kiri-kanan untuk nama skill dan skor */
+    align-items: center;
+    font-size: 0.95em;
+}
+.profile-details ul li strong {
+    color: var(--light-grey);
+}
+.profile-details ul li span {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+/* Penyesuaian untuk tampilan mobile pada modal */
+@media (max-width: 767px) {
+    .modal-content {
+        padding: 20px;
+        width: 95%; /* Lebih lebar di mobile */
+    }
+    .profile-details h3 {
+        font-size: 1.8em;
+    }
+    .close-button {
+        font-size: 25px;
+        top: 5px;
+        right: 15px;
+    }
+}
