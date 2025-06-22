@@ -1,7 +1,4 @@
-// ====== Global variable to store all debater profiles for easy lookup ======
-let allDebaters = {}; 
-
-// ====== DATA DEBAT SEKARANG LANGSUNG ADA DI SINI (BUKAN DARI data.json) ======
+// ====== DATA DEBAT SEKARANG LANGSUNG ADA DI SINI ======
 const debatesData = [
     {
         "id": "debate-001",
@@ -146,7 +143,7 @@ const debatesData = [
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "RANZT",
-            "photo": "IMG_0555.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "ranzt.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
             "country": "indonesia",
             "flag": "IMG_0417.png",   
             "profile": {
@@ -163,7 +160,7 @@ const debatesData = [
         },
         "debater2": {
             "name": "RYUU",
-            "photo": "IMG_0556.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "ryuu.jpg",  // Pastikan nama file ini benar jika Anda punya gambarnya
             "country": "malaysia",
             "flag": "IMG_0418.png",   
             "profile": {
@@ -189,10 +186,12 @@ const debatesData = [
     }
 ];
 
+// ====== Global variable to store all debater profiles for easy lookup ======
+let allDebaters = {}; 
+
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
     const now = new Date();
-    // Ini akan menghitung 2 hari dari waktu sekarang saat halaman dimuat
     const targetDate = new Date(now.getTime() + (2 * 24 * 60 * 60 * 1000)).getTime(); 
 
     const countdownInterval = setInterval(function() {
@@ -204,7 +203,6 @@ function startCountdown() {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Pastikan elemen ditemukan sebelum memperbarui
         const daysEl = document.getElementById("days");
         const hoursEl = document.getElementById("hours");
         const minutesEl = document.getElementById("minutes");
@@ -226,12 +224,10 @@ function startCountdown() {
     }, 1000);
 }
 
-// ====== FUNGSI UNTUK MEMUAT DATA DEBAT DARI DATA YANG DI-EMBED ======
-function loadDebates() {
-    // Data sudah tersedia di debatesData, tidak perlu fetch
-    const debates = debatesData; // Langsung gunakan variabel debatesData
-    
-    // Memproses data untuk membuat daftar debater global yang unik
+// ====== FUNGSI UNTUK MEMUAT DATA DEBAT DAN MERENDERNYA (UNTUK index.html) ======
+function loadAndRenderDebatesForIndexPage() {
+    const debates = debatesData; // Mengakses data yang sudah tertanam
+
     debates.forEach(debate => {
         if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
             allDebaters[debate.debater1.name] = debate.debater1;
@@ -241,16 +237,8 @@ function loadDebates() {
         }
     });
 
-    renderDebates(debates); // Memanggil fungsi untuk menampilkan debat
-}
-
-// ====== FUNGSI UNTUK MERENDER (MENAMPILKAN) DEBAT KE HTML ======
-function renderDebates(debates) {
     const container = document.getElementById('debates-container');
-    if (!container) {
-        console.error("Elemen 'debates-container' tidak ditemukan di HTML.");
-        return;
-    }
+    if (!container) return; // Keluar jika ini bukan index.html
 
     let htmlContent = '';
     debates.forEach(debate => {
@@ -272,97 +260,83 @@ function renderDebates(debates) {
                 <div class="match-details">
                     <div class="debater-info">
                         <img src="${debate.debater1.photo}" alt="Foto ${debate.debater1.name}">
-                        <span class="name clickable-debater" data-debater-name="${debate.debater1.name}">${debate.debater1.name}</span>
+                        <a href="profile.html?name=${encodeURIComponent(debate.debater1.name)}" class="name debater-profile-link">${debate.debater1.name}</a>
                         <span class="origin"><img src="${debate.debater1.flag}" alt="Bendera ${debate.debater1.country}"> ${debate.debater1.country.toUpperCase()}</span>
                     </div>
                     <span class="match-vs">VS</span>
                     <div class="debater-info">
                         <img src="${debate.debater2.photo}" alt="Foto ${debate.debater2.name}">
-                        <span class="name clickable-debater" data-debater-name="${debate.debater2.name}">${debate.debater2.name}</span>
+                        <a href="profile.html?name=${encodeURIComponent(debate.debater2.name)}" class="name debater-profile-link">${debate.debater2.name}</a>
                         <span class="origin"><img src="${debate.debater2.flag}" alt="Bendera ${debate.debater2.country}"> ${debate.debater2.country.toUpperCase()}</span>
-                        </div>
                     </div>
-                    <div class="match-type">${debate.type}</div>
-                    ${winnerInfo}
-                    ${loserInfo}
                 </div>
-            `;
-        });
-        container.innerHTML = htmlContent;
-
-        // ====== MENAMBAHKAN EVENT LISTENER UNTUK KLIK DEBATER ======
-        const clickableDebaters = document.querySelectorAll('.clickable-debater');
-        clickableDebaters.forEach(debaterEl => {
-            debaterEl.addEventListener('click', function() {
-                const debaterName = this.dataset.debaterName;
-                showDebaterProfile(debaterName);
-            });
-        });
-    }
-
-    // ====== FUNGSI UNTUK MENAMPILKAN MODAL PROFIL DEBATER ======
-    function showDebaterProfile(debaterName) {
-        const debater = allDebaters[debaterName];
-        const modal = document.getElementById('debater-modal');
-        const profileDetailsDiv = document.getElementById('modal-profile-details');
-
-        if (!debater || !debater.profile || !modal || !profileDetailsDiv) {
-            console.error("Data debater atau elemen modal tidak ditemukan:", debaterName);
-            // Ini akan muncul jika data profil tidak lengkap atau modal/div target tidak ada
-            return;
-        }
-
-        let profileHtml = `
-            <img src="${debater.photo}" alt="Foto ${debater.name}">
-            <h3>${debater.name}</h3>
-            <ul>
+                <div class="match-type">${debate.type}</div>
+                ${winnerInfo}
+                ${loserInfo}
+            </div>
         `;
-        for (const skill in debater.profile) {
-            if (debater.profile.hasOwnProperty(skill)) {
-                profileHtml += `<li><strong>${skill}:</strong> <span>${debater.profile[skill]}</span></li>`;
-            }
-        }
-        profileHtml += `</ul>`;
+    });
+    container.innerHTML = htmlContent;
+}
 
-        profileDetailsDiv.innerHTML = profileHtml;
-        modal.style.display = 'flex';
+// ====== FUNGSI UNTUK MERENDER HALAMAN PROFIL (UNTUK profile.html) ======
+function renderProfilePage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const debaterName = urlParams.get('name'); // Mendapatkan nama debater dari URL
 
-        // Animasi muncul modal
-        setTimeout(() => {
-            modal.querySelector('.modal-content').style.opacity = 1;
-            modal.querySelector('.modal-content').style.transform = 'scale(1)';
-        }, 50);
+    const profileCard = document.querySelector('.profile-card');
+
+    if (!profileCard) return; // Keluar jika ini bukan profile.html
+
+    if (!debaterName) {
+        profileCard.innerHTML = `<p style="color: red;">Nama debater tidak ditemukan di URL.</p>`;
+        return;
     }
 
-    // ====== FUNGSI UNTUK MENYEMBUNYIKAN MODAL PROFIL DEBATER ======
-    function hideDebaterProfile() {
-        const modal = document.getElementById('debater-modal');
-        if (modal) {
-            // Animasi fade out
-            modal.querySelector('.modal-content').style.opacity = 0;
-            modal.querySelector('.modal-content').style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 400);
+    // Membangun allDebaters map (karena ini akan dijalankan terpisah dari index.html)
+    debatesData.forEach(debate => {
+        if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
+            allDebaters[debate.debater1.name] = debate.debater1;
         }
-    }
-
-    // ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
-    document.addEventListener('DOMContentLoaded', () => {
-        startCountdown();
-        loadDebates(); // Sekarang ini memanggil data yang sudah ada di dalam JS
-
-        const closeButton = document.querySelector('.modal .close-button');
-        if (closeButton) {
-            closeButton.addEventListener('click', hideDebaterProfile);
-        }
-
-        const modal = document.getElementById('debater-modal');
-        if (modal) {
-            modal.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    hideDebaterProfile();
-                }
-            });
+        if (debate.debater2 && debate.debater2.name && !allDebaters[debate.debater2.name]) {
+            allDebaters[debate.debater2.name] = debate.debater2;
         }
     });
+
+    const foundDebater = allDebaters[debaterName];
+
+    if (!foundDebater || !foundDebater.profile) {
+        profileCard.innerHTML = `<p style="color: red;">Profil untuk ${debaterName} tidak ditemukan.</p>`;
+        return;
+    }
+
+    // Render profil debater
+    let profileHtml = `
+        <img src="${foundDebater.photo}" alt="Foto ${foundDebater.name}">
+        <h2>${foundDebater.name}</h2>
+        <p class="origin"><img src="${foundDebater.flag}" alt="Bendera ${foundDebater.country}"> ${foundDebater.country.toUpperCase()}</p>
+        <h3>Statistik Debat</h3>
+        <ul>
+    `;
+    for (const skill in foundDebater.profile) {
+        if (foundDebater.profile.hasOwnProperty(skill)) {
+            profileHtml += `<li><strong>${skill}:</strong> <span>${foundDebater.profile[skill]}</span></li>`;
+        }
+    }
+    profileHtml += `</ul>`;
+
+    profileCard.innerHTML = profileHtml;
+}
+
+// ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
+document.addEventListener('DOMContentLoaded', () => {
+    // Cek halaman saat ini untuk menjalankan logika yang sesuai
+    if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) {
+        // Ini adalah halaman index.html
+        startCountdown();
+        loadAndRenderDebatesForIndexPage();
+    } else if (window.location.pathname.endsWith('profile.html')) {
+        // Ini adalah halaman profile.html
+        renderProfilePage();
+    }
+});
