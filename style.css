@@ -16,11 +16,23 @@ body {
     overflow-x: hidden;
 }
 
+/* Header / Logo */
 .header-logo {
     background-color: black;
     padding: 20px 0;
     text-align: center;
 }
+
+/* Gaya untuk gambar logo baru */
+.header-logo-image {
+    max-width: 150px; /* Lebar maksimum logo, sesuaikan jika perlu */
+    height: auto;     /* Tinggi otomatis agar proporsional */
+    margin-bottom: 10px; /* Jarak antara logo dan teks di bawahnya */
+    display: block;   /* Menjadikan gambar blok agar bisa di-margin auto */
+    margin-left: auto; /* Pusatkan gambar */
+    margin-right: auto; /* Pusatkan gambar */
+}
+
 .header-logo h1 {
     margin: 0;
     font-size: 2.5em;
