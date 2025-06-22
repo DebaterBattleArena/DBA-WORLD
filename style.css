@@ -1,22 +1,24 @@
+/* Variabel CSS untuk warna dan styling, memudahkan kustomisasi */
 :root {
-    --primary-bg: #1a1a1a;
-    --secondary-bg: #2a2a2a;
-    --text-color: #ffffff;
-    --highlight-color: #ff4500;
-    --light-grey: #cccccc;
+    --primary-bg: #1a1a1a; /* Background gelap utama */
+    --secondary-bg: #2a2a2a; /* Background elemen/section */
+    --text-color: #ffffff; /* Warna teks utama */
+    --highlight-color: #ff4500; /* Warna aksen/highlight (oranye/merah cerah) */
+    --light-grey: #cccccc; /* Warna abu-abu terang untuk teks sekunder */
 }
 
+/* Gaya dasar untuk body */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Font utama */
     margin: 0;
     padding: 0;
     background-color: var(--primary-bg);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
 }
 
-/* Header / Logo */
+/* Gaya untuk Header/Logo */
 .header-logo {
     background-color: black;
     padding: 20px 0;
@@ -35,21 +37,22 @@ body {
 
 .header-logo h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2.5em; /* Ukuran font logo */
     color: var(--text-color);
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 .header-logo h1 span {
-    color: var(--highlight-color);
+    color: var(--highlight-color); /* Warna aksen untuk kata "ARENA" */
 }
 
+/* Gaya umum untuk semua section */
 section {
-    padding: 40px 20px;
+    padding: 40px 20px; /* Mengurangi padding vertikal untuk mengurangi spasi antar section */
     text-align: center;
 }
 section h2 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Oswald', sans-serif; /* Font untuk judul section */
     font-size: 2.5em;
     color: var(--text-color);
     text-transform: uppercase;
@@ -62,18 +65,18 @@ section p {
     margin: 0 auto 20px auto;
 }
 
+/* Gaya untuk Section About */
 #about {
     background-color: var(--secondary-bg);
     padding: 60px 20px;
     text-align: center;
-    border-bottom: 5px solid var(--highlight-color);
+    border-bottom: 5px solid var(--highlight-color); /* Garis bawah aksen */
 }
 .about-video {
     width: 100%;
     max-width: 600px;
     margin: 0 auto 30px auto;
-    /* Hapus background-color: #000; dan height: 250px; */
-    /* Biarkan gambar di HTML yang mengatur tinggi dan latarnya */
+    /* Hapus background-color dan height yang memengaruhi gambar */
     display: flex; /* Biarkan ini jika ingin flexbox tetap aktif */
     align-items: center;
     justify-content: center;
@@ -82,29 +85,72 @@ section p {
     border-radius: 8px;
     overflow: hidden; /* Penting agar gambar membulat mengikuti border-radius */
 }
+/* Tambahan gaya untuk gambar di dalam about-video */
+.about-video img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+/* Gaya untuk teks paragraf di bagian About */
+#about p {
+    max-width: 700px;         /* Sedikit perkecil lebar maksimum agar lebih mudah dibaca */
+    margin: 0 auto 20px auto; /* Margin atas/bawah bisa 20px atau 30px */
+    color: var(--text-color); /* Warna teks putih penuh */
+    font-size: 1.1em;         /* Ukuran font ditingkatkan */
+    line-height: 1.8;         /* Jarak antar baris ditingkatkan */
+    font-weight: 400;         /* Ketebalan font normal */
+    text-align: center;       /* Rata tengah, sesuai gambar */
+    padding: 0 15px;          /* Padding horizontal agar teks tidak terlalu menempel di tepi jika max-width kecil */
+    margin-bottom: 25px;      /* Menambahkan margin bawah agar tidak terlalu dekat dengan paragraf berikutnya/tombol */
+}
 
+/* Gaya untuk teks yang di-bold (<strong>) di dalam paragraf About */
+#about p strong {
+    font-weight: 700;        /* Membuat teks bold jadi sangat tebal */
+    color: var(--highlight-color); /* Memberi warna aksen pada teks bold */
+    letter-spacing: 0.5px;   /* Sedikit jarak antar huruf untuk penekanan */
+}
+
+/* Gaya untuk Section Main Event */
 #main-event {
     background-color: var(--secondary-bg);
-    padding: 0;
+    padding: 0; /* Padding diatur di dalam content */
     position: relative;
-    /* PATH GAMBAR DIUBAH: Mencari langsung di root */
+    /* Path background image main event */
     background-image: url('main-event-bg.jpg');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.7);
+    filter: brightness(0.7); /* Memberi efek gelap pada gambar latar */
 }
 #main-event .main-event-content {
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Pastikan konten di atas gambar latar */
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    min-height: 600px;
+    justify-content: flex-end; /* Konten diposisikan di bagian bawah section */
+    min-height: 600px; /* Tinggi minimum section */
     gap: 20px;
-    filter: brightness(1.0);
+    filter: brightness(1.0); /* Kembalikan brightness untuk konten */
 }
+
+/* Gaya untuk banner di bagian Main Event */
+.main-event-banner {
+    width: 100%; /* Lebar penuh dari container */
+    max-height: 250px; /* Tinggi maksimum, sesuaikan jika perlu */
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa terdistorsi */
+    margin-bottom: 30px; /* Jarak antara banner dan teks di bawahnya */
+    border-radius: 8px; /* Sudut membulat, opsional */
+}
+/* Penyesuaian untuk tampilan mobile pada banner main event */
+@media (max-width: 767px) {
+    #main-event .main-event-content {
+        padding-top: 20px; /* Tambahkan sedikit padding di bagian atas mobile */
+    }
+}
+
+
 .event-title {
     font-size: 1.5em;
     color: var(--light-grey);
@@ -127,11 +173,11 @@ section p {
     margin: 0 10px;
 }
 .countdown {
-    display: flex;
+    display: flex; /* Pastikan ini flex */
     justify-content: center;
     gap: 15px;
     margin-top: 30px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Warna latar kotak countdown */
     padding: 15px;
     border-radius: 8px;
     width: fit-content;
@@ -144,12 +190,12 @@ section p {
 .countdown-item .number {
     font-family: 'Oswald', sans-serif;
     font-size: 2.5em;
-    color: var(--highlight-color);
+    color: var(--highlight-color); /* Pastikan warnanya bukan hitam atau transparan */
     line-height: 1;
 }
 .countdown-item .label {
     font-size: 0.8em;
-    color: var(--light-grey);
+    color: var(--light-grey); /* Pastikan warnanya bukan hitam atau transparan */
     text-transform: uppercase;
 }
 .cta-button {
@@ -162,7 +208,7 @@ section p {
     font-weight: bold;
     font-size: 1.1em;
     margin-top: 30px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; /* Efek hover halus */
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -173,22 +219,13 @@ section p {
     margin-left: 10px;
 }
 
-/* Achievement Section */
+/* Gaya untuk Section Achievement */
 #achievement {
     background-color: var(--primary-bg);
-    padding: 40px 20px; /* DIUBAH: Mengurangi padding atas/bawah */
+    padding: 40px 20px; /* Mengurangi padding vertikal untuk mengurangi spasi antar section */
     position: relative;
     overflow: hidden;
 }
-
-/* ... kode lain ... */
-
-/* Match List Section */
-#match-list {
-    background-color: var(--primary-bg);
-    padding: 40px 20px; /* DIUBAH: Mengurangi padding atas/bawah */
-}
-
 #achievement::before {
     content: '';
     position: absolute;
@@ -196,11 +233,11 @@ section p {
     left: 0;
     width: 100%;
     height: 100%;
-    /* PATH GAMBAR DIUBAH: Mencari langsung di root */
+    /* Path background image achievement */
     background-image: url('background-achievement.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.1;
+    opacity: 0.1; /* Sedikit transparan */
     z-index: 0;
 }
 #achievement .content-overlay {
@@ -227,9 +264,10 @@ section p {
     letter-spacing: 1px;
 }
 
+/* Gaya untuk Section Match List (Daftar Debat) */
 #match-list {
     background-color: var(--primary-bg);
-    padding: 60px 20px;
+    padding: 40px 20px; /* Mengurangi padding vertikal untuk mengurangi spasi antar section */
 }
 .match-card {
     background-color: var(--secondary-bg);
@@ -237,7 +275,7 @@ section p {
     margin-bottom: 20px;
     padding: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Default: susun vertikal untuk mobile */
     align-items: center;
     gap: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -256,7 +294,7 @@ section p {
     justify-content: center;
     width: 100%;
     gap: 10px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Izinkan wrap jika layar kecil */
 }
 .debater-info {
     display: flex;
@@ -265,10 +303,10 @@ section p {
     text-align: center;
     gap: 5px;
     flex: 1;
-    min-width: 120px;
+    min-width: 120px; /* Lebar minimum untuk setiap debater info */
 }
 .debater-info img {
-    width: 100px;
+    width: 100px; /* Ukuran gambar debater */
     height: 100px;
     border-radius: 5px;
     object-fit: cover;
@@ -305,10 +343,11 @@ section p {
     width: 100%;
     text-align: center;
     margin-top: 10px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.1); /* Garis pemisah */
     padding-top: 10px;
 }
 
+/* Gaya untuk info pemenang/kalah */
 .result-info {
     font-size: 1em;
     font-weight: bold;
@@ -320,92 +359,12 @@ section p {
     padding-top: 10px;
 }
 .result-info.winner {
-    color: #4CAF50;
+    color: #4CAF50; /* Hijau untuk pemenang */
 }
 .result-info.loser {
-    color: #f44336;
+    color: #f44336; /* Merah untuk kalah */
 }
 
-footer {
-    background-color: black;
-    color: var(--light-grey);
-    padding: 20px;
-    text-align: center;
-    font-size: 0.9em;
-}
-footer a {
-    color: var(--light-grey);
-    text-decoration: none;
-}
-footer a:hover {
-    color: var(--highlight-color);
-}
-
-@media (min-width: 768px) {
-    .header-logo h1 {
-        font-size: 3.5em;
-    }
-    .achievement-item .number {
-        font-size: 5em;
-    }
-    .achievement-item .label {
-        font-size: 1.5em;
-    }
-    #main-event .main-event-content {
-        min-height: 800px;
-        justify-content: center;
-    }
-    .event-title {
-        font-size: 2em;
-    }
-    .contestants {
-        font-size: 3.5em;
-    }
-    .countdown {
-        gap: 30px;
-    }
-    .countdown-item .number {
-        font-size: 3em;
-    }
-    .match-card {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 30px;
-    }
-    .match-card .category {
-        width: auto;
-        text-align: left;
-        margin-bottom: 0;
-    }
-    .match-details {
-        flex-wrap: nowrap;
-    }
-    .debater-info {
-        min-width: unset;
-        flex: none;
-    }
-    .match-type {
-        width: auto;
-        border-top: none;
-        padding-top: 0;
-    }
-}
-/* Gaya untuk banner di bagian Main Event */
-.main-event-banner {
-    width: 100%; /* Lebar penuh dari container */
-    max-height: 250px; /* Tinggi maksimum, sesuaikan jika perlu */
-    object-fit: cover; /* Memastikan gambar mengisi area tanpa terdistorsi */
-    margin-bottom: 30px; /* Jarak antara banner dan teks di bawahnya */
-    border-radius: 8px; /* Sudut membulat, opsional */
-}
-
-/* Anda mungkin juga ingin mengatur sedikit padding-top untuk .main-event-content */
-/* agar ada sedikit ruang di atas banner di mobile */
-@media (max-width: 767px) {
-    #main-event .main-event-content {
-        padding-top: 20px; /* Tambahkan sedikit padding di bagian atas mobile */
-    }
-}
 /* Gaya untuk Modal (Pop-up Profil Debater) */
 .modal {
     display: none; /* Sembunyikan modal secara default */
@@ -415,8 +374,9 @@ footer a:hover {
     top: 0;
     width: 100%; /* Lebar penuh */
     height: 100%; /* Tinggi penuh */
-    overflow: auto; /* Aktifkan scroll jika konten terlalu panjang */
+    /* Hapus 'overflow: auto;' dari sini */
     background-color: rgba(0,0,0,0.8); /* Latar belakang hitam transparan */
+    display: flex; /* Gunakan flexbox untuk pemusatan */
     justify-content: center; /* Pusatkan konten secara horizontal */
     align-items: center; /* Pusatkan konten secara vertikal */
     padding: 20px; /* Padding di sekitar modal content */
@@ -424,7 +384,7 @@ footer a:hover {
 
 .modal-content {
     background-color: var(--secondary-bg); /* Warna latar modal */
-    margin: auto; /* Pusatkan secara otomatis */
+    /* Hapus 'margin: auto;' karena sudah dihandle oleh flexbox parent */
     padding: 30px;
     border-radius: 10px;
     max-width: 500px; /* Lebar maksimum modal */
@@ -436,6 +396,11 @@ footer a:hover {
     animation-duration: 0.4s;
     transform: scale(0.95); /* Sedikit efek zoom saat muncul */
     opacity: 0; /* Mulai dengan transparan */
+
+    /* BARU: Batasi tinggi konten modal dan aktifkan scroll internal */
+    max-height: 90vh; /* Tinggi maksimum 90% dari tinggi viewport */
+    overflow-y: auto; /* Aktifkan scroll vertikal jika konten melebihi max-height */
+    -webkit-overflow-scrolling: touch; /* Untuk scrolling yang lebih halus di iOS */
 }
 
 /* Animasi muncul modal */
@@ -522,3 +487,55 @@ footer a:hover {
         right: 15px;
     }
 }
+
+/* Media Queries untuk Responsif (untuk layar lebih besar dari 768px) */
+@media (min-width: 768px) {
+    .header-logo h1 {
+        font-size: 3.5em;
+    }
+    .achievement-item .number {
+        font-size: 5em;
+    }
+    .achievement-item .label {
+        font-size: 1.5em;
+    }
+    #main-event .main-event-content {
+        min-height: 800px;
+        justify-content: center;
+    }
+    .event-title {
+        font-size: 2em;
+    }
+    .contestants {
+        font-size: 3.5em;
+    }
+    .countdown {
+        gap: 30px;
+    }
+    .countdown-item .number {
+        font-size: 3em;
+    }
+    .match-card {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 30px;
+    }
+    .match-card .category {
+        width: auto;
+        text-align: left;
+        margin-bottom: 0;
+    }
+    .match-details {
+        flex-wrap: nowrap;
+    }
+    .debater-info {
+        min-width: unset;
+        flex: none;
+    }
+    .match-type {
+        width: auto;
+        border-top: none;
+        padding-top: 0;
+    }
+}
+
