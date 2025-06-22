@@ -155,8 +155,8 @@ const debatesData = [
             "profile": {
                 "Rhetoric": "10/10",
                 "Typing Structure": "8/10",
-                "Critical Thinking": "8/10",
-                "Logical Fallacies": "8/10",
+                "Critical Thinking": "10/10",
+                "Logical Fallacies": "10/10",
                 "Typing Strenght": "9/10",
                 "Tiering Sistem": "8/10",
                 "Calculation": "5/10",
