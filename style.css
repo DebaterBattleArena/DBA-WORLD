@@ -369,3 +369,20 @@ footer a:hover {
         padding-top: 0;
     }
 }
+/* Tambahan di assets/css/style.css */
+.result-info {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 5px 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px dashed rgba(255,255,255,0.1);
+    padding-top: 10px;
+}
+.result-info.winner {
+    color: #4CAF50; /* Hijau untuk pemenang */
+}
+.result-info.loser {
+    color: #f44336; /* Merah untuk kalah */
+}
