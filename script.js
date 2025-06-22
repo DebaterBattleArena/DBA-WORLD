@@ -197,6 +197,17 @@ const debatesData = [
 // ====== Global variable to store all debater profiles for easy lookup ======
 let allDebaters = {}; 
 
+// ====== POPULATE ALLDEBATERS MAP ONCE AT SCRIPT INITIALIZATION ======
+debatesData.forEach(debate => {
+    if (debate.debater1 && debate.debater1.name) {
+        allDebaters[debate.debater1.name] = debate.debater1;
+    }
+    if (debate.debater2 && debate.debater2.name) {
+        allDebaters[debate.debater2.name] = debate.debater2;
+    }
+});
+
+
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
     const now = new Date();
@@ -234,20 +245,10 @@ function startCountdown() {
 
 // ====== FUNGSI UNTUK MEMUAT DATA DEBAT DAN MERENDERNYA (UNTUK index.html) ======
 function loadAndRenderDebatesForIndexPage() {
-    const debates = debatesData; // Mengakses data yang sudah tertanam
+    const debates = debatesData; 
     
-    // Memproses data untuk membuat daftar debater global yang unik
-    debates.forEach(debate => {
-        if (debate.debater1 && debate.debater1.name && !allDebaters[debate.debater1.name]) {
-            allDebaters[debate.debater1.name] = debate.debater1;
-        }
-        if (debate.debater2 && debate.debater2.name && !allDebaters[debate.debater2.name]) {
-            allDebaters[debate.debater2.name] = debate.debater2;
-        }
-    });
-
     const container = document.getElementById('debates-container');
-    if (!container) return; // Keluar jika ini bukan index.html
+    if (!container) return; 
 
     let htmlContent = '';
     debates.forEach(debate => {
@@ -291,36 +292,24 @@ function loadAndRenderDebatesForIndexPage() {
 // ====== FUNGSI UNTUK MERENDER HALAMAN PROFIL (UNTUK profile.html) ======
 function renderProfilePage() {
     const urlParams = new URLSearchParams(window.location.search);
-    const debaterName = urlParams.get('name'); // Mendapatkan nama debater dari URL
+    const debaterName = urlParams.get('name'); 
 
     const profileCard = document.querySelector('.profile-card');
 
-    if (!profileCard) return; // Keluar jika ini bukan profile.html
+    if (!profileCard) return; 
 
     if (!debaterName) {
         profileCard.innerHTML = `<p style="color: red;">Nama debater tidak ditemukan di URL.</p>`;
         return;
     }
 
-    // Membangun allDebaters map (karena ini akan dijalankan terpisah dari index.html)
-    allDebaters = {}; // Reset untuk memastikan hanya debater yang dibutuhkan
-    debatesData.forEach(debate => {
-        if (debate.debater1 && debate.debater1.name) {
-            allDebaters[debate.debater1.name] = debate.debater1;
-        }
-        if (debate.debater2 && debate.debater2.name) {
-            allDebaters[debate.debater2.name] = debate.debater2;
-        }
-    });
-
-    const foundDebater = allDebaters[debaterName];
+    const foundDebater = allDebaters[debaterName]; // Menggunakan allDebaters yang sudah terisi secara global
 
     if (!foundDebater || !foundDebater.profile) {
         profileCard.innerHTML = `<p style="color: red;">Profil untuk ${debaterName} tidak ditemukan.</p>`;
         return;
     }
 
-    // Render profil debater
     let profileHtml = `
         <img src="${foundDebater.photo}" alt="Foto ${foundDebater.name}">
         <h2>${foundDebater.name}</h2>
@@ -343,25 +332,14 @@ function renderRankingPage() {
     const rankingContainer = document.getElementById('ranking-container'); 
     if (!rankingContainer) return; 
 
-    // Membangun allDebaters map (diperlukan karena halaman ini mungkin dimuat langsung)
-    const allDebatersInPage = {}; // Gunakan variabel lokal untuk halaman ini
-    debatesData.forEach(debate => {
-        if (debate.debater1 && debate.debater1.name) {
-            allDebatersInPage[debate.debater1.name] = debate.debater1;
-        }
-        if (debate.debater2 && debate.debater2.name) {
-            allDebatersInPage[debate.debater2.name] = debate.debater2;
-        }
-    });
-
     const allDebatersByTier = {
         "Low Tier": [],
         "Mid Tier": [],
         "High Tier": []
     };
 
-    // Kelompokkan debater berdasarkan tier
-    Object.values(allDebatersInPage).forEach(debater => {
+    // Kelompokkan debater berdasarkan tier dari allDebaters yang sudah terisi secara global
+    Object.values(allDebaters).forEach(debater => {
         if (debater.tier && allDebatersByTier[debater.tier]) {
             allDebatersByTier[debater.tier].push(debater);
         }
@@ -418,25 +396,6 @@ function renderRankingPage() {
 }
 
 
-// ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
-document.addEventListener('DOMContentLoaded', () => {
-    // Cek halaman saat ini untuk menjalankan logika yang sesuai
-    if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) {
-        // Ini adalah halaman index.html
-        startCountdown();
-        loadAndRenderDebatesForIndexPage();
-    } else if (window.location.pathname.endsWith('profile.html')) {
-        // Ini adalah halaman profile.html
-        renderProfilePage();
-    } else if (window.location.pathname.endsWith('ranking.html')) {
-        // Ini adalah halaman ranking.html
-        renderRankingPage();
-    } else if (window.location.pathname.endsWith('compare.html')) {
-        // Ini adalah halaman compare.html
-        renderComparePage(); // BARU: Panggil fungsi render Compare Page
-    }
-});
-
 // ====== FUNGSI UNTUK MERENDER HALAMAN COMPARE (UNTUK compare.html) ======
 let chartInstance = null; // Variabel global untuk menyimpan instance chart agar bisa dihancurkan
 
@@ -451,19 +410,13 @@ function renderComparePage() {
         return;
     }
 
-    // Membangun allDebaters map (diperlukan karena halaman ini mungkin dimuat langsung)
-    const allDebatersForCompare = {};
-    debatesData.forEach(debate => {
-        if (debate.debater1 && debate.debater1.name) {
-            allDebatersForCompare[debate.debater1.name] = debate.debater1;
-        }
-        if (debate.debater2 && debate.debater2.name) {
-            allDebatersForCompare[debate.debater2.name] = debate.debater2;
-        }
-    });
+    // Populate dropdowns using the already built global allDebaters map
+    const debaterNames = Object.keys(allDebaters).sort(); // Menggunakan allDebaters yang sudah terisi secara global
+    
+    // Clear existing options, but keep the first placeholder option
+    debater1Select.innerHTML = '<option value="">Pilih Debater 1</option>';
+    debater2Select.innerHTML = '<option value="">Pilih Debater 2</option>';
 
-    // Populate dropdowns
-    const debaterNames = Object.keys(allDebatersForCompare).sort(); // Urutkan alfabetis
     debaterNames.forEach(name => {
         const option1 = document.createElement('option');
         option1.value = name;
@@ -490,8 +443,8 @@ function renderComparePage() {
             return;
         }
 
-        const debater1 = allDebatersForCompare[selectedDebater1Name];
-        const debater2 = allDebatersForCompare[selectedDebater2Name];
+        const debater1 = allDebaters[selectedDebater1Name]; // Menggunakan allDebaters
+        const debater2 = allDebaters[selectedDebater2Name]; // Menggunakan allDebaters
 
         if (!debater1 || !debater2 || !debater1.profile || !debater2.profile) {
             chartArea.innerHTML = '<p class="chart-message" style="color: red;">Statistik debater tidak lengkap.</p>';
@@ -507,15 +460,14 @@ function renderComparePage() {
         chartArea.appendChild(chartCanvas);
 
         // Siapkan data untuk Chart.js (Radar Chart)
-        const labels = Object.keys(debater1.profile); // Misalnya, ambil semua nama skill
+        const labels = Object.keys(debater1.profile); 
         const data1 = labels.map(label => parseFloat(debater1.profile[label]));
         const data2 = labels.map(label => parseFloat(debater2.profile[label]));
 
         if (chartInstance) {
-            chartInstance.destroy(); // Hancurkan chart sebelumnya jika ada
+            chartInstance.destroy(); 
         }
 
-        // Buat Chart.js
         const ctx = chartCanvas.getContext('2d');
         chartInstance = new Chart(ctx, {
             type: 'radar',
@@ -525,7 +477,7 @@ function renderComparePage() {
                     {
                         label: debater1.name,
                         data: data1,
-                        backgroundColor: 'rgba(54, 162, 235, 0.4)', // Biru transparan
+                        backgroundColor: 'rgba(54, 162, 235, 0.4)', 
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(54, 162, 235, 1)',
@@ -536,7 +488,7 @@ function renderComparePage() {
                     {
                         label: debater2.name,
                         data: data2,
-                        backgroundColor: 'rgba(255, 99, 132, 0.4)', // Merah transparan
+                        backgroundColor: 'rgba(255, 99, 132, 0.4)', 
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(255, 99, 132, 1)',
@@ -548,35 +500,35 @@ function renderComparePage() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Penting untuk kontrol ukuran di CSS
+                maintainAspectRatio: false, 
                 scales: {
                     r: {
                         angleLines: {
-                            color: 'rgba(255, 255, 255, 0.2)' // Warna garis sudut
+                            color: 'rgba(255, 255, 255, 0.2)' 
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.3)' // Warna grid
+                            color: 'rgba(255, 255, 255, 0.3)' 
                         },
                         pointLabels: {
-                            color: var(--text-color), // Warna label skill
+                            color: 'var(--text-color)', // Menggunakan variabel CSS di sini
                             font: {
                                 size: 12
                             }
                         },
                         ticks: {
                             beginAtZero: true,
-                            max: 10, // Maksimum nilai skill
-                            stepSize: 2, // Langkah per 2
-                            color: var(--light-grey), // Warna angka di sumbu
-                            backdropColor: 'transparent', // Hilangkan latar belakang di ticks
-                            showLabelBackdrop: false // Jangan tampilkan kotak latar belakang label
+                            max: 10, 
+                            stepSize: 2, 
+                            color: 'var(--light-grey)', // Menggunakan variabel CSS di sini
+                            backdropColor: 'transparent', 
+                            showLabelBackdrop: false 
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: var(--text-color) // Warna label legend
+                            color: 'var(--text-color)' // Menggunakan variabel CSS di sini
                         }
                     },
                     tooltip: {
@@ -591,12 +543,30 @@ function renderComparePage() {
         });
     }
 
-    // Panggil updateComparison saat halaman dimuat (jika ada pilihan default)
-    // dan saat pilihan dropdown berubah
     debater1Select.addEventListener('change', updateComparison);
     debater2Select.addEventListener('change', updateComparison);
 
-    // Panggil sekali untuk merender chart awal jika sudah ada nilai terpilih
-    updateComparison();
+    updateComparison(); // Panggil sekali untuk merender chart awal jika sudah ada nilai terpilih
 }
+
+
+// ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
+document.addEventListener('DOMContentLoaded', () => {
+    // Cek halaman saat ini untuk menjalankan logika yang sesuai
+    if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) {
+        // Ini adalah halaman index.html
+        startCountdown();
+        loadAndRenderDebatesForIndexPage();
+    } else if (window.location.pathname.endsWith('profile.html')) {
+        // Ini adalah halaman profile.html
+        renderProfilePage();
+    } else if (window.location.pathname.endsWith('ranking.html')) {
+        // Ini adalah halaman ranking.html
+        renderRankingPage();
+    } else if (window.location.pathname.endsWith('compare.html')) {
+        // Ini adalah halaman compare.html
+        renderComparePage();
+    }
+});
+
 
