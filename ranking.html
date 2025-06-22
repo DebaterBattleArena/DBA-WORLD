@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking Debater - Debater Battle Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Gaya khusus untuk halaman ranking */
+        #ranking-section {
+            padding-top: 60px;
+            min-height: 80vh;
+        }
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .ranking-table th, .ranking-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .ranking-table th {
+            background-color: #333;
+            color: var(--light-grey);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ranking-table tbody tr:last-child td {
+            border-bottom: none; /* Hilangkan border bawah di baris terakhir */
+        }
+        .debater-cell {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .debater-cell img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--highlight-color);
+        }
+        .debater-name {
+            font-weight: bold;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header-logo">
+        <img src="IMG_0362.png" alt="Debater Battle Arena Logo" class="header-logo-image">
+        <h1>DEBATER BATTLE <span>ARENA.</span></h1>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#top">Beranda</a></li>
+            <li><a href="index.html#about">Tentang Kami</a></li>
+            <li><a href="index.html#match-list">Jadwal Debat</a></li>
+            <li><a href="ranking.html">Ranking</a></li>
+            <li><a href="archive.html">Arsip Debat</a></li>
+            <li><a href="index.html#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <section id="ranking-section">
+        <h2>Peringkat Debater</h2>
+        <div id="ranking-container">
+            <p style="text-align: center; color: var(--light-grey);">Memuat data peringkat...</p>
+        </div>
+    </section>
+
+    <footer>
+        <a href="https://debaterbattlearena.com" target="_blank">debaterbattlearena.com</a>
+        <p>&copy; 2025 Debater Battle Arena. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
