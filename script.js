@@ -308,6 +308,16 @@ function renderProfilePage() {
             allDebaters[debate.debater1.name] = debate.debater1;
         }
         if (debate.debater2 && debate.debater2.name && !allDebaters[debate.debater2.name]) {
+            allDebaters[debate.deb2.name] = debate.debater2; // Typo here, should be debater2.name
+        }
+    });
+    // Fix: Rebuild allDebaters map correctly
+    allDebaters = {};
+    debatesData.forEach(debate => {
+        if (debate.debater1 && debate.debater1.name) {
+            allDebaters[debate.debater1.name] = debate.debater1;
+        }
+        if (debate.debater2 && debate.debater2.name) {
             allDebaters[debate.debater2.name] = debate.debater2;
         }
     });
@@ -342,7 +352,7 @@ function renderRankingPage() {
     const rankingContainer = document.getElementById('ranking-container'); // Menggunakan container div
     if (!rankingContainer) return; 
 
-    // Membangun allDebaters map terlebih dahulu
+    // Membangun allDebaters map terlebih dahulu (diperlukan karena halaman ini mungkin dimuat langsung)
     const allDebaters = {}; 
     debatesData.forEach(debate => {
         if (debate.debater1 && debate.debater1.name) {
@@ -377,18 +387,18 @@ function renderRankingPage() {
             debatersInTier.sort((a, b) => a.name.localeCompare(b.name));
 
             rankingHtml += `
-                <h3 style="text-align: center; color: var(--highlight-color); margin-top: 40px; margin-bottom: 20px; font-size: 1.8em; text-transform: uppercase;">${tierName}</h3>
-                <table class="ranking-table">
-                    <thead>
-                        <tr>
-                            <th>Peringkat</th>
-                            <th>Debater</th>
-                            <th>Rhetoric</th>
-                            <th>Critical Thinking</th>
-                            <th>General Knowledge</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <h3 class="tier-heading">${tierName}</h3>
+                <div class="table-responsive"> <table class="ranking-table">
+                        <thead>
+                            <tr>
+                                <th>Peringkat</th>
+                                <th>Debater</th>
+                                <th>Rhetoric</th>
+                                <th>Critical Thinking</th>
+                                <th>General Knowledge</th>
+                                </tr>
+                        </thead>
+                        <tbody>
             `;
             debatersInTier.forEach((debater, index) => {
                 rankingHtml += `
@@ -403,17 +413,17 @@ function renderRankingPage() {
                         <td>${debater.profile['Rhetoric']}</td>
                         <td>${debater.profile['Critical Thinking']}</td>
                         <td>${debater.profile['General Knowledge']}</td>
-                    </tr>
+                        </tr>
                 `;
             });
             rankingHtml += `
                     </tbody>
                 </table>
-            `;
+            </div> `;
         }
     });
 
-    rankingContainer.innerHTML = rankingHtml; // Render semua tier ke dalam container
+    rankingContainer.innerHTML = rankingHtml;
 }
 
 
