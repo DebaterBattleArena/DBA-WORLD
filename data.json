@@ -4,17 +4,17 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "HIROO",
-            "photo": "assets/img/hiroo.jpg",
+            "photo": "img/IMG_0524.jpeg",
             "country": "indonesia",
-            "flag": "https://flagcdn.com/id.svg"
+            "flag": "img/IMG_0417.png"
         },
         "debater2": {
             "name": "RENJI",
-            "photo": "assets/img/renji.jpg",
+            "photo": "img/IMG_0523.jpeg",
             "country": "malaysia",
-            "flag": "https://flagcdn.com/my.svg"
+            "flag": "img/IMG_0418.png"
         },
-        "type": "MID TIER DEBATE",
+        "type": "ONE-ON-ONE DEBATE",
         "winner": {
             "name": "HIROO",
             "method": "limit"
@@ -28,17 +28,17 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "ZOGRATIS",
-            "photo": "assets/img/zogratis.jpg",
+            "photo": "img/IMG_0526.jpeg",
             "country": "indonesia",
-            "flag": "https://flagcdn.com/id.svg"
+            "flag": "img/IMG_0417.png"
         },
         "debater2": {
             "name": "MUCHIBEI",
-            "photo": "assets/img/muchibei.jpg",
+            "photo": "img/IMG_0530.jpeg",
             "country": "malaysia",
-            "flag": "https://flagcdn.com/my.svg"
+            "flag": "img/IMG_0418.png"
         },
-        "type": "HIGH TIER DEBATE",
+        "type": "ONE-ON-ONE DEBATE",
         "winner": {
             "name": "ZOGRATIS",
             "method": "point"
@@ -52,17 +52,17 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "ARYANWT",
-            "photo": "assets/img/aryanwt.jpg",
+            "photo": "img/IMG_0525.jpeg",
             "country": "indonesia",
-            "flag": "https://flagcdn.com/id.svg"
+            "flag": "img/IMG_0417.png"
         },
         "debater2": {
             "name": "RIM",
-            "photo": "assets/img/rim.jpg",
+            "photo": "img/IMG_0527.jpeg",
             "country": "malaysia",
-            "flag": "https://flagcdn.com/my.svg"
+            "flag": "img/IMG_0418.png"
         },
-        "type": "LOW TIER DEBATE",
+        "type": "ONE-ON-ONE DEBATE",
         "winner": {
             "name": "ARYANWT",
             "method": "point"
@@ -76,17 +76,15 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "RANZT",
-            "photo": "assets/img/ranzt.jpg",
-            "country": "indonesia",
-            "flag": "https://flagcdn.com/id.svg"
+            "photo": "img/ranzt.jpg",  "country": "indonesia",
+            "flag": "img/IMG_0417.png"
         },
         "debater2": {
             "name": "RYUU",
-            "photo": "assets/img/ryuu.jpg",
-            "country": "malaysia",
-            "flag": "https://flagcdn.com/my.svg"
+            "photo": "img/ryuu.jpg",  "country": "malaysia",
+            "flag": "img/IMG_0418.png"
         },
-        "type": "MID TIER DEBATE",
+        "type": "ONE-ON-ONE DEBATE",
         "winner": {
             "name": "RANZT",
             "method": "point"
