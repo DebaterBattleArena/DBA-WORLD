@@ -3,6 +3,7 @@ const debatesData = [
     {
         "id": "debate-001",
         "category": "FICTIONAL DEBATE",
+        "date": "2025-06-15", // Tanggal debat ditambahkan
         "debater1": {
             "name": "HIROO",
             "photo": "IMG_0524.jpeg",  
@@ -51,6 +52,7 @@ const debatesData = [
     {
         "id": "debate-002",
         "category": "FICTIONAL DEBATE",
+        "date": "2025-06-10", // Tanggal debat ditambahkan
         "debater1": {
             "name": "ZOGRATIS",
             "photo": "IMG_0526.jpeg",  
@@ -99,6 +101,7 @@ const debatesData = [
     {
         "id": "debate-003",
         "category": "FICTIONAL DEBATE",
+        "date": "2025-06-05", // Tanggal debat ditambahkan
         "debater1": {
             "name": "ARYANWT",
             "photo": "IMG_0525.jpeg",  
@@ -147,6 +150,7 @@ const debatesData = [
     {
         "id": "debate-004",
         "category": "FICTIONAL DEBATE",
+        "date": "2025-06-01", // Tanggal debat ditambahkan
         "debater1": {
             "name": "RANZT",
             "photo": "IMG_0555.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
@@ -251,7 +255,10 @@ function loadAndRenderDebatesForIndexPage() {
     if (!container) return; 
 
     let htmlContent = '';
-    debates.forEach(debate => {
+    // Filter untuk menampilkan debat yang belum selesai di halaman utama
+    const upcomingDebates = debates.filter(debate => !debate.winner || !debate.loser); // Jika tidak ada winner/loser, anggap belum selesai
+    
+    upcomingDebates.forEach(debate => { // Render hanya debat yang belum selesai
         const winnerInfo = debate.winner ? `
             <div class="result-info winner">
                 <strong>Winner:</strong> ${debate.winner.name} by ${debate.winner.method}
@@ -303,7 +310,7 @@ function renderProfilePage() {
         return;
     }
 
-    const foundDebater = allDebaters[debaterName]; // Menggunakan allDebaters yang sudah terisi secara global
+    const foundDebater = allDebaters[debaterName]; 
 
     if (!foundDebater || !foundDebater.profile) {
         profileCard.innerHTML = `<p style="color: red;">Profil untuk ${debaterName} tidak ditemukan.</p>`;
@@ -354,7 +361,7 @@ function renderRankingPage() {
         if (debatersInTier && debatersInTier.length > 0) {
             // Pengurutan kustom untuk Mid Tier
             if (tierName === "Mid Tier") {
-                const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"];
+                const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"]; // Ini urutan yang Anda inginkan
                 debatersInTier.sort((a, b) => {
                     const indexA = midTierCustomOrder.indexOf(a.name);
                     const indexB = midTierCustomOrder.indexOf(b.name);
@@ -371,7 +378,8 @@ function renderRankingPage() {
 
             rankingHtml += `
                 <h3 class="tier-heading">${tierName}</h3>
-                <div class="table-responsive"> <table class="ranking-table">
+                <div class="table-responsive"> <!-- WRAPPER BARU UNTUK SCROLL HORIZONTAL -->
+                    <table class="ranking-table">
                         <thead>
                             <tr>
                                 <th>Peringkat</th>
@@ -402,16 +410,55 @@ function renderRankingPage() {
             rankingHtml += `
                     </tbody>
                 </table>
-            </div> `;
+            </div> <!-- AKHIR WRAPPER BARU -->
+            `;
         }
     });
 
     rankingContainer.innerHTML = rankingHtml;
 }
 
+// ====== FUNGSI UNTUK MERENDER HALAMAN ARSIP (UNTUK archive.html) ======
+function renderArchivePage() {
+    const archiveListContainer = document.getElementById('archive-list');
+    if (!archiveListContainer) return;
+
+    // Filter debat yang sudah selesai (memiliki pemenang/kalah)
+    const archivedDebates = debatesData.filter(debate => debate.winner && debate.loser);
+
+    // Urutkan debat arsip berdasarkan tanggal (terbaru di atas)
+    archivedDebates.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    let archiveHtml = '';
+    if (archivedDebates.length === 0) {
+        archiveHtml = '<p style="text-align: center; color: var(--light-grey);">Belum ada arsip debat yang tersedia.</p>';
+    } else {
+        archivedDebates.forEach(debate => {
+            archiveHtml += `
+                <div class="archive-item">
+                    <div class="archive-header">
+                        <span class="category">${debate.category}</span>
+                        <span class="date">${debate.date}</span>
+                    </div>
+                    <div class="archive-participants">
+                        <span>${debate.debater1.name}</span> <span class="vs">VS</span> <span>${debate.debater2.name}</span>
+                    </div>
+                    <div class="archive-result">
+                        <p>Winner: <span class="winner-name">${debate.winner.name}</span> by ${debate.winner.method}</p>
+                        <p>Loss: <span class="loss-name">${debate.loser.name}</span></p>
+                    </div>
+                    <div class="archive-type">(${debate.type})</div>
+                </div>
+            `;
+        });
+    }
+
+    archiveListContainer.innerHTML = archiveHtml;
+}
+
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN COMPARE (UNTUK compare.html) ======
-let chartInstance = null; // Variabel global untuk menyimpan instance chart agar bisa dihancurkan
+let chartInstance = null; 
 
 function renderComparePage() {
     const debater1Select = document.getElementById('debater1-select');
@@ -424,10 +471,8 @@ function renderComparePage() {
         return;
     }
 
-    // Populate dropdowns using the already built global allDebaters map
     const debaterNames = Object.keys(allDebaters).sort(); 
     
-    // Clear existing options, but keep the first placeholder option
     debater1Select.innerHTML = '<option value="">Pilih Debater 1</option>';
     debater2Select.innerHTML = '<option value="">Pilih Debater 2</option>';
 
@@ -443,7 +488,6 @@ function renderComparePage() {
         debater2Select.appendChild(option2);
     });
 
-    // Event listeners for dropdown changes
     function updateComparison() {
         const selectedDebater1Name = debater1Select.value;
         const selectedDebater2Name = debater2Select.value;
@@ -469,11 +513,9 @@ function renderComparePage() {
             return;
         }
 
-        // Hapus pesan dan tampilkan canvas
         chartArea.innerHTML = '';
         chartArea.appendChild(chartCanvas);
 
-        // Siapkan data untuk Chart.js (Radar Chart)
         const labels = Object.keys(debater1.profile); 
         const data1 = labels.map(label => parseFloat(debater1.profile[label]));
         const data2 = labels.map(label => parseFloat(debater2.profile[label]));
@@ -577,6 +619,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (window.location.pathname.endsWith('ranking.html')) {
         // Ini adalah halaman ranking.html
         renderRankingPage();
+    } else if (window.location.pathname.endsWith('archive.html')) { // BARU: Panggil renderArchivePage
+        // Ini adalah halaman archive.html
+        renderArchivePage();
     } else if (window.location.pathname.endsWith('compare.html')) {
         // Ini adalah halaman compare.html
         renderComparePage();
