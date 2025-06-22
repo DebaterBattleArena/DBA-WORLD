@@ -4,9 +4,9 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "HIROO",
-            "photo": "IMG_0524.jpeg",
+            "photo": "IMG_0524.jpeg",  
             "country": "indonesia",
-            "flag": "IMG_0417.png",
+            "flag": "IMG_0417.png",   
             "profile": {
                 "Rhetoric": "9/10",
                 "Typing Structure": "9/10",
@@ -21,9 +21,9 @@
         },
         "debater2": {
             "name": "RENJI",
-            "photo": "IMG_0523.jpeg",
+            "photo": "IMG_0523.jpeg",  
             "country": "malaysia",
-            "flag": "IMG_0418.png",
+            "flag": "IMG_0418.png",   
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -36,7 +36,7 @@
                 "General Knowledge": "1/10"
             }
         },
-        "type": "MID TIER DEBATE",
+        "type": "MID TIER DEBATE",  
         "winner": {
             "name": "HIROO",
             "method": "limit"
@@ -50,9 +50,9 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "ZOGRATIS",
-            "photo": "IMG_0526.jpeg",
+            "photo": "IMG_0526.jpeg",  
             "country": "indonesia",
-            "flag": "IMG_0417.png",
+            "flag": "IMG_0417.png",   
             "profile": {
                 "Rhetoric": "6/10",
                 "Typing Structure": "5/10",
@@ -67,9 +67,9 @@
         },
         "debater2": {
             "name": "MUCHIBEI",
-            "photo": "IMG_0530.jpeg",
+            "photo": "IMG_0530.jpeg",  
             "country": "malaysia",
-            "flag": "IMG_0418.png",
+            "flag": "IMG_0418.png",   
             "profile": {
                 "Rhetoric": "5/10",
                 "Typing Structure": "5/10",
@@ -96,9 +96,9 @@
         "category": "FICTIONAL DEBATE",
         "debater1": {
             "name": "ARYANWT",
-            "photo": "IMG_0525.jpeg",
+            "photo": "IMG_0525.jpeg",  
             "country": "indonesia",
-            "flag": "IMG_0417.png",
+            "flag": "IMG_0417.png",   
             "profile": {
                 "Rhetoric": "8/10",
                 "Typing Structure": "7/10",
@@ -113,9 +113,9 @@
         },
         "debater2": {
             "name": "RIM",
-            "photo": "IMG_0527.jpeg",
+            "photo": "IMG_0527.jpeg",  
             "country": "malaysia",
-            "flag": "IMG_0418.png",
+            "flag": "IMG_0418.png",   
             "profile": {
                 "Rhetoric": "4/10",
                 "Typing Structure": "5/10",
@@ -137,49 +137,50 @@
             "name": "RIM"
         }
     },
-   {
-    "id": "debate-004",
-    "category": "FICTIONAL DEBATE",
-    "debater1": {
-        "name": "RANZT",
-        "photo": "ranzt.jpg",
-        "country": "indonesia",
-        "flag": "IMG_0417.png",
-        "profile": {
-            "Rhetoric": "10/10",
-            "Typing Structure": "8/10",
-            "Critical Thinking": "8/10",
-            "Logical Fallacies": "8/10",
-            "Typing Strenght": "9/10",
-            "Tiering Sistem": "8/10",
-            "Calculation": "5/10",
-            "Philisophy": "9/10",
-            "General Knowledge": "10/10"
+    {
+        "id": "debate-004",
+        "category": "FICTIONAL DEBATE",
+        "debater1": {
+            "name": "RANZT",
+            "photo": "IMG_0555.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "country": "indonesia",
+            "flag": "IMG_0417.png",   
+            "profile": {
+                "Rhetoric": "10/10",
+                "Typing Structure": "8/10",
+                "Critical Thinking": "8/10",
+                "Logical Fallacies": "8/10",
+                "Typing Strenght": "9/10",
+                "Tiering Sistem": "8/10",
+                "Calculation": "5/10",
+                "Philisophy": "9/10",
+                "General Knowledge": "10/10"
+            }
+        },
+        "debater2": {
+            "name": "RYUU",
+            "photo": "IMG_0556.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "country": "malaysia",
+            "flag": "IMG_0418.png",   
+            "profile": {
+                "Rhetoric": "8.5/10",
+                "Typing Structure": "8/10",
+                "Critical Thinking": "7/10",
+                "Logical Fallacies": "6/10",
+                "Typing Strenght": "5/10",
+                "Tiering Sistem": "5/10",
+                "Calculation": "7/10",
+                "Philisophy": "4/10",
+                "General Knowledge": "10/10"
+            }
+        },
+        "type": "MID TIER DEBATE",
+        "winner": {
+            "name": "RANZT",
+            "method": "point"
+        },
+        "loser": {
+            "name": "RYUU"
         }
-    },
-    "debater2": {
-        "name": "RYUU",
-        "photo": "ryuu.jpg",
-        "country": "malaysia",
-        "flag": "IMG_0418.png",
-        "profile": {
-            "Rhetoric": "8.5/10",
-            "Typing Structure": "8/10",
-            "Critical Thinking": "7/10",
-            "Logical Fallacies": "6/10",
-            "Typing Strenght": "5/10",
-            "Tiering Sistem": "5/10",
-            "Calculation": "7/10",
-            "Philisophy": "4/10",
-            "General Knowledge": "10/10"
-        }
-    },
-    "type": "MID TIER DEBATE",
-    "winner": {
-        "name": "RANZT",
-        "method": "point"
-    },
-    "loser": {
-        "name": "RYUU"
     }
-}
+]
