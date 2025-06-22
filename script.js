@@ -1,80 +1,95 @@
-// ====== FUNGSI COUNTDOWN (untuk Main Event) ======
+// ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
-    // Set tanggal dan waktu target (2 hari dari sekarang)
+    // Menghitung target tanggal: 2 hari dari waktu saat ini
     const now = new Date();
-    const targetDate = new Date(now.getTime() + (2 * 24 * 60 * 60 * 1000)).getTime(); // Tambah 2 hari
+    // Gunakan 2 hari (2 * 24 jam * 60 menit * 60 detik * 1000 milidetik)
+    const targetDate = new Date(now.getTime() + (2 * 24 * 60 * 60 * 1000)).getTime(); 
 
-    const countdownFunction = setInterval(function() {
+    // Memperbarui countdown setiap 1 detik
+    const countdownInterval = setInterval(function() {
         const currentTime = new Date().getTime();
-        const distance = targetDate - currentTime;
+        const distance = targetDate - currentTime; // Jarak waktu antara sekarang dan target
 
-        // Hitung waktu
+        // Menghitung hari, jam, menit, dan detik
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Perbarui elemen HTML
+        // Memperbarui elemen HTML dengan nilai countdown
         const daysEl = document.getElementById("days");
         const hoursEl = document.getElementById("hours");
         const minutesEl = document.getElementById("minutes");
         const secondsEl = document.getElementById("seconds");
 
+        // Memastikan elemen ada sebelum memperbarui innerHTML
         if (daysEl) daysEl.innerHTML = days;
-        if (hoursEl) hoursEl.innerHTML = String(hours).padStart(2, '0');
-        if (minutesEl) minutesEl.innerHTML = String(minutes).padStart(2, '0');
-        if (secondsEl) secondsEl.innerHTML = String(seconds).padStart(2, '0');
+        if (hoursEl) hoursEl.innerHTML = String(hours).padStart(2, '0'); // Format 00
+        if (minutesEl) minutesEl.innerHTML = String(minutes).padStart(2, '0'); // Format 00
+        if (secondsEl) secondsEl.innerHTML = String(seconds).padStart(2, '0'); // Format 00
 
-        // Jika hitung mundur selesai
+        // Jika countdown selesai (waktu sudah lewat)
         if (distance < 0) {
-            clearInterval(countdownFunction);
+            clearInterval(countdownInterval); // Hentikan interval
+            // Set semua ke nol
             if (daysEl) daysEl.innerHTML = "0";
             if (hoursEl) hoursEl.innerHTML = "00";
             if (minutesEl) minutesEl.innerHTML = "00";
             if (secondsEl) secondsEl.innerHTML = "00";
             console.log("Countdown Selesai!");
+            // Anda bisa menambahkan logika lain di sini, seperti menampilkan pesan "DEBAT TELAH DIMULAI!"
         }
-    }, 1000);
+    }, 1000); // Interval 1 detik
 }
-
 
 // ====== FUNGSI UNTUK MEMUAT DATA DEBAT DARI JSON ======
 async function loadDebates() {
     try {
+        // Mengambil data dari file debates.json
+        // Pastikan path 'data/debates.json' sudah benar relatif terhadap index.html
         const response = await fetch('data/debates.json');
+        
+        // Memeriksa apakah request berhasil (status 200 OK)
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            // Melemparkan error jika request gagal, untuk ditangkap di blok catch
+            throw new Error(`Gagal memuat data JSON: ${response.status} ${response.statusText}. Mungkin masalah CORS jika dibuka langsung dari file lokal.`);
         }
-        const debates = await response.json();
-        renderDebates(debates);
+        
+        const debates = await response.json(); // Mengubah response menjadi objek JSON
+        renderDebates(debates); // Memanggil fungsi untuk menampilkan debat
     } catch (error) {
-        console.error("Gagal memuat data debat:", error);
-        document.getElementById('debates-container').innerHTML = '<p>Maaf, jadwal debat tidak dapat dimuat saat ini.</p>';
+        console.error("Kesalahan saat memuat data debat:", error);
+        // Menampilkan pesan error di halaman jika gagal memuat data
+        const container = document.getElementById('debates-container');
+        if(container) {
+            container.innerHTML = '<p style="color: red; padding: 20px;">Maaf, jadwal debat tidak dapat dimuat saat ini. Mohon pastikan file JSON ada dan periksa <a href="javascript:void(0)" onclick="console.log(\'Buka developer console (F12) untuk melihat pesan error lebih detail\')">konsol browser</a> untuk detail error.</p>';
+        }
     }
 }
 
-// ====== FUNGSI UNTUK MERENDER DEBAT KE HTML ======
+// ====== FUNGSI UNTUK MERENDER (MENAMPILKAN) DEBAT KE HTML ======
 function renderDebates(debates) {
     const container = document.getElementById('debates-container');
-    if (!container) return; // Pastikan kontainer ada
+    if (!container) return; // Keluar jika kontainer tidak ditemukan
 
     let htmlContent = '';
+    // Iterasi setiap objek debat dalam array JSON
     debates.forEach(debate => {
-        // Logika untuk menampilkan pemenang/kalah jika ada
+        // Membangun string HTML untuk info pemenang jika ada
         const winnerInfo = debate.winner ? `
             <div class="result-info winner">
                 <strong>Winner:</strong> ${debate.winner.name} by ${debate.winner.method}
             </div>
-        ` : '';
+        ` : ''; // String kosong jika tidak ada pemenang
 
+        // Membangun string HTML untuk info kalah jika ada
         const loserInfo = debate.loser ? `
             <div class="result-info loser">
                 <strong>Loss:</strong> ${debate.loser.name}
             </div>
-        ` : '';
+        ` : ''; // String kosong jika tidak ada yang kalah
 
-        // Tambahkan style untuk result-info ke style.css juga
-        // Untuk saat ini, tambahkan secara inline jika perlu
+        // Menambahkan kartu debat ke konten HTML
         htmlContent += `
             <div class="match-card">
                 <div class="category">${debate.category}</div>
@@ -92,16 +107,15 @@ function renderDebates(debates) {
                     </div>
                 </div>
                 <div class="match-type">${debate.type}</div>
-                ${winnerInfo}
-                ${loserInfo}
-            </div>
+                ${winnerInfo} ${loserInfo}  </div>
         `;
     });
-    container.innerHTML = htmlContent;
+    container.innerHTML = htmlContent; // Memasukkan semua kartu debat ke dalam container
 }
 
 // ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
+// Ini memastikan elemen HTML sudah tersedia sebelum JavaScript mencoba mengaksesnya
 document.addEventListener('DOMContentLoaded', () => {
     startCountdown(); // Mulai countdown saat halaman dimuat
-    loadDebates();    // Muat dan tampilkan debat dari JSON
+    loadDebates();    // Muat dan tampilkan debat dari JSON saat halaman dimuat
 });
