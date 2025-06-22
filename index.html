@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBA — Debaters Battle Arena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>DBA — Debaters Battle Arena</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#recent-matches">Recent Matches</a></li>
+                    <li><a href="#compare-debaters">Compare Debaters</a></li>
+                    <li><a href="#leaderboard">Leaderboard</a></li>
+                    <li><a href="#events">Events</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <p>Selamat datang di Debaters Battle Arena! Pusat informasi terlengkap untuk debaters, pertandingan terkini, dan rekor debat.</p>
+            <button onclick="window.location.href='#recent-matches'">Lihat Pertandingan Terbaru</button>
+        </section>
+
+        <section id="recent-matches">
+            <h2>Recent Matches</h2>
+            <div id="recent-matches-list" class="matches-grid">
+                </div>
+        </section>
+
+        <section id="top-low-records">
+            <h2>Top & Low Records Debaters</h2>
+            <div class="records-container">
+                <div class="top-records">
+                    <h3>Top Debaters</h3>
+                    <ul id="top-debaters-list">
+                        </ul>
+                </div>
+                <div class="low-records">
+                    <h3>Emerging Debaters</h3>
+                    <ul id="low-debaters-list">
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="debater-quick-review">
+            <h2>Debater Profile Quick Review</h2>
+            <div id="debater-quick-review-list" class="grid-container">
+                </div>
+        </section>
+
+        <section id="leaderboard">
+            <h2>Leaderboard</h2>
+            <table id="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Debater</th>
+                        <th>Wins</th>
+                        <th>Losses</th>
+                        <th>Win Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </section>
+
+        <section id="individual-match-history">
+            <h2>Individual Match History</h2>
+            <div class="select-debater">
+                <label for="selectDebater">Pilih Debater:</label>
+                <select id="selectDebater">
+                    </select>
+            </div>
+            <div id="selected-debater-match-history">
+                </div>
+        </section>
+
+        <section id="compare-debaters">
+            <h2>Compare Debaters</h2>
+            <div class="compare-container">
+                <div class="debater-select-box">
+                    <label for="compareDebater1">Debater 1:</label>
+                    <select id="compareDebater1"></select>
+                </div>
+                <div class="debater-vs">VS</div>
+                <div class="debater-select-box">
+                    <label for="compareDebater2">Debater 2:</label>
+                    <select id="compareDebater2"></select>
+                </div>
+            </div>
+            <button id="compareButton">Compare</button>
+            <div id="comparison-results">
+                </div>
+        </section>
+
+        <section id="events">
+            <h2>Upcoming Events</h2>
+            <div id="events-list">
+                </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 DBA — Debaters Battle Arena. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
