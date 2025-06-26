@@ -24,15 +24,15 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--primary-bg);
-    color: var(--white-text-color);
+    color: var(--white-text-color); /* Ubah ke white-text-color */
     line-height: 1.6;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Untuk smooth scrolling saat klik link #id */
 }
 
 /* Gaya umum untuk link */
 a {
-    color: var(--white-text-color);
+    color: var(--white-text-color); /* Ubah ke white-text-color */
     text-decoration: none;
 }
 a:hover {
@@ -59,7 +59,7 @@ a:hover {
     margin: 0;
     font-family: var(--font-heading);
     font-size: 2.2em;
-    color: var(--white-text-color);
+    color: var(--white-text-color); /* Ubah ke white-text-color */
     letter-spacing: 3px;
     text-transform: uppercase;
 }
@@ -67,7 +67,7 @@ a:hover {
     color: var(--highlight-color);
 }
 
-/* Gaya untuk Navigation Bar - PERBAIKAN LEBIH SPESIFIK */
+/* Gaya untuk Navigation Bar - PERBAIKAN AKHIR */
 .main-nav {
     background-color: transparent;
     padding: 10px 0;
@@ -85,7 +85,7 @@ a:hover {
     margin: 0;
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap; /* Pastikan TIDAK wrap secara default */
+    flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -94,23 +94,23 @@ a:hover {
     flex-shrink: 0;
 }
 .main-nav ul li a {
-    color: var(--light-grey);
+    color: var(--light-grey); /* Warna default abu-abu */
     text-decoration: none;
     font-weight: normal;
     font-size: 0.9em;
     padding: 6px 0;
     transition: all 0.3s ease;
     white-space: nowrap;
-    display: inline-block; /* Penting: agar span active-underline bisa di luar flow teks tapi di dalam link */
-    position: relative; /* Untuk memposisikan garis bawah */
+    display: inline-block;
+    position: relative;
 }
 .main-nav ul li a:hover {
     background-color: transparent;
-    color: var(--white-text-color);
+    color: var(--white-text-color); /* Teks jadi putih saat hover */
 }
 
 /* Garis bawah aktif - HANYA MUNCUL DI LINK AKTIF / HOVER */
-.main-nav ul li a .active-underline { /* Targetkan span di dalam a */
+.main-nav ul li a .active-underline {
     position: absolute;
     bottom: -5px; /* Sesuaikan posisi vertikal garis bawah */
     left: 0; /* Mulai dari kiri link */
@@ -121,15 +121,22 @@ a:hover {
     transition: width 0.3s ease-out; /* Animasi lebar */
 }
 
-/* Saat link memiliki kelas 'active' atau di-hover, lebar garis menjadi 100% */
-.main-nav ul li a.active .active-underline,
-.main-nav ul li a:hover .active-underline { /* Ini yang memunculkan garis */
+/* Saat link memiliki kelas 'active', garis bawah 100% dan teks highlight */
+.main-nav ul li a.active {
+    color: var(--highlight-color); /* Warna teks oranye saat aktif */
+}
+.main-nav ul li a.active .active-underline {
+    width: 100%; /* Garis bawah 100% saat aktif */
+}
+
+/* Saat link di-hover (jika belum aktif), garis bawah 100% dan teks putih */
+.main-nav ul li a:hover:not(.active) {
+    color: var(--white-text-color); /* Teks putih saat hover jika tidak aktif */
+}
+.main-nav ul li a:hover .active-underline { /* Garis bawah 100% saat hover */
     width: 100%;
 }
 
-.main-nav ul li a.active {
-    color: var(--highlight-color);
-}
 
 /* --- Penyesuaian untuk Animasi dan Transisi Halus (Umum) --- */
 a, button, .cta-button, .match-card, .profile-card, .archive-item, .achievement-item, .main-nav ul li a, .debater-photo, select {
@@ -152,7 +159,7 @@ section {
 section h2 {
     font-family: var(--font-heading);
     font-size: 2.5em;
-    color: var(--white-text-color);
+    color: var(--white-text-color); /* Ubah ke white-text-color */
     text-transform: uppercase;
     margin-bottom: 30px;
     letter-spacing: 3px;
@@ -369,7 +376,7 @@ section p {
     margin-bottom: 0;
     flex: 1 1 200px;
     max-width: 250px;
-    background-color: var(--card-bg-dark); /* Ubah ke card-bg-dark */
+    background-color: var(--card-bg-dark);
     padding: 20px 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -388,21 +395,20 @@ section p {
     letter-spacing: 0.5px;
 }
 
-/* Gaya untuk Section Match List (Jadwal Debat) - LATAR PUTIH */
+/* Gaya untuk Section Match List (Jadwal Debat) - LATAR GELAP, CARD PUTIH */
 #match-list {
-    background-color: var(--white-section-bg); /* Background putih */
-    color: var(--dark-text-color); /* Teks gelap */
+    background-color: var(--primary-bg); /* Background tetap gelap */
+    color: var(--white-text-color); /* Teks tetap putih */
     padding: 50px 20px;
     max-width: 1200px;
-    margin: 20px auto; /* Margin atas bawah agar terlihat terpisah */
-    border-radius: 8px; /* Sudut membulat */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sedikit shadow */
-    text-align: left; /* Teks default section rata kiri */
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: none; /* Hapus shadow jika section tidak putih */
+    text-align: center; /* Judul dan konten rata tengah */
 }
 #match-list h2 {
-    color: var(--dark-text-color); /* Judul gelap */
-    margin-bottom: 30px;
-    text-align: center; /* Judul tetap di tengah */
+    color: var(--white-text-color); /* Judul tetap putih */
+    margin-bottom: 40px;
 }
 #debates-container {
     display: grid;
@@ -412,12 +418,13 @@ section p {
 }
 /* Gaya untuk match card di dalam jadwal debat */
 .match-card {
-    background-color: var(--card-bg-light); /* Latar belakang card debat (putih sedikit abu-abu) */
+    background-color: var(--card-bg-light); /* Background card putih (putih sedikit abu-abu) */
+    color: var(--dark-text-color); /* Teks di dalam card jadi gelap */
     border-radius: 8px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Konten di tengah card */
+    align-items: center;
     gap: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
     border: 1px solid #eee;
@@ -427,7 +434,7 @@ section p {
     text-align: center;
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px dashed #ddd; /* Garis pemisah abu-abu */
+    border-bottom: 1px dashed #ddd;
 }
 .match-header .category, .match-header .type {
     font-family: var(--font-body);
@@ -465,7 +472,7 @@ section p {
     height: 100px;
     border-radius: 5px;
     object-fit: cover;
-    border: 2px solid var(--dark-grey-text); /* Border gelap */
+    border: 2px solid var(--dark-grey-text);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 .debater-info .name {
@@ -577,7 +584,7 @@ footer a:hover {
 
 /* ---- PROFIL PAGE SPECIFIC STYLES (profile.html) ---- */
 #profile-page .profile-card {
-    background-color: var(--white-section-bg); /* NEW: Background utama card profil jadi putih */
+    background-color: var(--white-section-bg);
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.4);
@@ -596,7 +603,7 @@ footer a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    height: 250px; /* Tinggi area background gambar */
+    height: 250px;
     background-image: url('background-profile-default.jpg'); /* Ganti dengan gambar latar profil default atau kosongkan */
     background-size: cover;
     background-position: center top;
@@ -611,7 +618,7 @@ footer a:hover {
     align-items: center;
     gap: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0,0,0,0.1); /* NEW: Border gelap untuk pemisah di section putih */
+    border-bottom: 1px solid rgba(0,0,0,0.1);
     margin-bottom: 20px;
 }
 
@@ -621,7 +628,7 @@ footer a:hover {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--highlight-color);
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.5); /* Ubah shadow sesuai highlight */
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
     flex-shrink: 0;
     margin-top: 10px;
 }
@@ -682,7 +689,7 @@ footer a:hover {
 }
 
 .record-box {
-    background-color: var(--card-bg-light); /* NEW: Sedikit abu-abu terang untuk box record */
+    background-color: var(--card-bg-light);
     color: var(--dark-text-color);
     padding: 15px;
     border-radius: 5px;
@@ -717,13 +724,13 @@ footer a:hover {
 }
 
 .profile-section-block {
-    background-color: var(--white-section-bg); /* NEW: Background putih untuk section blok */
+    background-color: var(--white-section-bg);
     padding: 25px;
     border-radius: 8px;
     margin-top: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     text-align: left;
-    color: var(--dark-text-color); /* NEW: Teks gelap di dalam blok putih */
+    color: var(--dark-text-color);
 }
 .section-block-title {
     font-family: var(--font-heading);
@@ -739,7 +746,7 @@ footer a:hover {
 
 /* DBA Record (Match History di halaman profil) */
 .dba-record-item {
-    background-color: var(--card-bg-light); /* NEW: Background sedikit abu-abu terang */
+    background-color: var(--card-bg-light);
     padding: 15px 20px;
     border-radius: 5px;
     display: flex;
@@ -920,7 +927,7 @@ footer a:hover {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 40px;
-    background-color: var(--white-section-bg); /* NEW: Background putih */
+    background-color: var(--white-section-bg);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
