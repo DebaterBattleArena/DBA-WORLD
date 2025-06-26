@@ -24,15 +24,15 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--primary-bg);
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     line-height: 1.6;
     overflow-x: hidden;
-    scroll-behavior: smooth; /* Untuk smooth scrolling saat klik link #id */
+    scroll-behavior: smooth;
 }
 
 /* Gaya umum untuk link */
 a {
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     text-decoration: none;
 }
 a:hover {
@@ -59,7 +59,7 @@ a:hover {
     margin: 0;
     font-family: var(--font-heading);
     font-size: 2.2em;
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     letter-spacing: 3px;
     text-transform: uppercase;
 }
@@ -159,7 +159,7 @@ section {
 section h2 {
     font-family: var(--font-heading);
     font-size: 2.5em;
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     text-transform: uppercase;
     margin-bottom: 30px;
     letter-spacing: 3px;
@@ -397,7 +397,7 @@ section p {
 
 /* Gaya untuk Section Match List (Jadwal Debat) - LATAR GELAP, CARD PUTIH */
 #match-list {
-    background-color: var(--primary-bg); /* Background tetap gelap */
+    background-color: var(--primary-bg); /* Background kembali gelap */
     color: var(--white-text-color); /* Teks tetap putih */
     padding: 50px 20px;
     max-width: 1200px;
@@ -407,7 +407,7 @@ section p {
     text-align: center; /* Judul dan konten rata tengah */
 }
 #match-list h2 {
-    color: var(--white-text-color); /* Judul tetap putih */
+    color: var(--white-text-color);
     margin-bottom: 40px;
 }
 #debates-container {
@@ -418,7 +418,7 @@ section p {
 }
 /* Gaya untuk match card di dalam jadwal debat */
 .match-card {
-    background-color: var(--card-bg-light); /* Background card putih (putih sedikit abu-abu) */
+    background-color: var(--card-bg-light); /* Background card putih */
     color: var(--dark-text-color); /* Teks di dalam card jadi gelap */
     border-radius: 8px;
     padding: 20px;
@@ -593,7 +593,7 @@ footer a:hover {
     text-align: center;
     overflow: hidden;
     position: relative;
-    color: var(--dark-text-color); /* NEW: Teks default di card putih jadi gelap */
+    color: var(--dark-text-color);
 }
 
 /* Background image untuk profile card header (jika ingin seperti Byon) */
@@ -825,7 +825,7 @@ footer a:hover {
 .achievements-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: var(--card-bg-light); /* NEW: Background putih agak abu-abu */
+    background-color: var(--card-bg-light);
     border-radius: 5px;
     overflow: hidden;
     color: var(--dark-text-color);
@@ -867,7 +867,7 @@ footer a:hover {
 }
 
 .stats-list li {
-    background-color: var(--card-bg-light); /* NEW: Background putih agak abu-abu */
+    background-color: var(--card-bg-light);
     padding: 10px 20px;
     margin-bottom: 8px;
     border-radius: 5px;
