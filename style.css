@@ -593,23 +593,23 @@ footer a:hover {
 /* ---- PROFIL PAGE SPECIFIC STYLES (profile.html) ---- */
 #profile-page {
     background-color: var(--primary-bg);
-    padding-top: 0; /* Hapus padding atas */
+    padding-top: 0;
     padding-bottom: 50px;
-    display: flex; /* Tambahkan flex untuk mengatur profile-card di tengah */
+    display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: calc(100vh - 150px); /* Sesuaikan tinggi agar card bisa di tengah vertikal */
+    min-height: calc(100vh - 150px);
 }
 
 .profile-card {
-    background-color: var(--secondary-bg); /* Latar belakang card adalah secondary-bg */
-    padding: 0; /* Tidak ada padding di level card */
+    background-color: var(--secondary-bg);
+    padding: 0;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    max-width: 900px; /* Lebar maksimal card */
-    margin: 40px auto; /* Margin atas/bawah agar tidak terlalu mepet header/footer */
+    max-width: 900px;
+    margin: 40px auto;
     text-align: center;
-    overflow: hidden; /* Penting untuk border-radius */
+    overflow: hidden;
     position: relative;
     color: var(--white-text-color);
     border: 1px solid rgba(255,255,255,0.1);
@@ -617,28 +617,28 @@ footer a:hover {
 
 /* Bagian ATAS kartu profil: Gambar Debater & Detail */
 .profile-main-info {
-    display: flex; /* Menggunakan flexbox untuk layout horizontal */
-    align-items: center; /* Sejajarkan vertikal di tengah */
-    gap: 40px; /* Jarak antara gambar dan detail */
-    padding: 40px; /* Padding di sekitar konten utama */
-    background-color: var(--primary-bg); /* Latar belakang area gambar & detail */
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 40px;
+    background-color: var(--primary-bg);
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    position: relative; /* Untuk z-index jika ada background lain */
+    position: relative;
     z-index: 5;
 }
 
 .profile-debater-image {
-    width: 250px; /* Ukuran gambar debater utama (sesuai Byon) */
-    height: auto; /* Biarkan tinggi menyesuaikan */
+    width: 250px;
+    height: auto;
     object-fit: cover;
-    flex-shrink: 0; /* Pastikan gambar tidak mengecil */
-    border-radius: 5px; /* Sedikit rounded corner */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Shadow gambar */
+    flex-shrink: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 .profile-details-wrapper {
-    flex-grow: 1; /* Detail teks mengambil sisa ruang */
-    text-align: left; /* Teks rata kiri */
+    flex-grow: 1;
+    text-align: left;
 }
 
 .profile-division-status {
@@ -658,12 +658,12 @@ footer a:hover {
     border-radius: 3px;
     font-weight: bold;
     font-size: 0.8em;
-    margin-left: auto; /* Dorong ke kanan */
+    margin-left: auto;
 }
 
 .profile-name {
     font-family: var(--font-heading);
-    font-size: 3.5em; /* Nama besar seperti Byon */
+    font-size: 3.5em;
     color: var(--white-text-color);
     margin: 0;
     text-transform: uppercase;
@@ -689,16 +689,21 @@ footer a:hover {
     object-fit: cover;
 }
 
-.profile-stats-group {
+/* Styling untuk group informasi baru (Versus Battle Wiki, Infinite Battle Reborn) */
+.profile-new-info-group {
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap; /* Agar bisa wrapping di mobile */
+    gap: 30px; /* Jarak antar item */
     margin-top: 25px; /* Jarak dari negara */
     margin-bottom: 30px; /* Jarak ke fight record */
 }
-.profile-stat-item {
+.profile-info-item {
     text-align: left;
+    /* Fleksibilitas untuk dua kolom di desktop, satu di mobile */
+    flex: 1 1 auto; /* Mengizinkan item tumbuh dan menyusut */
+    min-width: 150px; /* Lebar minimum untuk setiap item */
 }
-.profile-stat-item .label {
+.profile-info-item .label {
     display: block;
     font-size: 0.8em;
     color: var(--light-grey);
@@ -706,14 +711,14 @@ footer a:hover {
     text-transform: uppercase;
     font-weight: 500;
 }
-.profile-stat-item .value {
+.profile-info-item .value {
     font-size: 1.3em;
     font-weight: bold;
     color: var(--white-text-color);
 }
 
 .profile-fight-record {
-    text-align: left; /* Rata kiri */
+    text-align: left;
 }
 .profile-fight-record .label {
     font-size: 0.9em;
@@ -724,14 +729,14 @@ footer a:hover {
 }
 .record-numbers {
     display: flex;
-    gap: 30px; /* Jarak antar win/loss/draw */
+    gap: 30px;
 }
 .record-item {
     text-align: center;
 }
 .record-item .number {
     font-family: var(--font-heading);
-    font-size: 5em; /* Angka super besar Byon */
+    font-size: 5em;
     font-weight: 700;
     line-height: 1;
     display: block;
@@ -750,12 +755,9 @@ footer a:hover {
 
 /* Konten di bawah bagian utama profil */
 .profile-body-content {
-    padding: 30px; /* Padding di sekitar semua section block */
-    text-align: center; /* Default rata tengah */
+    padding: 30px;
+    text-align: center;
 }
-
-/* Hapus .profile-records-container yang lama, karena rekor sudah di atas */
-
 
 .profile-section-block {
     background-color: var(--card-bg-dark);
@@ -1304,75 +1306,61 @@ footer a:hover {
         padding: 0;
     }
     .profile-main-info {
-        flex-direction: column; /* Gambar di atas detail di mobile */
+        flex-direction: column;
         gap: 20px;
         padding: 20px;
     }
     .profile-debater-image {
-        width: 180px; /* Ukuran gambar debater utama di mobile */
+        width: 180px;
         border-radius: 5px;
     }
     .profile-details-wrapper {
         text-align: center;
     }
     .profile-division-status {
-        justify-content: center; /* Rata tengah */
+        justify-content: center;
     }
     .profile-division-status .active-status {
-        margin-left: 0; /* Jangan dorong ke kanan */
+        margin-left: 0;
     }
     .profile-name {
         font-size: 2.2em;
     }
     .profile-country-info {
-        justify-content: center; /* Rata tengah */
+        justify-content: center;
         font-size: 0.9em;
     }
-    .profile-stats-group {
+    /* Styling untuk group informasi baru (Versus Battle Wiki, Infinite Battle Reborn) di mobile */
+    .profile-new-info-group {
         flex-direction: column; /* Vertikal di mobile */
         gap: 15px;
         margin-top: 15px;
         margin-bottom: 20px;
     }
-    .profile-stat-item {
-        text-align: center; /* Rata tengah */
+    .profile-info-item {
+        text-align: center; /* Rata tengah di mobile */
     }
+    .profile-info-item .label {
+        font-size: 0.9em;
+    }
+    .profile-info-item .value {
+        font-size: 1.1em;
+    }
+
     .profile-fight-record {
-        text-align: center; /* Rata tengah */
+        text-align: center;
     }
     .record-numbers {
-        justify-content: center; /* Rata tengah */
+        justify-content: center;
         gap: 20px;
     }
     .record-item .number {
-        font-size: 3em; /* Angka tetap besar tapi disesuaikan */
+        font-size: 3em;
     }
 
     .profile-body-content {
         padding: 20px;
     }
-    .profile-records-container { /* Ini tidak lagi digunakan, tapi biarkan dulu agar tidak crash */
-        flex-direction: column;
-        gap: 15px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    .record-box {
-        padding: 15px;
-        border-radius: 5px;
-    }
-    .record-title {
-        font-size: 0.9em;
-        margin-bottom: 10px;
-    }
-    .record-stats {
-        font-size: 3em; /* Tetap besar */
-        margin-bottom: 5px;
-    }
-    .record-labels {
-        font-size: 0.8em;
-    }
-
     .profile-section-block {
         padding: 20px;
         margin-top: 20px;
@@ -1529,12 +1517,12 @@ footer a:hover {
 
     /* Profil Page Desktop */
     .profile-main-info {
-        flex-direction: row; /* Gambar di kiri, detail di kanan */
-        gap: 50px; /* Jarak lebih lebar */
-        padding: 50px; /* Padding lebih besar */
+        flex-direction: row;
+        gap: 50px;
+        padding: 50px;
     }
     .profile-debater-image {
-        width: 300px; /* Ukuran gambar debater utama di desktop (sesuaikan jika perlu) */
+        width: 300px;
     }
     .profile-details-wrapper {
         text-align: left;
@@ -1548,15 +1536,24 @@ footer a:hover {
     .profile-country-info {
         justify-content: flex-start;
     }
-    .profile-stats-group {
-        flex-direction: row;
+    /* Styling untuk group informasi baru (Versus Battle Wiki, Infinite Battle Reborn) di desktop */
+    .profile-new-info-group {
+        flex-direction: row; /* Horizontal di desktop */
         gap: 40px;
         margin-top: 30px;
         margin-bottom: 40px;
     }
-    .profile-stat-item {
+    .profile-info-item {
         text-align: left;
+        flex: none; /* Jangan biarkan tumbuh atau menyusut terlalu banyak */
     }
+    .profile-info-item .label {
+        font-size: 0.9em;
+    }
+    .profile-info-item .value {
+        font-size: 1.3em;
+    }
+
     .profile-fight-record {
         text-align: left;
     }
@@ -1565,37 +1562,12 @@ footer a:hover {
         gap: 40px;
     }
     .record-item .number {
-        font-size: 6em; /* Angka super besar Byon */
+        font-size: 6em;
     }
 
     .profile-body-content {
         padding: 50px;
     }
-    .profile-records-container { /* Tidak lagi digunakan */
-        flex-direction: row;
-        justify-content: center;
-        gap: 30px;
-        margin-top: 40px;
-        margin-bottom: 50px;
-    }
-    .record-box {
-        flex: 1 1 300px;
-        max-width: none;
-        padding: 25px;
-        border-radius: 8px;
-    }
-    .record-title {
-        font-size: 1.1em;
-        margin-bottom: 20px;
-    }
-    .record-stats {
-        font-size: 6em; /* Tetap besar */
-        margin-bottom: 15px;
-    }
-    .record-labels {
-        font-size: 1em;
-    }
-
     .profile-section-block {
         margin-top: 50px;
         padding: 30px;
