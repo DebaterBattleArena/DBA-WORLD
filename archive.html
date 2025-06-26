@@ -4,129 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arsip Debat - Debater Battle Arena</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Gaya khusus untuk halaman arsip */
-        #archive-section {
-            padding-top: 60px;
-            min-height: 70vh;
-            text-align: center;
-        }
-        #archive-section h2 {
-            margin-bottom: 30px; /* Sedikit lebih banyak ruang bawah */
-        }
-        .archive-list {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        .archive-item {
-            background-color: var(--secondary-bg);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .archive-item:hover {
-            transform: translateY(-5px); /* Efek sedikit naik saat hover */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-        .archive-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
-        .archive-header .category {
-            color: var(--highlight-color);
-            font-size: 0.9em;
-            text-transform: uppercase;
-        }
-        .archive-header .date {
-            color: var(--light-grey);
-            font-size: 0.85em;
-        }
-        .archive-participants {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5em;
-            color: var(--text-color);
-            text-transform: uppercase;
-        }
-        .archive-participants .vs {
-            color: var(--highlight-color);
-            font-size: 0.8em;
-            margin: 0 5px;
-        }
-        .archive-result {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 0.95em;
-        }
-        .archive-result .winner-name {
-            color: #4CAF50; /* Hijau untuk pemenang */
-            font-weight: bold;
-        }
-        .archive-result .loss-name {
-            color: #f44336; /* Merah untuk kalah */
-            font-weight: bold;
-        }
-        .archive-type {
-            font-size: 0.85em;
-            color: var(--light-grey);
-            text-align: center;
-            margin-top: 5px;
-        }
-        /* Media query untuk mobile */
-        @media (max-width: 767px) {
-            .archive-item {
-                padding: 15px;
-            }
-            .archive-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            .archive-participants {
-                font-size: 1.2em;
-            }
-        }
-    </style>
 </head>
 <body>
-    <header class="header-logo">
+
+    <header class="main-header">
         <img src="IMG_0362.png" alt="Debater Battle Arena Logo" class="header-logo-image">
         <h1>DEBATER BATTLE <span>ARENA.</span></h1>
     </header>
 
     <nav class="main-nav">
         <ul>
-            <li><a href="index.html#top">Beranda</a></li>
+            <li><a href="index.html">Beranda</a></li>
             <li><a href="index.html#about">Tentang Kami</a></li>
             <li><a href="index.html#match-list">Jadwal Debat</a></li>
             <li><a href="ranking.html">Ranking</a></li>
-            <li><a href="archive.html">Arsip Debat</a></li>
+            <li><a href="archive.html" class="active">Arsip Debat</a></li>
             <li><a href="compare.html">Bandingkan Debater</a></li>
             <li><a href="index.html#contact">Kontak</a></li>
         </ul>
     </nav>
 
-    <section id="archive-section">
-        <h2>Arsip Debat</h2>
-        <div id="archive-list" class="archive-list">
-            <!-- Debat yang diarsipkan akan dirender di sini oleh JavaScript -->
-            <p style="text-align: center; color: var(--light-grey);">Memuat arsip debat...</p>
-        </div>
+    <section id="archive-page" class="content-section">
+        <h2>ARSIP DEBAT</h2>
+        <div id="archive-list">
+            </div>
     </section>
 
     <footer>
@@ -134,6 +37,7 @@
         <p>&copy; 2025 Debater Battle Arena. Hak Cipta Dilindungi.</p>
     </footer>
 
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>
