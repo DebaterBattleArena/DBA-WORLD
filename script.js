@@ -203,7 +203,7 @@ const debatesData = [
         "date": "2025-06-26", // Tanggal debat yang sebenarnya
         "debater1": {
             "name": "Thinzel",
-            "photo": "Thinzel.jpeg",  // Pastikan nama file ini benar dan ada di direktori yang sesuai
+            "photo": "IMG_0819.jpeg",  // Pastikan nama file ini benar dan ada di direktori yang sesuai
             "country": "indonesia",
             "flag": "IMG_0417.png",   // Bendera Indonesia (sesuai contoh Anda)
             "profile": {
@@ -221,7 +221,7 @@ const debatesData = [
         },
         "debater2": {
             "name": "Shade",
-            "photo": "Shade.jpeg",  // Pastikan nama file ini benar dan ada di direktori yang sesuai
+            "photo": "IMG_0820.jpeg",  // Pastikan nama file ini benar dan ada di direktori yang sesuai
             "country": "malaysia",
             "flag": "IMG_0418.png",   // Bendera Malaysia (sesuai contoh Anda)
             "profile": {
