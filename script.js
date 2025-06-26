@@ -305,7 +305,7 @@ debatesData.forEach(debate => {
     if (debate.winner && debate.loser) {
         const winnerName = debate.winner.name;
         const loserName = debate.loser.name;
-        const debateYear = debate.date.split('-')[0]; // Ambil tahun dari tanggal debat
+        const debateYear = new Date(debate.date).getFullYear().toString(); // Ambil tahun saja, format YYYY
 
         // Update match history
         allDebaters[winnerName].wins += 1;
@@ -320,6 +320,13 @@ debatesData.forEach(debate => {
             time: debate.time
         });
 
+        // Tambahkan achievement untuk pemenang
+        allDebaters[winnerName].achievements.push({
+            "event": `DBA Match vs ${loserName}`, // Nama event bisa disesuaikan
+            "achievement": "Winner",
+            "date": debateYear
+        });
+
         allDebaters[loserName].losses += 1;
         allDebaters[loserName].matchHistory.push({
             opponent: winnerName,
@@ -332,13 +339,7 @@ debatesData.forEach(debate => {
             time: debate.time
         });
 
-        // Tambahkan achievement untuk pemenang dan yang kalah
-        allDebaters[winnerName].achievements.push({
-            "event": `DBA Match vs ${loserName}`, // Nama event bisa disesuaikan
-            "achievement": "Winner",
-            "date": debateYear
-        });
-
+        // Tambahkan achievement untuk yang kalah
         allDebaters[loserName].achievements.push({
             "event": `DBA Match vs ${winnerName}`, // Nama event bisa disesuaikan
             "achievement": "Participant",
@@ -347,10 +348,10 @@ debatesData.forEach(debate => {
     }
 });
 
-// Setelah semua debat diproses, sortir achievements untuk setiap debater
+// Setelah semua debat diproses, sortir achievements untuk setiap debater berdasarkan tanggal (tahun) terbaru
 Object.values(allDebaters).forEach(debater => {
     if (debater.achievements && debater.achievements.length > 0) {
-        debater.achievements.sort((a, b) => new Date(b.date) - new Date(a.date));
+        debater.achievements.sort((a, b) => parseInt(b.date) - parseInt(a.date));
     }
 });
 
@@ -545,7 +546,6 @@ function renderProfilePage() {
     `;
 
     if (debater.achievements && debater.achievements.length > 0) {
-        // Menampilkan semua achievement yang dihasilkan
         debater.achievements.forEach(ach => {
             profileHtml += `
                 <tr>
