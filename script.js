@@ -226,7 +226,7 @@ const debatesData = [
         "date": "2025-06-26",
         "debater1": {
             "name": "Thinzel",
-            "photo": "Thinzel.jpeg",
+            "photo": "IMG_0819.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
             "profile": {
@@ -247,7 +247,7 @@ const debatesData = [
         },
         "debater2": {
             "name": "Shade",
-            "photo": "Shade.jpeg",
+            "photo": "IMG_0820.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
             "profile": {
