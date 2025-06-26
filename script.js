@@ -25,8 +25,8 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
-                {"event": "DBA Series 1", "achievement": "Champion", "date": "2025"},
-                {"event": "Junior Battle Comp.", "achievement": "Gold Medalist", "date": "2024"}
+                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Champion", "date": "2025"},
+                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Gold Medalist", "date": "2024"} // Diubah dari "Junior Battle Comp."
             ]
         },
         "debater2": {
@@ -85,7 +85,7 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
             "achievements": [
-                {"event": "Grand Slam Debat", "achievement": "Semi Finalist", "date": "2024"}
+                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Semi Finalist", "date": "2024"} // Diubah dari "Grand Slam Debat"
             ]
         },
         "debater2": {
@@ -144,7 +144,7 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
-                {"event": "Online Debat Liga", "achievement": "Champion", "date": "2023"}
+                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Champion", "date": "2023"} // Diubah dari "Online Debat Liga"
             ]
         },
         "debater2": {
@@ -203,7 +203,7 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
-                {"event": "Master Debater Cup", "achievement": "Gold Medalist", "date": "2024"}
+                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Gold Medalist", "date": "2024"} // Diubah dari "Master Debater Cup"
             ]
         },
         "debater2": {
@@ -263,7 +263,7 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
-                {"event": "Local Community Debate", "achievement": "Participant", "date": "2024"}
+                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Participant", "date": "2024"} // Diubah dari "Local Community Debate"
             ]
         },
         "debater2": {
@@ -501,7 +501,7 @@ function renderProfilePage() {
     `;
 
     if (debater.matchHistory && debater.matchHistory.length > 0) {
-        // Mengambil hanya satu riwayat pertandingan terbaru untuk DBA RECORD jika Anda ingin seperti Byon (atau bisa juga semua)
+        // Mengambil hanya satu riwayat pertandingan terbaru untuk DBA RECORD jika Anda ingin seperti Byon
         const latestMatch = debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
         if (latestMatch) {
@@ -548,9 +548,14 @@ function renderProfilePage() {
 
     if (debater.achievements && debater.achievements.length > 0) {
         debater.achievements.forEach(ach => {
+            let eventName = ach.event;
+            // Logika untuk mengubah teks achievement
+            if (eventName.includes("Battle Comp.") || eventName.includes("Online Debat Liga") || eventName.includes("Master Debater Cup") || eventName.includes("Grand Slam Debat") || eventName.includes("Local Community Debate")) {
+                eventName = "DBA Series 1 Indonesia vs Malaysia";
+            }
             profileHtml += `
                 <tr>
-                    <td>${ach.event}</td>
+                    <td>${eventName}</td>
                     <td>${ach.achievement}</td>
                     <td>${ach.date}</td>
                 </tr>
