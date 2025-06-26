@@ -437,7 +437,7 @@ section p {
     border-radius: 8px;
     padding: 0; /* Hapus padding di sini, akan kita atur di dalam */
     display: flex; /* Flexbox untuk layout horizontal di dalam kartu */
-    flex-direction: row; /* Default horizontal untuk desktop */
+    flex-direction: column; /* Default: KOLOM di mobile */
     align-items: stretch; /* Agar tinggi sama */
     overflow: hidden; /* Penting untuk border-radius */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -445,16 +445,18 @@ section p {
     width: 100%; /* Default 100% untuk mobile */
     max-width: 600px; /* Batas lebar kartu di desktop */
     min-height: 220px; /* Tinggi minimum agar konten tidak terlalu rapat */
-    position: relative; /* Untuk positioning result-section */
+    position: relative; /* Untuk positioning category-type-label */
 }
 
 .match-card-content {
     display: flex;
     flex: 1; /* Mengambil ruang untuk konten utama */
+    flex-direction: column; /* Default: KOLOM di mobile */
     align-items: center; /* Sejajarkan vertikal di tengah */
     justify-content: center; /* Pusatkan horizontal */
     padding: 15px 10px; /* Padding di dalam area konten */
     gap: 15px; /* Jarak antar kolom debater/VS */
+    position: relative; /* Untuk positioning category-type-label */
 }
 
 .debater-info-left,
@@ -468,9 +470,13 @@ section p {
     padding: 0 5px; /* Padding di sekitar info debater */
 }
 
+/* Label Kategori & Tipe yang Posisinya Absolute */
 .category-type-label {
-    position: absolute; /* Posisikan label kategori */
+    position: absolute;
     top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
     font-size: 0.75em;
     color: var(--light-grey);
     text-transform: uppercase;
@@ -483,12 +489,9 @@ section p {
     white-space: nowrap;
     z-index: 2;
 }
-
-.debater-info-left .category-type-label {
-    left: 15px; /* Posisikan di kiri */
-}
+/* Sembunyikan label di sisi kanan untuk mobile, atau jika tidak digunakan */
 .debater-info-right .category-type-label {
-    right: 15px; /* Posisikan di kanan */
+    display: none;
 }
 
 
@@ -532,6 +535,7 @@ section p {
     align-items: center;
     justify-content: center;
     padding: 0 10px;
+    margin: 10px 0; /* Jarak vertikal di mobile */
 }
 .match-vs {
     font-family: var(--font-heading);
@@ -1261,7 +1265,6 @@ footer a:hover {
         width: 100%; /* Ambil lebar penuh */
         max-width: none;
         min-height: auto;
-        position: relative; /* Agar category-type-label bisa di-absolute */
     }
     .match-card-content {
         flex-direction: column; /* Debater, VS, Debater menjadi atas-bawah */
@@ -1273,12 +1276,13 @@ footer a:hover {
         padding: 0;
         margin-bottom: 10px; /* Jarak antara info debater dan VS */
     }
-    .category-type-label {
-        position: absolute; /* Posisikan label kategori */
-        top: 15px;
+    .debater-info-left .category-type-label {
         left: 50%;
         transform: translateX(-50%);
-        right: auto; /* Hapus right untuk centring */
+        right: auto;
+    }
+    .debater-info-right .category-type-label {
+        display: none; /* Sembunyikan label di sisi kanan untuk mobile */
     }
     .debater-photo-main {
         width: 100px; /* Foto lebih kecil di mobile */
@@ -1288,7 +1292,7 @@ footer a:hover {
         font-size: 1.4em;
     }
     .match-divider {
-        margin: 10px 0; /* Jarak atas bawah di mobile */
+        margin: 10px 0; /* Jarak vertikal di mobile */
     }
     .match-vs {
         font-size: 2.2em;
@@ -1486,11 +1490,11 @@ footer a:hover {
     }
     .match-card {
         width: calc(50% - 15px); /* Dua kartu per baris di desktop */
-        flex-direction: row; /* Kiri-kanan di desktop */
+        flex-direction: column; /* KONTEN UTAMA TETAP KOLOM, tapi di dalamnya horizontal */
         min-height: 250px; /* Tinggi minimum */
     }
     .match-card-content {
-        flex-direction: row; /* Konten di dalam kartu tetap horizontal */
+        flex-direction: row; /* Debater, VS, Debater menjadi KIRI-KANAN */
         padding: 25px 20px;
         gap: 30px;
     }
@@ -1498,11 +1502,16 @@ footer a:hover {
     .debater-info-right {
         padding: 0;
     }
-    .category-type-label {
-        position: absolute;
-        top: 20px; /* Sesuaikan posisi dari atas */
-        font-size: 0.85em; /* Ukuran lebih besar di desktop */
-        padding: 5px 10px;
+    .debater-info-left .category-type-label {
+        left: 20px; /* Posisi di kiri kartu */
+        transform: none; /* Hapus transform centring */
+        right: auto;
+    }
+    .debater-info-right .category-type-label {
+        display: block; /* Tampilkan kembali label di sisi kanan untuk desktop */
+        right: 20px; /* Posisi di kanan kartu */
+        left: auto;
+        transform: none;
     }
     .debater-photo-main {
         width: 150px; /* Foto lebih besar di desktop */
@@ -1517,7 +1526,7 @@ footer a:hover {
     .match-vs {
         font-size: 3em;
     }
-    .result-info-section {
+    .match-result-section {
         padding: 15px 25px;
     }
     .result-info {
