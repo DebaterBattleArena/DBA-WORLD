@@ -9,8 +9,9 @@ const debatesData = [
             "photo": "IMG_0524.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "170 CM | 5'57 FT",
-            "weight": "67 KG | 147,7 LBS",
+            // Data baru
+            "vbWiki": "Outerversal+", // Contoh nilai untuk Versus Battle Wiki
+            "ibr": "High 1-A",      // Contoh nilai untuk Infinite Battle Reborn
             "profile": {
                 "Rhetoric": "9/10",
                 "Typing Structure": "9/10",
@@ -32,8 +33,9 @@ const debatesData = [
             "photo": "IMG_0523.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "165 CM | 5'40 FT",
-            "weight": "60 KG | 132,2 LBS",
+            // Data baru
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -68,8 +70,9 @@ const debatesData = [
             "photo": "IMG_0526.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "180 CM | 5'90 FT",
-            "weight": "75 KG | 165,3 LBS",
+            // Data baru
+            "vbWiki": "Boundless",
+            "ibr": "Beyond Dimensionality",
             "profile": {
                 "Rhetoric": "6/10",
                 "Typing Structure": "5/10",
@@ -91,8 +94,9 @@ const debatesData = [
             "photo": "IMG_0530.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "178 CM | 5'84 FT",
-            "weight": "72 KG | 158,7 LBS",
+            // Data baru
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
             "profile": {
                 "Rhetoric": "5/10",
                 "Typing Structure": "5/10",
@@ -127,8 +131,9 @@ const debatesData = [
             "photo": "IMG_0525.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "175 CM | 5'74 FT",
-            "weight": "65 KG | 143,3 LBS",
+            // Data baru
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
             "profile": {
                 "Rhetoric": "8/10",
                 "Typing Structure": "7/10",
@@ -150,8 +155,9 @@ const debatesData = [
             "photo": "IMG_0527.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "170 CM | 5'57 FT",
-            "weight": "63 KG | 138,8 LBS",
+            // Data baru
+            "vbWiki": "High 1-B",
+            "ibr": "Low 1-A",
             "profile": {
                 "Rhetoric": "4/10",
                 "Typing Structure": "5/10",
@@ -186,8 +192,9 @@ const debatesData = [
             "photo": "IMG_0555.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "176 CM | 5'77 FT",
-            "weight": "67 KG | 147,7 LBS",
+            // Data baru
+            "vbWiki": "Outerversal+",
+            "ibr": "High 1-A",
             "profile": {
                 "Rhetoric": "10/10",
                 "Typing Structure": "10/10",
@@ -209,8 +216,9 @@ const debatesData = [
             "photo": "IMG_0556.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "172 CM | 5'64 FT",
-            "weight": "68 KG | 149,9 LBS",
+            // Data baru
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
             "profile": {
                 "Rhetoric": "8.5/10",
                 "Typing Structure": "8/10",
@@ -245,8 +253,9 @@ const debatesData = [
             "photo": "IMG_0819.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "160 CM | 5'25 FT",
-            "weight": "55 KG | 121,2 LBS",
+            // Data baru
+            "vbWiki": "High 1-B",
+            "ibr": "Low 1-A",
             "profile": {
                 "Rhetoric": "1/10",
                 "Typing Structure": "1/10",
@@ -268,8 +277,9 @@ const debatesData = [
             "photo": "IMG_0820.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "168 CM | 5'51 FT",
-            "weight": "62 KG | 136,7 LBS",
+            // Data baru
+            "vbWiki": "Low 1-C",
+            "ibr": "High 1-B",
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -487,8 +497,11 @@ function renderProfilePage() {
     const profileName = profileCard.querySelector('.profile-name');
     const countryText = profileCard.querySelector('.profile-country-info .country-text');
     const profileFlagIcon = profileCard.querySelector('.profile-country-info .profile-flag-icon');
-    const heightValue = profileCard.querySelector('.profile-stat-item .height-value');
-    const weightValue = profileCard.querySelector('.profile-stat-item .weight-value');
+
+    // Selektor baru untuk informasi "Versus Battle Wiki" dan "Infinite Battle Reborn"
+    const vbWikiValue = profileCard.querySelector('.profile-info-item .vb-wiki-value');
+    const ibrValue = profileCard.querySelector('.profile-info-item .ibr-value');
+
     const fightRecordWinNumber = profileCard.querySelector('.profile-fight-record .win-number');
     const fightRecordLossNumber = profileCard.querySelector('.profile-fight-record .loss-number');
     const fightRecordDrawNumber = profileCard.querySelector('.profile-fight-record .draw-number');
@@ -503,8 +516,8 @@ function renderProfilePage() {
     console.log('profileName:', profileName);
     console.log('countryText:', countryText);
     console.log('profileFlagIcon:', profileFlagIcon);
-    console.log('heightValue:', heightValue);
-    console.log('weightValue:', weightValue);
+    console.log('vbWikiValue:', vbWikiValue); // Log baru
+    console.log('ibrValue:', ibrValue);     // Log baru
     console.log('fightRecordWinNumber:', fightRecordWinNumber);
     console.log('fightRecordLossNumber:', fightRecordLossNumber);
     console.log('fightRecordDrawNumber:', fightRecordDrawNumber);
@@ -514,7 +527,8 @@ function renderProfilePage() {
 
     // --- Cek apakah semua elemen penting ditemukan. Jika tidak, tampilkan error. ---
     if (!profileCard || !profileDebaterImage || !divisionText || !profileName || !countryText || !profileFlagIcon ||
-        !heightValue || !weightValue || !fightRecordWinNumber || !fightRecordLossNumber || !fightRecordDrawNumber ||
+        !vbWikiValue || !ibrValue || // Cek elemen baru
+        !fightRecordWinNumber || !fightRecordLossNumber || !fightRecordDrawNumber ||
         !matchHistoryList || !achievementsTableBody || !statsList) {
         console.error("ERROR: Satu atau lebih elemen profil tidak ditemukan di DOM. Mohon periksa kembali HTML profile.html dan selektor di script.js.");
         profileCard.innerHTML = `<div style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">
@@ -542,19 +556,16 @@ function renderProfilePage() {
     profileDebaterImage.src = debater.photo;
     profileDebaterImage.alt = `Foto ${debater.name}`;
 
-    // Byon menampilkan "LIGHTWEIGHT DIVISION" atau "WELTERWEIGHT DIVISION"
-    // Saya asumsikan debater.tier Anda adalah "Mid Tier", "Low Tier", "High Tier"
-    // Anda bisa memetakan ini ke nama divisi yang lebih cocok jika diinginkan
-    // Untuk saat ini, saya akan gunakan `debater.tier.toUpperCase() + ' DEBATE DIVISION'`
-    divisionText.textContent = `${debater.tier.toUpperCase()} DEBATE DIVISION`; // Contoh: MID TIER DEBATE DIVISION
+    divisionText.textContent = `${debater.tier.toUpperCase()} DEBATE DIVISION`;
     profileName.textContent = debater.name;
 
     countryText.textContent = debater.country.toUpperCase();
     profileFlagIcon.src = debater.flag;
     profileFlagIcon.alt = `Bendera ${debater.country}`;
 
-    heightValue.textContent = debater.height || 'N/A';
-    weightValue.textContent = debater.weight || 'N/A';
+    // Mengisi nilai untuk Versus Battle Wiki dan Infinite Battle Reborn
+    vbWikiValue.textContent = debater.vbWiki || 'N/A'; // Ambil dari data, atau 'N/A'
+    ibrValue.textContent = debater.ibr || 'N/A';     // Ambil dari data, atau 'N/A'
 
     // Mengisi rekor pertandingan (Fight Record)
     if (debater.fightRecord) {
@@ -574,7 +585,7 @@ function renderProfilePage() {
         debater.matchHistory.forEach(match => {
             const resultClass = match.result === "Win" ? "win" : "loss";
             const opponentDebater = allDebaters[match.opponent];
-            const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg'; // Pastikan ada placeholder.jpg
+            const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg';
 
             matchHistoryHtml += `
                 <div class="dba-record-item ${resultClass}">
@@ -661,7 +672,6 @@ function renderRankingPage() {
 
         if (debatersInTier && debatersInTier.length > 0) {
             if (tierName === "Mid Tier") {
-                // Sorting khusus untuk Mid Tier
                 const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"];
                 debatersInTier.sort((a, b) => {
                     const indexA = midTierCustomOrder.indexOf(a.name);
@@ -672,7 +682,6 @@ function renderRankingPage() {
                     return indexA - indexB;
                 });
             } else if (tierName === "High Tier") {
-                // Sorting khusus untuk High Tier
                 const highTierCustomOrder = ["ZOGRATIS", "MUCHIBEI"];
                 debatersInTier.sort((a, b) => {
                     const indexA = highTierCustomOrder.indexOf(a.name);
@@ -684,7 +693,6 @@ function renderRankingPage() {
                 });
             }
             else if (tierName === "Low Tier") {
-                // Sorting khusus untuk Low Tier
                 const lowTierCustomOrder = ["ARYANWT", "Thinzel", "RIM", "Shade"];
                 debatersInTier.sort((a, b) => {
                     const indexA = lowTierCustomOrder.indexOf(a.name);
@@ -696,7 +704,6 @@ function renderRankingPage() {
                 });
             }
             else {
-                // Sorting default berdasarkan nama untuk tier lainnya
                 debatersInTier.sort((a, b) => a.name.localeCompare(b.name));
             }
 
