@@ -4,23 +4,18 @@ const debatesData = [
         "id": "debate-001",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-15",
+        "matchBanner": "4ba98405-9174-4806-86b0-48db675ff249.jpeg", // <-- Path gambar match banner
         "debater1": {
             "name": "HIROO",
-            "photo": "IMG_0524.jpeg",
+            "photo": "IMG_0524.jpeg", // Foto ini tetap ada untuk profil, tapi tidak di jadwal debat
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "170 CM | 5'57 FT",
-            "weight": "67 KG | 147,7 LBS",
+            "vbWiki": "Outerversal+",
+            "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "9/10",
-                "Typing Structure": "9/10",
-                "Critical Thinking": "10/10",
-                "Logical Fallacies": "0/10",
-                "Typing Strenght": "9/10",
-                "Tiering Sistem": "8/10",
-                "Calculation": "8/10",
-                "Philisophy": "9/10",
-                "General Knowledge": "10/10"
+                "Rhetoric": "9/10", "Typing Structure": "9/10", "Critical Thinking": "10/10",
+                "Logical Fallacies": "0/10", "Typing Strenght": "9/10", "Tiering Sistem": "8/10",
+                "Calculation": "8/10", "Philisophy": "9/10", "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -32,54 +27,38 @@ const debatesData = [
             "photo": "IMG_0523.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "165 CM | 5'40 FT",
-            "weight": "60 KG | 132,2 LBS",
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "3/10",
-                "Typing Structure": "2/10",
-                "Critical Thinking": "1/10",
-                "Logical Fallacies": "0/10",
-                "Typing Strenght": "1/10",
-                "Tiering Sistem": "1/10",
-                "Calculation": "0/10",
-                "Philisophy": "0/10",
-                "General Knowledge": "1/10"
+                "Rhetoric": "3/10", "Typing Structure": "2/10", "Critical Thinking": "1/10",
+                "Logical Fallacies": "0/10", "Typing Strenght": "1/10", "Tiering Sistem": "1/10",
+                "Calculation": "0/10", "Philisophy": "0/10", "General Knowledge": "1/10"
             },
             "tier": "Mid Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
-        "type": "MID TIER DEBATE",
-        "winner": {
-            "name": "HIROO",
-            "method": "limit"
-        },
-        "loser": {
-            "name": "RENJI"
-        }
+        "type": "MID TIER DEBATE", // Digunakan sebagai topik
+        "winner": { "name": "HIROO", "method": "limit" },
+        "loser": { "name": "RENJI" }
     },
     {
         "id": "debate-002",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-10",
+        "matchBanner": "5c6e6c7b-dc86-4ca3-a496-6b0d34eefa77.jpeg", // <-- Path gambar match banner
         "debater1": {
             "name": "ZOGRATIS",
             "photo": "IMG_0526.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "180 CM | 5'90 FT",
-            "weight": "75 KG | 165,3 LBS",
+            "vbWiki": "Boundless",
+            "ibr": "Beyond Dimensionality",
             "profile": {
-                "Rhetoric": "6/10",
-                "Typing Structure": "5/10",
-                "Critical Thinking": "7/10",
-                "Logical Fallacies": "3/10",
-                "Typing Strenght": "5/10",
-                "Tiering Sistem": "6/10",
-                "Calculation": "2/10",
-                "Philisophy": "0/10",
-                "General Knowledge": "7/10"
+                "Rhetoric": "6/10", "Typing Structure": "5/10", "Critical Thinking": "7/10",
+                "Logical Fallacies": "3/10", "Typing Strenght": "5/10", "Tiering Sistem": "6/10",
+                "Calculation": "2/10", "Philisophy": "0/10", "General Knowledge": "7/10"
             },
             "tier": "High Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -91,54 +70,38 @@ const debatesData = [
             "photo": "IMG_0530.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "178 CM | 5'84 FT",
-            "weight": "72 KG | 158,7 LBS",
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "5/10",
-                "Typing Structure": "5/10",
-                "Critical Thinking": "7/10",
-                "Logical Fallacies": "2/10",
-                "Typing Strenght": "7/10",
-                "Tiering Sistem": "4/10",
-                "Calculation": "4/10",
-                "Philisophy": "0/10",
-                "General Knowledge": "8/10"
+                "Rhetoric": "5/10", "Typing Structure": "5/10", "Critical Thinking": "7/10",
+                "Logical Fallacies": "2/10", "Typing Strenght": "7/10", "Tiering Sistem": "4/10",
+                "Calculation": "4/10", "Philisophy": "0/10", "General Knowledge": "8/10"
             },
             "tier": "High Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
-        "type": "MID TIER DEBATE",
-        "winner": {
-            "name": "ZOGRATIS",
-            "method": "point"
-        },
-        "loser": {
-            "name": "MUCHIBEI"
-        }
+        "type": "HIGH TIER DEBATE", // Digunakan sebagai topik
+        "winner": { "name": "ZOGRATIS", "method": "point" },
+        "loser": { "name": "MUCHIBEI" }
     },
     {
         "id": "debate-003",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-05",
+        "matchBanner": "0fa5d532-e863-4322-aefd-31e538cf2bcc.jpeg", // <-- Path gambar match banner
         "debater1": {
             "name": "ARYANWT",
             "photo": "IMG_0525.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "175 CM | 5'74 FT",
-            "weight": "65 KG | 143,3 LBS",
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "8/10",
-                "Typing Structure": "7/10",
-                "Critical Thinking": "9/10",
-                "Logical Fallacies": "1/10",
-                "Typing Strenght": "7/10",
-                "Tiering Sistem": "9/10",
-                "Calculation": "0/10",
-                "Philisophy": "7/10",
-                "General Knowledge": "10/10"
+                "Rhetoric": "8/10", "Typing Structure": "7/10", "Critical Thinking": "9/10",
+                "Logical Fallacies": "1/10", "Typing Strenght": "7/10", "Tiering Sistem": "9/10",
+                "Calculation": "0/10", "Philisophy": "7/10", "General Knowledge": "10/10"
             },
             "tier": "Low Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -150,54 +113,38 @@ const debatesData = [
             "photo": "IMG_0527.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "170 CM | 5'57 FT",
-            "weight": "63 KG | 138,8 LBS",
+            "vbWiki": "High 1-B",
+            "ibr": "Low 1-A",
             "profile": {
-                "Rhetoric": "4/10",
-                "Typing Structure": "5/10",
-                "Critical Thinking": "4.5/10",
-                "Logical Fallacies": "2/10",
-                "Typing Strenght": "3.5/10",
-                "Tiering Sistem": "4.3/10",
-                "Calculation": "3.6/10",
-                "Philisophy": "3/10",
-                "General Knowledge": "7/10"
+                "Rhetoric": "4/10", "Typing Structure": "5/10", "Critical Thinking": "4.5/10",
+                "Logical Fallacies": "2/10", "Typing Strenght": "3.5/10", "Tiering Sistem": "4.3/10",
+                "Calculation": "3.6/10", "Philisophy": "3/10", "General Knowledge": "7/10"
             },
             "tier": "Low Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
-        "type": "MID TIER DEBATE",
-        "winner": {
-            "name": "ARYANWT",
-            "method": "point"
-        },
-        "loser": {
-            "name": "RIM"
-        }
+        "type": "LOW TIER DEBATE", // Digunakan sebagai topik
+        "winner": { "name": "ARYANWT", "method": "point" },
+        "loser": { "name": "RIM" }
     },
     {
         "id": "debate-004",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-01",
+        "matchBanner": "79194c7a-6e34-4bbd-a21e-9e9c918c4707.jpeg", // <-- Path gambar match banner
         "debater1": {
             "name": "RANZT",
             "photo": "IMG_0555.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "176 CM | 5'77 FT",
-            "weight": "67 KG | 147,7 LBS",
+            "vbWiki": "Outerversal+",
+            "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "10/10",
-                "Typing Structure": "10/10",
-                "Critical Thinking": "10/10",
-                "Logical Fallacies": "10/10",
-                "Typing Strenght": "9/10",
-                "Tiering Sistem": "8/10",
-                "Calculation": "5/10",
-                "Philisophy": "9/10",
-                "General Knowledge": "10/10"
+                "Rhetoric": "10/10", "Typing Structure": "10/10", "Critical Thinking": "10/10",
+                "Logical Fallacies": "10/10", "Typing Strenght": "9/10", "Tiering Sistem": "8/10",
+                "Calculation": "5/10", "Philisophy": "9/10", "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -209,54 +156,38 @@ const debatesData = [
             "photo": "IMG_0556.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "172 CM | 5'64 FT",
-            "weight": "68 KG | 149,9 LBS",
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "8.5/10",
-                "Typing Structure": "8/10",
-                "Critical Thinking": "7/10",
-                "Logical Fallacies": "6/10",
-                "Typing Strenght": "5/10",
-                "Tiering Sistem": "5/10",
-                "Calculation": "7/10",
-                "Philisophy": "4/10",
-                "General Knowledge": "10/10"
+                "Rhetoric": "8.5/10", "Typing Structure": "8/10", "Critical Thinking": "7/10",
+                "Logical Fallacies": "6/10", "Typing Strenght": "5/10", "Tiering Sistem": "5/10",
+                "Calculation": "7/10", "Philisophy": "4/10", "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
-        "type": "MID TIER DEBATE",
-        "winner": {
-            "name": "RANZT",
-            "method": "point"
-        },
-        "loser": {
-            "name": "RYUU"
-        }
+        "type": "MID TIER DEBATE", // Digunakan sebagai topik
+        "winner": { "name": "RANZT", "method": "point" },
+        "loser": { "name": "RYUU" }
     },
     {
         "id": "debate-005",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-26",
+        "matchBanner": "cdf5db1e-6410-4df1-a920-6d4f4e41b412.jpeg", // <-- Path gambar match banner
         "debater1": {
             "name": "Thinzel",
             "photo": "IMG_0819.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "160 CM | 5'25 FT",
-            "weight": "55 KG | 121,2 LBS",
+            "vbWiki": "High 1-B",
+            "ibr": "Low 1-A",
             "profile": {
-                "Rhetoric": "1/10",
-                "Typing Structure": "1/10",
-                "Critical Thinking": "2/10",
-                "Logical Fallacies": "0/10",
-                "Typing Strenght": "1/10",
-                "Tiering Sistem": "2/10",
-                "Calculation": "0/10",
-                "Philisophy": "0/10",
-                "General Knowledge": "0/10"
+                "Rhetoric": "1/10", "Typing Structure": "1/10", "Critical Thinking": "2/10",
+                "Logical Fallacies": "0/10", "Typing Strenght": "1/10", "Tiering Sistem": "2/10",
+                "Calculation": "0/10", "Philisophy": "0/10", "General Knowledge": "0/10"
             },
             "tier": "Low Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -268,32 +199,21 @@ const debatesData = [
             "photo": "IMG_0820.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "height": "168 CM | 5'51 FT",
-            "weight": "62 KG | 136,7 LBS",
+            "vbWiki": "Low 1-C",
+            "ibr": "High 1-B",
             "profile": {
-                "Rhetoric": "3/10",
-                "Typing Structure": "2/10",
-                "Critical Thinking": "1/10",
-                "Logical Fallacies": "0/10",
-                "Typing Strenght": "4/10",
-                "Tiering Sistem": "1/10",
-                "Calculation": "0/10",
-                "Philisophy": "0/10",
-                "General Knowledge": "1/10"
+                "Rhetoric": "3/10", "Typing Structure": "2/10", "Critical Thinking": "1/10",
+                "Logical Fallacies": "0/10", "Typing Strenght": "4/10", "Tiering Sistem": "1/10",
+                "Calculation": "0/10", "Philisophy": "0/10", "General Knowledge": "1/10"
             },
             "tier": "Low Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
-        "type": "Low TIER DEBATE",
-        "winner": {
-            "name": "Thinzel",
-            "method": "limit"
-        },
-        "loser": {
-            "name": "Shade"
-        }
+        "type": "LOW TIER DEBATE", // Digunakan sebagai topik
+        "winner": { "name": "Thinzel", "method": "limit" },
+        "loser": { "name": "Shade" }
     }
 ];
 
@@ -437,36 +357,22 @@ function loadAndRenderDebatesForIndexPage() {
             `;
         }
 
+        // Menggunakan debate.type untuk topik
+        const matchTopicText = debate.type ? debate.type.toUpperCase() : 'NO TOPIC'; 
+
         htmlContent += `
             <div class="match-card">
-                <div class="match-card-content">
-                    <div class="debater-info-left">
-                        <span class="category-type-label">
-                            ${debate.category.toUpperCase()} | ${debate.type.toUpperCase()}
-                        </span>
-                        <img src="${debate.debater1.photo}" alt="Foto ${debate.debater1.name}" class="debater-photo-main">
-                        <span class="debater-name-main">${debate.debater1.name.toUpperCase()}</span>
-                        <div class="country-origin-main">
-                            <span>${debate.debater1.country.toUpperCase()}</span>
-                            <img src="${debate.debater1.flag}" alt="Bendera ${debate.debater1.country}" class="flag-icon-main">
-                        </div>
+                <div class="match-image-container">
+                    <img src="${debate.matchBanner}" alt="Debat antara ${debate.debater1.name} vs ${debate.debater2.name}" class="match-banner-img">
+                    <div class="match-category-label">${debate.category.toUpperCase()} | ${debate.type.toUpperCase()}</div>
+                </div>
+                <div class="match-details-bottom">
+                    <div class="debater-names-row">
+                        <span class="debater-name-left">${debate.debater1.name.toUpperCase()}</span>
+                        <span class="match-vs-text">VS</span>
+                        <span class="debater-name-right">${debate.debater2.name.toUpperCase()}</span>
                     </div>
-
-                    <div class="match-divider">
-                        <span class="match-vs">VS</span>
-                    </div>
-
-                    <div class="debater-info-right">
-                        <span class="category-type-label right-side-label">
-                            ${debate.category.toUpperCase()} | ${debate.type.toUpperCase()}
-                        </span>
-                        <img src="${debate.debater2.photo}" alt="Foto ${debate.debater2.name}" class="debater-photo-main">
-                        <span class="debater-name-main">${debate.debater2.name.toUpperCase()}</span>
-                        <div class="country-origin-main">
-                            <img src="${debate.debater2.flag}" alt="Bendera ${debate.debater2.country}" class="flag-icon-main">
-                            <span>${debate.debater2.country.toUpperCase()}</span>
-                        </div>
-                    </div>
+                    <p class="match-topic">${matchTopicText}</p>
                 </div>
                 ${resultSectionHtml}
             </div>
