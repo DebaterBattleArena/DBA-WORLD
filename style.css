@@ -423,11 +423,11 @@ section p {
 
 /* Container untuk semua match card */
 #debates-container {
-    display: flex; /* Menggunakan flexbox untuk layout horizontal */
-    flex-wrap: wrap; /* Izinkan kartu untuk wrap ke baris berikutnya */
-    justify-content: center; /* Pusatkan kartu */
-    gap: 30px; /* Jarak antar kartu */
-    padding: 20px 0; /* Tambah padding vertical di container */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0;
 }
 
 /* Gaya untuk setiap match card */
@@ -435,120 +435,91 @@ section p {
     background-color: var(--secondary-bg);
     color: var(--white-text-color);
     border-radius: 8px;
-    padding: 0; /* Hapus padding di sini, akan kita atur di dalam */
-    display: flex; /* Flexbox untuk layout horizontal di dalam kartu */
-    flex-direction: column; /* Default: KOLOM di mobile */
-    align-items: stretch; /* Agar tinggi sama */
-    overflow: hidden; /* Penting untuk border-radius */
+    overflow: hidden; /* Pastikan gambar mematuhi border-radius */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%; /* Default 100% untuk mobile */
-    max-width: 600px; /* Batas lebar kartu di desktop */
-    min-height: 220px; /* Tinggi minimum agar konten tidak terlalu rapat */
-    position: relative; /* Untuk positioning category-type-label */
-}
-
-.match-card-content {
+    max-width: 500px; /* Lebar maksimum kartu */
     display: flex;
-    flex: 1; /* Mengambil ruang untuk konten utama */
-    flex-direction: column; /* Default: KOLOM di mobile */
-    align-items: center; /* Sejajarkan vertikal di tengah */
-    justify-content: center; /* Pusatkan horizontal */
-    padding: 15px 10px; /* Padding di dalam area konten */
-    gap: 15px; /* Jarak antar kolom debater/VS */
-    position: relative; /* Untuk positioning category-type-label */
+    flex-direction: column; /* Konten di dalam kartu tetap kolom (gambar di atas teks) */
+    position: relative; /* Untuk label kategori di-absolute */
 }
 
-.debater-info-left,
-.debater-info-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-    flex: 1; /* Mengambil ruang yang sama */
-    padding: 0 5px; /* Padding di sekitar info debater */
+.match-image-container {
+    position: relative;
+    width: 100%;
+    /* Aspek rasio 16:9 */
+    padding-top: 56.25%; /* 9 / 16 * 100% */
+    overflow: hidden; /* Pastikan gambar tidak meluap */
 }
 
-/* Label Kategori & Tipe yang Posisinya Absolute */
-.category-type-label {
+.match-banner-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pastikan gambar memenuhi container tanpa terdistorsi */
+    display: block;
+}
+
+.match-category-label {
     position: absolute;
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    width: auto;
-    font-size: 0.75em;
+    background-color: rgba(0, 0, 0, 0.7);
     color: var(--light-grey);
-    text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    background-color: rgba(0,0,0,0.7);
-    padding: 4px 8px;
+    padding: 5px 10px;
     border-radius: 3px;
-    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
     white-space: nowrap;
+    border: 1px solid rgba(255,255,255,0.1);
     z-index: 2;
 }
-/* Sembunyikan label di sisi kanan untuk mobile, atau jika tidak digunakan */
-.debater-info-right .category-type-label {
-    display: none;
+
+.match-details-bottom {
+    padding: 15px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-
-.debater-photo-main {
-    width: 120px; /* Ukuran foto utama debater */
-    height: 120px;
-    object-fit: cover;
-    border-radius: 5px; /* Sudut sedikit membulat seperti Byon */
-    border: 3px solid var(--highlight-color);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    margin-bottom: 5px; /* Jarak dari nama */
-}
-
-.debater-name-main {
+.debater-names-row {
     font-family: var(--font-heading);
-    font-size: 1.6em;
+    font-size: 1.8em; /* Ukuran nama debater */
     color: var(--white-text-color);
-    text-transform: uppercase;
     font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Untuk wrapping di mobile jika nama panjang */
     line-height: 1.2;
 }
 
-.country-origin-main {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: var(--light-grey);
-    font-size: 0.8em;
-    margin-top: 5px;
-}
-.country-origin-main .flag-icon-main {
-    width: 25px;
-    height: 18px;
-    border-radius: 2px;
-    object-fit: cover;
-}
-
-.match-divider {
-    display: flex;
-    flex-direction: column; /* VS di atas atau di tengah garis */
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px;
-    margin: 10px 0; /* Jarak vertikal di mobile */
-}
-.match-vs {
-    font-family: var(--font-heading);
-    font-size: 2.5em; /* Ukuran VS */
+.match-vs-text {
+    font-size: 0.7em; /* Ukuran VS lebih kecil relatif terhadap nama */
     color: var(--light-grey);
     opacity: 0.7;
-    font-weight: 700;
+    margin: 0 10px; /* Jarak dari nama debater */
+}
+
+.match-topic {
+    font-size: 0.95em;
+    color: var(--light-grey);
+    margin: 0;
+    line-height: 1.4;
 }
 
 .match-result-section {
     width: 100%;
     padding: 15px 20px;
-    background-color: rgba(0,0,0,0.3); /* Background gelap transparan */
+    background-color: rgba(0,0,0,0.3);
     border-top: 1px dashed rgba(255,255,255,0.1);
     text-align: center;
     box-sizing: border-box;
@@ -1257,46 +1228,44 @@ footer a:hover {
 
     /* Gaya untuk Section Match List (Jadwal Debat) - MOBILE */
     #debates-container {
-        flex-direction: column; /* Jadikan kolom di mobile */
+        flex-direction: column;
         gap: 20px;
     }
     .match-card {
-        flex-direction: column; /* Konten di dalam kartu kembali atas-bawah */
-        width: 100%; /* Ambil lebar penuh */
+        width: 100%;
         max-width: none;
         min-height: auto;
     }
     .match-card-content {
-        flex-direction: column; /* Debater, VS, Debater menjadi atas-bawah */
-        padding: 15px; /* Padding lebih kecil */
-        padding-top: 50px; /* Beri ruang untuk category-type-label di-absolute */
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
     }
     .debater-info-left,
     .debater-info-right {
         padding: 0;
-        margin-bottom: 10px; /* Jarak antara info debater dan VS */
     }
-    .debater-info-left .category-type-label {
-        left: 50%;
-        transform: translateX(-50%);
-        right: auto;
+    .category-type-label {
+        font-size: 0.75em;
     }
-    .debater-info-right .category-type-label {
-        display: none; /* Sembunyikan label di sisi kanan untuk mobile */
+    .match-image-container {
+        padding-top: 56.25%; /* 16:9 ratio */
+        height: 0;
     }
-    .debater-photo-main {
-        width: 100px; /* Foto lebih kecil di mobile */
-        height: 100px;
-    }
-    .debater-name-main {
+
+    .debater-names-row {
         font-size: 1.4em;
+        flex-direction: column; /* Nama debater vertikal jika layar sempit */
+        gap: 5px;
     }
-    .match-divider {
-        margin: 10px 0; /* Jarak vertikal di mobile */
+    .match-vs-text {
+        font-size: 0.8em;
+        margin: 5px 0;
     }
-    .match-vs {
-        font-size: 2.2em;
+    .match-topic {
+        font-size: 0.85em;
     }
+
     .match-result-section {
         padding: 10px 15px;
     }
@@ -1486,51 +1455,41 @@ footer a:hover {
     /* Gaya untuk Section Match List (Jadwal Debat) - DESKTOP */
     #debates-container {
         justify-content: center;
-        gap: 30px; /* Jarak antar kartu */
+        gap: 30px;
     }
     .match-card {
         width: calc(50% - 15px); /* Dua kartu per baris di desktop */
-        flex-direction: column; /* KONTEN UTAMA TETAP KOLOM, tapi di dalamnya horizontal */
-        min-height: 250px; /* Tinggi minimum */
+        max-width: 500px;
+        min-height: auto; /* Biarkan tinggi menyesuaikan konten */
     }
     .match-card-content {
-        flex-direction: row; /* Debater, VS, Debater menjadi KIRI-KANAN */
-        padding: 25px 20px;
-        gap: 30px;
+        flex-direction: column; /* Konten di dalam kartu tetap kolom */
+        padding: 20px; /* Padding sedikit lebih kecil */
+        gap: 15px;
     }
+    .category-type-label {
+        font-size: 0.85em; /* Ukuran label lebih besar di desktop */
+        top: 20px; /* Jarak dari atas */
+    }
+    .debater-names-row {
+        font-size: 2.2em; /* Ukuran nama debater di desktop */
+    }
+    .match-vs-text {
+        font-size: 0.8em;
+    }
+    .match-topic {
+        font-size: 1em;
+    }
+
+    /* Hilangkan gaya yang tidak terpakai lagi */
     .debater-info-left,
-    .debater-info-right {
-        padding: 0;
-    }
-    .debater-info-left .category-type-label {
-        left: 20px; /* Posisi di kiri kartu */
-        transform: none; /* Hapus transform centring */
-        right: auto;
-    }
-    .debater-info-right .category-type-label {
-        display: block; /* Tampilkan kembali label di sisi kanan untuk desktop */
-        right: 20px; /* Posisi di kanan kartu */
-        left: auto;
-        transform: none;
-    }
-    .debater-photo-main {
-        width: 150px; /* Foto lebih besar di desktop */
-        height: 150px;
-    }
-    .debater-name-main {
-        font-size: 1.8em;
-    }
-    .match-divider {
-        margin: 0 20px; /* Jarak kiri kanan di desktop */
-    }
-    .match-vs {
-        font-size: 3em;
-    }
-    .match-result-section {
-        padding: 15px 25px;
-    }
-    .result-info {
-        font-size: 0.95em;
+    .debater-info-right,
+    .match-divider { /* Pastikan ini tidak mengganggu flex-direction column dari match-card-content */
+        width: 100%; /* Ambil lebar penuh */
+        text-align: center; /* Pusatkan konten */
+        flex: none; /* Jangan biarkan tumbuh */
+        padding: 0; /* Hapus padding lama */
+        margin: 0; /* Hapus margin lama */
     }
 
 
