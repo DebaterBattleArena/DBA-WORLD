@@ -23,10 +23,7 @@ const debatesData = [
             "tier": "Mid Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": [
-                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
-                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Champion", "date": "2025"}
-            ]
+            "achievements": [] // Dihapus achievement statis
         },
         "debater2": {
             "name": "RENJI",
@@ -47,7 +44,7 @@ const debatesData = [
             "tier": "Mid Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": [] // Tetap kosong jika tidak ada achievement
+            "achievements": []
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -81,10 +78,7 @@ const debatesData = [
             "tier": "High Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "achievements": [
-                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
-                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Semi Finalist", "date": "2024"}
-            ]
+            "achievements": []
         },
         "debater2": {
             "name": "MUCHIBEI",
@@ -139,10 +133,7 @@ const debatesData = [
             "tier": "Low Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": [
-                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
-                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Champion", "date": "2023"}
-            ]
+            "achievements": []
         },
         "debater2": {
             "name": "RIM",
@@ -197,10 +188,7 @@ const debatesData = [
             "tier": "Mid Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": [
-                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
-                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Gold Medalist", "date": "2024"}
-            ]
+            "achievements": []
         },
         "debater2": {
             "name": "RYUU",
@@ -255,10 +243,7 @@ const debatesData = [
             "tier": "Low Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": [
-                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
-                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Participant", "date": "2024"}
-            ]
+            "achievements": []
         },
         "debater2": {
             "name": "Shade",
@@ -301,21 +286,26 @@ debatesData.forEach(debate => {
     const debater2Name = debate.debater2.name;
 
     if (!allDebaters[debater1Name]) {
-        allDebaters[debater1Name] = { ...debate.debater1, wins: 0, losses: 0, matchHistory: [] };
+        allDebaters[debater1Name] = { ...debate.debater1, wins: 0, losses: 0, matchHistory: [], achievements: [] }; // Inisialisasi achievements
     } else {
         Object.assign(allDebaters[debater1Name], debate.debater1);
+        // Pastikan achievements tetap array kosong jika tidak diinisialisasi ulang
+        if (!allDebaters[debater1Name].achievements) allDebaters[debater1Name].achievements = [];
     }
 
     if (!allDebaters[debater2Name]) {
-        allDebaters[debater2Name] = { ...debate.debater2, wins: 0, losses: 0, matchHistory: [] };
+        allDebaters[debater2Name] = { ...debate.debater2, wins: 0, losses: 0, matchHistory: [], achievements: [] }; // Inisialisasi achievements
     } else {
         Object.assign(allDebaters[debater2Name], debate.debater2);
+        // Pastikan achievements tetap array kosong jika tidak diinisialisasi ulang
+        if (!allDebaters[debater2Name].achievements) allDebaters[debater2Name].achievements = [];
     }
 
 
     if (debate.winner && debate.loser) {
         const winnerName = debate.winner.name;
         const loserName = debate.loser.name;
+        const debateYear = debate.date.split('-')[0]; // Ambil tahun dari tanggal debat
 
         allDebaters[winnerName].wins += 1;
         allDebaters[winnerName].matchHistory.push({
@@ -329,6 +319,13 @@ debatesData.forEach(debate => {
             time: debate.time
         });
 
+        // Tambahkan achievement untuk pemenang
+        allDebaters[winnerName].achievements.push({
+            "event": `DBA Match vs ${loserName}`,
+            "achievement": "Winner",
+            "date": debateYear
+        });
+
         allDebaters[loserName].losses += 1;
         allDebaters[loserName].matchHistory.push({
             opponent: winnerName,
@@ -340,9 +337,22 @@ debatesData.forEach(debate => {
             round: debate.round,
             time: debate.time
         });
+
+        // Tambahkan achievement untuk yang kalah
+        allDebaters[loserName].achievements.push({
+            "event": `DBA Match vs ${winnerName}`,
+            "achievement": "Participant",
+            "date": debateYear
+        });
     }
 });
 
+// Setelah semua debat diproses, sortir achievements untuk setiap debater
+Object.values(allDebaters).forEach(debater => {
+    if (debater.achievements && debater.achievements.length > 0) {
+        debater.achievements.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+});
 
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
@@ -449,7 +459,6 @@ function renderProfilePage() {
         return;
     }
 
-    // Bangun HTML untuk halaman profil berdasarkan desain Byon (tanpa height dan weight)
     let profileHtml = `
         <div class="profile-main-info">
             <img src="${debater.photo}" alt="Foto ${debater.name}" class="profile-avatar">
@@ -495,28 +504,24 @@ function renderProfilePage() {
     `;
 
     if (debater.matchHistory && debater.matchHistory.length > 0) {
-        // Mengambil hanya satu riwayat pertandingan terbaru untuk DBA RECORD
-        const latestMatch = debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
-
-        if (latestMatch) {
-            const resultClass = latestMatch.result === "Win" ? "win" : "loss";
-            const opponentDebater = allDebaters[latestMatch.opponent];
+        // Menampilkan semua riwayat pertandingan DBA
+        debater.matchHistory.forEach(match => { // Loop semua match history
+            const resultClass = match.result === "Win" ? "win" : "loss";
+            const opponentDebater = allDebaters[match.opponent]; // Gunakan match.opponent
             profileHtml += `
                 <div class="dba-record-item ${resultClass}">
                     <div class="dba-match-info">
                         <img src="${debater.photo}" alt="Foto ${debater.name}" class="dba-debater-thumb">
-                        <img src="${opponentDebater ? opponentDebater.photo : ''}" alt="Foto ${latestMatch.opponent}" class="dba-debater-thumb">
+                        <img src="${opponentDebater ? opponentDebater.photo : ''}" alt="Foto ${match.opponent}" class="dba-debater-thumb">
                         <div class="dba-details">
-                            <p class="dba-vs-opponent">VS ${latestMatch.opponent.toUpperCase()}</p>
-                            <p class="dba-match-spec">Date: ${latestMatch.date} Method: ${latestMatch.method || 'N/A'}</p>
+                            <p class="dba-vs-opponent">VS ${match.opponent.toUpperCase()}</p>
+                            <p class="dba-match-spec">Date: ${match.date} Method: ${match.method || 'N/A'}</p>
                         </div>
                     </div>
-                    <span class="dba-result-badge">${latestMatch.result.toUpperCase()}</span>
+                    <span class="dba-result-badge">${match.result.toUpperCase()}</span>
                 </div>
             `;
-        } else {
-             profileHtml += `<p class="no-history-message">Belum ada riwayat pertandingan DBA.</p>`;
-        }
+        });
     } else {
         profileHtml += `<p class="no-history-message">Belum ada riwayat pertandingan DBA.</p>`;
     }
@@ -541,19 +546,16 @@ function renderProfilePage() {
     `;
 
     if (debater.achievements && debater.achievements.length > 0) {
-        // Karena Anda hanya ingin SATU achievement dan namanya seragam, kita ambil yang pertama saja
-        const achievementToDisplay = debater.achievements[0];
-
-        // Pastikan nama event selalu "DBA Series 1 Indonesia vs Malaysia"
-        const eventName = "DBA Series 1 Indonesia vs Malaysia";
-
-        profileHtml += `
-            <tr>
-                <td>${eventName}</td>
-                <td>${achievementToDisplay.achievement}</td>
-                <td>${achievementToDisplay.date}</td>
-            </tr>
-        `;
+        // Menampilkan semua achievement yang dihasilkan
+        debater.achievements.forEach(ach => {
+            profileHtml += `
+                <tr>
+                    <td>${ach.event}</td>
+                    <td>${ach.achievement}</td>
+                    <td>${ach.date}</td>
+                </tr>
+            `;
+        });
     } else {
         profileHtml += `<tr><td colspan="3" class="no-history-message">Belum ada pencapaian.</td></tr>`;
     }
