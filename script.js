@@ -3,7 +3,7 @@ const debatesData = [
     {
         "id": "debate-001",
         "category": "FICTIONAL DEBATE",
-        "date": "2025-06-15", // Tanggal debat ditambahkan
+        "date": "2025-06-15",
         "debater1": {
             "name": "HIROO",
             "photo": "IMG_0524.jpeg",
@@ -20,7 +20,16 @@ const debatesData = [
                 "Philisophy": "9/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier"
+            "tier": "Mid Tier",
+            // Data tambahan untuk profil seperti Byon
+            "height": "178 CM | 5'10 FT",
+            "weight": "75 KG | 165 LBS",
+            "fightRecord": { "win": 1, "loss": 0, "draw": 0 }, // Contoh data
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": [
+                {"event": "DBA Series 1", "achievement": "Champion", "date": "2025"},
+                {"event": "Junior Battle Comp.", "achievement": "Gold Medalist", "date": "2024"}
+            ]
         },
         "debater2": {
             "name": "RENJI",
@@ -38,7 +47,12 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Mid Tier"
+            "tier": "Mid Tier",
+            "height": "170 CM | 5'7 FT",
+            "weight": "68 KG | 150 LBS",
+            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -52,7 +66,7 @@ const debatesData = [
     {
         "id": "debate-002",
         "category": "FICTIONAL DEBATE",
-        "date": "2025-06-10", // Tanggal debat ditambahkan
+        "date": "2025-06-10",
         "debater1": {
             "name": "ZOGRATIS",
             "photo": "IMG_0526.jpeg",
@@ -69,7 +83,14 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "7/10"
             },
-            "tier": "High Tier"
+            "tier": "High Tier",
+            "height": "185 CM | 6'1 FT",
+            "weight": "80 KG | 176 LBS",
+            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "achievements": [
+                {"event": "Grand Slam Debat", "achievement": "Semi Finalist", "date": "2024"}
+            ]
         },
         "debater2": {
             "name": "MUCHIBEI",
@@ -87,7 +108,12 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "8/10"
             },
-            "tier": "High Tier"
+            "tier": "High Tier",
+            "height": "175 CM | 5'9 FT",
+            "weight": "72 KG | 158 LBS",
+            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -101,7 +127,7 @@ const debatesData = [
     {
         "id": "debate-003",
         "category": "FICTIONAL DEBATE",
-        "date": "2025-06-05", // Tanggal debat ditambahkan
+        "date": "2025-06-05",
         "debater1": {
             "name": "ARYANWT",
             "photo": "IMG_0525.jpeg",
@@ -118,7 +144,14 @@ const debatesData = [
                 "Philisophy": "7/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Low Tier"
+            "tier": "Low Tier",
+            "height": "170 CM | 5'7 FT",
+            "weight": "65 KG | 143 LBS",
+            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": [
+                {"event": "Online Debat Liga", "achievement": "Champion", "date": "2023"}
+            ]
         },
         "debater2": {
             "name": "RIM",
@@ -136,7 +169,12 @@ const debatesData = [
                 "Philisophy": "3/10",
                 "General Knowledge": "7/10"
             },
-            "tier": "Low Tier"
+            "tier": "Low Tier",
+            "height": "168 CM | 5'6 FT",
+            "weight": "62 KG | 137 LBS",
+            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -150,7 +188,7 @@ const debatesData = [
     {
         "id": "debate-004",
         "category": "FICTIONAL DEBATE",
-        "date": "2025-06-01", // Tanggal debat ditambahkan
+        "date": "2025-06-01",
         "debater1": {
             "name": "RANZT",
             "photo": "IMG_0555.jpeg",
@@ -167,7 +205,14 @@ const debatesData = [
                 "Philisophy": "9/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier"
+            "tier": "Mid Tier",
+            "height": "179 CM | 5'10 FT",
+            "weight": "77 KG | 170 LBS",
+            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": [
+                {"event": "Master Debater Cup", "achievement": "Gold Medalist", "date": "2024"}
+            ]
         },
         "debater2": {
             "name": "RYUU",
@@ -185,7 +230,12 @@ const debatesData = [
                 "Philisophy": "4/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier"
+            "tier": "Mid Tier",
+            "height": "173 CM | 5'8 FT",
+            "weight": "70 KG | 154 LBS",
+            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -196,14 +246,14 @@ const debatesData = [
             "name": "RYUU"
         }
     },
-    // ENTRI BARU UNTUK THINZEL VS SHADE
+    // ENTRI BARU UNTUK THINZEL VS SHADE (dengan data tambahan untuk profil)
     {
-        "id": "debate-005", // Pastikan ID ini unik
+        "id": "debate-005",
         "category": "FICTIONAL DEBATE",
-        "date": "2025-06-26", // Tanggal debat ini terjadi
+        "date": "2025-06-26",
         "debater1": {
             "name": "Thinzel",
-            "photo": "Thinzel.jpeg",  // Pastikan nama file dan path gambar ini benar
+            "photo": "Thinzel.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
             "profile": {
@@ -217,11 +267,18 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "0/10"
             },
-            "tier": "Low Tier"
+            "tier": "Low Tier",
+            "height": "165 CM | 5'5 FT", // Contoh data
+            "weight": "55 KG | 121 LBS", // Contoh data
+            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": [
+                {"event": "Local Community Debate", "achievement": "Participant", "date": "2024"}
+            ]
         },
         "debater2": {
             "name": "Shade",
-            "photo": "Shade.jpeg",  // Pastikan nama file dan path gambar ini benar
+            "photo": "Shade.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
             "profile": {
@@ -235,7 +292,12 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Low Tier"
+            "tier": "Low Tier",
+            "height": "170 CM | 5'7 FT",
+            "weight": "60 KG | 132 LBS",
+            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
         },
         "type": "Low TIER DEBATE",
         "winner": {
@@ -256,17 +318,26 @@ debatesData.forEach(debate => {
     const debater1Name = debate.debater1.name;
     const debater2Name = debate.debater2.name;
 
+    // Pastikan debater1 dan debater2 ada di allDebaters, salin semua properti termasuk yang baru
     if (!allDebaters[debater1Name]) {
         allDebaters[debater1Name] = { ...debate.debater1, wins: 0, losses: 0, matchHistory: [] };
+    } else {
+        // Gabungkan properti baru jika debater sudah ada (misal: jika debater1 dan debater2 sama)
+        Object.assign(allDebaters[debater1Name], debate.debater1);
     }
+
     if (!allDebaters[debater2Name]) {
         allDebaters[debater2Name] = { ...debate.debater2, wins: 0, losses: 0, matchHistory: [] };
+    } else {
+        Object.assign(allDebaters[debater2Name], debate.debater2);
     }
+
 
     if (debate.winner && debate.loser) {
         const winnerName = debate.winner.name;
         const loserName = debate.loser.name;
 
+        // Untuk pemenang
         allDebaters[winnerName].wins += 1;
         allDebaters[winnerName].matchHistory.push({
             opponent: loserName,
@@ -274,9 +345,13 @@ debatesData.forEach(debate => {
             method: debate.winner.method,
             date: debate.date,
             category: debate.category,
-            id: debate.id
+            id: debate.id,
+            // Tambahkan round dan time jika ada di data debat utama
+            round: debate.round, // Anda perlu menambah ini ke debatesData jika ada
+            time: debate.time    // Anda perlu menambah ini ke debatesData jika ada
         });
 
+        // Untuk yang kalah
         allDebaters[loserName].losses += 1;
         allDebaters[loserName].matchHistory.push({
             opponent: winnerName,
@@ -284,7 +359,9 @@ debatesData.forEach(debate => {
             method: "",
             date: debate.date,
             category: debate.category,
-            id: debate.id
+            id: debate.id,
+            round: debate.round,
+            time: debate.time
         });
     }
 });
@@ -292,9 +369,8 @@ debatesData.forEach(debate => {
 
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
-    const now = new Date();
-    // Atur targetDate ke tanggal spesifik atau 2 hari dari sekarang untuk demonstrasi
-    const targetDate = new Date("2025-07-01T10:00:00").getTime(); // Contoh: 1 Juli 2025, 10:00 AM
+    // Atur targetDate ke tanggal spesifik (misalnya, tanggal debat utama berikutnya)
+    const targetDate = new Date("2025-07-01T10:00:00").getTime(); // Contoh: 1 Juli 2025, 10:00 AM WIB (Medan)
 
     const countdownInterval = setInterval(function() {
         const currentTime = new Date().getTime();
@@ -396,47 +472,122 @@ function renderProfilePage() {
         return;
     }
 
+    // Bangun HTML untuk halaman profil berdasarkan desain Byon
     let profileHtml = `
-        <div class="profile-header">
+        <div class="profile-main-info">
             <img src="${debater.photo}" alt="Foto ${debater.name}" class="profile-avatar">
-            <div class="profile-info-text"> <h2 class="profile-name">${debater.name}</h2>
-                <p class="profile-tier">${debater.tier} Debater</p>
-                <div class="profile-record">
-                    Record: <span>${debater.wins}W - ${debater.losses}L</span>
-                </div>
-                <div class="profile-country-flag">
-                    <img src="${debater.flag}" alt="Bendera ${debater.country}" class="flag-icon"> ${debater.country.toUpperCase()}
+            <div class="profile-details-text">
+                <p class="profile-division">DEBATER TIER: ${debater.tier.toUpperCase()} <span class="active-status">ACTIVE</span></p>
+                <h2 class="profile-name">${debater.name}</h2>
+                <p class="profile-country"><img src="${debater.flag}" alt="Bendera ${debater.country}" class="profile-flag-icon"> ${debater.country.toUpperCase()}</p>
+                ${debater.height ? `<p class="profile-spec">HEIGHT <span>${debater.height}</span></p>` : ''}
+                ${debater.weight ? `<p class="profile-spec">WEIGHT <span>${debater.weight}</span></p>` : ''}
+
+                <div class="profile-records-grid">
+                    ${debater.fightRecord ? `
+                        <div class="record-box">
+                            <p class="record-title">TOTAL RECORD</p>
+                            <div class="record-stats">
+                                <span class="win-stat">${debater.fightRecord.win}</span>
+                                <span class="loss-stat">${debater.fightRecord.loss}</span>
+                                <span class="draw-stat">${debater.fightRecord.draw}</span>
+                            </div>
+                            <div class="record-labels">
+                                <span>WIN</span><span>LOSS</span><span>DRAW</span>
+                            </div>
+                        </div>
+                    ` : ''}
+                    ${debater.boxingRecord ? `
+                        <div class="record-box">
+                            <p class="record-title">KATEGORI KHUSUS</p>
+                            <div class="record-stats">
+                                <span class="win-stat">${debater.boxingRecord.win}</span>
+                                <span class="loss-stat">${debater.boxingRecord.loss}</span>
+                                <span class="draw-stat">${debater.boxingRecord.draw}</span>
+                            </div>
+                            <div class="record-labels">
+                                <span>WIN</span><span>LOSS</span><span>DRAW</span>
+                            </div>
+                        </div>
+                    ` : ''}
                 </div>
             </div>
         </div>
 
-        <div class="profile-content">
-            <div class="profile-section-title">Match History</div>
+        <div class="profile-section-block">
+            <h3 class="section-block-title">DBA RECORD</h3>
             <div class="match-history-list">
     `;
 
     if (debater.matchHistory && debater.matchHistory.length > 0) {
-        debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+        // Mengambil hanya satu riwayat pertandingan terbaru untuk DBA RECORD jika Anda ingin seperti Byon (atau bisa juga semua)
+        // Saya asumsikan Anda hanya ingin yang terbaru seperti di Byon
+        const latestMatch = debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
-        debater.matchHistory.forEach(match => {
-            const resultClass = match.result === "Win" ? "win" : "loss";
-            const methodDisplay = match.method ? `(${match.method})` : '';
+        if (latestMatch) {
+            const resultClass = latestMatch.result === "Win" ? "win" : "loss";
+            const opponentDebater = allDebaters[latestMatch.opponent];
             profileHtml += `
-                <div class="match-history-item">
-                    <span class="match-date">${match.date}</span>
-                    <span class="match-vs-opponent">Vs. ${match.opponent}</span>
-                    <span class="match-result ${resultClass}">${match.result} ${methodDisplay}</span>
+                <div class="dba-record-item ${resultClass}">
+                    <div class="dba-match-info">
+                        <img src="${debater.photo}" alt="Foto ${debater.name}" class="dba-debater-thumb">
+                        <img src="${opponentDebater ? opponentDebater.photo : ''}" alt="Foto ${latestMatch.opponent}" class="dba-debater-thumb">
+                        <div class="dba-details">
+                            <p class="dba-vs-opponent">VS ${latestMatch.opponent.toUpperCase()}</p>
+                            <p class="dba-match-spec">Date: ${latestMatch.date} Method: ${latestMatch.method || 'N/A'}</p>
+                        </div>
+                    </div>
+                    <span class="dba-result-badge">${latestMatch.result.toUpperCase()}</span>
                 </div>
             `;
-        });
+        } else {
+             profileHtml += `<p class="no-history-message">Belum ada riwayat pertandingan DBA.</p>`;
+        }
     } else {
-        profileHtml += `<p class="no-history-message">Belum ada riwayat pertandingan.</p>`;
+        profileHtml += `<p class="no-history-message">Belum ada riwayat pertandingan DBA.</p>`;
     }
+
 
     profileHtml += `
             </div>
+        </div>
 
-            <div class="profile-section-title">Stats Breakdown</div>
+        <div class="profile-section-block">
+            <h3 class="section-block-title">ACHIEVEMENTS</h3>
+            <div class="achievements-table-container">
+                <table class="achievements-table">
+                    <thead>
+                        <tr>
+                            <th>EVENTS</th>
+                            <th>ACHIEVEMENTS</th>
+                            <th>DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    `;
+
+    if (debater.achievements && debater.achievements.length > 0) {
+        debater.achievements.forEach(ach => {
+            profileHtml += `
+                <tr>
+                    <td>${ach.event}</td>
+                    <td>${ach.achievement}</td>
+                    <td>${ach.date}</td>
+                </tr>
+            `;
+        });
+    } else {
+        profileHtml += `<tr><td colspan="3" class="no-history-message">Belum ada pencapaian.</td></tr>`;
+    }
+
+    profileHtml += `
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="profile-section-block">
+            <h3 class="section-block-title">STATS BREAKDOWN</h3>
             <ul class="stats-list">
     `;
 
@@ -742,9 +893,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Untuk memastikan link navigasi aktif terhighlight
     const navLinks = document.querySelectorAll('.main-nav ul li a');
     navLinks.forEach(link => {
-        // Hapus protokol dan host untuk perbandingan yang konsisten
-        const linkPath = new URL(link.href).pathname;
-        if (currentPath === linkPath || (currentPath === '/' && linkPath.endsWith('index.html'))) {
+        const linkPath = new URL(link.href).pathname.replace(/\/$/, ''); // Hapus trailing slash
+        const cleanedCurrentPath = currentPath.replace(/\/$/, ''); // Hapus trailing slash
+
+        if (cleanedCurrentPath === linkPath ||
+           (cleanedCurrentPath === '/index.html' && linkPath === '/') || // Untuk root path
+           (cleanedCurrentPath === '/' && linkPath === '/index.html')) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
