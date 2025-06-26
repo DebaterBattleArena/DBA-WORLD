@@ -9,8 +9,8 @@ const debatesData = [
             "photo": "IMG_0524.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "170 CM | 5'57 FT", // Contoh data tinggi
-            "weight": "67 KG | 147,7 LBS", // Contoh data berat
+            "height": "170 CM | 5'57 FT",
+            "weight": "67 KG | 147,7 LBS",
             "profile": {
                 "Rhetoric": "9/10",
                 "Typing Structure": "9/10",
@@ -45,7 +45,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Mid Tier", // Renji diatur ke Mid Tier
+            "tier": "Mid Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -186,7 +186,7 @@ const debatesData = [
             "photo": "IMG_0555.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "height": "176 CM | 5'77 FT", // Data tinggi dan berat untuk Ranzt
+            "height": "176 CM | 5'77 FT",
             "weight": "67 KG | 147,7 LBS",
             "profile": {
                 "Rhetoric": "10/10",
@@ -481,58 +481,80 @@ function renderProfilePage() {
 
     const profileCard = document.querySelector('.profile-card');
 
-    // Elemen-elemen yang baru dan disesuaikan untuk layout Byon
+    // --- Selektor elemen profil yang diperbarui berdasarkan HTML terbaru ---
     const profileDebaterImage = profileCard.querySelector('.profile-debater-image');
-    const divisionText = profileCard.querySelector('.profile-division-status .division-text'); // Class baru
+    const divisionText = profileCard.querySelector('.profile-division-status .division-text');
     const profileName = profileCard.querySelector('.profile-name');
-    const countryText = profileCard.querySelector('.profile-country-info .country-text'); // Class baru
+    const countryText = profileCard.querySelector('.profile-country-info .country-text');
     const profileFlagIcon = profileCard.querySelector('.profile-country-info .profile-flag-icon');
     const heightValue = profileCard.querySelector('.profile-stat-item .height-value');
     const weightValue = profileCard.querySelector('.profile-stat-item .weight-value');
-
     const fightRecordWinNumber = profileCard.querySelector('.profile-fight-record .win-number');
     const fightRecordLossNumber = profileCard.querySelector('.profile-fight-record .loss-number');
     const fightRecordDrawNumber = profileCard.querySelector('.profile-fight-record .draw-number');
 
-    // Elemen-elemen bagian bawah (tetap sama)
     const matchHistoryList = profileCard.querySelector('.match-history-list');
     const achievementsTableBody = profileCard.querySelector('.achievements-table tbody');
     const statsList = profileCard.querySelector('.stats-list');
 
-    // Pastikan semua elemen penting ditemukan
+    // --- Log untuk membantu debugging jika ada elemen yang null ---
+    console.log('profileDebaterImage:', profileDebaterImage);
+    console.log('divisionText:', divisionText);
+    console.log('profileName:', profileName);
+    console.log('countryText:', countryText);
+    console.log('profileFlagIcon:', profileFlagIcon);
+    console.log('heightValue:', heightValue);
+    console.log('weightValue:', weightValue);
+    console.log('fightRecordWinNumber:', fightRecordWinNumber);
+    console.log('fightRecordLossNumber:', fightRecordLossNumber);
+    console.log('fightRecordDrawNumber:', fightRecordDrawNumber);
+    console.log('matchHistoryList:', matchHistoryList);
+    console.log('achievementsTableBody:', achievementsTableBody);
+    console.log('statsList:', statsList);
+
+    // --- Cek apakah semua elemen penting ditemukan. Jika tidak, tampilkan error. ---
     if (!profileCard || !profileDebaterImage || !divisionText || !profileName || !countryText || !profileFlagIcon ||
         !heightValue || !weightValue || !fightRecordWinNumber || !fightRecordLossNumber || !fightRecordDrawNumber ||
         !matchHistoryList || !achievementsTableBody || !statsList) {
-        console.error("Satu atau lebih elemen profil tidak ditemukan di DOM. Periksa kembali HTML profile.html.");
-        profileCard.innerHTML = `<p style="color: red;">Terjadi kesalahan dalam memuat elemen profil. Mohon periksa konsol browser.</p>`;
+        console.error("ERROR: Satu atau lebih elemen profil tidak ditemukan di DOM. Mohon periksa kembali HTML profile.html dan selektor di script.js.");
+        profileCard.innerHTML = `<div style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">
+                                    <h2>Terjadi kesalahan dalam memuat elemen profil.</h2>
+                                    <p>Mohon periksa konsol browser (F12) untuk detail lebih lanjut dan pastikan struktur HTML Anda sesuai.</p>
+                                 </div>`;
         return;
     }
 
     if (!debaterName) {
-        profileCard.innerHTML = `<p style="color: red;">Nama debater tidak ditemukan di URL.</p>`;
+        console.error("ERROR: Nama debater tidak ditemukan di URL.");
+        profileCard.innerHTML = `<p style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">Nama debater tidak ditemukan di URL. Pastikan Anda mengaksesnya dengan format seperti: profile.html?name=RANZT</p>`;
         return;
     }
 
     const debater = allDebaters[debaterName];
 
-    if (!debater) { // Cek apakah debater itu sendiri ada
-        profileCard.innerHTML = `<p style="color: red;">Profil untuk ${debaterName} tidak ditemukan dalam data.</p>`;
+    if (!debater) {
+        console.error(`ERROR: Profil untuk "${debaterName}" tidak ditemukan dalam data 'allDebaters'.`);
+        profileCard.innerHTML = `<p style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">Profil untuk debater "${debaterName}" tidak ditemukan dalam database.</p>`;
         return;
     }
 
-    // Mengisi data ke elemen HTML
+    // --- Mengisi data ke elemen HTML ---
     profileDebaterImage.src = debater.photo;
     profileDebaterImage.alt = `Foto ${debater.name}`;
 
-    divisionText.textContent = debater.tier.toUpperCase(); // Contoh: "MID TIER"
+    // Byon menampilkan "LIGHTWEIGHT DIVISION" atau "WELTERWEIGHT DIVISION"
+    // Saya asumsikan debater.tier Anda adalah "Mid Tier", "Low Tier", "High Tier"
+    // Anda bisa memetakan ini ke nama divisi yang lebih cocok jika diinginkan
+    // Untuk saat ini, saya akan gunakan `debater.tier.toUpperCase() + ' DEBATE DIVISION'`
+    divisionText.textContent = `${debater.tier.toUpperCase()} DEBATE DIVISION`; // Contoh: MID TIER DEBATE DIVISION
     profileName.textContent = debater.name;
 
     countryText.textContent = debater.country.toUpperCase();
     profileFlagIcon.src = debater.flag;
     profileFlagIcon.alt = `Bendera ${debater.country}`;
 
-    heightValue.textContent = debater.height || 'N/A'; // Tambahkan ini
-    weightValue.textContent = debater.weight || 'N/A'; // Tambahkan ini
+    heightValue.textContent = debater.height || 'N/A';
+    weightValue.textContent = debater.weight || 'N/A';
 
     // Mengisi rekor pertandingan (Fight Record)
     if (debater.fightRecord) {
@@ -552,7 +574,7 @@ function renderProfilePage() {
         debater.matchHistory.forEach(match => {
             const resultClass = match.result === "Win" ? "win" : "loss";
             const opponentDebater = allDebaters[match.opponent];
-            const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg';
+            const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg'; // Pastikan ada placeholder.jpg
 
             matchHistoryHtml += `
                 <div class="dba-record-item ${resultClass}">
@@ -640,13 +662,12 @@ function renderRankingPage() {
         if (debatersInTier && debatersInTier.length > 0) {
             if (tierName === "Mid Tier") {
                 // Sorting khusus untuk Mid Tier
-                // Pastikan semua debater di Mid Tier ada di sini, atau mereka akan di akhir
                 const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"];
                 debatersInTier.sort((a, b) => {
                     const indexA = midTierCustomOrder.indexOf(a.name);
                     const indexB = midTierCustomOrder.indexOf(b.name);
                     if (indexA === -1 || indexB === -1) {
-                        return a.name.localeCompare(b.name); // Sortir alfabetis jika tidak di custom order
+                        return a.name.localeCompare(b.name);
                     }
                     return indexA - indexB;
                 });
@@ -836,7 +857,7 @@ function renderComparePage() {
                     {
                         label: debater1.name,
                         data: data1,
-                        backgroundColor: 'rgba(54, 162, 235, 0.4)', // Warna biru default Chart.js
+                        backgroundColor: 'rgba(54, 162, 235, 0.4)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(54, 162, 235, 1)',
@@ -847,7 +868,7 @@ function renderComparePage() {
                     {
                         label: debater2.name,
                         data: data2,
-                        backgroundColor: 'rgba(255, 99, 132, 0.4)', // Warna merah default Chart.js
+                        backgroundColor: 'rgba(255, 99, 132, 0.4)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(255, 99, 132, 1)',
@@ -869,7 +890,7 @@ function renderComparePage() {
                             color: 'rgba(255, 255, 255, 0.3)'
                         },
                         pointLabels: {
-                            color: 'var(--white-text-color)', // Menggunakan variabel CSS untuk konsistensi
+                            color: 'var(--white-text-color)',
                             font: {
                                 size: 12
                             }
@@ -878,7 +899,7 @@ function renderComparePage() {
                             beginAtZero: true,
                             max: 10,
                             stepSize: 2,
-                            color: 'var(--light-grey)', // Menggunakan variabel CSS
+                            color: 'var(--light-grey)',
                             backdropColor: 'transparent',
                             showLabelBackdrop: false
                         }
@@ -887,7 +908,7 @@ function renderComparePage() {
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'var(--white-text-color)' // Menggunakan variabel CSS
+                            color: 'var(--white-text-color)'
                         }
                     },
                     tooltip: {
@@ -915,12 +936,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navLinks = document.querySelectorAll('.main-nav ul li a');
     navLinks.forEach(link => {
-        // Hapus trailing slash dari pathname link dan currentPath untuk perbandingan yang lebih baik
         const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
         const cleanedCurrentPath = currentPath.replace(/\/$/, '');
 
-        // Logika untuk link 'Beranda' yang mungkin di root '/' atau '/index.html'
-        // Jika currentPath adalah '/', linkPath '/index.html' akan dianggap aktif, dan sebaliknya
         const isHomeActive = (cleanedCurrentPath === '/index.html' || cleanedCurrentPath === '') && (linkPath === '/index.html' || linkPath === '');
 
         if (isHomeActive || (cleanedCurrentPath !== '' && cleanedCurrentPath === linkPath)) {
@@ -929,7 +947,6 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.remove('active');
         }
     });
-
 
     if (currentPath.endsWith('/') || currentPath.endsWith('index.html')) {
         startCountdown();
