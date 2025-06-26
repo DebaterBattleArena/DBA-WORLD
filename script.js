@@ -9,6 +9,8 @@ const debatesData = [
             "photo": "IMG_0524.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
+            "height": "170 CM | 5'57 FT", // Contoh data tinggi
+            "weight": "67 KG | 147,7 LBS", // Contoh data berat
             "profile": {
                 "Rhetoric": "9/10",
                 "Typing Structure": "9/10",
@@ -30,6 +32,8 @@ const debatesData = [
             "photo": "IMG_0523.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
+            "height": "165 CM | 5'40 FT",
+            "weight": "60 KG | 132,2 LBS",
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -41,7 +45,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Mid Tier",
+            "tier": "Mid Tier", // Renji diatur ke Mid Tier
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -64,6 +68,8 @@ const debatesData = [
             "photo": "IMG_0526.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
+            "height": "180 CM | 5'90 FT",
+            "weight": "75 KG | 165,3 LBS",
             "profile": {
                 "Rhetoric": "6/10",
                 "Typing Structure": "5/10",
@@ -85,6 +91,8 @@ const debatesData = [
             "photo": "IMG_0530.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
+            "height": "178 CM | 5'84 FT",
+            "weight": "72 KG | 158,7 LBS",
             "profile": {
                 "Rhetoric": "5/10",
                 "Typing Structure": "5/10",
@@ -119,6 +127,8 @@ const debatesData = [
             "photo": "IMG_0525.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
+            "height": "175 CM | 5'74 FT",
+            "weight": "65 KG | 143,3 LBS",
             "profile": {
                 "Rhetoric": "8/10",
                 "Typing Structure": "7/10",
@@ -140,6 +150,8 @@ const debatesData = [
             "photo": "IMG_0527.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
+            "height": "170 CM | 5'57 FT",
+            "weight": "63 KG | 138,8 LBS",
             "profile": {
                 "Rhetoric": "4/10",
                 "Typing Structure": "5/10",
@@ -174,6 +186,8 @@ const debatesData = [
             "photo": "IMG_0555.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
+            "height": "176 CM | 5'77 FT", // Data tinggi dan berat untuk Ranzt
+            "weight": "67 KG | 147,7 LBS",
             "profile": {
                 "Rhetoric": "10/10",
                 "Typing Structure": "10/10",
@@ -195,6 +209,8 @@ const debatesData = [
             "photo": "IMG_0556.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
+            "height": "172 CM | 5'64 FT",
+            "weight": "68 KG | 149,9 LBS",
             "profile": {
                 "Rhetoric": "8.5/10",
                 "Typing Structure": "8/10",
@@ -229,6 +245,8 @@ const debatesData = [
             "photo": "IMG_0819.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
+            "height": "160 CM | 5'25 FT",
+            "weight": "55 KG | 121,2 LBS",
             "profile": {
                 "Rhetoric": "1/10",
                 "Typing Structure": "1/10",
@@ -250,6 +268,8 @@ const debatesData = [
             "photo": "IMG_0820.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
+            "height": "168 CM | 5'51 FT",
+            "weight": "62 KG | 136,7 LBS",
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -461,31 +481,29 @@ function renderProfilePage() {
 
     const profileCard = document.querySelector('.profile-card');
 
-    // Elemen-elemen baru untuk header visual
-    const profileMainAvatar = profileCard.querySelector('.profile-main-avatar');
-    const profileDivision = profileCard.querySelector('.profile-division-status .tier-value');
+    // Elemen-elemen yang baru dan disesuaikan untuk layout Byon
+    const profileDebaterImage = profileCard.querySelector('.profile-debater-image');
+    const divisionText = profileCard.querySelector('.profile-division-status .division-text'); // Class baru
     const profileName = profileCard.querySelector('.profile-name');
-    const profileCountryFlag = profileCard.querySelector('.profile-country-info .profile-flag-icon');
-    const profileCountryName = profileCard.querySelector('.profile-country-info .country-name');
+    const countryText = profileCard.querySelector('.profile-country-info .country-text'); // Class baru
+    const profileFlagIcon = profileCard.querySelector('.profile-country-info .profile-flag-icon');
+    const heightValue = profileCard.querySelector('.profile-stat-item .height-value');
+    const weightValue = profileCard.querySelector('.profile-stat-item .weight-value');
 
-    // Elemen-elemen untuk rekor
-    const totalRecordWin = profileCard.querySelector('.record-box.total-record .win-stat');
-    const totalRecordLoss = profileCard.querySelector('.record-box.total-record .loss-stat');
-    const totalRecordDraw = profileCard.querySelector('.record-box.total-record .draw-stat');
-    const specialCategoryRecordWin = profileCard.querySelector('.record-box.special-category-record .win-stat');
-    const specialCategoryRecordLoss = profileCard.querySelector('.record-box.special-category-record .loss-stat');
-    const specialCategoryRecordDraw = profileCard.querySelector('.record-box.special-category-record .draw-stat');
+    const fightRecordWinNumber = profileCard.querySelector('.profile-fight-record .win-number');
+    const fightRecordLossNumber = profileCard.querySelector('.profile-fight-record .loss-number');
+    const fightRecordDrawNumber = profileCard.querySelector('.profile-fight-record .draw-number');
 
-    // Elemen-elemen bagian bawah
+    // Elemen-elemen bagian bawah (tetap sama)
     const matchHistoryList = profileCard.querySelector('.match-history-list');
     const achievementsTableBody = profileCard.querySelector('.achievements-table tbody');
     const statsList = profileCard.querySelector('.stats-list');
 
-    // Pastikan semua elemen ditemukan
-    if (!profileCard || !profileMainAvatar || !profileDivision || !profileName || !profileCountryFlag || !profileCountryName ||
-        !totalRecordWin || !totalRecordLoss || !totalRecordDraw || !specialCategoryRecordWin || !specialCategoryRecordLoss || !specialCategoryRecordDraw ||
+    // Pastikan semua elemen penting ditemukan
+    if (!profileCard || !profileDebaterImage || !divisionText || !profileName || !countryText || !profileFlagIcon ||
+        !heightValue || !weightValue || !fightRecordWinNumber || !fightRecordLossNumber || !fightRecordDrawNumber ||
         !matchHistoryList || !achievementsTableBody || !statsList) {
-        console.error("Salah satu elemen profil tidak ditemukan di DOM. Periksa kembali HTML.");
+        console.error("Satu atau lebih elemen profil tidak ditemukan di DOM. Periksa kembali HTML profile.html.");
         profileCard.innerHTML = `<p style="color: red;">Terjadi kesalahan dalam memuat elemen profil. Mohon periksa konsol browser.</p>`;
         return;
     }
@@ -497,42 +515,44 @@ function renderProfilePage() {
 
     const debater = allDebaters[debaterName];
 
-    if (!debater || !debater.profile) {
-        profileCard.innerHTML = `<p style="color: red;">Profil untuk ${debaterName} tidak ditemukan atau data tidak lengkap.</p>`;
+    if (!debater) { // Cek apakah debater itu sendiri ada
+        profileCard.innerHTML = `<p style="color: red;">Profil untuk ${debaterName} tidak ditemukan dalam data.</p>`;
         return;
     }
 
     // Mengisi data ke elemen HTML
-    profileMainAvatar.src = debater.photo;
-    profileMainAvatar.alt = `Foto ${debater.name}`;
+    profileDebaterImage.src = debater.photo;
+    profileDebaterImage.alt = `Foto ${debater.name}`;
 
-    profileDivision.textContent = debater.tier.toUpperCase();
+    divisionText.textContent = debater.tier.toUpperCase(); // Contoh: "MID TIER"
     profileName.textContent = debater.name;
 
-    profileCountryFlag.src = debater.flag;
-    profileCountryFlag.alt = `Bendera ${debater.country}`;
-    profileCountryName.textContent = debater.country.toUpperCase();
+    countryText.textContent = debater.country.toUpperCase();
+    profileFlagIcon.src = debater.flag;
+    profileFlagIcon.alt = `Bendera ${debater.country}`;
 
-    // Mengisi rekor pertandingan
+    heightValue.textContent = debater.height || 'N/A'; // Tambahkan ini
+    weightValue.textContent = debater.weight || 'N/A'; // Tambahkan ini
+
+    // Mengisi rekor pertandingan (Fight Record)
     if (debater.fightRecord) {
-        totalRecordWin.textContent = debater.fightRecord.win;
-        totalRecordLoss.textContent = debater.fightRecord.loss;
-        totalRecordDraw.textContent = debater.fightRecord.draw;
-    }
-    if (debater.boxingRecord) {
-        specialCategoryRecordWin.textContent = debater.boxingRecord.win;
-        specialCategoryRecordLoss.textContent = debater.boxingRecord.loss;
-        specialCategoryRecordDraw.textContent = debater.boxingRecord.draw;
+        fightRecordWinNumber.textContent = debater.fightRecord.win;
+        fightRecordLossNumber.textContent = debater.fightRecord.loss;
+        fightRecordDrawNumber.textContent = debater.fightRecord.draw;
+    } else {
+        fightRecordWinNumber.textContent = '0';
+        fightRecordLossNumber.textContent = '0';
+        fightRecordDrawNumber.textContent = '0';
     }
 
-    // Mengisi DBA Record
+    // Mengisi DBA Record (Match History)
     let matchHistoryHtml = '';
     if (debater.matchHistory && debater.matchHistory.length > 0) {
-        debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date)); // Urutkan dari terbaru
+        debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
         debater.matchHistory.forEach(match => {
             const resultClass = match.result === "Win" ? "win" : "loss";
             const opponentDebater = allDebaters[match.opponent];
-            const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg'; // Ganti dengan placeholder default jika tidak ada
+            const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg';
 
             matchHistoryHtml += `
                 <div class="dba-record-item ${resultClass}">
@@ -620,13 +640,13 @@ function renderRankingPage() {
         if (debatersInTier && debatersInTier.length > 0) {
             if (tierName === "Mid Tier") {
                 // Sorting khusus untuk Mid Tier
-                const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI", "MUCHIBEI", "ZOGRATIS", "ARYANWT"]; // Tambahkan semua debater Mid Tier di sini
+                // Pastikan semua debater di Mid Tier ada di sini, atau mereka akan di akhir
+                const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"];
                 debatersInTier.sort((a, b) => {
                     const indexA = midTierCustomOrder.indexOf(a.name);
                     const indexB = midTierCustomOrder.indexOf(b.name);
-                    // Jika ada debater yang tidak ada di custom order, sortir berdasarkan nama
                     if (indexA === -1 || indexB === -1) {
-                        return a.name.localeCompare(b.name);
+                        return a.name.localeCompare(b.name); // Sortir alfabetis jika tidak di custom order
                     }
                     return indexA - indexB;
                 });
