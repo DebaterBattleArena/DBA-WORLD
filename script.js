@@ -4,18 +4,24 @@ const debatesData = [
         "id": "debate-001",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-15",
-        "matchBanner": "4ba98405-9174-4806-86b0-48db675ff249.jpeg", // <-- Path gambar match banner
+        "matchBanner": "4ba98405-9174-4806-86b0-48db675ff249.jpeg", // Path gambar match banner
         "debater1": {
             "name": "HIROO",
-            "photo": "IMG_0524.jpeg", // Foto ini tetap ada untuk profil, tapi tidak di jadwal debat
+            "photo": "IMG_0524.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
             "vbWiki": "Outerversal+",
             "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "9/10", "Typing Structure": "9/10", "Critical Thinking": "10/10",
-                "Logical Fallacies": "0/10", "Typing Strenght": "9/10", "Tiering Sistem": "8/10",
-                "Calculation": "8/10", "Philisophy": "9/10", "General Knowledge": "10/10"
+                "Rhetoric": "9/10",
+                "Typing Structure": "9/10",
+                "Critical Thinking": "10/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "9/10",
+                "Tiering Sistem": "8/10",
+                "Calculation": "8/10",
+                "Philisophy": "9/10",
+                "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -30,9 +36,15 @@ const debatesData = [
             "vbWiki": "Low 1-A",
             "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "3/10", "Typing Structure": "2/10", "Critical Thinking": "1/10",
-                "Logical Fallacies": "0/10", "Typing Strenght": "1/10", "Tiering Sistem": "1/10",
-                "Calculation": "0/10", "Philisophy": "0/10", "General Knowledge": "1/10"
+                "Rhetoric": "3/10",
+                "Typing Structure": "2/10",
+                "Critical Thinking": "1/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "1/10",
+                "Tiering Sistem": "1/10",
+                "Calculation": "0/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "1/10"
             },
             "tier": "Mid Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
@@ -47,7 +59,7 @@ const debatesData = [
         "id": "debate-002",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-10",
-        "matchBanner": "5c6e6c7b-dc86-4ca3-a496-6b0d34eefa77.jpeg", // <-- Path gambar match banner
+        "matchBanner": "5c6e6c7b-dc86-4ca3-a496-6b0d34eefa77.jpeg", // Path gambar match banner
         "debater1": {
             "name": "ZOGRATIS",
             "photo": "IMG_0526.jpeg",
@@ -56,9 +68,15 @@ const debatesData = [
             "vbWiki": "Boundless",
             "ibr": "Beyond Dimensionality",
             "profile": {
-                "Rhetoric": "6/10", "Typing Structure": "5/10", "Critical Thinking": "7/10",
-                "Logical Fallacies": "3/10", "Typing Strenght": "5/10", "Tiering Sistem": "6/10",
-                "Calculation": "2/10", "Philisophy": "0/10", "General Knowledge": "7/10"
+                "Rhetoric": "6/10",
+                "Typing Structure": "5/10",
+                "Critical Thinking": "7/10",
+                "Logical Fallacies": "3/10",
+                "Typing Strenght": "5/10",
+                "Tiering Sistem": "6/10",
+                "Calculation": "2/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "7/10"
             },
             "tier": "High Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -73,9 +91,15 @@ const debatesData = [
             "vbWiki": "Low 1-A",
             "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "5/10", "Typing Structure": "5/10", "Critical Thinking": "7/10",
-                "Logical Fallacies": "2/10", "Typing Strenght": "7/10", "Tiering Sistem": "4/10",
-                "Calculation": "4/10", "Philisophy": "0/10", "General Knowledge": "8/10"
+                "Rhetoric": "5/10",
+                "Typing Structure": "5/10",
+                "Critical Thinking": "7/10",
+                "Logical Fallacies": "2/10",
+                "Typing Strenght": "7/10",
+                "Tiering Sistem": "4/10",
+                "Calculation": "4/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "8/10"
             },
             "tier": "High Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
@@ -90,7 +114,7 @@ const debatesData = [
         "id": "debate-003",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-05",
-        "matchBanner": "0fa5d532-e863-4322-aefd-31e538cf2bcc.jpeg", // <-- Path gambar match banner
+        "matchBanner": "0fa5d532-e863-4322-aefd-31e538cf2bcc.jpeg", // Path gambar match banner
         "debater1": {
             "name": "ARYANWT",
             "photo": "IMG_0525.jpeg",
@@ -99,9 +123,15 @@ const debatesData = [
             "vbWiki": "Low 1-A",
             "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "8/10", "Typing Structure": "7/10", "Critical Thinking": "9/10",
-                "Logical Fallacies": "1/10", "Typing Strenght": "7/10", "Tiering Sistem": "9/10",
-                "Calculation": "0/10", "Philisophy": "7/10", "General Knowledge": "10/10"
+                "Rhetoric": "8/10",
+                "Typing Structure": "7/10",
+                "Critical Thinking": "9/10",
+                "Logical Fallacies": "1/10",
+                "Typing Strenght": "7/10",
+                "Tiering Sistem": "9/10",
+                "Calculation": "0/10",
+                "Philisophy": "7/10",
+                "General Knowledge": "10/10"
             },
             "tier": "Low Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -116,9 +146,15 @@ const debatesData = [
             "vbWiki": "High 1-B",
             "ibr": "Low 1-A",
             "profile": {
-                "Rhetoric": "4/10", "Typing Structure": "5/10", "Critical Thinking": "4.5/10",
-                "Logical Fallacies": "2/10", "Typing Strenght": "3.5/10", "Tiering Sistem": "4.3/10",
-                "Calculation": "3.6/10", "Philisophy": "3/10", "General Knowledge": "7/10"
+                "Rhetoric": "4/10",
+                "Typing Structure": "5/10",
+                "Critical Thinking": "4.5/10",
+                "Logical Fallacies": "2/10",
+                "Typing Strenght": "3.5/10",
+                "Tiering Sistem": "4.3/10",
+                "Calculation": "3.6/10",
+                "Philisophy": "3/10",
+                "General Knowledge": "7/10"
             },
             "tier": "Low Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
@@ -133,7 +169,7 @@ const debatesData = [
         "id": "debate-004",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-01",
-        "matchBanner": "79194c7a-6e34-4bbd-a21e-9e9c918c4707.jpeg", // <-- Path gambar match banner
+        "matchBanner": "79194c7a-6e34-4bbd-a21e-9e9c918c4707.jpeg", // Path gambar match banner
         "debater1": {
             "name": "RANZT",
             "photo": "IMG_0555.jpeg",
@@ -142,9 +178,15 @@ const debatesData = [
             "vbWiki": "Outerversal+",
             "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "10/10", "Typing Structure": "10/10", "Critical Thinking": "10/10",
-                "Logical Fallacies": "10/10", "Typing Strenght": "9/10", "Tiering Sistem": "8/10",
-                "Calculation": "5/10", "Philisophy": "9/10", "General Knowledge": "10/10"
+                "Rhetoric": "10/10",
+                "Typing Structure": "10/10",
+                "Critical Thinking": "10/10",
+                "Logical Fallacies": "10/10",
+                "Typing Strenght": "9/10",
+                "Tiering Sistem": "8/10",
+                "Calculation": "5/10",
+                "Philisophy": "9/10",
+                "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -159,9 +201,15 @@ const debatesData = [
             "vbWiki": "Low 1-A",
             "ibr": "High 1-A",
             "profile": {
-                "Rhetoric": "8.5/10", "Typing Structure": "8/10", "Critical Thinking": "7/10",
-                "Logical Fallacies": "6/10", "Typing Strenght": "5/10", "Tiering Sistem": "5/10",
-                "Calculation": "7/10", "Philisophy": "4/10", "General Knowledge": "10/10"
+                "Rhetoric": "8.5/10",
+                "Typing Structure": "8/10",
+                "Critical Thinking": "7/10",
+                "Logical Fallacies": "6/10",
+                "Typing Strenght": "5/10",
+                "Tiering Sistem": "5/10",
+                "Calculation": "7/10",
+                "Philisophy": "4/10",
+                "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
@@ -176,7 +224,7 @@ const debatesData = [
         "id": "debate-005",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-26",
-        "matchBanner": "cdf5db1e-6410-4df1-a920-6d4f4e41b412.jpeg", // <-- Path gambar match banner
+        "matchBanner": "cdf5db1e-6410-4df1-a920-6d4f4e41b412.jpeg", // Path gambar match banner
         "debater1": {
             "name": "Thinzel",
             "photo": "IMG_0819.jpeg",
@@ -185,9 +233,15 @@ const debatesData = [
             "vbWiki": "High 1-B",
             "ibr": "Low 1-A",
             "profile": {
-                "Rhetoric": "1/10", "Typing Structure": "1/10", "Critical Thinking": "2/10",
-                "Logical Fallacies": "0/10", "Typing Strenght": "1/10", "Tiering Sistem": "2/10",
-                "Calculation": "0/10", "Philisophy": "0/10", "General Knowledge": "0/10"
+                "Rhetoric": "1/10",
+                "Typing Structure": "1/10",
+                "Critical Thinking": "2/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "1/10",
+                "Tiering Sistem": "2/10",
+                "Calculation": "0/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "0/10"
             },
             "tier": "Low Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
@@ -202,9 +256,15 @@ const debatesData = [
             "vbWiki": "Low 1-C",
             "ibr": "High 1-B",
             "profile": {
-                "Rhetoric": "3/10", "Typing Structure": "2/10", "Critical Thinking": "1/10",
-                "Logical Fallacies": "0/10", "Typing Strenght": "4/10", "Tiering Sistem": "1/10",
-                "Calculation": "0/10", "Philisophy": "0/10", "General Knowledge": "1/10"
+                "Rhetoric": "3/10",
+                "Typing Structure": "2/10",
+                "Critical Thinking": "1/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "4/10",
+                "Tiering Sistem": "1/10",
+                "Calculation": "0/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "1/10"
             },
             "tier": "Low Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
@@ -357,28 +417,54 @@ function loadAndRenderDebatesForIndexPage() {
             `;
         }
 
-        // Menggunakan debate.type untuk topik
         const matchTopicText = debate.type ? debate.type.toUpperCase() : 'NO TOPIC'; 
 
         htmlContent += `
             <div class="match-card">
-                <div class="match-image-container">
-                    <img src="${debate.matchBanner}" alt="Debat antara ${debate.debater1.name} vs ${debate.debater2.name}" class="match-banner-img">
-                    <div class="match-category-label">${debate.category.toUpperCase()} | ${debate.type.toUpperCase()}</div>
-                </div>
-                <div class="match-details-bottom">
-                    <div class="debater-names-row">
-                        <span class="debater-name-left">${debate.debater1.name.toUpperCase()}</span>
-                        <span class="match-vs-text">VS</span>
-                        <span class="debater-name-right">${debate.debater2.name.toUpperCase()}</span>
+                <a href="#" class="match-card-link"> <div class="match-image-container">
+                        <img src="${debate.matchBanner}" alt="Debat antara ${debate.debater1.name} vs ${debate.debater2.name}" class="match-banner-img">
+                        <div class="match-category-label">${debate.category.toUpperCase()} | ${debate.type.toUpperCase()}</div>
                     </div>
-                    <p class="match-topic">${matchTopicText}</p>
-                </div>
+                    <div class="match-details-bottom">
+                        <div class="debater-names-row">
+                            <div class="debater-entry">
+                                <span class="debater-name-left">${debate.debater1.name.toUpperCase()}</span>
+                                <img src="${debate.debater1.flag}" alt="Bendera ${debate.debater1.country}" class="flag-icon-small">
+                            </div>
+                            <span class="match-vs-text">VS</span>
+                            <div class="debater-entry">
+                                <span class="debater-name-right">${debate.debater2.name.toUpperCase()}</span>
+                                <img src="${debate.debater2.flag}" alt="Bendera ${debate.debater2.country}" class="flag-icon-small">
+                            </div>
+                        </div>
+                        <p class="match-topic">${matchTopicText}</p>
+                    </div>
+                </a>
                 ${resultSectionHtml}
             </div>
         `;
     });
     container.innerHTML = htmlContent;
+
+    // --- Tambahkan event listener untuk link debater di match-card (Jadwal Debat) ---
+    // Karena sekarang seluruh kartu adalah link, kita harus menghandle klik internal
+    // untuk nama debater agar bisa navigasi ke profil.
+    // Jika kita ingin seluruh kartu mengarah ke halaman detail pertandingan,
+    // maka logic ini tidak perlu dan link 'a' pada nama debater bisa dihapus.
+    // Namun, jika tujuannya adalah nama debater mengarah ke profil, dan klik di luar nama debater
+    // mengarah ke halaman detail pertandingan (yang belum ada), maka logic ini penting.
+    // Untuk tujuan sekarang (klik nama ke profil), kita bisa biarkan `match-card-link` ke `#`
+    // atau ke halaman detail pertandingan yang dummy, dan event di bawah menangani nama debater.
+
+    document.querySelectorAll('.match-card .debater-name-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            // Hentikan event klik default dari link debater agar tidak langsung navigasi
+            // Ini akan ditangani oleh browser secara native karena ini adalah link A
+            // Tapi kita bisa mencegah bubble up ke parent .match-card-link jika ada
+            event.stopPropagation();
+            // Navigasi akan dilakukan oleh browser secara otomatis karena ini tag <a>
+        });
+    });
 }
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN PROFIL (UNTUK profile.html) ======
