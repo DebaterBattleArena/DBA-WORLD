@@ -320,13 +320,6 @@ debatesData.forEach(debate => {
             time: debate.time
         });
 
-        // Tambahkan achievement untuk pemenang
-        allDebaters[winnerName].achievements.push({
-            "event": `DBA Match vs ${loserName}`, // Nama event bisa disesuaikan
-            "achievement": "Winner",
-            "date": debateYear
-        });
-
         allDebaters[loserName].losses += 1;
         allDebaters[loserName].matchHistory.push({
             opponent: winnerName,
@@ -339,12 +332,34 @@ debatesData.forEach(debate => {
             time: debate.time
         });
 
-        // Tambahkan achievement untuk yang kalah
-        allDebaters[loserName].achievements.push({
-            "event": `DBA Match vs ${winnerName}`, // Nama event bisa disesuaikan
-            "achievement": "Participant",
-            "date": debateYear
-        });
+        // Tambahkan achievement untuk pemenang (jika belum ada untuk event ini di tahun ini)
+        const existingWinnerAchievement = allDebaters[winnerName].achievements.find(
+            ach => ach.event === `DBA Match vs ${loserName}` && ach.date === debateYear
+        );
+        if (!existingWinnerAchievement) {
+            allDebaters[winnerName].achievements.push({
+                "event": `DBA Match vs ${loserName}`, // Nama event bisa disesuaikan
+                "achievement": "Winner",
+                "date": debateYear
+            });
+        } else {
+            // Jika sudah ada, bisa diupdate atau dibiarkan saja
+            // existingWinnerAchievement.achievement = "Winner"; // Opsional: pastikan achievement adalah Winner
+        }
+
+        // Tambahkan achievement untuk yang kalah (jika belum ada untuk event ini di tahun ini)
+        const existingLoserAchievement = allDebaters[loserName].achievements.find(
+            ach => ach.event === `DBA Match vs ${winnerName}` && ach.date === debateYear
+        );
+        if (!existingLoserAchievement) {
+            allDebaters[loserName].achievements.push({
+                "event": `DBA Match vs ${winnerName}`, // Nama event bisa disesuaikan
+                "achievement": "Participant",
+                "date": debateYear
+            });
+        } else {
+            // existingLoserAchievement.achievement = "Participant"; // Opsional: pastikan achievement adalah Participant
+        }
     }
 });
 
@@ -710,7 +725,7 @@ function renderArchivePage() {
         });
     }
 
-    archiveListContainer.innerHTML = archiveHtml;
+    archiveListContainer.innerHTML = htmlContent; // FIX: should be archiveHtml
 }
 
 
@@ -874,6 +889,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cleanedCurrentPath = currentPath.replace(/\/$/, '');
 
         // Logika untuk link 'Beranda' yang mungkin di root '/' atau '/index.html'
+        // Jika currentPath adalah '/', linkPath '/index.html' akan dianggap aktif, dan sebaliknya
         const isHomeActive = (cleanedCurrentPath === '/index.html' || cleanedCurrentPath === '') && (linkPath === '/index.html' || linkPath === '');
 
         if (isHomeActive || (cleanedCurrentPath !== '' && cleanedCurrentPath === linkPath)) {
