@@ -9,9 +9,8 @@ const debatesData = [
             "photo": "IMG_0524.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            // Data baru
-            "vbWiki": "Outerversal+", // Contoh nilai untuk Versus Battle Wiki
-            "ibr": "High 1-A",      // Contoh nilai untuk Infinite Battle Reborn
+            "height": "170 CM | 5'57 FT",
+            "weight": "67 KG | 147,7 LBS",
             "profile": {
                 "Rhetoric": "9/10",
                 "Typing Structure": "9/10",
@@ -33,9 +32,8 @@ const debatesData = [
             "photo": "IMG_0523.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            // Data baru
-            "vbWiki": "Low 1-A",
-            "ibr": "High 1-A",
+            "height": "165 CM | 5'40 FT",
+            "weight": "60 KG | 132,2 LBS",
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -70,9 +68,8 @@ const debatesData = [
             "photo": "IMG_0526.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            // Data baru
-            "vbWiki": "Boundless",
-            "ibr": "Beyond Dimensionality",
+            "height": "180 CM | 5'90 FT",
+            "weight": "75 KG | 165,3 LBS",
             "profile": {
                 "Rhetoric": "6/10",
                 "Typing Structure": "5/10",
@@ -94,9 +91,8 @@ const debatesData = [
             "photo": "IMG_0530.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            // Data baru
-            "vbWiki": "Low 1-A",
-            "ibr": "High 1-A",
+            "height": "178 CM | 5'84 FT",
+            "weight": "72 KG | 158,7 LBS",
             "profile": {
                 "Rhetoric": "5/10",
                 "Typing Structure": "5/10",
@@ -131,9 +127,8 @@ const debatesData = [
             "photo": "IMG_0525.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            // Data baru
-            "vbWiki": "Low 1-A",
-            "ibr": "High 1-A",
+            "height": "175 CM | 5'74 FT",
+            "weight": "65 KG | 143,3 LBS",
             "profile": {
                 "Rhetoric": "8/10",
                 "Typing Structure": "7/10",
@@ -155,9 +150,8 @@ const debatesData = [
             "photo": "IMG_0527.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            // Data baru
-            "vbWiki": "High 1-B",
-            "ibr": "Low 1-A",
+            "height": "170 CM | 5'57 FT",
+            "weight": "63 KG | 138,8 LBS",
             "profile": {
                 "Rhetoric": "4/10",
                 "Typing Structure": "5/10",
@@ -192,9 +186,8 @@ const debatesData = [
             "photo": "IMG_0555.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            // Data baru
-            "vbWiki": "Outerversal+",
-            "ibr": "High 1-A",
+            "height": "176 CM | 5'77 FT",
+            "weight": "67 KG | 147,7 LBS",
             "profile": {
                 "Rhetoric": "10/10",
                 "Typing Structure": "10/10",
@@ -216,9 +209,8 @@ const debatesData = [
             "photo": "IMG_0556.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            // Data baru
-            "vbWiki": "Low 1-A",
-            "ibr": "High 1-A",
+            "height": "172 CM | 5'64 FT",
+            "weight": "68 KG | 149,9 LBS",
             "profile": {
                 "Rhetoric": "8.5/10",
                 "Typing Structure": "8/10",
@@ -253,9 +245,8 @@ const debatesData = [
             "photo": "IMG_0819.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            // Data baru
-            "vbWiki": "High 1-B",
-            "ibr": "Low 1-A",
+            "height": "160 CM | 5'25 FT",
+            "weight": "55 KG | 121,2 LBS",
             "profile": {
                 "Rhetoric": "1/10",
                 "Typing Structure": "1/10",
@@ -277,9 +268,8 @@ const debatesData = [
             "photo": "IMG_0820.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            // Data baru
-            "vbWiki": "Low 1-C",
-            "ibr": "High 1-B",
+            "height": "168 CM | 5'51 FT",
+            "weight": "62 KG | 136,7 LBS",
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -335,7 +325,7 @@ debatesData.forEach(debate => {
     if (debate.winner && debate.loser) {
         const winnerName = debate.winner.name;
         const loserName = debate.loser.name;
-        const debateYear = new Date(debate.date).getFullYear().toString(); // Ambil tahun saja, format sesuai Byon
+        const debateYear = new Date(debate.date).getFullYear().toString();
 
         // Update match history
         allDebaters[winnerName].wins += 1;
@@ -354,7 +344,7 @@ debatesData.forEach(debate => {
         allDebaters[loserName].matchHistory.push({
             opponent: winnerName,
             result: "Loss",
-            method: "", // Biasanya metode tidak relevan untuk yang kalah, bisa disesuaikan
+            method: "",
             date: debate.date,
             category: debate.category,
             id: debate.id,
@@ -362,33 +352,26 @@ debatesData.forEach(debate => {
             time: debate.time
         });
 
-        // Tambahkan achievement untuk pemenang (jika belum ada untuk event ini di tahun ini)
         const existingWinnerAchievement = allDebaters[winnerName].achievements.find(
             ach => ach.event === `DBA Match vs ${loserName}` && ach.date === debateYear
         );
         if (!existingWinnerAchievement) {
             allDebaters[winnerName].achievements.push({
-                "event": `DBA Match vs ${loserName}`, // Nama event bisa disesuaikan
+                "event": `DBA Match vs ${loserName}`,
                 "achievement": "Winner",
                 "date": debateYear
             });
-        } else {
-            // Jika sudah ada, bisa diupdate atau dibiarkan saja
-            // existingWinnerAchievement.achievement = "Winner"; // Opsional: pastikan achievement adalah Winner
         }
 
-        // Tambahkan achievement untuk yang kalah (jika belum ada untuk event ini di tahun ini)
         const existingLoserAchievement = allDebaters[loserName].achievements.find(
             ach => ach.event === `DBA Match vs ${winnerName}` && ach.date === debateYear
         );
         if (!existingLoserAchievement) {
             allDebaters[loserName].achievements.push({
-                "event": `DBA Match vs ${winnerName}`, // Nama event bisa disesuaikan
-                "achievement": "Participant", // Atau "Loser"
+                "event": `DBA Match vs ${winnerName}`,
+                "achievement": "Participant",
                 "date": debateYear
             });
-        } else {
-            // existingLoserAchievement.achievement = "Participant"; // Opsional: pastikan achievement adalah Participant
         }
     }
 });
@@ -402,8 +385,7 @@ Object.values(allDebaters).forEach(debater => {
 
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
-    // Tanggal target: 1 Juli 2025, 10:00 AM WIB (sesuai lokasi Indonesia)
-    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime(); // +07:00 untuk WIB
+    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime();
 
     const countdownInterval = setInterval(function() {
         const currentTime = new Date().getTime();
@@ -445,17 +427,19 @@ function loadAndRenderDebatesForIndexPage() {
     let htmlContent = '';
 
     debates.forEach(debate => {
-        const winnerInfo = debate.winner ? `
-            <div class="result-info winner">
-                <strong>Winner:</strong> ${debate.winner.name} by ${debate.winner.method}
-            </div>
-        ` : '';
-
-        const loserInfo = debate.loser ? `
-            <div class="result-info loser">
-                <strong>Loss:</strong> ${debate.loser.name}
-            </div>
-        ` : '';
+        let resultContainerHtml = '';
+        if (debate.winner && debate.loser) {
+            resultContainerHtml = `
+                <div class="result-info-container">
+                    <div class="result-info winner">
+                        <strong>Winner:</strong> ${debate.winner.name} by ${debate.winner.method}
+                    </div>
+                    <div class="result-info loser">
+                        <strong>Loss:</strong> ${debate.loser.name}
+                    </div>
+                </div>
+            `;
+        }
 
         htmlContent += `
             <div class="match-card">
@@ -476,8 +460,7 @@ function loadAndRenderDebatesForIndexPage() {
                         <span class="origin"><img src="${debate.debater2.flag}" alt="Bendera ${debate.debater2.country}" class="flag-icon"> ${debate.debater2.country.toUpperCase()}</span>
                     </div>
                 </div>
-                ${winnerInfo}
-                ${loserInfo}
+                ${resultContainerHtml}
             </div>
         `;
     });
@@ -491,7 +474,6 @@ function renderProfilePage() {
 
     const profileCard = document.querySelector('.profile-card');
 
-    // --- Selektor elemen profil yang diperbarui berdasarkan HTML terbaru ---
     const profileDebaterImage = profileCard.querySelector('.profile-debater-image');
     const divisionText = profileCard.querySelector('.profile-division-status .division-text');
     const profileName = profileCard.querySelector('.profile-name');
@@ -510,14 +492,14 @@ function renderProfilePage() {
     const achievementsTableBody = profileCard.querySelector('.achievements-table tbody');
     const statsList = profileCard.querySelector('.stats-list');
 
-    // --- Log untuk membantu debugging jika ada elemen yang null ---
+    // Log untuk membantu debugging jika ada elemen yang null
     console.log('profileDebaterImage:', profileDebaterImage);
     console.log('divisionText:', divisionText);
     console.log('profileName:', profileName);
     console.log('countryText:', countryText);
     console.log('profileFlagIcon:', profileFlagIcon);
-    console.log('vbWikiValue:', vbWikiValue); // Log baru
-    console.log('ibrValue:', ibrValue);     // Log baru
+    console.log('vbWikiValue:', vbWikiValue);
+    console.log('ibrValue:', ibrValue);
     console.log('fightRecordWinNumber:', fightRecordWinNumber);
     console.log('fightRecordLossNumber:', fightRecordLossNumber);
     console.log('fightRecordDrawNumber:', fightRecordDrawNumber);
@@ -525,9 +507,9 @@ function renderProfilePage() {
     console.log('achievementsTableBody:', achievementsTableBody);
     console.log('statsList:', statsList);
 
-    // --- Cek apakah semua elemen penting ditemukan. Jika tidak, tampilkan error. ---
+    // Cek apakah semua elemen penting ditemukan. Jika tidak, tampilkan error.
     if (!profileCard || !profileDebaterImage || !divisionText || !profileName || !countryText || !profileFlagIcon ||
-        !vbWikiValue || !ibrValue || // Cek elemen baru
+        !vbWikiValue || !ibrValue ||
         !fightRecordWinNumber || !fightRecordLossNumber || !fightRecordDrawNumber ||
         !matchHistoryList || !achievementsTableBody || !statsList) {
         console.error("ERROR: Satu atau lebih elemen profil tidak ditemukan di DOM. Mohon periksa kembali HTML profile.html dan selektor di script.js.");
@@ -552,7 +534,7 @@ function renderProfilePage() {
         return;
     }
 
-    // --- Mengisi data ke elemen HTML ---
+    // Mengisi data ke elemen HTML
     profileDebaterImage.src = debater.photo;
     profileDebaterImage.alt = `Foto ${debater.name}`;
 
@@ -563,9 +545,8 @@ function renderProfilePage() {
     profileFlagIcon.src = debater.flag;
     profileFlagIcon.alt = `Bendera ${debater.country}`;
 
-    // Mengisi nilai untuk Versus Battle Wiki dan Infinite Battle Reborn
-    vbWikiValue.textContent = debater.vbWiki || 'N/A'; // Ambil dari data, atau 'N/A'
-    ibrValue.textContent = debater.ibr || 'N/A';     // Ambil dari data, atau 'N/A'
+    vbWikiValue.textContent = debater.vbWiki || 'N/A';
+    ibrValue.textContent = debater.ibr || 'N/A';
 
     // Mengisi rekor pertandingan (Fight Record)
     if (debater.fightRecord) {
@@ -708,8 +689,8 @@ function renderRankingPage() {
             }
 
             rankingHtml += `
-                <h3 class="tier-heading">${tierName}</h3>
-                <div class="table-responsive">
+                <h3 class="ranking-tier-header">${tierName}</h3>
+                <div class="ranking-table-container">
                     <table class="ranking-table">
                         <thead>
                             <tr>
@@ -727,14 +708,14 @@ function renderRankingPage() {
                     <tr>
                         <td>${index + 1}</td>
                         <td>
-                            <div class="debater-cell">
+                            <div class="debater-info">
                                 <img src="${debater.photo}" alt="Foto ${debater.name}">
                                 <a href="profile.html?name=${encodeURIComponent(debater.name)}" class="debater-name">${debater.name}</a>
                             </div>
                         </td>
-                        <td>${debater.profile['Rhetoric']}</td>
-                        <td>${debater.profile['Critical Thinking']}</td>
-                        <td>${debater.profile['General Knowledge']}</td>
+                        <td class="skill-score"><span class="numerator">${debater.profile['Rhetoric'].split('/')[0]}</span>/${debater.profile['Rhetoric'].split('/')[1]}</td>
+                        <td class="skill-score"><span class="numerator">${debater.profile['Critical Thinking'].split('/')[0]}</span>/${debater.profile['Critical Thinking'].split('/')[1]}</td>
+                        <td class="skill-score"><span class="numerator">${debater.profile['General Knowledge'].split('/')[0]}</span>/${debater.profile['General Knowledge'].split('/')[1]}</td>
                     </tr>
                 `;
             });
@@ -756,7 +737,6 @@ function renderArchivePage() {
 
     const archivedDebates = debatesData.filter(debate => debate.winner && debate.loser);
 
-    // Urutkan arsip debat dari yang terbaru
     archivedDebates.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     let archiveHtml = '';
@@ -843,7 +823,6 @@ function renderComparePage() {
             return;
         }
 
-        // Pastikan chartCanvas ada di dalam chartArea
         chartArea.innerHTML = '';
         chartArea.appendChild(chartCanvas);
 
