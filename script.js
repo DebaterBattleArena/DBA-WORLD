@@ -198,6 +198,53 @@ const debatesData = [
     }
 ];
 
+        "id": "debate-005",
+        "category": "FICTIONAL DEBATE",
+        "date": "2025-06-15", // Tanggal debat ditambahkan
+        "debater1": {
+            "name": "Thinzel",
+            "photo": "Thinzeljpeg",  
+            "country": "indonesia",
+            "flag": "IMG_0417.png",   
+            "profile": {
+                "Rhetoric": "1/10",
+                "Typing Structure": "1/10",
+                "Critical Thinking": "2/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "1/10",
+                "Tiering Sistem": "2/10",
+                "Calculation": "0/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "0/10"
+            },
+  "tier": "Low Tier"
+        },
+        "debater2": {
+            "name": "Shade",
+            "photo": "Shade.jpeg",  
+            "country": "malaysia",
+            "flag": "IMG_0418.png",   
+            "profile": {
+                "Rhetoric": "3/10",
+                "Typing Structure": "2/10",
+                "Critical Thinking": "1/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "4/10",
+                "Tiering Sistem": "1/10",
+                "Calculation": "0/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "1/10"
+            },
+            "tier": "Low Tier" 
+        },
+        "type": "Low TIER DEBATE",  
+        "winner": {
+            "name": "Thinzel",
+            "method": "limit"
+        },
+        "loser": {
+            "name": "Shade"
+        
 // ====== Global variable to store all debater profiles and calculated stats for easy lookup ======
 let allDebaters = {}; 
 
