@@ -2,8 +2,9 @@
 :root {
     --primary-bg: #1A1A1A; /* Background gelap utama (mendekati hitam Byon) */
     --secondary-bg: #282828; /* Background elemen/section (sedikit lebih terang dari primary) */
-    --card-bg: #333333; /* Latar belakang card/modul (lebih terang lagi dari secondary) */
+    --card-bg-dark: #333333; /* Latar belakang card/modul gelap */
     --white-section-bg: #FFFFFF; /* NEW: Background putih untuk section tertentu */
+    --card-bg-light: #F9F9F9; /* NEW: Background card yang lebih terang (putih abu-abu) */
     --white-text-color: #F0F0F0; /* Warna teks putih utama */
     --dark-text-color: #333333; /* NEW: Warna teks gelap untuk di atas background putih */
     --highlight-color: #FF4500; /* Warna aksen/highlight (Oranye/Merah terang Byon) */
@@ -23,15 +24,15 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--primary-bg);
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     line-height: 1.6;
     overflow-x: hidden;
-    scroll-behavior: smooth; /* Untuk smooth scrolling saat klik link #id */
+    scroll-behavior: smooth;
 }
 
 /* Gaya umum untuk link */
 a {
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     text-decoration: none;
 }
 a:hover {
@@ -58,7 +59,7 @@ a:hover {
     margin: 0;
     font-family: var(--font-heading);
     font-size: 2.2em;
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     letter-spacing: 3px;
     text-transform: uppercase;
 }
@@ -66,7 +67,7 @@ a:hover {
     color: var(--highlight-color);
 }
 
-/* Gaya untuk Navigation Bar - PERBAIKAN UTAMA DI SINI */
+/* Gaya untuk Navigation Bar - PERBAIKAN LEBIH SPESIFIK */
 .main-nav {
     background-color: transparent;
     padding: 10px 0;
@@ -84,13 +85,13 @@ a:hover {
     margin: 0;
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap; /* Penting: Pastikan TIDAK wrap secara default di desktop */
-    overflow-x: auto; /* Memungkinkan scroll horizontal jika item terlalu banyak di layar sempit non-mobile */
-    -webkit-overflow-scrolling: touch; /* Untuk scrolling halus di iOS */
+    flex-wrap: nowrap; /* Pastikan TIDAK wrap secara default */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 .main-nav ul li {
     margin: 0 12px;
-    flex-shrink: 0; /* Penting: Mencegah item menyusut jika ruang terbatas */
+    flex-shrink: 0;
 }
 .main-nav ul li a {
     color: var(--light-grey);
@@ -98,23 +99,21 @@ a:hover {
     font-weight: normal;
     font-size: 0.9em;
     padding: 6px 0;
-    border-radius: 0;
     transition: all 0.3s ease;
-    white-space: nowrap; /* Mencegah teks link terpotong ke baris baru */
-    display: block;
+    white-space: nowrap;
+    display: inline-block; /* Penting: agar span active-underline bisa di luar flow teks tapi di dalam link */
     position: relative; /* Untuk memposisikan garis bawah */
 }
 .main-nav ul li a:hover {
     background-color: transparent;
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
 }
 
-/* Garis bawah aktif - Hanya muncul di link.active */
-.main-nav ul li a .active-underline { /* PENTING: targetkan span di dalam a */
+/* Garis bawah aktif - HANYA MUNCUL DI LINK AKTIF / HOVER */
+.main-nav ul li a .active-underline { /* Targetkan span di dalam a */
     position: absolute;
     bottom: -5px; /* Sesuaikan posisi vertikal garis bawah */
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0; /* Mulai dari kiri link */
     width: 0%; /* Awalnya lebar 0% */
     height: 3px;
     background-color: var(--highlight-color);
@@ -122,11 +121,9 @@ a:hover {
     transition: width 0.3s ease-out; /* Animasi lebar */
 }
 
-.main-nav ul li a.active .active-underline {
-    width: 100%; /* Lebar penuh saat aktif */
-}
-/* Pastikan hover juga mengaktifkan garis bawah jika diinginkan */
-.main-nav ul li a:hover .active-underline {
+/* Saat link memiliki kelas 'active' atau di-hover, lebar garis menjadi 100% */
+.main-nav ul li a.active .active-underline,
+.main-nav ul li a:hover .active-underline { /* Ini yang memunculkan garis */
     width: 100%;
 }
 
@@ -148,14 +145,14 @@ section {
 /* Class untuk section konten umum */
 .content-section {
     padding: 60px 20px;
-    max-width: 1200px; /* Batasi lebar konten */
-    margin: 0 auto; /* Pusatkan konten */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 section h2 {
     font-family: var(--font-heading);
     font-size: 2.5em;
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     text-transform: uppercase;
     margin-bottom: 30px;
     letter-spacing: 3px;
@@ -175,7 +172,7 @@ section p {
 }
 
 #about h2 {
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     margin-bottom: 25px;
 }
 
@@ -188,7 +185,7 @@ section p {
 }
 
 #about p strong {
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     font-weight: bold;
     letter-spacing: 0;
 }
@@ -245,7 +242,7 @@ section p {
 .event-showbiz-title {
     font-family: var(--font-heading);
     font-size: 3em;
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     text-transform: uppercase;
     letter-spacing: 4px;
     margin-bottom: 10px;
@@ -263,7 +260,7 @@ section p {
     font-family: var(--font-heading);
     font-size: 3em;
     text-transform: uppercase;
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
     margin-bottom: 10px;
 }
 .contestants .vs {
@@ -325,7 +322,7 @@ section p {
     letter-spacing: 0.5px;
 }
 .cta-button:hover {
-    background-color: #d83d00; /* Sedikit lebih gelap dari highlight */
+    background-color: #d83d00;
 }
 .cta-button .arrow {
     margin-left: 10px;
@@ -366,13 +363,13 @@ section p {
 #achievement h2 {
     width: 100%;
     margin-bottom: 40px;
-    color: var(--white-text-color); /* Ubah ke white-text-color */
+    color: var(--white-text-color);
 }
 .achievement-item {
     margin-bottom: 0;
     flex: 1 1 200px;
     max-width: 250px;
-    background-color: var(--card-bg);
+    background-color: var(--card-bg-dark); /* Ubah ke card-bg-dark */
     padding: 20px 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -415,7 +412,7 @@ section p {
 }
 /* Gaya untuk match card di dalam jadwal debat */
 .match-card {
-    background-color: #f9f9f9; /* Latar belakang card debat (putih sedikit abu-abu) */
+    background-color: var(--card-bg-light); /* Latar belakang card debat (putih sedikit abu-abu) */
     border-radius: 8px;
     padding: 20px;
     display: flex;
@@ -435,7 +432,7 @@ section p {
 .match-header .category, .match-header .type {
     font-family: var(--font-body);
     font-size: 0.9em;
-    color: var(--dark-grey-text); /* Teks gelap */
+    color: var(--dark-grey-text);
     text-transform: uppercase;
     letter-spacing: 1px;
     display: inline-block;
@@ -474,7 +471,7 @@ section p {
 .debater-info .name {
     font-family: var(--font-heading);
     font-size: 1.5em;
-    color: var(--dark-text-color); /* Teks gelap */
+    color: var(--dark-text-color);
     text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;
@@ -486,7 +483,7 @@ section p {
     display: flex;
     align-items: center;
     gap: 5px;
-    color: var(--dark-grey-text); /* Teks gelap */
+    color: var(--dark-grey-text);
     font-size: 0.8em;
 }
 .debater-info .flag-icon {
@@ -498,7 +495,7 @@ section p {
 .match-vs {
     font-family: var(--font-heading);
     font-size: 2.5em;
-    color: var(--dark-grey-text); /* Teks gelap */
+    color: var(--dark-grey-text);
     margin: 0 15px;
     opacity: 0.7;
 }
@@ -511,7 +508,7 @@ section p {
     padding-top: 15px;
     width: 100%;
     text-align: center;
-    border-top: 1px dashed #ddd; /* Garis pemisah abu-abu */
+    border-top: 1px dashed #ddd;
 }
 .result-info.winner {
     color: var(--win-color);
@@ -639,7 +636,7 @@ footer a:hover {
 
 .profile-division {
     font-size: 0.9em;
-    color: var(--dark-grey-text); /* NEW: Teks gelap */
+    color: var(--dark-grey-text);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 5px;
@@ -652,7 +649,7 @@ footer a:hover {
 .profile-name {
     font-family: var(--font-heading);
     font-size: 3em;
-    color: var(--dark-text-color); /* NEW: Teks gelap */
+    color: var(--dark-text-color);
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -660,7 +657,7 @@ footer a:hover {
 
 .profile-country {
     font-size: 1.1em;
-    color: var(--dark-grey-text); /* NEW: Teks gelap */
+    color: var(--dark-grey-text);
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -685,7 +682,7 @@ footer a:hover {
 }
 
 .record-box {
-    background-color: #F0F0F0; /* NEW: Sedikit abu-abu terang untuk box record */
+    background-color: var(--card-bg-light); /* NEW: Sedikit abu-abu terang untuk box record */
     color: var(--dark-text-color);
     padding: 15px;
     border-radius: 5px;
@@ -742,7 +739,7 @@ footer a:hover {
 
 /* DBA Record (Match History di halaman profil) */
 .dba-record-item {
-    background-color: #F0F0F0; /* NEW: Background sedikit abu-abu terang */
+    background-color: var(--card-bg-light); /* NEW: Background sedikit abu-abu terang */
     padding: 15px 20px;
     border-radius: 5px;
     display: flex;
@@ -821,7 +818,7 @@ footer a:hover {
 .achievements-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #F0F0F0; /* NEW: Background putih agak abu-abu */
+    background-color: var(--card-bg-light); /* NEW: Background putih agak abu-abu */
     border-radius: 5px;
     overflow: hidden;
     color: var(--dark-text-color);
@@ -863,7 +860,7 @@ footer a:hover {
 }
 
 .stats-list li {
-    background-color: #F0F0F0; /* NEW: Background putih agak abu-abu */
+    background-color: var(--card-bg-light); /* NEW: Background putih agak abu-abu */
     padding: 10px 20px;
     margin-bottom: 8px;
     border-radius: 5px;
@@ -933,7 +930,7 @@ footer a:hover {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid rgba(0,0,0,0.08);
-    color: var(--dark-text-color); /* NEW: Teks gelap */
+    color: var(--dark-text-color);
 }
 
 .ranking-table th {
@@ -982,7 +979,7 @@ footer a:hover {
 }
 
 .archive-item {
-    background-color: var(--secondary-bg); /* Tetap gelap untuk item arsip */
+    background-color: var(--secondary-bg);
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
@@ -1406,7 +1403,7 @@ footer a:hover {
     }
     #match-list { /* Desktop: jadwal debat */
         margin: 20px auto;
-        padding: 50px; /* Padding lebih besar di desktop */
+        padding: 50px;
     }
     .match-card {
         flex-direction: column;
