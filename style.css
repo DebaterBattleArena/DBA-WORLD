@@ -494,18 +494,43 @@ section p {
     color: var(--white-text-color);
     font-weight: 700;
     text-transform: uppercase;
-    display: flex;
+    display: flex; /* Untuk menempatkan debater-entry dan VS sejajar */
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; /* Untuk wrapping di mobile jika nama panjang */
     line-height: 1.2;
+    gap: 8px; /* Jarak antar debater-entry dan VS */
+}
+
+.debater-entry {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Jarak antara nama dan bendera */
+}
+
+.debater-name-link {
+    color: var(--white-text-color); /* Warna link nama */
+    text-decoration: none;
+    font-weight: inherit; /* Ikuti font-weight dari parent */
+    text-transform: inherit; /* Ikuti uppercase dari parent */
+    transition: color 0.3s ease;
+}
+.debater-name-link:hover {
+    color: var(--highlight-color); /* Warna hover */
 }
 
 .match-vs-text {
     font-size: 0.7em; /* Ukuran VS lebih kecil relatif terhadap nama */
     color: var(--light-grey);
     opacity: 0.7;
-    margin: 0 10px; /* Jarak dari nama debater */
+    margin: 0 5px; /* Jarak dari nama debater */
+}
+
+.flag-icon-small {
+    width: 20px; /* Ukuran bendera */
+    height: 15px;
+    border-radius: 2px;
+    object-fit: cover;
 }
 
 .match-topic {
@@ -1245,6 +1270,11 @@ footer a:hover {
         flex-direction: column; /* Nama debater vertikal jika layar sempit */
         gap: 5px;
     }
+    .debater-entry { /* Agar flex-nya bisa bekerja di mobile */
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
     .match-vs-text {
         font-size: 0.8em;
         margin: 5px 0;
@@ -1461,9 +1491,23 @@ footer a:hover {
     }
     .debater-names-row {
         font-size: 2.2em; /* Ukuran nama debater di desktop */
+        flex-direction: row; /* Nama debater horizontal di desktop */
+        gap: 15px; /* Jarak antara nama/bendera dan VS */
+    }
+    .debater-entry {
+        flex-direction: row; /* Nama dan bendera sejajar */
+        justify-content: flex-end; /* Dorong ke kanan (untuk debater kiri) */
+        flex: 1; /* Ambil ruang */
+    }
+    .debater-names-row .debater-entry:nth-child(1) {
+        justify-content: flex-end; /* Debater kiri, nama dan bendera rata kanan */
+    }
+    .debater-names-row .debater-entry:nth-child(3) {
+        justify-content: flex-start; /* Debater kanan, nama dan bendera rata kiri */
     }
     .match-vs-text {
         font-size: 0.8em;
+        margin: 0 15px; /* Jarak dari nama debater */
     }
     .match-topic {
         font-size: 1em;
