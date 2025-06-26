@@ -23,7 +23,7 @@ const debatesData = [
             "tier": "Mid Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": [] // Dihapus achievement statis, akan diisi dinamis
+            "achievements": []
         },
         "debater2": {
             "name": "RENJI",
@@ -41,7 +41,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Mid Tier", // Renji diatur ke Low Tier
+            "tier": "Mid Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -461,7 +461,34 @@ function renderProfilePage() {
 
     const profileCard = document.querySelector('.profile-card');
 
-    if (!profileCard) return;
+    // Elemen-elemen baru untuk header visual
+    const profileMainAvatar = profileCard.querySelector('.profile-main-avatar');
+    const profileDivision = profileCard.querySelector('.profile-division-status .tier-value');
+    const profileName = profileCard.querySelector('.profile-name');
+    const profileCountryFlag = profileCard.querySelector('.profile-country-info .profile-flag-icon');
+    const profileCountryName = profileCard.querySelector('.profile-country-info .country-name');
+
+    // Elemen-elemen untuk rekor
+    const totalRecordWin = profileCard.querySelector('.record-box.total-record .win-stat');
+    const totalRecordLoss = profileCard.querySelector('.record-box.total-record .loss-stat');
+    const totalRecordDraw = profileCard.querySelector('.record-box.total-record .draw-stat');
+    const specialCategoryRecordWin = profileCard.querySelector('.record-box.special-category-record .win-stat');
+    const specialCategoryRecordLoss = profileCard.querySelector('.record-box.special-category-record .loss-stat');
+    const specialCategoryRecordDraw = profileCard.querySelector('.record-box.special-category-record .draw-stat');
+
+    // Elemen-elemen bagian bawah
+    const matchHistoryList = profileCard.querySelector('.match-history-list');
+    const achievementsTableBody = profileCard.querySelector('.achievements-table tbody');
+    const statsList = profileCard.querySelector('.stats-list');
+
+    // Pastikan semua elemen ditemukan
+    if (!profileCard || !profileMainAvatar || !profileDivision || !profileName || !profileCountryFlag || !profileCountryName ||
+        !totalRecordWin || !totalRecordLoss || !totalRecordDraw || !specialCategoryRecordWin || !specialCategoryRecordLoss || !specialCategoryRecordDraw ||
+        !matchHistoryList || !achievementsTableBody || !statsList) {
+        console.error("Salah satu elemen profil tidak ditemukan di DOM. Periksa kembali HTML.");
+        profileCard.innerHTML = `<p style="color: red;">Terjadi kesalahan dalam memuat elemen profil. Mohon periksa konsol browser.</p>`;
+        return;
+    }
 
     if (!debaterName) {
         profileCard.innerHTML = `<p style="color: red;">Nama debater tidak ditemukan di URL.</p>`;
@@ -471,66 +498,43 @@ function renderProfilePage() {
     const debater = allDebaters[debaterName];
 
     if (!debater || !debater.profile) {
-        profileCard.innerHTML = `<p style="color: red;">Profil untuk ${debaterName} tidak ditemukan.</p>`;
+        profileCard.innerHTML = `<p style="color: red;">Profil untuk ${debaterName} tidak ditemukan atau data tidak lengkap.</p>`;
         return;
     }
 
-    let profileHtml = `
-        <div class="profile-main-info">
-            <img src="${debater.photo}" alt="Foto ${debater.name}" class="profile-avatar">
-            <div class="profile-details-text">
-                <p class="profile-division">DEBATER TIER: ${debater.tier.toUpperCase()} <span class="active-status">ACTIVE</span></p>
-                <h2 class="profile-name">${debater.name}</h2>
-                <p class="profile-country"><img src="${debater.flag}" alt="Bendera ${debater.country}" class="profile-flag-icon"> ${debater.country.toUpperCase()}</p>
+    // Mengisi data ke elemen HTML
+    profileMainAvatar.src = debater.photo;
+    profileMainAvatar.alt = `Foto ${debater.name}`;
 
-                <div class="profile-records-grid">
-                    ${debater.fightRecord ? `
-                        <div class="record-box">
-                            <p class="record-title">TOTAL RECORD</p>
-                            <div class="record-stats">
-                                <span class="win-stat">${debater.fightRecord.win}</span>
-                                <span class="loss-stat">${debater.fightRecord.loss}</span>
-                                <span class="draw-stat">${debater.fightRecord.draw}</span>
-                            </div>
-                            <div class="record-labels">
-                                <span>WIN</span><span>LOSS</span><span>DRAW</span>
-                            </div>
-                        </div>
-                    ` : ''}
-                    ${debater.boxingRecord ? `
-                        <div class="record-box">
-                            <p class="record-title">KATEGORI KHUSUS</p>
-                            <div class="record-stats">
-                                <span class="win-stat">${debater.boxingRecord.win}</span>
-                                <span class="loss-stat">${debater.boxingRecord.loss}</span>
-                                <span class="draw-stat">${debater.boxingRecord.draw}</span>
-                            </div>
-                            <div class="record-labels">
-                                <span>WIN</span><span>LOSS</span><span>DRAW</span>
-                            </div>
-                        </div>
-                    ` : ''}
-                </div>
-            </div>
-        </div>
+    profileDivision.textContent = debater.tier.toUpperCase();
+    profileName.textContent = debater.name;
 
-        <div class="profile-section-block">
-            <h3 class="section-block-title">DBA RECORD</h3>
-            <div class="match-history-list">
-    `;
+    profileCountryFlag.src = debater.flag;
+    profileCountryFlag.alt = `Bendera ${debater.country}`;
+    profileCountryName.textContent = debater.country.toUpperCase();
 
+    // Mengisi rekor pertandingan
+    if (debater.fightRecord) {
+        totalRecordWin.textContent = debater.fightRecord.win;
+        totalRecordLoss.textContent = debater.fightRecord.loss;
+        totalRecordDraw.textContent = debater.fightRecord.draw;
+    }
+    if (debater.boxingRecord) {
+        specialCategoryRecordWin.textContent = debater.boxingRecord.win;
+        specialCategoryRecordLoss.textContent = debater.boxingRecord.loss;
+        specialCategoryRecordDraw.textContent = debater.boxingRecord.draw;
+    }
+
+    // Mengisi DBA Record
+    let matchHistoryHtml = '';
     if (debater.matchHistory && debater.matchHistory.length > 0) {
-        // Urutkan riwayat pertandingan dari yang terbaru
-        debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
-
+        debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date)); // Urutkan dari terbaru
         debater.matchHistory.forEach(match => {
             const resultClass = match.result === "Win" ? "win" : "loss";
-            const opponentDebater = allDebaters[match.opponent]; // Pastikan opponentDebater ditemukan
-
-            // Pastikan opponentDebater dan photo-nya ada sebelum mencoba mengaksesnya
+            const opponentDebater = allDebaters[match.opponent];
             const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg'; // Ganti dengan placeholder default jika tidak ada
 
-            profileHtml += `
+            matchHistoryHtml += `
                 <div class="dba-record-item ${resultClass}">
                     <div class="dba-match-info">
                         <img src="${debater.photo}" alt="Foto ${debater.name}" class="dba-debater-thumb">
@@ -545,31 +549,16 @@ function renderProfilePage() {
             `;
         });
     } else {
-        profileHtml += `<p class="no-history-message">Belum ada riwayat pertandingan DBA.</p>`;
+        matchHistoryHtml = `<p class="no-history-message">Belum ada riwayat pertandingan DBA.</p>`;
     }
+    matchHistoryList.innerHTML = matchHistoryHtml;
 
 
-    profileHtml += `
-            </div>
-        </div>
-
-        <div class="profile-section-block">
-            <h3 class="section-block-title">ACHIEVEMENTS</h3>
-            <div class="achievements-table-container">
-                <table class="achievements-table">
-                    <thead>
-                        <tr>
-                            <th>EVENTS</th>
-                            <th>ACHIEVEMENTS</th>
-                            <th>DATE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-    `;
-
+    // Mengisi Achievements
+    let achievementsHtml = '';
     if (debater.achievements && debater.achievements.length > 0) {
         debater.achievements.forEach(ach => {
-            profileHtml += `
+            achievementsHtml += `
                 <tr>
                     <td>${ach.event}</td>
                     <td>${ach.achievement}</td>
@@ -578,27 +567,19 @@ function renderProfilePage() {
             `;
         });
     } else {
-        profileHtml += `<tr><td colspan="3" class="no-history-message">Belum ada pencapaian.</td></tr>`;
+        achievementsHtml = `<tr><td colspan="3" class="no-history-message">Belum ada pencapaian.</td></tr>`;
     }
+    achievementsTableBody.innerHTML = achievementsHtml;
 
-    profileHtml += `
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="profile-section-block">
-            <h3 class="section-block-title">STATS BREAKDOWN</h3>
-            <ul class="stats-list">
-    `;
-
+    // Mengisi Stats Breakdown
+    let statsHtml = '';
     if (debater.profile) {
         for (const skill in debater.profile) {
             if (debater.profile.hasOwnProperty(skill)) {
                 const scoreValue = parseFloat(debater.profile[skill]);
                 const scorePercentage = (scoreValue / 10) * 100;
 
-                profileHtml += `
+                statsHtml += `
                     <li>
                         <strong>${skill}:</strong>
                         <div class="skill-bar-container">
@@ -610,13 +591,7 @@ function renderProfilePage() {
             }
         }
     }
-
-    profileHtml += `
-            </ul>
-        </div>
-    `;
-
-    profileCard.innerHTML = profileHtml;
+    statsList.innerHTML = statsHtml;
 }
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN RANKING (UNTUK ranking.html) ======
@@ -760,7 +735,7 @@ function renderArchivePage() {
         });
     }
 
-    archiveListContainer.innerHTML = archiveHtml; // <-- BARIS INI YANG DIREVISI
+    archiveListContainer.innerHTML = archiveHtml;
 }
 
 
