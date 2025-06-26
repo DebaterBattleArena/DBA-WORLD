@@ -1,63 +1,71 @@
 /* Variabel CSS untuk warna dan styling, memudahkan kustomisasi */
 :root {
-    --primary-bg: #1a1a1a; /* Background gelap utama */
-    --secondary-bg: #2a2a2a; /* Background elemen/section */
-    --text-color: #ffffff; /* Warna teks utama */
-    --highlight-color: #ff4500; /* Warna aksen/highlight (oranye/merah cerah) */
-    --light-grey: #cccccc; /* Warna abu-abu terang untuk teks sekunder */
-    --win-color: #4CAF50; /* Warna hijau untuk kemenangan */
-    --loss-color: #f44336; /* Warna merah untuk kekalahan */
+    --primary-bg: #1A1A1A; /* Background gelap utama (mendekati hitam Byon) */
+    --secondary-bg: #282828; /* Background elemen/section (sedikit lebih terang dari primary) */
+    --card-bg: #333333; /* Latar belakang card, bisa lebih terang lagi */
+    --text-color: #F0F0F0; /* Warna teks utama (putih keabu-abuan) */
+    --highlight-color: #00E676; /* Warna aksen/highlight (Hijau terang Byon) */
+    --light-grey: #AAAAAA; /* Warna abu-abu terang untuk teks sekunder */
+    --win-color: #00E676; /* Warna hijau untuk kemenangan (sama dengan highlight) */
+    --loss-color: #EF5350; /* Warna merah untuk kekalahan */
+
+    /* Font Families - Sesuaikan dengan font Byon jika Anda bisa mengidentifikasinya */
+    --font-heading: 'Oswald', sans-serif;
+    --font-body: 'Roboto', sans-serif;
 }
 
 /* Gaya dasar untuk body */
 body {
-    font-family: 'Roboto', sans-serif; /* Font utama */
+    font-family: var(--font-body); /* Gunakan variabel font */
     margin: 0;
     padding: 0;
     background-color: var(--primary-bg);
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+    scroll-behavior: smooth; /* Untuk smooth scrolling saat klik link #id */
 }
 
 /* Gaya untuk Header/Logo */
-.header-logo {
-    background-color: black;
-    padding: 20px 0;
+.main-header { /* Ganti .header-logo */
+    background-color: transparent; /* Biasanya Byon tidak punya background solid di header */
+    padding: 20px 0 10px 0; /* Kurangi padding bawah */
     text-align: center;
 }
 
 /* Gaya untuk gambar logo baru */
 .header-logo-image {
-    max-width: 150px; /* Lebar maksimum logo, sesuaikan jika perlu */
-    height: auto;     /* Tinggi otomatis agar proporsional */
-    margin-bottom: 10px; /* Jarak antara logo dan teks di bawahnya */
-    display: block;   /* Menjadikan gambar blok agar bisa di-margin auto */
-    margin-left: auto; /* Pusatkan gambar */
-    margin-right: auto; /* Pusatkan gambar */
+    max-width: 100px; /* Mungkin lebih kecil */
+    height: auto;
+    margin-bottom: 0px; /* Tidak perlu margin bawah jika H1 langsung di bawahnya */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.header-logo h1 {
+.main-header h1 { /* Ganti .header-logo h1 */
     margin: 0;
-    font-size: 2.5em; /* Ukuran font logo */
+    font-family: var(--font-heading); /* Pastikan pakai font heading */
+    font-size: 2.2em; /* Sesuaikan ukuran */
     color: var(--text-color);
-    letter-spacing: 2px;
+    letter-spacing: 3px; /* Lebih lebar jarak hurufnya */
     text-transform: uppercase;
 }
-.header-logo h1 span {
-    color: var(--highlight-color); /* Warna aksen untuk kata "ARENA" */
+.main-header h1 span { /* Ganti .header-logo h1 span */
+    color: var(--highlight-color); /* Aksen hijau */
 }
 
 /* Gaya untuk Navigation Bar */
 .main-nav {
-    background-color: #222; /* Latar belakang nav bar */
-    padding: 10px 0; /* Mengurangi padding atas/bawah agar lebih compact */
+    background-color: transparent; /* Transparan atau sangat gelap, tanpa bayangan */
+    padding: 10px 0;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    position: sticky; /* Membuat nav bar sticky di atas */
+    box-shadow: none; /* Hapus shadow */
+    position: sticky;
     top: 0;
     width: 100%;
-    z-index: 999; /* Memastikan nav bar di atas konten saat scroll */
+    z-index: 999;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Garis bawah tipis */
 }
 .main-nav ul {
     list-style: none;
@@ -65,44 +73,66 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* Izinkan wrap jika terlalu banyak item */
-    gap: 8px 15px; /* BARU: Menambahkan spasi antar item (vertikal 8px, horizontal 15px) */
-    /* Properti 'gap' menggantikan 'margin' pada 'li' untuk spasi yang lebih rapi di flexbox */
-}
-.main-nav ul li {
-    margin: 0; /* Atur margin ke 0 karena 'gap' di 'ul' sudah menangani spasi */
+    flex-wrap: wrap;
+    gap: 0px 25px; /* Jarak horizontal antar link lebih lebar */
 }
 .main-nav ul li a {
-    color: var(--text-color);
+    color: var(--light-grey); /* Teks nav bar agak abu-abu */
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1em; /* Ukuran font standar */
-    padding: 6px 12px; /* Mengurangi padding di dalam link */
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transisi halus */
-    white-space: nowrap; /* Mencegah teks link terpotong ke baris baru */
-    display: block; /* Memastikan padding dan border-radius bekerja konsisten */
+    font-weight: normal; /* Lebih tipis */
+    font-size: 0.95em;
+    padding: 6px 0; /* Padding vertikal sedikit, horizontal 0 */
+    border-radius: 0; /* Tanpa border-radius */
+    transition: all 0.3s ease; /* Transisi halus */
+    white-space: nowrap;
+    display: block;
+    position: relative; /* Untuk underline efek hover */
 }
 .main-nav ul li a:hover {
+    background-color: transparent; /* Tidak ada background saat hover */
+    color: var(--text-color); /* Berubah jadi putih terang saat hover */
+}
+.main-nav ul li a::after { /* Efek underline saat hover */
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Sesuaikan posisi garis bawah */
+    width: 0%;
+    height: 2px;
     background-color: var(--highlight-color);
-    color: #fff; /* Teks putih saat hover */
+    transition: width 0.3s ease-out;
+}
+.main-nav ul li a:hover::after {
+    width: 100%;
+}
+.main-nav ul li a.active { /* Anda perlu menambahkan class 'active' secara manual atau dengan JS */
+    color: var(--highlight-color);
+}
+.main-nav ul li a.active::after {
+    width: 100%;
 }
 
 /* --- Penyesuaian untuk Animasi dan Transisi Halus (Umum) --- */
 /* Tambahkan transisi ke semua elemen yang interaktif/berubah gaya */
-a, button, .cta-button, .match-card, .profile-card, .archive-item, .achievement-item, .main-nav ul li a {
+a, button, .cta-button, .match-card, .profile-card, .archive-item, .achievement-item, .main-nav ul li a, .debater-info img {
     transition: all 0.3s ease-in-out;
 }
-/* Anda bisa tambahkan lebih banyak efek hover/animasi sesuai keinginan di masa depan */
-
 
 /* Gaya umum untuk semua section */
 section {
-    padding: 40px 20px; /* Mengurangi padding vertikal untuk mengurangi spasi antar section */
+    padding: 40px 20px; /* Padding default */
     text-align: center;
 }
+
+/* Class untuk section konten umum */
+.content-section {
+    padding: 60px 20px; /* Padding lebih besar untuk section konten */
+    max-width: 1200px; /* Batasi lebar konten */
+    margin: 0 auto; /* Pusatkan konten */
+}
+
 section h2 {
-    font-family: 'Oswald', sans-serif; /* Font untuk judul section */
+    font-family: var(--font-heading); /* Font untuk judul section */
     font-size: 2.5em;
     color: var(--text-color);
     text-transform: uppercase;
@@ -117,77 +147,48 @@ section p {
 
 /* Gaya untuk Section About */
 #about {
-    background-color: var(--secondary-bg);
+    background-color: var(--primary-bg); /* Ubah ke primary-bg agar konsisten */
     padding: 60px 20px;
     text-align: center;
-    border-bottom: 5px solid var(--highlight-color); /* Garis bawah aksen */
+    border-bottom: none; /* Hapus garis bawah aksen */
 }
-.about-video { /* Gaya untuk gambar di about (jika ada) */
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto 30px auto;
+
+#about h2 {
+    color: var(--text-color); /* Warna judul putih */
+    margin-bottom: 25px;
+}
+
+#about p {
+    color: var(--light-grey); /* Warna teks abu-abu terang */
+    font-size: 1em; /* Ukuran font standar */
+    line-height: 1.7;
+    padding: 0; /* Hapus padding horizontal */
+    margin-bottom: 15px; /* Kurangi margin bawah */
+}
+
+#about p strong {
+    color: var(--text-color); /* Teks bold menjadi putih terang */
+    font-weight: bold; /* Tetap bold */
+    letter-spacing: 0; /* Hapus letter-spacing */
+}
+
+
+/* Gaya untuk Section Main Event (Banner) */
+#main-event {
+    background-color: var(--primary-bg);
+    padding: 0;
+    position: relative;
+    background-image: url('60bd86fc-0490-445e-843b-79298aa84ed3.jpeg'); /* <-- Pastikan ini path GAMBAR BANNER UTAMA yang resolusinya bagus */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 550px; /* Atur tinggi yang cocok untuk banner */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em;
-    color: var(--light-grey);
-    border-radius: 8px;
-    overflow: hidden;
-}
-.about-video img { /* Pastikan gambar di about-video memenuhi container */
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    overflow: hidden; /* Penting untuk mencegah konten meluap jika gambar terlalu besar */
 }
 
-/* Gaya untuk teks paragraf di bagian About */
-#about p {
-    max-width: 700px;         /* Sedikit perkecil lebar maksimum agar lebih mudah dibaca */
-    margin: 0 auto 20px auto; /* Margin atas/bawah bisa 20px atau 30px */
-    color: var(--text-color); /* Warna teks putih penuh */
-    font-size: 1.1em;         /* Ukuran font ditingkatkan */
-    line-height: 1.8;         /* Jarak antar baris ditingkatkan */
-    font-weight: 400;         /* Ketebalan font normal */
-    text-align: center;       /* Rata tengah, sesuai gambar */
-    padding: 0 15px;          /* Padding horizontal agar teks tidak terlalu menempel di tepi jika max-width kecil */
-    margin-bottom: 25px;      /* Menambahkan margin bawah agar tidak terlalu dekat dengan paragraf berikutnya/tombol */
-}
-
-/* Gaya untuk teks yang di-bold (<strong>) di dalam paragraf About */
-#about p strong {
-    font-weight: 700;        /* Membuat teks bold jadi sangat tebal */
-    color: var(--highlight-color); /* Memberi warna aksen pada teks bold */
-    letter-spacing: 0.5px;   /* Sedikit jarak antar huruf untuk penekanan */
-}
-
-/* Gaya untuk Section Main Event */
-#main-event {
-    background-color: var(--secondary-bg); /* Warna latar belakang umum */
-    padding: 0; /* Padding diatur di dalam content */
-    position: relative;
-    /* GAMBAR UTAMA SEKARANG SEBAGAI BACKGROUND UNTUK SECTION INI */
-    background-image: url('60bd86fc-0490-445e-843b-79298aa84ed3.jpeg'); /* <-- NAMA FILE GAMBAR BANNER UTAMA */
-    background-size: cover; /* Pastikan gambar menutupi seluruh area */
-    background-position: center; /* Pusatkan gambar */
-    background-repeat: no-repeat; /* Jangan ulangi gambar */
-    min-height: 700px; /* Tingkatkan tinggi minimum section agar gambar lebih dominan */
-    display: flex; /* Gunakan flex untuk memusatkan konten vertikal */
-    align-items: center; /* Pusatkan konten vertikal di tengah */
-    justify-content: center; /* Pusatkan konten horizontal di tengah */
-}
-#main-event .main-event-content {
-    position: relative;
-    z-index: 1; /* Pastikan konten di atas gambar latar */
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Pusatkan konten secara vertikal di dalam content box */
-    align-items: center; /* Pusatkan konten secara horizontal */
-    width: 100%; /* Lebar penuh */
-    max-width: 800px; /* Lebar maksimum konten */
-    gap: 20px;
-    /* TIDAK PERLU FILTER BRIGHTNESS DI SINI JIKA DI SECTION UTAMA */
-}
 /* Efek overlay gelap di atas gambar latar belakang untuk kontras teks */
 #main-event::before {
     content: '';
@@ -196,109 +197,103 @@ section p {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Overlay hitam transparan */
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay hitam transparan lebih gelap */
     z-index: 0;
 }
-/* Perbaikan gaya untuk teks di main-event agar lebih kontras */
-#main-event .event-title,
-#main-event .contestants,
-#main-event .countdown {
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Tambahkan shadow ke teks */
+
+#main-event .main-event-content {
+    position: relative;
+    z-index: 1;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px; /* Mungkin lebih lebar untuk banner */
+    gap: 15px; /* Kurangi jarak antar elemen */
+    text-align: center;
 }
-#main-event .contestants .vs {
-    text-shadow: none; /* Hilangkan shadow dari teks 'vs' */
+
+.event-title {
+    font-family: var(--font-body); /* Mungkin font body untuk title */
+    font-size: 1.3em; /* Lebih kecil */
+    color: var(--light-grey);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
-/* Perbaikan gaya untuk tombol di main-event agar tetap terlihat baik */
-#main-event .cta-button {
-    z-index: 2; /* Pastikan tombol di atas overlay */
+.contestants {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Kurangi gap */
+    font-family: var(--font-heading);
+    font-size: 3em; /* Ukuran yang besar untuk nama */
+    text-transform: uppercase;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+.contestants .vs {
+    color: var(--light-grey); /* Warna 'VS' lebih abu-abu */
+    font-size: 0.7em; /* Lebih kecil dari nama */
+    margin: 0 5px; /* Kurangi margin */
 }
 
 /* Gaya Countdown */
 .countdown {
     display: flex;
     justify-content: center;
-    align-items: center; /* Menyelaraskan item vertikal di tengah */
-    gap: 10px; /* Jarak antara item countdown dan kolon */
-    margin-top: 30px;
-    background-color: transparent; /* Hapus background dari container, pindahkan ke item */
-    padding: 0; /* Hapus padding dari container */
-    border-radius: 0; /* Hapus border-radius dari container */
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 .countdown-item {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Background gelap transparan untuk setiap kotak */
-    padding: 10px 15px; /* Padding di dalam setiap kotak */
-    border-radius: 8px; /* Sudut membulat untuk setiap kotak */
-    min-width: 60px; /* Lebar minimum untuk kotak agar seragam */
+    background-color: rgba(0, 0, 0, 0.4); /* Background gelap transparan untuk setiap kotak */
+    padding: 8px 12px; /* Padding lebih kecil */
+    border-radius: 4px; /* Sedikit lebih tajam */
+    min-width: 55px; /* Lebar minimum untuk kotak agar seragam */
+    border: 1px solid rgba(255,255,255,0.1); /* Border tipis */
 }
 .countdown-item .number {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.8em; /* Ukuran angka lebih besar */
-    color: var(--highlight-color); /* Warna highlight (merah/oranye) */
+    font-family: var(--font-heading);
+    font-size: 2.5em; /* Ukuran angka lebih kecil dari sebelumnya */
+    color: var(--highlight-color);
     line-height: 1;
-    margin-bottom: 5px; /* Jarak antara angka dan label */
+    margin-bottom: 3px;
 }
 .countdown-item .label {
-    font-size: 0.8em;
-    color: #fff; /* Warna label jadi putih */
-    text-transform: uppercase;
-    font-weight: bold; /* Label lebih tebal */
-}
-/* Gaya untuk kolon pemisah */
-.countdown-colon {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.5em; /* Ukuran kolon */
-    color: var(--text-color); /* Warna kolon putih */
-    line-height: 1;
-    margin: 0 -5px; /* Sesuaikan margin untuk memposisikan kolon */
-}
-
-.event-title {
-    font-size: 1.5em;
+    font-size: 0.7em;
     color: var(--light-grey);
     text-transform: uppercase;
-    margin-bottom: 15px;
+    font-weight: normal; /* Tidak terlalu tebal */
 }
-.contestants {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.5em;
-    text-transform: uppercase;
-    color: var(--text-color);
-    margin-bottom: 10px; /* Tambahkan sedikit jarak bawah */
+.countdown-colon {
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    color: var(--light-grey); /* Warna kolon abu-abu */
+    line-height: 1;
+    margin: 0 -3px;
 }
-.contestants .vs {
-    color: var(--highlight-color);
-    font-size: 0.8em;
-    margin: 0 10px;
-}
-/* Tambahan margin untuk elemen di main-event-content jika perlu */
-#main-event .event-title { margin-bottom: 15px; }
-#main-event .countdown { margin-top: 30px; margin-bottom: 20px; } /* Sesuaikan margin */
 
-
+/* Tombol CTA (Call to Action) */
 .cta-button {
     display: inline-block;
     background-color: var(--highlight-color);
-    color: var(--text-color);
-    padding: 15px 30px;
+    color: var(--primary-bg); /* Teks gelap di tombol terang */
+    padding: 12px 25px; /* Padding sedikit lebih kecil */
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 4px; /* Lebih tajam */
     font-weight: bold;
-    font-size: 1.1em;
-    margin-top: 30px;
-    transition: background-color 0.3s ease; /* Efek hover halus */
+    font-size: 1em;
+    margin-top: 25px;
+    transition: background-color 0.3s ease;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 .cta-button:hover {
-    background-color: #ff6622;
+    background-color: #00B359; /* Sedikit lebih gelap saat hover */
 }
 .cta-button .arrow {
     margin-left: 10px;
@@ -306,109 +301,132 @@ section p {
 
 /* Gaya untuk Section Achievement */
 #achievement {
-    background-color: var(--primary-bg);
-    padding: 40px 20px; /* Mengurangi padding vertikal untuk mengurangi spasi antar section */
+    background-color: var(--secondary-bg); /* Background secondary */
+    padding: 50px 20px;
     position: relative;
     overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.1); /* Garis atas pemisah */
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Garis bawah pemisah */
 }
-#achievement::before {
+#achievement::before { /* Untuk gambar latar */
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Path background image achievement */
-    background-image: url('background-achievement.jpg');
+    background-image: url('background-achievement.jpg'); /* <-- Pastikan path ini benar */
     background-size: cover;
     background-position: center;
-    opacity: 0.1; /* Sedikit transparan */
+    opacity: 0.05; /* Lebih transparan */
     z-index: 0;
 }
-#achievement .content-overlay {
+.achievement-content-wrapper { /* Wrapper baru di HTML */
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+}
+.achievement-grid { /* Mengganti content-overlay */
+    display: flex; /* Menggunakan flexbox untuk tata letak di desktop */
+    flex-wrap: wrap; /* Izinkan item wrap */
+    justify-content: center;
+    gap: 30px 40px; /* Jarak antar item */
+}
+#achievement h2 {
+    width: 100%; /* Agar judul mengambil lebar penuh */
+    margin-bottom: 40px;
+    color: var(--text-color);
 }
 .achievement-item {
-    margin-bottom: 25px;
+    margin-bottom: 0; /* Hapus margin bawah karena sudah ada gap */
+    flex: 1 1 200px; /* Izinkan item membesar/mengecil tapi dengan min-width */
+    max-width: 250px;
+    background-color: var(--card-bg); /* Background untuk setiap item */
+    padding: 20px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 .achievement-item .number {
-    font-family: 'Oswald', sans-serif;
-    font-size: 4em;
+    font-family: var(--font-heading);
+    font-size: 3.5em; /* Sedikit lebih kecil */
     color: var(--highlight-color);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     line-height: 1;
 }
 .achievement-item .label {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: var(--light-grey);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 /* Gaya untuk Section Match List (Daftar Debat) */
 #match-list {
     background-color: var(--primary-bg);
-    padding: 40px 20px; /* Mengurangi padding vertikal untuk mengurangi spasi antar section */
+    padding: 50px 20px; /* Padding atas/bawah yang konsisten */
+}
+#match-list h2 {
+    color: var(--text-color);
 }
 .match-card {
-    background-color: var(--secondary-bg);
-    border-radius: 10px;
+    background-color: var(--secondary-bg); /* Background sekunder */
+    border-radius: 8px; /* Lebih tajam */
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 25px; /* Padding lebih besar */
     display: flex;
     flex-direction: column; /* Default: susun vertikal untuk mobile */
     align-items: center;
     gap: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Shadow lebih kuat */
+    border: 1px solid rgba(255,255,255,0.05); /* Border sangat tipis */
 }
 .match-card .category {
-    font-size: 0.9em;
-    color: var(--highlight-color);
+    font-size: 0.8em; /* Ukuran lebih kecil */
+    color: var(--light-grey); /* Warna abu-abu */
     text-transform: uppercase;
-    margin-bottom: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 5px; /* Jarak bawah lebih kecil */
     width: 100%;
-    text-align: left;
+    text-align: center; /* Pusatkan kategori */
+    opacity: 0.8;
 }
 .match-details {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 10px;
-    flex-wrap: wrap; /* Izinkan wrap jika layar kecil */
+    gap: 20px; /* Jarak lebih besar */
+    flex-wrap: nowrap; /* Jangan wrap di desktop, mobile akan diatasi oleh media query */
 }
 .debater-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 5px;
+    gap: 8px; /* Jarak antara foto dan nama */
     flex: 1;
-    min-width: 120px; /* Lebar minimum untuk setiap debater info */
+    min-width: 100px; /* Lebar minimum untuk setiap debater info */
 }
 .debater-info img {
     width: 100px; /* Ukuran gambar debater */
     height: 100px;
-    border-radius: 5px;
+    border-radius: 50%; /* Membuat lingkaran */
     object-fit: cover;
-    border: 2px solid var(--highlight-color);
+    border: 2px solid var(--highlight-color); /* Border hijau */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 .debater-info .name {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.3em;
+    font-family: var(--font-heading);
+    font-size: 1.5em; /* Ukuran nama lebih besar */
     color: var(--text-color);
     text-transform: uppercase;
+    font-weight: bold;
 }
 .debater-info .origin {
     display: flex;
     align-items: center;
     gap: 5px;
     color: var(--light-grey);
-    font-size: 0.9em;
+    font-size: 0.8em; /* Ukuran lebih kecil */
 }
 .debater-info .origin img {
     width: 20px;
@@ -416,39 +434,99 @@ section p {
     border-radius: 2px;
 }
 .match-vs {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.8em;
-    color: var(--highlight-color);
-    margin: 0 10px;
+    font-family: var(--font-heading);
+    font-size: 2.5em;
+    color: var(--light-grey); /* Warna "VS" abu-abu */
+    margin: 0 15px;
+    opacity: 0.7;
 }
 .match-type {
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: var(--light-grey);
     text-transform: uppercase;
     width: 100%;
     text-align: center;
-    margin-top: 10px;
-    border-top: 1px solid rgba(255,255,255,0.1); /* Garis pemisah */
-    padding-top: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(255,255,255,0.1); /* Garis pemisah putus-putus */
+    letter-spacing: 0.5px;
 }
 
 /* Gaya untuk info pemenang/kalah */
 .result-info {
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: bold;
     margin-top: 10px;
-    padding: 5px 0;
+    padding: 8px 0;
     width: 100%;
     text-align: center;
-    border-top: 1px dashed rgba(255,255,255,0.1);
-    padding-top: 10px;
+    border-top: none; /* Hapus border top yang ini */
+    padding-top: 0;
 }
 .result-info.winner {
-    color: #4CAF50; /* Hijau untuk pemenang */
+    color: var(--win-color); /* Hijau Byon untuk pemenang */
 }
 .result-info.loser {
-    color: #f44336; /* Merah untuk kalah */
+    color: var(--loss-color); /* Merah untuk kalah */
 }
+.result-info strong {
+    font-weight: bold;
+}
+
+/* Gaya untuk Section Kontak */
+#contact {
+    background-color: var(--secondary-bg); /* Background gelap */
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+#contact h2 {
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+#contact p {
+    color: var(--light-grey);
+    margin-bottom: 10px;
+}
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.social-links a {
+    color: var(--light-grey);
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 8px 15px;
+    border: 1px solid var(--light-grey);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.social-links a:hover {
+    background-color: var(--highlight-color);
+    color: var(--primary-bg);
+    border-color: var(--highlight-color);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-bg); /* Background gelap */
+    color: var(--light-grey);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    border-top: 1px solid rgba(255,255,255,0.1); /* Garis pemisah tipis */
+}
+footer a {
+    color: var(--light-grey);
+    text-decoration: none;
+    margin-bottom: 5px;
+    display: block;
+}
+footer a:hover {
+    color: var(--text-color);
+}
+
 
 /* Gaya untuk Modal (Pop-up Profil Debater) */
 .modal {
@@ -567,6 +645,9 @@ section p {
 
 /* Penyesuaian Media Queries untuk Mobile (maksimum 767px) */
 @media (max-width: 767px) {
+    .main-header h1 {
+        font-size: 1.8em; /* Lebih kecil di mobile */
+    }
     .main-nav {
         padding: 5px 0; /* Lebih kecil lagi padding di mobile */
     }
@@ -577,6 +658,58 @@ section p {
         font-size: 0.8em; /* Kurangi ukuran font di mobile agar muat lebih banyak */
         padding: 3px 6px; /* Kurangi padding di mobile */
     }
+
+    #main-event {
+        min-height: 400px; /* Lebih pendek di mobile */
+    }
+    .contestants {
+        font-size: 2em; /* Lebih kecil di mobile */
+        flex-wrap: wrap; /* Izinkan wrap nama debater */
+        gap: 10px;
+    }
+    .contestants .vs {
+        font-size: 0.8em;
+    }
+    .countdown-item .number {
+        font-size: 2em;
+    }
+    .countdown-colon {
+        font-size: 1.8em;
+    }
+
+    /* Penyesuaian achievement items untuk mobile */
+    .achievement-grid { /* Ganti content-overlay */
+        flex-direction: column;
+        gap: 20px;
+    }
+    .achievement-item {
+        max-width: 100%; /* Penuh lebar di mobile */
+        flex: none;
+    }
+
+    .match-card {
+        padding: 15px; /* Padding lebih kecil di mobile */
+        gap: 10px;
+    }
+    .match-details {
+        flex-direction: column; /* Susun vertikal di mobile */
+        gap: 10px;
+    }
+    .debater-info img {
+        width: 80px; /* Gambar debater lebih kecil */
+        height: 80px;
+    }
+    .debater-info .name {
+        font-size: 1.2em;
+    }
+    .match-vs {
+        margin: 5px 0; /* Sesuaikan margin VS */
+    }
+    .match-type {
+        font-size: 0.8em;
+    }
+
+    /* Penyesuaian modal dan profil di dalamnya (sudah ada, konsisten) */
     .modal-content {
         padding: 20px;
         width: 95%; /* Lebih lebar di mobile */
@@ -635,34 +768,28 @@ section p {
 
 /* Media Queries untuk Responsif (untuk layar lebih besar dari 768px) */
 @media (min-width: 768px) {
-    .header-logo h1 {
-        font-size: 3.5em;
+    .main-header h1 {
+        font-size: 3em; /* Kembali besar di desktop */
     }
-    .achievement-item .number {
-        font-size: 5em;
-    }
-    .achievement-item .label {
-        font-size: 1.5em;
-    }
-    #main-event .main-event-content {
-        min-height: 800px;
-        justify-content: center;
-    }
-    .event-title {
-        font-size: 2em;
+    #main-event {
+        min-height: 600px; /* Tinggi lebih besar di desktop */
     }
     .contestants {
-        font-size: 3.5em;
-    }
-    .countdown {
-        gap: 30px;
+        font-size: 3.5em; /* Ukuran besar di desktop */
     }
     .countdown-item .number {
-        font-size: 3em;
+        font-size: 2.8em;
+    }
+    .countdown-colon {
+        font-size: 2.5em;
+    }
+    .achievement-grid { /* Ganti content-overlay */
+        flex-direction: row; /* Kembali horizontal di desktop */
     }
     .match-card {
-        flex-direction: row;
+        flex-direction: row; /* Kembali horizontal di desktop */
         justify-content: space-between;
+        align-items: center;
         padding: 30px;
     }
     .match-card .category {
@@ -672,14 +799,20 @@ section p {
     }
     .match-details {
         flex-wrap: nowrap;
+        flex-grow: 1; /* Biarkan mengambil ruang yang tersedia */
+        justify-content: center; /* Pusatkan konten debater dan VS */
     }
     .debater-info {
         min-width: unset;
-        flex: none;
+        flex: none; /* Jangan membesar/mengecil tidak perlu */
     }
     .match-type {
         width: auto;
         border-top: none;
         padding-top: 0;
+        text-align: right; /* Mungkin rata kanan di desktop */
+    }
+    .result-info {
+        text-align: right; /* Rata kanan di desktop */
     }
 }
