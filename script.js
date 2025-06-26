@@ -41,7 +41,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Low Tier", // Renji diatur ke Low Tier
+            "tier": "Mid Tier", // Renji diatur ke Low Tier
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
