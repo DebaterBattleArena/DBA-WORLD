@@ -23,7 +23,7 @@ const debatesData = [
             "tier": "Mid Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": [] // Dihapus achievement statis
+            "achievements": [] // Dihapus achievement statis, akan diisi dinamis
         },
         "debater2": {
             "name": "RENJI",
@@ -41,7 +41,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Mid Tier",
+            "tier": "Low Tier", // Renji diatur ke Low Tier
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -285,19 +285,19 @@ debatesData.forEach(debate => {
     const debater1Name = debate.debater1.name;
     const debater2Name = debate.debater2.name;
 
+    // Inisialisasi debater jika belum ada, termasuk achievements array kosong
     if (!allDebaters[debater1Name]) {
-        allDebaters[debater1Name] = { ...debate.debater1, wins: 0, losses: 0, matchHistory: [], achievements: [] }; // Inisialisasi achievements
+        allDebaters[debater1Name] = { ...debate.debater1, wins: 0, losses: 0, matchHistory: [], achievements: [] };
     } else {
+        // Jika debater sudah ada, pastikan properti baru disalin dan achievements array tetap ada
         Object.assign(allDebaters[debater1Name], debate.debater1);
-        // Pastikan achievements tetap array kosong jika tidak diinisialisasi ulang
         if (!allDebaters[debater1Name].achievements) allDebaters[debater1Name].achievements = [];
     }
 
     if (!allDebaters[debater2Name]) {
-        allDebaters[debater2Name] = { ...debate.debater2, wins: 0, losses: 0, matchHistory: [], achievements: [] }; // Inisialisasi achievements
+        allDebaters[debater2Name] = { ...debate.debater2, wins: 0, losses: 0, matchHistory: [], achievements: [] };
     } else {
         Object.assign(allDebaters[debater2Name], debate.debater2);
-        // Pastikan achievements tetap array kosong jika tidak diinisialisasi ulang
         if (!allDebaters[debater2Name].achievements) allDebaters[debater2Name].achievements = [];
     }
 
@@ -307,6 +307,7 @@ debatesData.forEach(debate => {
         const loserName = debate.loser.name;
         const debateYear = debate.date.split('-')[0]; // Ambil tahun dari tanggal debat
 
+        // Update match history
         allDebaters[winnerName].wins += 1;
         allDebaters[winnerName].matchHistory.push({
             opponent: loserName,
@@ -317,13 +318,6 @@ debatesData.forEach(debate => {
             id: debate.id,
             round: debate.round,
             time: debate.time
-        });
-
-        // Tambahkan achievement untuk pemenang
-        allDebaters[winnerName].achievements.push({
-            "event": `DBA Match vs ${loserName}`,
-            "achievement": "Winner",
-            "date": debateYear
         });
 
         allDebaters[loserName].losses += 1;
@@ -338,9 +332,15 @@ debatesData.forEach(debate => {
             time: debate.time
         });
 
-        // Tambahkan achievement untuk yang kalah
+        // Tambahkan achievement untuk pemenang dan yang kalah
+        allDebaters[winnerName].achievements.push({
+            "event": `DBA Match vs ${loserName}`, // Nama event bisa disesuaikan
+            "achievement": "Winner",
+            "date": debateYear
+        });
+
         allDebaters[loserName].achievements.push({
-            "event": `DBA Match vs ${winnerName}`,
+            "event": `DBA Match vs ${winnerName}`, // Nama event bisa disesuaikan
             "achievement": "Participant",
             "date": debateYear
         });
@@ -504,10 +504,9 @@ function renderProfilePage() {
     `;
 
     if (debater.matchHistory && debater.matchHistory.length > 0) {
-        // Menampilkan semua riwayat pertandingan DBA
         debater.matchHistory.forEach(match => { // Loop semua match history
             const resultClass = match.result === "Win" ? "win" : "loss";
-            const opponentDebater = allDebaters[match.opponent]; // Gunakan match.opponent
+            const opponentDebater = allDebaters[match.opponent];
             profileHtml += `
                 <div class="dba-record-item ${resultClass}">
                     <div class="dba-match-info">
@@ -870,12 +869,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navLinks = document.querySelectorAll('.main-nav ul li a');
     navLinks.forEach(link => {
-        const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
+        // Hapus trailing slash dari pathname link dan currentPath untuk perbandingan yang lebih baik
+        const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
         const cleanedCurrentPath = currentPath.replace(/\/$/, '');
 
-        if (cleanedCurrentPath === linkPath ||
-           (cleanedCurrentPath === '/index.html' && linkPath === '/') ||
-           (cleanedCurrentPath === '/' && linkPath === '/index.html')) {
+        // Logika untuk link 'Beranda' yang mungkin di root '/' atau '/index.html'
+        const isHomeActive = (cleanedCurrentPath === '/index.html' || cleanedCurrentPath === '') && (linkPath === '/index.html' || linkPath === '');
+
+        if (isHomeActive || (cleanedCurrentPath !== '' && cleanedCurrentPath === linkPath)) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
