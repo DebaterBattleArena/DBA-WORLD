@@ -281,7 +281,7 @@ const debatesData = [
         "date": "2025-06-26",
         "matchBanner": "7a47b236-a78a-4b2f-bbce-9cadecef6843.jpeg", // Path gambar match banner
         "debater1": {
-            "name": "Lianx",
+            "name": "LIANX",
             "photo": "IMG_0935.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
@@ -304,7 +304,7 @@ const debatesData = [
             "achievements": []
         },
         "debater2": {
-            "name": "Adyy",
+            "name": "ADYY",
             "photo": "IMG_0934.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
