@@ -959,55 +959,149 @@ footer a:hover {
 
 /* ---- RANKING PAGE SPECIFIC STYLES (ranking.html) ---- */
 #ranking-page {
-    background-color: var(--primary-bg);
+    padding-bottom: 50px; /* Tambah padding bawah agar tidak terlalu mepet footer */
 }
 
-#ranking-page .tier-heading {
-    font-family: var(--font-heading);
-    font-size: 2.2em;
-    color: var(--highlight-color);
-    text-transform: uppercase;
-    margin-top: 40px;
-    margin-bottom: 25px;
-    border-bottom: 2px solid rgba(0, 255, 0, 0.3);
-    padding-bottom: 10px;
-    font-weight: 700;
+.ranking-tier-header {
+    font-size: 2.8em; /* Ukuran font lebih besar */
+    color: var(--highlight-color); /* Warna hijau terang */
+    text-align: center;
+    margin: 40px 0 30px 0; /* Margin atas dan bawah lebih besar */
+    font-weight: 700; /* Lebih tebal */
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.4); /* Efek glow tipis */
+    letter-spacing: 2px; /* Jarak antar huruf */
+}
+
+.ranking-table-container {
+    background-color: var(--card-bg-dark); /* Background gelap untuk container tabel */
+    border-radius: 10px; /* Sudut membulat */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Bayangan lebih dalam */
+    margin: 0 auto 50px auto; /* Pusatkan dan beri margin bawah */
+    max-width: 95%; /* Lebar maksimal agar responsif */
+    overflow-x: auto; /* Agar tabel bisa discroll jika terlalu lebar */
 }
 
 .ranking-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 40px;
-    background-color: var(--secondary-bg);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-collapse: collapse; /* Hilangkan border antar sel */
+    color: var(--white-text-color);
+    font-size: 0.95em;
+    min-width: 600px; /* Lebar minimum untuk tabel agar tidak terlalu sempit di mobile */
 }
 
-.ranking-table th, .ranking-table td {
-    padding: 15px;
+.ranking-table th,
+.ranking-table td {
+    padding: 15px 20px; /* Padding lebih besar untuk sel */
     text-align: left;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    color: var(--white-text-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Garis pemisah antar baris lebih halus */
 }
 
 .ranking-table th {
-    background-color: rgba(255,255,255,0.05);
-    font-family: var(--font-heading);
-    text-transform: uppercase;
-    font-size: 0.9em;
-    color: var(--white-text-color);
-    letter-spacing: 0.5px;
-    font-weight: 700;
+    background-color: var(--secondary-bg); /* Background header kolom lebih gelap */
+    color: var(--light-grey);
+    font-weight: 700; /* Lebih tebal */
+    text-transform: uppercase; /* Huruf kapital semua */
+    font-size: 0.85em; /* Ukuran font header sedikit lebih kecil */
+    letter-spacing: 1px; /* Jarak antar huruf */
+    position: sticky; /* Agar header tetap di atas saat scroll */
+    top: 0;
+    z-index: 1;
 }
 
-.ranking-table tr:last-child td {
-    border-bottom: none;
+.ranking-table tbody tr:last-child td {
+    border-bottom: none; /* Hilangkan border bawah pada baris terakhir */
 }
 
 .ranking-table tbody tr:hover {
-    background-color: rgba(0, 255, 0, 0.05);
+    background-color: rgba(0, 255, 0, 0.05); /* Efek hover hijau tipis */
 }
+
+.ranking-table td:first-child {
+    font-weight: 700; /* Nomor peringkat lebih tebal */
+    color: var(--highlight-color); /* Warna hijau terang untuk peringkat */
+    font-size: 1.1em;
+}
+
+.ranking-table .debater-info {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Jarak antara gambar dan nama */
+}
+
+.ranking-table .debater-info img {
+    width: 50px; /* Ukuran gambar debater lebih besar */
+    height: 50px;
+    border-radius: 50%; /* Bulat sempurna */
+    object-fit: cover;
+    border: 2px solid var(--highlight-color); /* Border hijau terang */
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.3); /* Efek glow pada gambar */
+}
+
+.ranking-table .debater-info .debater-name {
+    font-weight: 600; /* Nama debater lebih tebal */
+    color: var(--white-text-color);
+    font-size: 1.05em;
+}
+
+.ranking-table .skill-score {
+    font-weight: 700; /* Angka skill lebih tebal */
+    color: var(--light-grey); /* Warna abu-abu terang */
+    font-size: 1.05em;
+}
+
+.ranking-table .skill-score span.numerator {
+    color: var(--highlight-color); /* Warna hijau untuk angka atas (misal 8 dari 8/10) */
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 768px) {
+    .ranking-tier-header {
+        font-size: 2.2em;
+        margin: 30px 0 20px 0;
+    }
+
+    .ranking-table th,
+    .ranking-table td {
+        padding: 12px 15px;
+        font-size: 0.9em;
+    }
+
+    .ranking-table .debater-info img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .ranking-table .debater-info .debater-name {
+        font-size: 1em;
+    }
+
+    .ranking-table .skill-score {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .ranking-tier-header {
+        font-size: 1.8em;
+        margin: 25px 0 15px 0;
+    }
+
+    .ranking-table th,
+    .ranking-table td {
+        padding: 10px;
+        font-size: 0.85em;
+    }
+
+    .ranking-table .debater-info {
+        gap: 10px;
+    }
+
+    .ranking-table .debater-info img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
 
 .debater-cell {
     display: flex;
