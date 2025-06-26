@@ -2,10 +2,11 @@
 :root {
     --primary-bg: #1A1A1A; /* Background gelap utama (mendekati hitam Byon) */
     --secondary-bg: #282828; /* Background elemen/section (sedikit lebih terang dari primary) */
-    --card-bg: #333333; /* Latar belakang card, bisa lebih terang lagi */
+    --card-bg: #333333; /* Latar belakang card/modul (lebih terang lagi dari secondary) */
     --text-color: #F0F0F0; /* Warna teks utama (putih keabu-abuan) */
     --highlight-color: #00E676; /* Warna aksen/highlight (Hijau terang Byon) */
     --light-grey: #AAAAAA; /* Warna abu-abu terang untuk teks sekunder */
+    --dark-grey-text: #666666; /* Warna teks abu-abu gelap */
     --win-color: #00E676; /* Warna hijau untuk kemenangan (sama dengan highlight) */
     --loss-color: #EF5350; /* Warna merah untuk kekalahan */
 
@@ -16,56 +17,64 @@
 
 /* Gaya dasar untuk body */
 body {
-    font-family: var(--font-body); /* Gunakan variabel font */
+    font-family: var(--font-body);
     margin: 0;
     padding: 0;
     background-color: var(--primary-bg);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+    overflow-x: hidden;
     scroll-behavior: smooth; /* Untuk smooth scrolling saat klik link #id */
 }
 
+/* Gaya umum untuk link */
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--highlight-color);
+}
+
 /* Gaya untuk Header/Logo */
-.main-header { /* Ganti .header-logo */
-    background-color: transparent; /* Biasanya Byon tidak punya background solid di header */
-    padding: 20px 0 10px 0; /* Kurangi padding bawah */
+.main-header {
+    background-color: transparent;
+    padding: 20px 0 10px 0;
     text-align: center;
 }
 
-/* Gaya untuk gambar logo baru */
 .header-logo-image {
-    max-width: 100px; /* Mungkin lebih kecil */
+    max-width: 100px;
     height: auto;
-    margin-bottom: 0px; /* Tidak perlu margin bawah jika H1 langsung di bawahnya */
+    margin-bottom: 0px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.main-header h1 { /* Ganti .header-logo h1 */
+.main-header h1 {
     margin: 0;
-    font-family: var(--font-heading); /* Pastikan pakai font heading */
-    font-size: 2.2em; /* Sesuaikan ukuran */
+    font-family: var(--font-heading);
+    font-size: 2.2em;
     color: var(--text-color);
-    letter-spacing: 3px; /* Lebih lebar jarak hurufnya */
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
-.main-header h1 span { /* Ganti .header-logo h1 span */
-    color: var(--highlight-color); /* Aksen hijau */
+.main-header h1 span {
+    color: var(--highlight-color);
 }
 
 /* Gaya untuk Navigation Bar */
 .main-nav {
-    background-color: transparent; /* Transparan atau sangat gelap, tanpa bayangan */
+    background-color: transparent;
     padding: 10px 0;
     text-align: center;
-    box-shadow: none; /* Hapus shadow */
+    box-shadow: none;
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 999;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Garis bawah tipis */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .main-nav ul {
     list-style: none;
@@ -74,65 +83,62 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0px 25px; /* Jarak horizontal antar link lebih lebar */
+    gap: 0px 25px;
 }
 .main-nav ul li a {
-    color: var(--light-grey); /* Teks nav bar agak abu-abu */
+    color: var(--light-grey);
     text-decoration: none;
-    font-weight: normal; /* Lebih tipis */
+    font-weight: normal;
     font-size: 0.95em;
-    padding: 6px 0; /* Padding vertikal sedikit, horizontal 0 */
-    border-radius: 0; /* Tanpa border-radius */
-    transition: all 0.3s ease; /* Transisi halus */
+    padding: 6px 0;
+    border-radius: 0;
+    transition: all 0.3s ease;
     white-space: nowrap;
     display: block;
-    position: relative; /* Untuk underline efek hover */
+    position: relative;
 }
 .main-nav ul li a:hover {
-    background-color: transparent; /* Tidak ada background saat hover */
-    color: var(--text-color); /* Berubah jadi putih terang saat hover */
+    background-color: transparent;
+    color: var(--text-color);
 }
-.main-nav ul li a::after { /* Efek underline saat hover */
+.main-nav ul li a::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -5px; /* Sesuaikan posisi garis bawah */
+    bottom: -5px;
     width: 0%;
     height: 2px;
     background-color: var(--highlight-color);
     transition: width 0.3s ease-out;
 }
-.main-nav ul li a:hover::after {
-    width: 100%;
-}
-.main-nav ul li a.active { /* Anda perlu menambahkan class 'active' secara manual atau dengan JS */
-    color: var(--highlight-color);
-}
+.main-nav ul li a:hover::after,
 .main-nav ul li a.active::after {
     width: 100%;
 }
+.main-nav ul li a.active {
+    color: var(--highlight-color);
+}
 
 /* --- Penyesuaian untuk Animasi dan Transisi Halus (Umum) --- */
-/* Tambahkan transisi ke semua elemen yang interaktif/berubah gaya */
-a, button, .cta-button, .match-card, .profile-card, .archive-item, .achievement-item, .main-nav ul li a, .debater-info img {
+a, button, .cta-button, .match-card, .profile-card, .archive-item, .achievement-item, .main-nav ul li a, .debater-photo, select {
     transition: all 0.3s ease-in-out;
 }
 
 /* Gaya umum untuk semua section */
 section {
-    padding: 40px 20px; /* Padding default */
+    padding: 40px 20px;
     text-align: center;
 }
 
 /* Class untuk section konten umum */
 .content-section {
-    padding: 60px 20px; /* Padding lebih besar untuk section konten */
+    padding: 60px 20px;
     max-width: 1200px; /* Batasi lebar konten */
     margin: 0 auto; /* Pusatkan konten */
 }
 
 section h2 {
-    font-family: var(--font-heading); /* Font untuk judul section */
+    font-family: var(--font-heading);
     font-size: 2.5em;
     color: var(--text-color);
     text-transform: uppercase;
@@ -147,49 +153,47 @@ section p {
 
 /* Gaya untuk Section About */
 #about {
-    background-color: var(--primary-bg); /* Ubah ke primary-bg agar konsisten */
+    background-color: var(--primary-bg);
     padding: 60px 20px;
     text-align: center;
-    border-bottom: none; /* Hapus garis bawah aksen */
+    border-bottom: none;
 }
 
 #about h2 {
-    color: var(--text-color); /* Warna judul putih */
+    color: var(--text-color);
     margin-bottom: 25px;
 }
 
 #about p {
-    color: var(--light-grey); /* Warna teks abu-abu terang */
-    font-size: 1em; /* Ukuran font standar */
+    color: var(--light-grey);
+    font-size: 1em;
     line-height: 1.7;
-    padding: 0; /* Hapus padding horizontal */
-    margin-bottom: 15px; /* Kurangi margin bawah */
+    padding: 0;
+    margin-bottom: 15px;
 }
 
 #about p strong {
-    color: var(--text-color); /* Teks bold menjadi putih terang */
-    font-weight: bold; /* Tetap bold */
-    letter-spacing: 0; /* Hapus letter-spacing */
+    color: var(--text-color);
+    font-weight: bold;
+    letter-spacing: 0;
 }
-
 
 /* Gaya untuk Section Main Event (Banner) */
 #main-event {
     background-color: var(--primary-bg);
     padding: 0;
     position: relative;
-    background-image: url('60bd86fc-0490-445e-843b-79298aa84ed3.jpeg'); /* <-- Pastikan ini path GAMBAR BANNER UTAMA yang resolusinya bagus */
+    background-image: url('60bd86fc-0490-445e-843b-79298aa84ed3.jpeg'); /* <-- Pastikan ini path GAMBAR BANNER UTAMA */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 550px; /* Atur tinggi yang cocok untuk banner */
+    min-height: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Penting untuk mencegah konten meluap jika gambar terlalu besar */
+    overflow: hidden;
 }
 
-/* Efek overlay gelap di atas gambar latar belakang untuk kontras teks */
 #main-event::before {
     content: '';
     position: absolute;
@@ -197,7 +201,7 @@ section p {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Overlay hitam transparan lebih gelap */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 0;
 }
 
@@ -210,14 +214,14 @@ section p {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 900px; /* Mungkin lebih lebar untuk banner */
-    gap: 15px; /* Kurangi jarak antar elemen */
+    max-width: 900px;
+    gap: 15px;
     text-align: center;
 }
 
 .event-title {
-    font-family: var(--font-body); /* Mungkin font body untuk title */
-    font-size: 1.3em; /* Lebih kecil */
+    font-family: var(--font-body);
+    font-size: 1.3em;
     color: var(--light-grey);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -227,17 +231,17 @@ section p {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Kurangi gap */
+    gap: 15px;
     font-family: var(--font-heading);
-    font-size: 3em; /* Ukuran yang besar untuk nama */
+    font-size: 3em;
     text-transform: uppercase;
     color: var(--text-color);
     margin-bottom: 10px;
 }
 .contestants .vs {
-    color: var(--light-grey); /* Warna 'VS' lebih abu-abu */
-    font-size: 0.7em; /* Lebih kecil dari nama */
-    margin: 0 5px; /* Kurangi margin */
+    color: var(--light-grey);
+    font-size: 0.7em;
+    margin: 0 5px;
 }
 
 /* Gaya Countdown */
@@ -250,15 +254,15 @@ section p {
 }
 .countdown-item {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.4); /* Background gelap transparan untuk setiap kotak */
-    padding: 8px 12px; /* Padding lebih kecil */
-    border-radius: 4px; /* Sedikit lebih tajam */
-    min-width: 55px; /* Lebar minimum untuk kotak agar seragam */
-    border: 1px solid rgba(255,255,255,0.1); /* Border tipis */
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 8px 12px;
+    border-radius: 4px;
+    min-width: 55px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 .countdown-item .number {
     font-family: var(--font-heading);
-    font-size: 2.5em; /* Ukuran angka lebih kecil dari sebelumnya */
+    font-size: 2.5em;
     color: var(--highlight-color);
     line-height: 1;
     margin-bottom: 3px;
@@ -267,12 +271,12 @@ section p {
     font-size: 0.7em;
     color: var(--light-grey);
     text-transform: uppercase;
-    font-weight: normal; /* Tidak terlalu tebal */
+    font-weight: normal;
 }
 .countdown-colon {
     font-family: var(--font-heading);
     font-size: 2.2em;
-    color: var(--light-grey); /* Warna kolon abu-abu */
+    color: var(--light-grey);
     line-height: 1;
     margin: 0 -3px;
 }
@@ -281,10 +285,10 @@ section p {
 .cta-button {
     display: inline-block;
     background-color: var(--highlight-color);
-    color: var(--primary-bg); /* Teks gelap di tombol terang */
-    padding: 12px 25px; /* Padding sedikit lebih kecil */
+    color: var(--primary-bg);
+    padding: 12px 25px;
     text-decoration: none;
-    border-radius: 4px; /* Lebih tajam */
+    border-radius: 4px;
     font-weight: bold;
     font-size: 1em;
     margin-top: 25px;
@@ -293,7 +297,7 @@ section p {
     letter-spacing: 0.5px;
 }
 .cta-button:hover {
-    background-color: #00B359; /* Sedikit lebih gelap saat hover */
+    background-color: #00B359;
 }
 .cta-button .arrow {
     margin-left: 10px;
@@ -301,14 +305,14 @@ section p {
 
 /* Gaya untuk Section Achievement */
 #achievement {
-    background-color: var(--secondary-bg); /* Background secondary */
+    background-color: var(--secondary-bg);
     padding: 50px 20px;
     position: relative;
     overflow: hidden;
-    border-top: 1px solid rgba(255,255,255,0.1); /* Garis atas pemisah */
-    border-bottom: 1px solid rgba(255,255,255,0.1); /* Garis bawah pemisah */
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-#achievement::before { /* Untuk gambar latar */
+#achievement::before {
     content: '';
     position: absolute;
     top: 0;
@@ -318,36 +322,36 @@ section p {
     background-image: url('background-achievement.jpg'); /* <-- Pastikan path ini benar */
     background-size: cover;
     background-position: center;
-    opacity: 0.05; /* Lebih transparan */
+    opacity: 0.05;
     z-index: 0;
 }
-.achievement-content-wrapper { /* Wrapper baru di HTML */
+.achievement-content-wrapper {
     position: relative;
     z-index: 1;
 }
-.achievement-grid { /* Mengganti content-overlay */
-    display: flex; /* Menggunakan flexbox untuk tata letak di desktop */
-    flex-wrap: wrap; /* Izinkan item wrap */
+.achievement-grid {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 30px 40px; /* Jarak antar item */
+    gap: 30px 40px;
 }
 #achievement h2 {
-    width: 100%; /* Agar judul mengambil lebar penuh */
+    width: 100%;
     margin-bottom: 40px;
     color: var(--text-color);
 }
 .achievement-item {
-    margin-bottom: 0; /* Hapus margin bawah karena sudah ada gap */
-    flex: 1 1 200px; /* Izinkan item membesar/mengecil tapi dengan min-width */
+    margin-bottom: 0;
+    flex: 1 1 200px;
     max-width: 250px;
-    background-color: var(--card-bg); /* Background untuk setiap item */
+    background-color: var(--card-bg);
     padding: 20px 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 .achievement-item .number {
     font-family: var(--font-heading);
-    font-size: 3.5em; /* Sedikit lebih kecil */
+    font-size: 3.5em;
     color: var(--highlight-color);
     margin-bottom: 8px;
     line-height: 1;
@@ -359,115 +363,130 @@ section p {
     letter-spacing: 0.5px;
 }
 
-/* Gaya untuk Section Match List (Daftar Debat) */
+/* Gaya untuk Section Match List (Jadwal Debat) */
 #match-list {
     background-color: var(--primary-bg);
-    padding: 50px 20px; /* Padding atas/bawah yang konsisten */
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 #match-list h2 {
     color: var(--text-color);
+    margin-bottom: 40px;
+}
+#debates-container { /* Untuk layout grid kartu debat */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Atur agar 2 atau 3 kolom */
+    gap: 20px; /* Jarak antar kartu */
+    justify-content: center; /* Pusatkan grid */
 }
 .match-card {
-    background-color: var(--secondary-bg); /* Background sekunder */
-    border-radius: 8px; /* Lebih tajam */
-    margin-bottom: 20px;
-    padding: 25px; /* Padding lebih besar */
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    padding: 25px;
     display: flex;
-    flex-direction: column; /* Default: susun vertikal untuk mobile */
+    flex-direction: column;
     align-items: center;
     gap: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Shadow lebih kuat */
-    border: 1px solid rgba(255,255,255,0.05); /* Border sangat tipis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden;
+    position: relative;
 }
-.match-card .category {
-    font-size: 0.8em; /* Ukuran lebih kecil */
-    color: var(--light-grey); /* Warna abu-abu */
+
+.match-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+}
+.match-header .category, .match-header .type {
+    font-family: var(--font-body);
+    font-size: 0.9em;
+    color: var(--light-grey);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 5px; /* Jarak bawah lebih kecil */
-    width: 100%;
-    text-align: center; /* Pusatkan kategori */
-    opacity: 0.8;
+    display: inline-block;
+    margin: 0 5px;
 }
+.match-header .type {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
 .match-details {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 20px; /* Jarak lebih besar */
-    flex-wrap: nowrap; /* Jangan wrap di desktop, mobile akan diatasi oleh media query */
+    gap: 20px;
+    flex-wrap: nowrap;
 }
 .debater-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 8px; /* Jarak antara foto dan nama */
+    gap: 8px;
     flex: 1;
-    min-width: 100px; /* Lebar minimum untuk setiap debater info */
+    min-width: 100px;
 }
-.debater-info img {
-    width: 100px; /* Ukuran gambar debater */
+.debater-info .debater-photo {
+    width: 100px;
     height: 100px;
-    border-radius: 50%; /* Membuat lingkaran */
+    border-radius: 5px; /* Tetap kotak dengan sudut membulat */
     object-fit: cover;
-    border: 2px solid var(--highlight-color); /* Border hijau */
+    border: 2px solid var(--light-grey);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 .debater-info .name {
     font-family: var(--font-heading);
-    font-size: 1.5em; /* Ukuran nama lebih besar */
+    font-size: 1.5em;
     color: var(--text-color);
     text-transform: uppercase;
     font-weight: bold;
+    text-decoration: none;
+}
+.debater-info .name:hover {
+    color: var(--highlight-color);
 }
 .debater-info .origin {
     display: flex;
     align-items: center;
     gap: 5px;
     color: var(--light-grey);
-    font-size: 0.8em; /* Ukuran lebih kecil */
+    font-size: 0.8em;
 }
-.debater-info .origin img {
+.debater-info .flag-icon {
     width: 20px;
     height: 15px;
     border-radius: 2px;
+    object-fit: cover;
 }
 .match-vs {
     font-family: var(--font-heading);
     font-size: 2.5em;
-    color: var(--light-grey); /* Warna "VS" abu-abu */
+    color: var(--light-grey);
     margin: 0 15px;
     opacity: 0.7;
-}
-.match-type {
-    font-size: 0.85em;
-    color: var(--light-grey);
-    text-transform: uppercase;
-    width: 100%;
-    text-align: center;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px dashed rgba(255,255,255,0.1); /* Garis pemisah putus-putus */
-    letter-spacing: 0.5px;
 }
 
 /* Gaya untuk info pemenang/kalah */
 .result-info {
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: bold;
-    margin-top: 10px;
-    padding: 8px 0;
+    margin-top: 15px;
+    padding-top: 15px;
     width: 100%;
     text-align: center;
-    border-top: none; /* Hapus border top yang ini */
-    padding-top: 0;
+    border-top: 1px dashed rgba(255,255,255,0.1);
 }
 .result-info.winner {
-    color: var(--win-color); /* Hijau Byon untuk pemenang */
+    color: var(--win-color);
 }
 .result-info.loser {
-    color: var(--loss-color); /* Merah untuk kalah */
+    color: var(--loss-color);
 }
 .result-info strong {
     font-weight: bold;
@@ -475,9 +494,10 @@ section p {
 
 /* Gaya untuk Section Kontak */
 #contact {
-    background-color: var(--secondary-bg); /* Background gelap */
+    background-color: var(--secondary-bg);
     padding-bottom: 50px;
     padding-top: 50px;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 #contact h2 {
     color: var(--text-color);
@@ -510,12 +530,12 @@ section p {
 
 /* Footer */
 footer {
-    background-color: var(--primary-bg); /* Background gelap */
+    background-color: var(--primary-bg);
     color: var(--light-grey);
     text-align: center;
     padding: 20px;
     font-size: 0.9em;
-    border-top: 1px solid rgba(255,255,255,0.1); /* Garis pemisah tipis */
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 footer a {
     color: var(--light-grey);
@@ -527,255 +547,577 @@ footer a:hover {
     color: var(--text-color);
 }
 
-
-/* Gaya untuk Modal (Pop-up Profil Debater) */
-.modal {
-    display: none; /* Sembunyikan modal secara default */
-    position: fixed; /* Tetap di layar saat scroll */
-    z-index: 1000; /* Posisikan di atas semua elemen lain */
-    left: 0;
-    top: 0;
-    width: 100%; /* Lebar penuh */
-    height: 100%; /* Tinggi penuh */
-    background-color: rgba(0,0,0,0.8); /* Latar belakang hitam transparan */
-    display: flex; /* Gunakan flexbox untuk pemusatan */
-    justify-content: center; /* Pusatkan konten secara horizontal */
-    align-items: center; /* Pusatkan konten secara vertikal */
-    padding: 20px; /* Padding di sekitar modal content */
-}
-
-.modal-content {
-    background-color: var(--secondary-bg); /* Warna latar modal */
+/* ---- PROFIL PAGE SPECIFIC STYLES (profile.html) ---- */
+#profile-page .profile-card {
+    background-color: var(--secondary-bg);
     padding: 30px;
-    border-radius: 10px;
-    max-width: 500px; /* Lebar maksimum modal */
-    width: 90%; /* Ambil 90% lebar layar */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    position: relative;
-    color: var(--text-color);
-    animation-name: animatemodal; /* Animasi muncul */
-    animation-duration: 0.4s;
-    transform: scale(0.95); /* Sedikit efek zoom saat muncul */
-    opacity: 0; /* Mulai dengan transparan */
-
-    /* Batasi tinggi konten modal dan aktifkan scroll internal */
-    max-height: 90vh; /* Tinggi maksimum 90% dari tinggi viewport */
-    overflow-y: auto; /* Aktifkan scroll vertikal jika konten melebihi max-height */
-    -webkit-overflow-scrolling: touch; /* Untuk scrolling yang lebih halus di iOS */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
 }
 
-/* Animasi muncul modal */
-@keyframes animatemodal {
-    from {transform: scale(0.7); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+.profile-header {
+    display: flex;
+    flex-direction: column; /* Default stack vertically for mobile */
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
-/* Tombol Tutup Modal */
-.close-button {
-    color: var(--light-grey);
-    font-size: 30px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: var(--highlight-color);
-    text-decoration: none;
-}
-
-/* Gaya untuk detail profil di dalam modal */
-.profile-details {
-    text-align: left;
-    padding-top: 15px;
-}
-.profile-details img {
-    display: block;
-    margin: 0 auto 20px auto;
+.profile-avatar {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Bulat untuk foto profil */
+    border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--highlight-color);
+    border: 4px solid var(--highlight-color); /* Border hijau tebal */
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.5); /* Glowing effect */
 }
-.profile-details h3 {
-    text-align: center;
-    font-family: 'Oswald', sans-serif;
-    font-size: 2em;
-    color: var(--highlight-color);
-    margin-bottom: 20px;
+
+.profile-name {
+    font-family: var(--font-heading);
+    font-size: 2.8em;
+    color: var(--text-color);
+    margin: 0;
     text-transform: uppercase;
+    letter-spacing: 2px;
 }
-.profile-details ul {
+
+.profile-tier {
+    color: var(--light-grey);
+    font-size: 1.1em;
+    margin-top: -10px; /* Lebih dekat ke nama */
+    opacity: 0.8;
+}
+
+.profile-record {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--light-grey);
+}
+.profile-record span {
+    color: var(--highlight-color); /* Warna hijau untuk rekor */
+}
+
+.profile-content {
+    text-align: left; /* Konten di dalam profile-content rata kiri */
+}
+
+.profile-section-title {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    color: var(--text-color);
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-align: center; /* Judul section di profil tetap tengah */
+}
+
+.match-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.match-history-item {
+    background-color: var(--card-bg); /* Latar belakang item riwayat */
+    padding: 12px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95em;
+    color: var(--light-grey);
+}
+.match-history-item .match-date {
+    font-weight: normal;
+    color: var(--dark-grey-text);
+}
+.match-history-item .match-vs-opponent {
+    font-weight: bold;
+    color: var(--text-color);
+    flex-grow: 1;
+    margin-left: 10px;
+}
+.match-history-item .match-result {
+    font-weight: bold;
+}
+.match-history-item .match-result.win {
+    color: var(--win-color);
+}
+.match-history-item .match-result.loss {
+    color: var(--loss-color);
+}
+.no-history-message {
+    color: var(--light-grey);
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+.stats-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    margin-top: 20px;
 }
-.profile-details ul li {
-    background-color: var(--primary-bg); /* Latar belakang item profil */
-    padding: 10px 15px;
+
+.stats-list li {
+    background-color: var(--card-bg); /* Latar belakang item skill */
+    padding: 10px 20px;
     margin-bottom: 8px;
     border-radius: 5px;
     display: flex;
-    justify-content: space-between; /* Rata kiri-kanan untuk nama skill dan skor */
-    align-items: center;
+    flex-direction: column; /* Susun label dan bar vertikal */
+    align-items: flex-start; /* Rata kiri */
     font-size: 0.95em;
 }
-.profile-details ul li strong {
+.stats-list li strong {
     color: var(--light-grey);
+    margin-bottom: 5px;
 }
-.profile-details ul li span {
-    color: var(--highlight-color);
+
+.skill-bar-container {
+    width: 100%;
+    background-color: #444; /* Latar belakang bar progress */
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-bar {
+    height: 100%;
+    background-color: var(--highlight-color);
+    border-radius: 5px;
+    transition: width 0.5s ease-out;
+}
+.skill-bar-container .skill-score {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color); /* Skor di atas bar */
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 0.8em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    z-index: 1; /* Pastikan skor di atas bar */
 }
 
-/* Gaya untuk tabel responsif (di halaman ranking) */
-.table-responsive {
-    overflow-x: auto; /* Memungkinkan tabel di-scroll horizontal jika terlalu lebar */
-    -webkit-overflow-scrolling: touch; /* Untuk scrolling yang lebih halus di iOS */
-    margin-left: auto; /* Untuk memusatkan wrapper jika ada sisa ruang */
-    margin-right: auto;
-    max-width: 100%; /* Pastikan tidak melebihi lebar parent */
+
+/* ---- RANKING PAGE SPECIFIC STYLES (ranking.html) ---- */
+#ranking-page .tier-heading {
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    color: var(--highlight-color);
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(0, 230, 118, 0.3); /* Garis bawah accent */
+    padding-bottom: 10px;
 }
 
-/* Penyesuaian Media Queries untuk Mobile (maksimum 767px) */
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    overflow: hidden; /* Agar border-radius berlaku pada table */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.ranking-table th, .ranking-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.08); /* Garis pemisah antar baris */
+    color: var(--text-color);
+}
+
+.ranking-table th {
+    background-color: var(--card-bg); /* Background header tabel */
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-size: 0.9em;
+    color: var(--light-grey);
+    letter-spacing: 0.5px;
+}
+
+.ranking-table tr:last-child td {
+    border-bottom: none; /* Hapus border di baris terakhir */
+}
+
+.ranking-table tbody tr:hover {
+    background-color: rgba(0, 230, 118, 0.05); /* Highlight saat hover */
+}
+
+.debater-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.debater-cell img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--highlight-color);
+}
+.debater-cell .debater-name {
+    color: var(--text-color);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.debater-cell .debater-name:hover {
+    color: var(--highlight-color);
+}
+
+/* ---- ARCHIVE PAGE SPECIFIC STYLES (archive.html) ---- */
+#archive-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak antar item arsip */
+}
+
+.archive-item {
+    background-color: var(--secondary-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+}
+
+.archive-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+}
+.archive-header .category {
+    font-family: var(--font-body);
+    font-size: 0.9em;
+    color: var(--light-grey);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.archive-header .date {
+    font-size: 0.8em;
+    color: var(--dark-grey-text);
+}
+
+.archive-participants {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    color: var(--text-color);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.archive-participants .vs {
+    color: var(--light-grey);
+    font-size: 0.7em;
+    opacity: 0.7;
+}
+
+.archive-result p {
+    margin: 5px 0;
+    font-size: 1em;
+    font-weight: bold;
+}
+.archive-result .winner-name {
+    color: var(--win-color);
+}
+.archive-result .loss-name {
+    color: var(--loss-color);
+}
+.archive-type {
+    font-size: 0.85em;
+    color: var(--dark-grey-text);
+    margin-top: 10px;
+}
+
+/* ---- COMPARE PAGE SPECIFIC STYLES (compare.html) ---- */
+.compare-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap; /* Untuk responsivitas mobile */
+}
+
+.compare-controls select {
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    appearance: none; /* Hapus gaya default browser */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23f0f0f0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px; /* Ruang untuk ikon */
+}
+.compare-controls select:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 5px rgba(0, 230, 118, 0.5);
+}
+
+.compare-vs-icon {
+    font-family: var(--font-heading);
+    font-size: 2em;
+    color: var(--light-grey);
+    font-weight: bold;
+    opacity: 0.7;
+}
+
+.chart-container {
+    background-color: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    height: 450px; /* Atur tinggi grafik */
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chart-message {
+    color: var(--light-grey);
+    font-style: italic;
+}
+#radarChart {
+    width: 100% !important; /* Pastikan Chart.js menggunakan lebar penuh container */
+    height: 100% !important; /* Pastikan Chart.js menggunakan tinggi penuh container */
+}
+
+
+/* --- GLOBAL MEDIA QUERIES (Responsivitas) --- */
+
+/* Media Queries untuk Mobile (maksimum 767px) */
 @media (max-width: 767px) {
+    section {
+        padding: 30px 15px; /* Padding lebih kecil di mobile */
+    }
+    .content-section {
+        padding: 40px 15px; /* Padding lebih kecil untuk konten section */
+    }
+    section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    section p {
+        font-size: 0.95em;
+    }
+
     .main-header h1 {
-        font-size: 1.8em; /* Lebih kecil di mobile */
+        font-size: 1.8em;
+        letter-spacing: 2px;
     }
     .main-nav {
-        padding: 5px 0; /* Lebih kecil lagi padding di mobile */
+        padding: 5px 0;
     }
     .main-nav ul {
-        gap: 5px 10px; /* Sesuaikan gap untuk mobile agar lebih rapat */
+        gap: 5px 10px;
     }
     .main-nav ul li a {
-        font-size: 0.8em; /* Kurangi ukuran font di mobile agar muat lebih banyak */
-        padding: 3px 6px; /* Kurangi padding di mobile */
+        font-size: 0.8em;
+        padding: 3px 6px;
     }
 
     #main-event {
-        min-height: 400px; /* Lebih pendek di mobile */
+        min-height: 350px;
+    }
+    .event-title {
+        font-size: 1.1em;
     }
     .contestants {
-        font-size: 2em; /* Lebih kecil di mobile */
-        flex-wrap: wrap; /* Izinkan wrap nama debater */
+        font-size: 1.8em;
+        flex-wrap: wrap;
         gap: 10px;
     }
     .contestants .vs {
         font-size: 0.8em;
     }
     .countdown-item .number {
-        font-size: 2em;
-    }
-    .countdown-colon {
         font-size: 1.8em;
     }
+    .countdown-item .label {
+        font-size: 0.6em;
+    }
+    .countdown-colon {
+        font-size: 1.5em;
+    }
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+        margin-top: 20px;
+    }
 
-    /* Penyesuaian achievement items untuk mobile */
-    .achievement-grid { /* Ganti content-overlay */
+    .achievement-grid {
         flex-direction: column;
         gap: 20px;
     }
     .achievement-item {
-        max-width: 100%; /* Penuh lebar di mobile */
+        max-width: 100%;
         flex: none;
     }
+    .achievement-item .number {
+        font-size: 3em;
+    }
+    .achievement-item .label {
+        font-size: 1em;
+    }
 
+    #debates-container {
+        grid-template-columns: 1fr; /* Satu kolom di mobile */
+    }
     .match-card {
-        padding: 15px; /* Padding lebih kecil di mobile */
+        padding: 15px;
         gap: 10px;
+    }
+    .match-header {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+    .match-header .category, .match-header .type {
+        font-size: 0.75em;
     }
     .match-details {
-        flex-direction: column; /* Susun vertikal di mobile */
+        flex-direction: column;
         gap: 10px;
     }
-    .debater-info img {
-        width: 80px; /* Gambar debater lebih kecil */
+    .debater-info .debater-photo {
+        width: 80px;
         height: 80px;
     }
     .debater-info .name {
         font-size: 1.2em;
     }
     .match-vs {
-        margin: 5px 0; /* Sesuaikan margin VS */
-    }
-    .match-type {
-        font-size: 0.8em;
-    }
-
-    /* Penyesuaian modal dan profil di dalamnya (sudah ada, konsisten) */
-    .modal-content {
-        padding: 20px;
-        width: 95%; /* Lebih lebar di mobile */
-    }
-    .profile-details h3 {
+        margin: 5px 0;
         font-size: 1.8em;
     }
-    .close-button {
-        font-size: 25px;
-        top: 5px;
-        right: 15px;
+    .result-info {
+        margin-top: 10px;
+        padding-top: 10px;
+        font-size: 0.9em;
     }
-    /* Penyesuaian tabel ranking untuk layar mobile */
-    .ranking-table th, .ranking-table td {
-        padding: 10px; /* Kurangi padding */
-        font-size: 0.85em; /* Kurangi ukuran font */
-        white-space: nowrap; /* Mencegah teks wrapping di dalam sel */
-    }
-    .ranking-table th:nth-child(1), .ranking-table td:nth-child(1) { /* Peringkat */
-        width: 10%;
-    }
-    .ranking-table th:nth-child(2), .ranking-table td:nth-child(2) { /* Debater */
-        width: 40%;
-    }
-    .ranking-table th:nth-child(n+3), .ranking-table td:nth-child(n+3) { /* Kolom skill */
-        width: 15%; /* Beri lebar tetap untuk kolom skill */
-    }
-    .debater-cell img {
-        width: 40px; /* Perkecil foto debater di tabel */
-        height: 40px;
-    }
-    /* Gaya untuk halaman profil (mobile) */
-    .profile-card {
+
+    /* Profil Page Mobile */
+    #profile-page .profile-card {
         padding: 20px;
-        max-width: 100%; /* Lebar penuh di mobile */
     }
     .profile-avatar {
         width: 120px;
         height: 120px;
     }
     .profile-name {
-        font-size: 2em;
+        font-size: 2.2em;
+    }
+    .profile-tier {
+        font-size: 1em;
+    }
+    .profile-record {
+        font-size: 1.1em;
     }
     .profile-section-title {
         font-size: 1.5em;
     }
     .match-history-item {
-        flex-direction: column; /* Tumpuk vertikal di mobile */
+        flex-direction: column;
         align-items: flex-start;
         gap: 5px;
+        font-size: 0.9em;
     }
     .skill-bar-container {
-        height: 8px; /* Lebih tipis di mobile */
+        height: 8px;
+    }
+    .skill-bar-container .skill-score {
+        font-size: 0.7em;
+    }
+
+    /* Ranking Page Mobile */
+    .ranking-table th, .ranking-table td {
+        padding: 10px;
+        font-size: 0.85em;
+    }
+    .debater-cell img {
+        width: 40px;
+        height: 40px;
+    }
+    .debater-cell .debater-name {
+        font-size: 0.9em;
+    }
+    .ranking-table th:nth-child(n+3), .ranking-table td:nth-child(n+3) {
+        /* Kolom skill mungkin perlu disembunyikan atau diatur agar lebih ringkas */
+        /* Contoh: display: none; pada mobile untuk beberapa kolom */
+    }
+
+    /* Archive Page Mobile */
+    .archive-item {
+        padding: 15px;
+    }
+    .archive-header {
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+    .archive-header .category, .archive-header .date {
+        font-size: 0.8em;
+    }
+    .archive-participants {
+        font-size: 1.5em;
+        flex-wrap: wrap;
+    }
+    .archive-result p {
+        font-size: 0.9em;
+    }
+
+    /* Compare Page Mobile */
+    .compare-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .compare-controls select {
+        width: 100%;
+        font-size: 0.9em;
+    }
+    .compare-vs-icon {
+        font-size: 1.5em;
+    }
+    .chart-container {
+        height: 350px; /* Lebih pendek di mobile */
+        padding: 20px;
     }
 }
 
-/* Media Queries untuk Responsif (untuk layar lebih besar dari 768px) */
+/* Media Queries untuk Desktop/Tablet (minimum 768px) */
 @media (min-width: 768px) {
     .main-header h1 {
-        font-size: 3em; /* Kembali besar di desktop */
+        font-size: 3em;
     }
     #main-event {
-        min-height: 600px; /* Tinggi lebih besar di desktop */
+        min-height: 600px;
     }
     .contestants {
-        font-size: 3.5em; /* Ukuran besar di desktop */
+        font-size: 3.5em;
     }
     .countdown-item .number {
         font-size: 2.8em;
@@ -783,36 +1125,121 @@ footer a:hover {
     .countdown-colon {
         font-size: 2.5em;
     }
-    .achievement-grid { /* Ganti content-overlay */
-        flex-direction: row; /* Kembali horizontal di desktop */
+    .achievement-grid {
+        flex-direction: row;
     }
     .match-card {
-        flex-direction: row; /* Kembali horizontal di desktop */
-        justify-content: space-between;
-        align-items: center;
-        padding: 30px;
+        flex-direction: column; /* Tetap kolom di desktop agar match Byon */
     }
-    .match-card .category {
-        width: auto;
-        text-align: left;
-        margin-bottom: 0;
+    .match-header {
+        text-align: center;
     }
     .match-details {
         flex-wrap: nowrap;
-        flex-grow: 1; /* Biarkan mengambil ruang yang tersedia */
-        justify-content: center; /* Pusatkan konten debater dan VS */
+        flex-grow: 1;
+        justify-content: center;
     }
-    .debater-info {
-        min-width: unset;
-        flex: none; /* Jangan membesar/mengecil tidak perlu */
+    .debater-info .debater-photo {
+        width: 120px;
+        height: 120px;
     }
-    .match-type {
-        width: auto;
-        border-top: none;
-        padding-top: 0;
-        text-align: right; /* Mungkin rata kanan di desktop */
+    .debater-info .name {
+        font-size: 1.8em;
+    }
+    .match-vs {
+        font-size: 3em;
+        margin: 0 20px;
     }
     .result-info {
-        text-align: right; /* Rata kanan di desktop */
+        text-align: center;
+    }
+
+    /* Profil Page Desktop */
+    #profile-page .profile-card {
+        padding: 50px;
+    }
+    .profile-header {
+        flex-direction: row; /* Horizontal di desktop */
+        justify-content: center;
+        align-items: flex-start; /* Atur item di awal (atas) */
+        gap: 40px;
+        text-align: left; /* Teks header di profil rata kiri di desktop */
+    }
+    .profile-header .profile-info-text { /* Wrapper untuk nama, tier, record */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .profile-name {
+        font-size: 3.5em;
+    }
+    .profile-tier {
+        font-size: 1.2em;
+    }
+    .profile-record {
+        font-size: 1.4em;
+    }
+    .profile-section-title {
+        text-align: left; /* Judul section di profil rata kiri di desktop */
+    }
+    .match-history-item {
+        flex-direction: row; /* Horizontal di desktop */
+        justify-content: space-between;
+        align-items: center;
+    }
+    .match-history-item .match-date,
+    .match-history-item .match-vs-opponent,
+    .match-history-item .match-result {
+        flex-basis: auto; /* Reset flex basis */
+    }
+    .match-history-item .match-vs-opponent {
+        text-align: left;
+        margin-left: 20px; /* Jarak dari tanggal */
+    }
+    .stats-list li {
+        flex-direction: row; /* Horizontal di desktop */
+        justify-content: space-between;
+        align-items: center;
+    }
+    .stats-list li strong {
+        margin-bottom: 0;
+        flex-basis: 30%; /* Beri ruang untuk label skill */
+    }
+    .skill-bar-container {
+        flex-basis: 60%; /* Beri ruang untuk bar */
+        height: 12px;
+    }
+    .skill-bar-container .skill-score {
+        font-size: 0.9em;
+    }
+
+    /* Ranking Page Desktop */
+    .ranking-table th, .ranking-table td {
+        padding: 20px;
+    }
+    .debater-cell img {
+        width: 60px;
+        height: 60px;
+    }
+    .debater-cell .debater-name {
+        font-size: 1em;
+    }
+
+    /* Archive Page Desktop */
+    .archive-item {
+        padding: 30px;
+    }
+    .archive-header {
+        flex-direction: row;
+    }
+    .archive-header .category {
+        flex-grow: 1; /* Ambil ruang lebih */
+        text-align: left;
+    }
+    .archive-header .date {
+        text-align: right;
+    }
+    .archive-participants {
+        font-size: 2.2em;
     }
 }
