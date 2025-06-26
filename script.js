@@ -21,10 +21,8 @@ const debatesData = [
                 "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
-            // Data tambahan untuk profil seperti Byon
-            "height": "178 CM | 5'10 FT",
-            "weight": "75 KG | 165 LBS",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 }, // Contoh data
+            // Data height dan weight DIHAPUS
+            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
                 {"event": "DBA Series 1", "achievement": "Champion", "date": "2025"},
@@ -48,8 +46,7 @@ const debatesData = [
                 "General Knowledge": "1/10"
             },
             "tier": "Mid Tier",
-            "height": "170 CM | 5'7 FT",
-            "weight": "68 KG | 150 LBS",
+            // Data height dan weight DIHAPUS
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -84,8 +81,7 @@ const debatesData = [
                 "General Knowledge": "7/10"
             },
             "tier": "High Tier",
-            "height": "185 CM | 6'1 FT",
-            "weight": "80 KG | 176 LBS",
+            // Data height dan weight DIHAPUS
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
             "achievements": [
@@ -109,8 +105,7 @@ const debatesData = [
                 "General Knowledge": "8/10"
             },
             "tier": "High Tier",
-            "height": "175 CM | 5'9 FT",
-            "weight": "72 KG | 158 LBS",
+            // Data height dan weight DIHAPUS
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -145,8 +140,7 @@ const debatesData = [
                 "General Knowledge": "10/10"
             },
             "tier": "Low Tier",
-            "height": "170 CM | 5'7 FT",
-            "weight": "65 KG | 143 LBS",
+            // Data height dan weight DIHAPUS
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
@@ -170,8 +164,7 @@ const debatesData = [
                 "General Knowledge": "7/10"
             },
             "tier": "Low Tier",
-            "height": "168 CM | 5'6 FT",
-            "weight": "62 KG | 137 LBS",
+            // Data height dan weight DIHAPUS
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -206,8 +199,7 @@ const debatesData = [
                 "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
-            "height": "179 CM | 5'10 FT",
-            "weight": "77 KG | 170 LBS",
+            // Data height dan weight DIHAPUS
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
@@ -231,8 +223,7 @@ const debatesData = [
                 "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
-            "height": "173 CM | 5'8 FT",
-            "weight": "70 KG | 154 LBS",
+            // Data height dan weight DIHAPUS
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -268,8 +259,7 @@ const debatesData = [
                 "General Knowledge": "0/10"
             },
             "tier": "Low Tier",
-            "height": "165 CM | 5'5 FT", // Contoh data
-            "weight": "55 KG | 121 LBS", // Contoh data
+            // Data height dan weight DIHAPUS
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
@@ -293,8 +283,7 @@ const debatesData = [
                 "General Knowledge": "1/10"
             },
             "tier": "Low Tier",
-            "height": "170 CM | 5'7 FT",
-            "weight": "60 KG | 132 LBS",
+            // Data height dan weight DIHAPUS
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -318,11 +307,9 @@ debatesData.forEach(debate => {
     const debater1Name = debate.debater1.name;
     const debater2Name = debate.debater2.name;
 
-    // Pastikan debater1 dan debater2 ada di allDebaters, salin semua properti termasuk yang baru
     if (!allDebaters[debater1Name]) {
         allDebaters[debater1Name] = { ...debate.debater1, wins: 0, losses: 0, matchHistory: [] };
     } else {
-        // Gabungkan properti baru jika debater sudah ada (misal: jika debater1 dan debater2 sama)
         Object.assign(allDebaters[debater1Name], debate.debater1);
     }
 
@@ -337,7 +324,6 @@ debatesData.forEach(debate => {
         const winnerName = debate.winner.name;
         const loserName = debate.loser.name;
 
-        // Untuk pemenang
         allDebaters[winnerName].wins += 1;
         allDebaters[winnerName].matchHistory.push({
             opponent: loserName,
@@ -346,12 +332,10 @@ debatesData.forEach(debate => {
             date: debate.date,
             category: debate.category,
             id: debate.id,
-            // Tambahkan round dan time jika ada di data debat utama
-            round: debate.round, // Anda perlu menambah ini ke debatesData jika ada
-            time: debate.time    // Anda perlu menambah ini ke debatesData jika ada
+            round: debate.round,
+            time: debate.time
         });
 
-        // Untuk yang kalah
         allDebaters[loserName].losses += 1;
         allDebaters[loserName].matchHistory.push({
             opponent: winnerName,
@@ -369,8 +353,8 @@ debatesData.forEach(debate => {
 
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
-    // Atur targetDate ke tanggal spesifik (misalnya, tanggal debat utama berikutnya)
-    const targetDate = new Date("2025-07-01T10:00:00").getTime(); // Contoh: 1 Juli 2025, 10:00 AM WIB (Medan)
+    // Tanggal target: 1 Juli 2025, 10:00 AM WIB (sesuai lokasi Indonesia)
+    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime(); // +07:00 untuk WIB
 
     const countdownInterval = setInterval(function() {
         const currentTime = new Date().getTime();
@@ -472,7 +456,7 @@ function renderProfilePage() {
         return;
     }
 
-    // Bangun HTML untuk halaman profil berdasarkan desain Byon
+    // Bangun HTML untuk halaman profil berdasarkan desain Byon (tanpa height dan weight)
     let profileHtml = `
         <div class="profile-main-info">
             <img src="${debater.photo}" alt="Foto ${debater.name}" class="profile-avatar">
@@ -480,9 +464,6 @@ function renderProfilePage() {
                 <p class="profile-division">DEBATER TIER: ${debater.tier.toUpperCase()} <span class="active-status">ACTIVE</span></p>
                 <h2 class="profile-name">${debater.name}</h2>
                 <p class="profile-country"><img src="${debater.flag}" alt="Bendera ${debater.country}" class="profile-flag-icon"> ${debater.country.toUpperCase()}</p>
-                ${debater.height ? `<p class="profile-spec">HEIGHT <span>${debater.height}</span></p>` : ''}
-                ${debater.weight ? `<p class="profile-spec">WEIGHT <span>${debater.weight}</span></p>` : ''}
-
                 <div class="profile-records-grid">
                     ${debater.fightRecord ? `
                         <div class="record-box">
@@ -521,7 +502,6 @@ function renderProfilePage() {
 
     if (debater.matchHistory && debater.matchHistory.length > 0) {
         // Mengambil hanya satu riwayat pertandingan terbaru untuk DBA RECORD jika Anda ingin seperti Byon (atau bisa juga semua)
-        // Saya asumsikan Anda hanya ingin yang terbaru seperti di Byon
         const latestMatch = debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
         if (latestMatch) {
@@ -783,7 +763,7 @@ function renderComparePage() {
         const debater2 = allDebaters[selectedDebater2Name];
 
         if (!debater1 || !debater2 || !debater1.profile || !debater2.profile) {
-            chartArea.innerHTML = '<p class="chart-message" style="color: red;">Statistik debater tidak lengkap.</p>';
+            chartArea.innerHTML = `<p class="chart-message" style="color: red;">Statistik debater untuk ${!debater1 ? selectedDebater1Name : selectedDebater2Name} tidak lengkap.</p>`;
             if (chartInstance) {
                 chartInstance.destroy();
                 chartInstance = null;
@@ -791,7 +771,6 @@ function renderComparePage() {
             return;
         }
 
-        // Pastikan canvas ada kembali di DOM setelah dihapus oleh pesan error
         chartArea.innerHTML = '';
         chartArea.appendChild(chartCanvas);
 
@@ -887,17 +866,15 @@ function renderComparePage() {
 
 // ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
 document.addEventListener('DOMContentLoaded', () => {
-    // Tentukan halaman aktif berdasarkan URL pathname
     const currentPath = window.location.pathname;
 
-    // Untuk memastikan link navigasi aktif terhighlight
     const navLinks = document.querySelectorAll('.main-nav ul li a');
     navLinks.forEach(link => {
-        const linkPath = new URL(link.href).pathname.replace(/\/$/, ''); // Hapus trailing slash
-        const cleanedCurrentPath = currentPath.replace(/\/$/, ''); // Hapus trailing slash
+        const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
+        const cleanedCurrentPath = currentPath.replace(/\/$/, '');
 
         if (cleanedCurrentPath === linkPath ||
-           (cleanedCurrentPath === '/index.html' && linkPath === '/') || // Untuk root path
+           (cleanedCurrentPath === '/index.html' && linkPath === '/') ||
            (cleanedCurrentPath === '/' && linkPath === '/index.html')) {
             link.classList.add('active');
         } else {
