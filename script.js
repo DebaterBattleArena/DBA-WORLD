@@ -275,61 +275,6 @@ const debatesData = [
         "winner": { "name": "Thinzel", "method": "limit" },
         "loser": { "name": "Shade" }
     },
-    {
-        "id": "debate-006",
-        "category": "FICTIONAL DEBATE",
-        "date": "2025-06-26",
-        "matchBanner": "7a47b236-a78a-4b2f-bbce-9cadecef6843.jpeg", // Path gambar match banner
-        "debater1": {
-            "name": "Lianx",
-            "photo": "IMG_0935.jpeg",
-            "country": "indonesia",
-            "flag": "IMG_0417.png",
-            "vbWiki": "High 1-B",
-            "ibr": "Low 1-A",
-            "profile": {
-                "Rhetoric": "8/10",
-                "Typing Structure": "9/10",
-                "Critical Thinking": "9/10",
-                "Logical Fallacies": "9/10",
-                "Typing Strenght": "8/10",
-                "Tiering Sistem": "7/10",
-                "Calculation": "9/10",
-                "Philisophy": "8/10",
-                "General Knowledge": "8/10"
-            },
-            "tier": "High Tier",
-            "debateRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "achievements": []
-        },
-        "debater2": {
-            "name": "Adyy",
-            "photo": "IMG_0934.jpeg",
-            "country": "malaysia",
-            "flag": "IMG_0418.png",
-            "vbWiki": "Low 1-C",
-            "ibr": "High 1-B",
-            "profile": {
-                "Rhetoric": "8/10",
-                "Typing Structure": "8/10",
-                "Critical Thinking": "7/10",
-                "Logical Fallacies": "6/10",
-                "Typing Strenght": "7/10",
-                "Tiering Sistem": "9/10",
-                "Calculation": "7/10",
-                "Philisophy": "0/10",
-                "General Knowledge": "10/10"
-            },
-            "tier": "High Tier",
-            "debateRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "achievements": []
-        },
-        "type": "HIGH TIER DEBATE", // Digunakan sebagai topik
-        "winner": { "name": "Lianx", "method": "Point" },
-        "loser": { "name": "Adyy" }
-    }
 ];
 // ====== Global variable to store all debater profiles and calculated stats for easy lookup ======
 let allDebaters = {};
