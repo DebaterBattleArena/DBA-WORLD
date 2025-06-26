@@ -445,113 +445,115 @@ section p {
     width: 100%; /* Default 100% untuk mobile */
     max-width: 600px; /* Batas lebar kartu di desktop */
     min-height: 220px; /* Tinggi minimum agar konten tidak terlalu rapat */
+    position: relative; /* Untuk positioning result-section */
 }
 
-.match-header {
-    position: absolute; /* Posisikan header di atas kartu */
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto; /* Lebar sesuai konten */
-    padding: 5px 10px;
-    background-color: rgba(0, 0, 0, 0.7); /* Background gelap transparan */
-    border-radius: 5px;
-    z-index: 2; /* Di atas elemen lain */
-    white-space: nowrap; /* Jangan putus baris */
-    border: 1px solid rgba(255,255,255,0.1);
-}
-.match-header .category,
-.match-header .type {
-    font-family: var(--font-body);
-    font-size: 0.75em; /* Ukuran lebih kecil */
-    color: var(--light-grey);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: inline-block;
-    margin: 0 3px;
-    font-weight: 500;
-}
-.match-header .type {
-    color: var(--highlight-color);
-    font-weight: bold;
-}
-
-.match-details {
+.match-card-content {
     display: flex;
-    flex: 1; /* Mengambil sisa ruang */
-    align-items: center;
-    justify-content: center; /* Pusatkan konten horizontal */
-    padding: 20px; /* Padding di dalam area detail */
-    position: relative; /* Untuk positioning VS */
-    padding-top: 50px; /* Beri ruang untuk header yang di-absolute */
+    flex: 1; /* Mengambil ruang untuk konten utama */
+    align-items: center; /* Sejajarkan vertikal di tengah */
+    justify-content: center; /* Pusatkan horizontal */
+    padding: 15px 10px; /* Padding di dalam area konten */
+    gap: 15px; /* Jarak antar kolom debater/VS */
 }
 
-.debater-info {
+.debater-info-left,
+.debater-info-right {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 8px;
-    flex: 1; /* Setiap debater info mengambil ruang yang sama */
-    min-width: 100px;
-    padding: 0 10px; /* Padding di sekitar info debater */
+    flex: 1; /* Mengambil ruang yang sama */
+    padding: 0 5px; /* Padding di sekitar info debater */
 }
 
-.debater-info .debater-photo {
-    width: 100px; /* Ukuran foto lebih kecil agar muat */
-    height: 100px;
-    border-radius: 50%;
+.category-type-label {
+    position: absolute; /* Posisikan label kategori */
+    top: 15px;
+    font-size: 0.75em;
+    color: var(--light-grey);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background-color: rgba(0,0,0,0.7);
+    padding: 4px 8px;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.1);
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.debater-info-left .category-type-label {
+    left: 15px; /* Posisikan di kiri */
+}
+.debater-info-right .category-type-label {
+    right: 15px; /* Posisikan di kanan */
+}
+
+
+.debater-photo-main {
+    width: 120px; /* Ukuran foto utama debater */
+    height: 120px;
     object-fit: cover;
+    border-radius: 5px; /* Sudut sedikit membulat seperti Byon */
     border: 3px solid var(--highlight-color);
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin-bottom: 5px; /* Jarak dari nama */
 }
-.debater-info .name {
+
+.debater-name-main {
     font-family: var(--font-heading);
-    font-size: 1.4em; /* Nama sedikit lebih kecil */
+    font-size: 1.6em;
     color: var(--white-text-color);
     text-transform: uppercase;
     font-weight: 700;
-    text-decoration: none;
+    line-height: 1.2;
 }
-.debater-info .name:hover {
-    color: var(--highlight-color);
-}
-.debater-info .origin {
+
+.country-origin-main {
     display: flex;
     align-items: center;
     gap: 5px;
     color: var(--light-grey);
     font-size: 0.8em;
+    margin-top: 5px;
 }
-.debater-info .flag-icon {
+.country-origin-main .flag-icon-main {
     width: 25px;
     height: 18px;
     border-radius: 2px;
     object-fit: cover;
 }
 
+.match-divider {
+    display: flex;
+    flex-direction: column; /* VS di atas atau di tengah garis */
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
 .match-vs {
     font-family: var(--font-heading);
-    font-size: 2.2em; /* VS lebih kecil agar muat */
+    font-size: 2.5em; /* Ukuran VS */
     color: var(--light-grey);
     opacity: 0.7;
     font-weight: 700;
-    margin: 0 10px; /* Jarak VS dari foto */
 }
 
-.result-info-container {
+.match-result-section {
     width: 100%;
-    padding: 15px 20px; /* Padding di sekitar info pemenang/kalah */
-    background-color: rgba(0,0,0,0.3); /* Background di bawah garis */
-    border-top: 1px dashed rgba(255,255,255,0.1); /* Garis pemisah */
+    padding: 15px 20px;
+    background-color: rgba(0,0,0,0.3); /* Background gelap transparan */
+    border-top: 1px dashed rgba(255,255,255,0.1);
     text-align: center;
-    box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+    box-sizing: border-box;
 }
 
 .result-info {
-    font-size: 0.9em; /* Ukuran font lebih kecil */
+    font-size: 0.9em;
     font-weight: bold;
-    margin: 5px 0; /* Jarak antar baris info */
+    margin: 5px 0;
 }
 .result-info.winner {
     color: var(--win-color);
@@ -992,94 +994,94 @@ footer a:hover {
 }
 
 .ranking-tier-header {
-    font-size: 2.8em; /* Ukuran font lebih besar */
-    color: var(--highlight-color); /* Warna hijau terang */
+    font-size: 2.8em;
+    color: var(--highlight-color);
     text-align: center;
-    margin: 40px 0 30px 0; /* Margin atas dan bawah lebih besar */
-    font-weight: 700; /* Lebih tebal */
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.4); /* Efek glow tipis */
-    letter-spacing: 2px; /* Jarak antar huruf */
+    margin: 40px 0 30px 0;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+    letter-spacing: 2px;
 }
 
 .ranking-table-container {
-    background-color: var(--card-bg-dark); /* Background gelap untuk container tabel */
-    border-radius: 10px; /* Sudut membulat */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Bayangan lebih dalam */
-    margin: 0 auto 50px auto; /* Pusatkan dan beri margin bawah */
-    max-width: 95%; /* Lebar maksimal agar responsif */
-    overflow-x: auto; /* Agar tabel bisa discroll jika terlalu lebar */
+    background-color: var(--card-bg-dark);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    margin: 0 auto 50px auto;
+    max-width: 95%;
+    overflow-x: auto;
 }
 
 .ranking-table {
     width: 100%;
-    border-collapse: collapse; /* Hilangkan border antar sel */
+    border-collapse: collapse;
     color: var(--white-text-color);
     font-size: 0.95em;
-    min-width: 600px; /* Lebar minimum untuk tabel agar tidak terlalu sempit di mobile */
+    min-width: 600px;
 }
 
 .ranking-table th,
 .ranking-table td {
-    padding: 15px 20px; /* Padding lebih besar untuk sel */
+    padding: 15px 20px;
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Garis pemisah antar baris lebih halus */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .ranking-table th {
-    background-color: var(--secondary-bg); /* Background header kolom lebih gelap */
+    background-color: var(--secondary-bg);
     color: var(--light-grey);
-    font-weight: 700; /* Lebih tebal */
-    text-transform: uppercase; /* Huruf kapital semua */
-    font-size: 0.85em; /* Ukuran font header sedikit lebih kecil */
-    letter-spacing: 1px; /* Jarak antar huruf */
-    position: sticky; /* Agar header tetap di atas saat scroll */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    position: sticky;
     top: 0;
     z-index: 1;
 }
 
 .ranking-table tbody tr:last-child td {
-    border-bottom: none; /* Hilangkan border bawah pada baris terakhir */
+    border-bottom: none;
 }
 
 .ranking-table tbody tr:hover {
-    background-color: rgba(0, 255, 0, 0.05); /* Efek hover hijau tipis */
+    background-color: rgba(0, 255, 0, 0.05);
 }
 
 .ranking-table td:first-child {
-    font-weight: 700; /* Nomor peringkat lebih tebal */
-    color: var(--highlight-color); /* Warna hijau terang untuk peringkat */
+    font-weight: 700;
+    color: var(--highlight-color);
     font-size: 1.1em;
 }
 
 .ranking-table .debater-info {
     display: flex;
     align-items: center;
-    gap: 15px; /* Jarak antara gambar dan nama */
+    gap: 15px;
 }
 
 .ranking-table .debater-info img {
-    width: 50px; /* Ukuran gambar debater lebih besar */
+    width: 50px;
     height: 50px;
-    border-radius: 50%; /* Bulat sempurna */
+    border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--highlight-color); /* Border hijau terang */
-    box-shadow: 0 0 8px rgba(0, 255, 0, 0.3); /* Efek glow pada gambar */
+    border: 2px solid var(--highlight-color);
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
 }
 
 .ranking-table .debater-info .debater-name {
-    font-weight: 600; /* Nama debater lebih tebal */
+    font-weight: 600;
     color: var(--white-text-color);
     font-size: 1.05em;
 }
 
 .ranking-table .skill-score {
-    font-weight: 700; /* Angka skill lebih tebal */
-    color: var(--light-grey); /* Warna abu-abu terang */
+    font-weight: 700;
+    color: var(--light-grey);
     font-size: 1.05em;
 }
 
 .ranking-table .skill-score span.numerator {
-    color: var(--highlight-color); /* Warna hijau untuk angka atas (misal 8 dari 8/10) */
+    color: var(--highlight-color);
 }
 
 
@@ -1255,42 +1257,44 @@ footer a:hover {
         gap: 20px;
     }
     .match-card {
-        flex-direction: column; /* Kembali ke atas-bawah di mobile */
+        flex-direction: column; /* Konten di dalam kartu kembali atas-bawah */
         width: 100%; /* Ambil lebar penuh */
         max-width: none;
         min-height: auto;
-        padding-top: 40px; /* Beri ruang untuk header yang di-absolute */
-        position: relative; /* Agar match-header bisa di-absolute */
+        position: relative; /* Agar category-type-label bisa di-absolute */
     }
-    .match-header {
-        position: absolute; /* Posisikan header di atas kartu */
+    .match-card-content {
+        flex-direction: column; /* Debater, VS, Debater menjadi atas-bawah */
+        padding: 15px; /* Padding lebih kecil */
+        padding-top: 50px; /* Beri ruang untuk category-type-label di-absolute */
+    }
+    .debater-info-left,
+    .debater-info-right {
+        padding: 0;
+        margin-bottom: 10px; /* Jarak antara info debater dan VS */
+    }
+    .category-type-label {
+        position: absolute; /* Posisikan label kategori */
         top: 15px;
         left: 50%;
         transform: translateX(-50%);
-        width: auto;
-        padding: 5px 10px;
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 5px;
-        z-index: 2;
+        right: auto; /* Hapus right untuk centring */
     }
-    .match-details {
-        flex-direction: column; /* Foto di atas VS di atas foto di mobile */
-        padding: 15px; /* Padding lebih kecil */
-        padding-top: 20px; /* Sesuaikan padding-top */
+    .debater-photo-main {
+        width: 100px; /* Foto lebih kecil di mobile */
+        height: 100px;
     }
-    .debater-info .debater-photo {
-        width: 80px; /* Foto lebih kecil di mobile */
-        height: 80px;
+    .debater-name-main {
+        font-size: 1.4em;
     }
-    .debater-info .name {
-        font-size: 1.2em;
-    }
-    .match-vs {
-        font-size: 1.8em;
+    .match-divider {
         margin: 10px 0; /* Jarak atas bawah di mobile */
     }
-    .result-info-container {
-        padding: 10px 15px; /* Padding lebih kecil */
+    .match-vs {
+        font-size: 2.2em;
+    }
+    .match-result-section {
+        padding: 10px 15px;
     }
     .result-info {
         font-size: 0.85em;
@@ -1476,44 +1480,48 @@ footer a:hover {
     }
 
     /* Gaya untuk Section Match List (Jadwal Debat) - DESKTOP */
+    #debates-container {
+        justify-content: center;
+        gap: 30px; /* Jarak antar kartu */
+    }
     .match-card {
-        width: calc(50% - 15px); /* Dua kartu per baris */
+        width: calc(50% - 15px); /* Dua kartu per baris di desktop */
         flex-direction: row; /* Kiri-kanan di desktop */
-        min-height: 250px; /* Tingkatkan tinggi minimum */
-        position: relative; /* Agar match-header bisa di-absolute */
+        min-height: 250px; /* Tinggi minimum */
     }
-    .match-header {
-        position: absolute; /* Posisikan header di atas kartu */
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto;
+    .match-card-content {
+        flex-direction: row; /* Konten di dalam kartu tetap horizontal */
+        padding: 25px 20px;
+        gap: 30px;
+    }
+    .debater-info-left,
+    .debater-info-right {
+        padding: 0;
+    }
+    .category-type-label {
+        position: absolute;
+        top: 20px; /* Sesuaikan posisi dari atas */
+        font-size: 0.85em; /* Ukuran lebih besar di desktop */
         padding: 5px 10px;
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 5px;
-        z-index: 2;
     }
-    .match-details {
-        flex-direction: row; /* Foto-VS-Foto di desktop */
-        padding: 25px; /* Padding lebih besar */
-        padding-top: 50px; /* Beri ruang untuk header yang di-absolute */
+    .debater-photo-main {
+        width: 150px; /* Foto lebih besar di desktop */
+        height: 150px;
     }
-    .debater-info .debater-photo {
-        width: 120px; /* Foto lebih besar di desktop */
-        height: 120px;
+    .debater-name-main {
+        font-size: 1.8em;
     }
-    .debater-info .name {
-        font-size: 1.6em;
+    .match-divider {
+        margin: 0 20px; /* Jarak kiri kanan di desktop */
     }
     .match-vs {
         font-size: 3em;
-        margin: 0 15px; /* Jarak kiri kanan di desktop */
     }
-    .result-info-container {
-        padding: 15px 20px;
+    .result-info-section {
+        padding: 15px 25px;
     }
     .result-info {
-        font-size: 0.9em;
+        font-size: 0.95em;
     }
 
 
