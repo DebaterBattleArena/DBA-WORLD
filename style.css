@@ -219,14 +219,27 @@ section p {
     text-align: center;
 }
 
-.event-title {
-    font-family: var(--font-body);
-    font-size: 1.3em;
+.event-type-text { /* NEW: Gaya untuk tipe event di banner */
+    font-size: 0.9em;
     color: var(--light-grey);
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
+
+.event-showbiz-title { /* NEW: Gaya untuk "DBA'S COMBAT SHOWBIZ" */
+    font-family: var(--font-heading);
+    font-size: 3em; /* Ukuran besar */
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+.event-showbiz-title span {
+    color: var(--highlight-color); /* Warna aksen untuk "SHOWBIZ" */
+}
+
 .contestants {
     display: flex;
     justify-content: center;
@@ -553,155 +566,291 @@ footer a:hover {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
     text-align: center;
+    overflow: hidden;
+    position: relative;
 }
 
-.profile-header {
+/* Background image untuk profile card header (jika ingin seperti Byon) */
+#profile-page .profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px; /* Tinggi area background gambar */
+    background-image: url('background-profile-default.jpg'); /* Ganti dengan gambar latar profil default atau kosongkan */
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.2;
+    z-index: 0;
+}
+#profile-page .profile-card .profile-main-info {
+    position: relative;
+    z-index: 1;
     display: flex;
-    flex-direction: column; /* Default stack vertically for mobile */
+    flex-direction: column; /* Default: vertikal di mobile */
     align-items: center;
     gap: 20px;
     padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     margin-bottom: 20px;
 }
 
 .profile-avatar {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--highlight-color); /* Border hijau tebal */
-    box-shadow: 0 0 15px rgba(0, 230, 118, 0.5); /* Glowing effect */
+    border: 4px solid var(--highlight-color);
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.5);
+    flex-shrink: 0;
+    margin-top: 10px;
 }
 
-/* NEW: Wrapper untuk nama, tier, record, country di profile header */
-.profile-info-text {
+.profile-details-text {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Default rata tengah untuk mobile */
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.profile-division {
+    font-size: 0.9em;
+    color: var(--light-grey);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+.profile-division .active-status {
+    color: var(--highlight-color);
+    font-weight: bold;
 }
 
 .profile-name {
     font-family: var(--font-heading);
-    font-size: 2.8em;
+    font-size: 3em;
     color: var(--text-color);
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-.profile-tier {
-    color: var(--light-grey);
+.profile-country {
     font-size: 1.1em;
-    margin-top: -10px; /* Lebih dekat ke nama */
-    opacity: 0.8;
-}
-
-.profile-record {
-    font-size: 1.2em;
-    font-weight: bold;
     color: var(--light-grey);
-}
-.profile-record span {
-    color: var(--highlight-color); /* Warna hijau untuk rekor */
-}
-
-/* NEW: Styling untuk bendera di profil page */
-.profile-country-flag {
+    text-transform: uppercase;
     display: flex;
     align-items: center;
-    justify-content: center; /* Pusatkan jika hanya ada satu item */
-    gap: 10px;
-    margin-top: 10px; /* Jarak dari record */
-    font-size: 1.1em;
+    gap: 8px;
+    margin-top: 5px;
+}
+.profile-country .profile-flag-icon {
+    width: 30px;
+    height: 20px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.profile-spec {
+    font-size: 1em;
+    color: var(--light-grey);
+    margin: 5px 0;
+}
+.profile-spec span {
+    font-weight: bold;
+    color: var(--text-color);
+    margin-left: 5px;
+}
+
+.profile-records-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.record-box {
+    background-color: var(--card-bg);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.record-title {
+    font-size: 0.9em;
     color: var(--light-grey);
     text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
 }
-
-.profile-country-flag img {
-    width: 40px; /* Ukuran bendera yang lebih sesuai untuk profil */
-    height: 30px;
-    border-radius: 3px;
-    object-fit: cover;
-    border: 1px solid rgba(255,255,255,0.2); /* Border tipis untuk bendera */
-}
-
-.profile-content {
-    text-align: left; /* Konten di dalam profile-content rata kiri */
-}
-
-.profile-section-title {
+.record-stats {
+    display: flex;
+    justify-content: space-around;
     font-family: var(--font-heading);
     font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.record-stats .win-stat { color: var(--win-color); }
+.record-stats .loss-stat { color: var(--loss-color); }
+.record-stats .draw-stat { color: var(--light-grey); }
+
+.record-labels {
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.7em;
+    color: var(--dark-grey-text);
+    text-transform: uppercase;
+}
+
+.profile-section-block {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    text-align: left;
+}
+.section-block-title {
+    font-family: var(--font-heading);
+    font-size: 1.6em;
     color: var(--text-color);
     text-transform: uppercase;
-    margin-top: 30px;
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    text-align: center; /* Judul section di profil tetap tengah */
+    text-align: center;
+    letter-spacing: 1px;
 }
 
-.match-history-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.match-history-item {
-    background-color: var(--card-bg); /* Latar belakang item riwayat */
-    padding: 12px 20px;
+/* DBA Record (Match History di halaman profil) */
+.dba-record-item {
+    background-color: var(--secondary-bg);
+    padding: 15px 20px;
     border-radius: 5px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 15px;
     font-size: 0.95em;
-    color: var(--light-grey);
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
 }
-.match-history-item .match-date {
-    font-weight: normal;
-    color: var(--dark-grey-text);
+.dba-record-item.win {
+    border-left: 5px solid var(--win-color);
 }
-.match-history-item .match-vs-opponent {
-    font-weight: bold;
-    color: var(--text-color);
-    flex-grow: 1;
-    margin-left: 10px;
-}
-.match-history-item .match-result {
-    font-weight: bold;
-}
-.match-history-item .match-result.win {
-    color: var(--win-color);
-}
-.match-history-item .match-result.loss {
-    color: var(--loss-color);
-}
-.no-history-message {
-    color: var(--light-grey);
-    font-style: italic;
-    text-align: center;
-    padding: 20px;
+.dba-record-item.loss {
+    border-left: 5px solid var(--loss-color);
 }
 
+.dba-debater-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--light-grey);
+}
+.dba-details {
+    flex-grow: 1;
+}
+.dba-vs-opponent {
+    font-family: var(--font-heading);
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+}
+.dba-match-spec {
+    font-size: 0.8em;
+    color: var(--dark-grey-text);
+    margin: 0;
+}
+.dba-result-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 15px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: var(--primary-bg);
+    text-transform: uppercase;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    transform: rotate(45deg) translate(25%, -25%);
+    transform-origin: 100% 0%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.dba-record-item.win .dba-result-badge {
+    background-color: var(--win-color);
+}
+.dba-record-item.loss .dba-result-badge {
+    background-color: var(--loss-color);
+}
+
+/* Achievements Table */
+.achievements-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 15px;
+}
+.achievements-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--secondary-bg);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.achievements-table th, .achievements-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-align: left;
+    color: var(--light-grey);
+    font-size: 0.9em;
+}
+.achievements-table th {
+    background-color: rgba(255,255,255,0.05);
+    font-family: var(--font-body);
+    font-weight: bold;
+    color: var(--text-color);
+    text-transform: uppercase;
+}
+.achievements-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.achievements-table tbody tr:hover {
+    background-color: rgba(255,255,255,0.02);
+}
+.achievements-table td:nth-child(2) {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+.achievements-table td:nth-child(3) {
+    color: var(--dark-grey-text);
+}
+
+
+/* Stats Breakdown List */
 .stats-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .stats-list li {
-    background-color: var(--card-bg); /* Latar belakang item skill */
+    background-color: var(--secondary-bg);
     padding: 10px 20px;
     margin-bottom: 8px;
     border-radius: 5px;
     display: flex;
-    flex-direction: column; /* Susun label dan bar vertikal */
-    align-items: flex-start; /* Rata kiri */
+    flex-direction: column;
+    align-items: flex-start;
     font-size: 0.95em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 .stats-list li strong {
     color: var(--light-grey);
@@ -710,7 +859,7 @@ footer a:hover {
 
 .skill-bar-container {
     width: 100%;
-    background-color: #444; /* Latar belakang bar progress */
+    background-color: #444;
     height: 10px;
     border-radius: 5px;
     overflow: hidden;
@@ -728,11 +877,11 @@ footer a:hover {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--text-color); /* Skor di atas bar */
+    color: var(--text-color);
     font-weight: bold;
     font-size: 0.8em;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    z-index: 1; /* Pastikan skor di atas bar */
+    z-index: 1;
 }
 
 
@@ -744,7 +893,7 @@ footer a:hover {
     text-transform: uppercase;
     margin-top: 40px;
     margin-bottom: 25px;
-    border-bottom: 2px solid rgba(0, 230, 118, 0.3); /* Garis bawah accent */
+    border-bottom: 2px solid rgba(0, 230, 118, 0.3);
     padding-bottom: 10px;
 }
 
@@ -754,19 +903,19 @@ footer a:hover {
     margin-bottom: 40px;
     background-color: var(--secondary-bg);
     border-radius: 8px;
-    overflow: hidden; /* Agar border-radius berlaku pada table */
+    overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .ranking-table th, .ranking-table td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid rgba(255,255,255,0.08); /* Garis pemisah antar baris */
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     color: var(--text-color);
 }
 
 .ranking-table th {
-    background-color: var(--card-bg); /* Background header tabel */
+    background-color: var(--card-bg);
     font-family: var(--font-heading);
     text-transform: uppercase;
     font-size: 0.9em;
@@ -775,11 +924,11 @@ footer a:hover {
 }
 
 .ranking-table tr:last-child td {
-    border-bottom: none; /* Hapus border di baris terakhir */
+    border-bottom: none;
 }
 
 .ranking-table tbody tr:hover {
-    background-color: rgba(0, 230, 118, 0.05); /* Highlight saat hover */
+    background-color: rgba(0, 230, 118, 0.05);
 }
 
 .debater-cell {
@@ -807,7 +956,7 @@ footer a:hover {
 #archive-list {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Jarak antar item arsip */
+    gap: 20px;
 }
 
 .archive-item {
@@ -971,8 +1120,12 @@ footer a:hover {
     #main-event {
         min-height: 350px;
     }
-    .event-title {
-        font-size: 1.1em;
+    .event-type-text { /* NEW */
+        font-size: 0.8em;
+    }
+    .event-showbiz-title { /* NEW */
+        font-size: 2em;
+        letter-spacing: 2px;
     }
     .contestants {
         font-size: 1.8em;
@@ -1058,27 +1211,45 @@ footer a:hover {
     .profile-name {
         font-size: 2.2em;
     }
-    .profile-tier {
-        font-size: 1em;
+    .profile-division, .profile-country, .profile-spec {
+        font-size: 0.9em;
     }
-    .profile-record {
-        font-size: 1.1em;
+    .profile-country .profile-flag-icon {
+        width: 25px;
+        height: 18px;
     }
-    .profile-section-title {
+    .profile-records-grid {
+        grid-template-columns: 1fr; /* Satu kolom di mobile */
+    }
+    .record-stats {
         font-size: 1.5em;
     }
-    .profile-country-flag { /* Mobile default */
-        justify-content: center;
+    .record-labels {
+        font-size: 0.6em;
+    }
+    .section-block-title {
+        font-size: 1.5em;
+    }
+    .dba-debater-thumb {
+        width: 50px;
+        height: 50px;
+    }
+    .dba-vs-opponent {
         font-size: 1em;
     }
-    .profile-country-flag img {
-        width: 35px;
-        height: 25px;
+    .dba-match-spec {
+        font-size: 0.7em;
     }
-    .match-history-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
+    .dba-result-badge {
+        font-size: 0.7em;
+        padding: 3px 10px;
+        transform: rotate(45deg) translate(30%, -30%); /* Sesuaikan posisi badge */
+    }
+    .achievements-table th, .achievements-table td {
+        font-size: 0.8em;
+        padding: 8px 10px;
+    }
+    .stats-list li strong {
         font-size: 0.9em;
     }
     .skill-bar-container {
@@ -1087,6 +1258,7 @@ footer a:hover {
     .skill-bar-container .skill-score {
         font-size: 0.7em;
     }
+
 
     /* Ranking Page Mobile */
     .ranking-table th, .ranking-table td {
@@ -1100,9 +1272,6 @@ footer a:hover {
     .debater-cell .debater-name {
         font-size: 0.9em;
     }
-    /* Anda mungkin ingin menyembunyikan beberapa kolom di mobile */
-    /* .ranking-table th:nth-child(n+3), .ranking-table td:nth-child(n+3) { display: none; } */
-
 
     /* Archive Page Mobile */
     .archive-item {
@@ -1150,6 +1319,13 @@ footer a:hover {
     #main-event {
         min-height: 600px;
     }
+    .event-type-text { /* NEW */
+        font-size: 1.2em;
+    }
+    .event-showbiz-title { /* NEW */
+        font-size: 4em;
+        letter-spacing: 5px;
+    }
     .contestants {
         font-size: 3.5em;
     }
@@ -1192,50 +1368,50 @@ footer a:hover {
     #profile-page .profile-card {
         padding: 50px;
     }
-    .profile-header {
-        flex-direction: row; /* Horizontal di desktop */
+    .profile-main-info { /* Main info horizontal di desktop */
+        flex-direction: row;
         justify-content: center;
-        align-items: flex-start; /* Atur item di awal (atas) */
+        align-items: flex-start;
         gap: 40px;
-        text-align: left; /* Teks header di profil rata kiri di desktop */
     }
-    .profile-info-text { /* Wrapper untuk nama, tier, record */
-        align-items: flex-start; /* Rata kiri di desktop */
+    .profile-avatar {
+        margin-top: 0; /* Reset margin top */
+    }
+    .profile-details-text {
+        align-items: flex-start; /* Teks rata kiri di desktop */
+        text-align: left;
     }
     .profile-name {
         font-size: 3.5em;
     }
-    .profile-tier {
-        font-size: 1.2em;
+    .profile-division, .profile-country, .profile-spec {
+        font-size: 1.1em;
     }
-    .profile-record {
-        font-size: 1.4em;
+    .profile-records-grid {
+        grid-template-columns: repeat(2, 1fr); /* Dua kolom untuk record box */
     }
-    .profile-country-flag {
-        justify-content: flex-start; /* Rata kiri di desktop */
-        margin-top: 15px; /* Sesuaikan margin */
-        font-size: 1.2em;
+    .record-stats {
+        font-size: 2.2em;
     }
-    .profile-country-flag img {
-        width: 45px;
-        height: 35px;
+    .record-labels {
+        font-size: 0.8em;
     }
-    .profile-section-title {
-        text-align: left; /* Judul section di profil rata kiri di desktop */
+    .section-block-title {
+        text-align: left; /* Judul block rata kiri */
     }
-    .match-history-item {
-        flex-direction: row; /* Horizontal di desktop */
-        justify-content: space-between;
-        align-items: center;
+    .dba-debater-thumb {
+        width: 60px;
+        height: 60px;
     }
-    .match-history-item .match-date,
-    .match-history-item .match-vs-opponent,
-    .match-history-item .match-result {
-        flex-basis: auto; /* Reset flex basis */
+    .dba-vs-opponent {
+        font-size: 1.1em;
     }
-    .match-history-item .match-vs-opponent {
-        text-align: left;
-        margin-left: 20px; /* Jarak dari tanggal */
+    .dba-match-spec {
+        font-size: 0.8em;
+    }
+    .achievements-table th, .achievements-table td {
+        font-size: 0.9em;
+        padding: 15px;
     }
     .stats-list li {
         flex-direction: row; /* Horizontal di desktop */
