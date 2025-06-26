@@ -305,7 +305,7 @@ debatesData.forEach(debate => {
     if (debate.winner && debate.loser) {
         const winnerName = debate.winner.name;
         const loserName = debate.loser.name;
-        const debateYear = new Date(debate.date).getFullYear().toString(); // Ambil tahun saja, format YYYY
+        const debateYear = new Date(debate.date).getFullYear().toString(); // Ambil tahun saja, format sesuai Byon
 
         // Update match history
         allDebaters[winnerName].wins += 1;
@@ -324,7 +324,7 @@ debatesData.forEach(debate => {
         allDebaters[loserName].matchHistory.push({
             opponent: winnerName,
             result: "Loss",
-            method: "",
+            method: "", // Biasanya metode tidak relevan untuk yang kalah, bisa disesuaikan
             date: debate.date,
             category: debate.category,
             id: debate.id,
@@ -354,7 +354,7 @@ debatesData.forEach(debate => {
         if (!existingLoserAchievement) {
             allDebaters[loserName].achievements.push({
                 "event": `DBA Match vs ${winnerName}`, // Nama event bisa disesuaikan
-                "achievement": "Participant",
+                "achievement": "Participant", // Atau "Loser"
                 "date": debateYear
             });
         } else {
@@ -520,14 +520,21 @@ function renderProfilePage() {
     `;
 
     if (debater.matchHistory && debater.matchHistory.length > 0) {
-        debater.matchHistory.forEach(match => { // Loop semua match history
+        // Urutkan riwayat pertandingan dari yang terbaru
+        debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        debater.matchHistory.forEach(match => {
             const resultClass = match.result === "Win" ? "win" : "loss";
-            const opponentDebater = allDebaters[match.opponent];
+            const opponentDebater = allDebaters[match.opponent]; // Pastikan opponentDebater ditemukan
+
+            // Pastikan opponentDebater dan photo-nya ada sebelum mencoba mengaksesnya
+            const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg'; // Ganti dengan placeholder default jika tidak ada
+
             profileHtml += `
                 <div class="dba-record-item ${resultClass}">
                     <div class="dba-match-info">
                         <img src="${debater.photo}" alt="Foto ${debater.name}" class="dba-debater-thumb">
-                        <img src="${opponentDebater ? opponentDebater.photo : ''}" alt="Foto ${match.opponent}" class="dba-debater-thumb">
+                        <img src="${opponentPhotoSrc}" alt="Foto ${match.opponent}" class="dba-debater-thumb">
                         <div class="dba-details">
                             <p class="dba-vs-opponent">VS ${match.opponent.toUpperCase()}</p>
                             <p class="dba-match-spec">Date: ${match.date} Method: ${match.method || 'N/A'}</p>
@@ -637,16 +644,43 @@ function renderRankingPage() {
 
         if (debatersInTier && debatersInTier.length > 0) {
             if (tierName === "Mid Tier") {
-                const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"];
+                // Sorting khusus untuk Mid Tier
+                const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI", "MUCHIBEI", "ZOGRATIS", "ARYANWT"]; // Tambahkan semua debater Mid Tier di sini
                 debatersInTier.sort((a, b) => {
                     const indexA = midTierCustomOrder.indexOf(a.name);
                     const indexB = midTierCustomOrder.indexOf(b.name);
+                    // Jika ada debater yang tidak ada di custom order, sortir berdasarkan nama
                     if (indexA === -1 || indexB === -1) {
                         return a.name.localeCompare(b.name);
                     }
                     return indexA - indexB;
                 });
-            } else {
+            } else if (tierName === "High Tier") {
+                // Sorting khusus untuk High Tier
+                const highTierCustomOrder = ["ZOGRATIS", "MUCHIBEI"];
+                debatersInTier.sort((a, b) => {
+                    const indexA = highTierCustomOrder.indexOf(a.name);
+                    const indexB = highTierCustomOrder.indexOf(b.name);
+                    if (indexA === -1 || indexB === -1) {
+                        return a.name.localeCompare(b.name);
+                    }
+                    return indexA - indexB;
+                });
+            }
+            else if (tierName === "Low Tier") {
+                // Sorting khusus untuk Low Tier
+                const lowTierCustomOrder = ["ARYANWT", "Thinzel", "RIM", "Shade"];
+                debatersInTier.sort((a, b) => {
+                    const indexA = lowTierCustomOrder.indexOf(a.name);
+                    const indexB = lowTierCustomOrder.indexOf(b.name);
+                    if (indexA === -1 || indexB === -1) {
+                        return a.name.localeCompare(b.name);
+                    }
+                    return indexA - indexB;
+                });
+            }
+            else {
+                // Sorting default berdasarkan nama untuk tier lainnya
                 debatersInTier.sort((a, b) => a.name.localeCompare(b.name));
             }
 
@@ -699,6 +733,7 @@ function renderArchivePage() {
 
     const archivedDebates = debatesData.filter(debate => debate.winner && debate.loser);
 
+    // Urutkan arsip debat dari yang terbaru
     archivedDebates.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     let archiveHtml = '';
@@ -725,7 +760,7 @@ function renderArchivePage() {
         });
     }
 
-    archiveListContainer.innerHTML = htmlContent; // FIX: should be archiveHtml
+    archiveListContainer.innerHTML = archiveHtml; // <-- BARIS INI YANG DIREVISI
 }
 
 
@@ -785,6 +820,7 @@ function renderComparePage() {
             return;
         }
 
+        // Pastikan chartCanvas ada di dalam chartArea
         chartArea.innerHTML = '';
         chartArea.appendChild(chartCanvas);
 
@@ -805,7 +841,7 @@ function renderComparePage() {
                     {
                         label: debater1.name,
                         data: data1,
-                        backgroundColor: 'rgba(54, 162, 235, 0.4)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.4)', // Warna biru default Chart.js
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(54, 162, 235, 1)',
@@ -816,7 +852,7 @@ function renderComparePage() {
                     {
                         label: debater2.name,
                         data: data2,
-                        backgroundColor: 'rgba(255, 99, 132, 0.4)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.4)', // Warna merah default Chart.js
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(255, 99, 132, 1)',
@@ -838,7 +874,7 @@ function renderComparePage() {
                             color: 'rgba(255, 255, 255, 0.3)'
                         },
                         pointLabels: {
-                            color: 'var(--text-color)',
+                            color: 'var(--white-text-color)', // Menggunakan variabel CSS untuk konsistensi
                             font: {
                                 size: 12
                             }
@@ -847,7 +883,7 @@ function renderComparePage() {
                             beginAtZero: true,
                             max: 10,
                             stepSize: 2,
-                            color: 'var(--light-grey)',
+                            color: 'var(--light-grey)', // Menggunakan variabel CSS
                             backdropColor: 'transparent',
                             showLabelBackdrop: false
                         }
@@ -856,7 +892,7 @@ function renderComparePage() {
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'var(--text-color)'
+                            color: 'var(--white-text-color)' // Menggunakan variabel CSS
                         }
                     },
                     tooltip: {
