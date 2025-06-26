@@ -113,7 +113,7 @@ const debatesData = [
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
-        "type": "MID TIER DEBATE",
+        "type": "HIGH TIER DEBATE",
         "winner": {
             "name": "ZOGRATIS",
             "method": "point"
@@ -174,7 +174,7 @@ const debatesData = [
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
-        "type": "MID TIER DEBATE",
+        "type": "LOW TIER DEBATE",
         "winner": {
             "name": "ARYANWT",
             "method": "point"
