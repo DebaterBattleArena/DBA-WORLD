@@ -282,7 +282,7 @@ const debatesData = [
         "matchBanner": "7a47b236-a78a-4b2f-bbce-9cadecef6843.jpeg", // Path gambar match banner
         "debater1": {
             "name": "Lianx",
-            "photo": "Lianx.jpeg",
+            "photo": "IMG_0935.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
             "vbWiki": "High 1-B",
@@ -305,7 +305,7 @@ const debatesData = [
         },
         "debater2": {
             "name": "Adyy",
-            "photo": "Adyy.jpeg",
+            "photo": "IMG_0934.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
             "vbWiki": "Low 1-C",
@@ -323,7 +323,7 @@ const debatesData = [
             },
             "tier": "High Tier",
             "debateRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 1, "draw": 0 },
             "achievements": []
         },
         "type": "HIGH TIER DEBATE", // Digunakan sebagai topik
