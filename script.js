@@ -6,9 +6,9 @@ const debatesData = [
         "date": "2025-06-15", // Tanggal debat ditambahkan
         "debater1": {
             "name": "HIROO",
-            "photo": "IMG_0524.jpeg",  
+            "photo": "IMG_0524.jpeg",
             "country": "indonesia",
-            "flag": "IMG_0417.png",   
+            "flag": "IMG_0417.png",
             "profile": {
                 "Rhetoric": "9/10",
                 "Typing Structure": "9/10",
@@ -20,13 +20,13 @@ const debatesData = [
                 "Philisophy": "9/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier" 
+            "tier": "Mid Tier"
         },
         "debater2": {
             "name": "RENJI",
-            "photo": "IMG_0523.jpeg",  
+            "photo": "IMG_0523.jpeg",
             "country": "malaysia",
-            "flag": "IMG_0418.png",   
+            "flag": "IMG_0418.png",
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -38,9 +38,9 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Mid Tier" 
+            "tier": "Mid Tier"
         },
-        "type": "MID TIER DEBATE",  
+        "type": "MID TIER DEBATE",
         "winner": {
             "name": "HIROO",
             "method": "limit"
@@ -55,9 +55,9 @@ const debatesData = [
         "date": "2025-06-10", // Tanggal debat ditambahkan
         "debater1": {
             "name": "ZOGRATIS",
-            "photo": "IMG_0526.jpeg",  
+            "photo": "IMG_0526.jpeg",
             "country": "indonesia",
-            "flag": "IMG_0417.png",   
+            "flag": "IMG_0417.png",
             "profile": {
                 "Rhetoric": "6/10",
                 "Typing Structure": "5/10",
@@ -69,13 +69,13 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "7/10"
             },
-            "tier": "High Tier" 
+            "tier": "High Tier"
         },
         "debater2": {
             "name": "MUCHIBEI",
-            "photo": "IMG_0530.jpeg",  
+            "photo": "IMG_0530.jpeg",
             "country": "malaysia",
-            "flag": "IMG_0418.png",   
+            "flag": "IMG_0418.png",
             "profile": {
                 "Rhetoric": "5/10",
                 "Typing Structure": "5/10",
@@ -87,7 +87,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "8/10"
             },
-            "tier": "High Tier" 
+            "tier": "High Tier"
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -104,9 +104,9 @@ const debatesData = [
         "date": "2025-06-05", // Tanggal debat ditambahkan
         "debater1": {
             "name": "ARYANWT",
-            "photo": "IMG_0525.jpeg",  
+            "photo": "IMG_0525.jpeg",
             "country": "indonesia",
-            "flag": "IMG_0417.png",   
+            "flag": "IMG_0417.png",
             "profile": {
                 "Rhetoric": "8/10",
                 "Typing Structure": "7/10",
@@ -118,13 +118,13 @@ const debatesData = [
                 "Philisophy": "7/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Low Tier" 
+            "tier": "Low Tier"
         },
         "debater2": {
             "name": "RIM",
-            "photo": "IMG_0527.jpeg",  
+            "photo": "IMG_0527.jpeg",
             "country": "malaysia",
-            "flag": "IMG_0418.png",   
+            "flag": "IMG_0418.png",
             "profile": {
                 "Rhetoric": "4/10",
                 "Typing Structure": "5/10",
@@ -136,7 +136,7 @@ const debatesData = [
                 "Philisophy": "3/10",
                 "General Knowledge": "7/10"
             },
-            "tier": "Low Tier" 
+            "tier": "Low Tier"
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -153,9 +153,9 @@ const debatesData = [
         "date": "2025-06-01", // Tanggal debat ditambahkan
         "debater1": {
             "name": "RANZT",
-            "photo": "IMG_0555.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "IMG_0555.jpeg",
             "country": "indonesia",
-            "flag": "IMG_0417.png",   
+            "flag": "IMG_0417.png",
             "profile": {
                 "Rhetoric": "10/10",
                 "Typing Structure": "10/10",
@@ -164,16 +164,16 @@ const debatesData = [
                 "Typing Strenght": "9/10",
                 "Tiering Sistem": "8/10",
                 "Calculation": "5/10",
-                    "Philisophy": "9/10",
+                "Philisophy": "9/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier" 
+            "tier": "Mid Tier"
         },
         "debater2": {
             "name": "RYUU",
-            "photo": "IMG_0556.jpeg",  // Pastikan nama file ini benar jika Anda punya gambarnya
+            "photo": "IMG_0556.jpeg",
             "country": "malaysia",
-            "flag": "IMG_0418.png",   
+            "flag": "IMG_0418.png",
             "profile": {
                 "Rhetoric": "8.5/10",
                 "Typing Structure": "8/10",
@@ -185,7 +185,7 @@ const debatesData = [
                 "Philisophy": "4/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier" 
+            "tier": "Mid Tier"
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -195,17 +195,17 @@ const debatesData = [
         "loser": {
             "name": "RYUU"
         }
-    }
-];
-
-        "id": "debate-005",
-        "category": "FICTIONAL DEBATE",
-        "date": "2025-06-15", // Tanggal debat ditambahkan
+    },
+    // INI ADALAH ENTRI BARU UNTUK THINZEL VS SHADE
+    { // <-- Objek baru dimulai di sini
+        "id": "debate-005", // Pastikan ID ini unik dan berurutan
+        "category": "FICTIONAL DEBATE", // Sesuaikan jika ada kategori lain
+        "date": "2025-06-26", // Tanggal debat yang sebenarnya
         "debater1": {
             "name": "Thinzel",
-            "photo": "Thinzeljpeg",  
+            "photo": "Thinzel.jpeg",  // Pastikan nama file ini benar dan ada di direktori yang sesuai
             "country": "indonesia",
-            "flag": "IMG_0417.png",   
+            "flag": "IMG_0417.png",   // Bendera Indonesia (sesuai contoh Anda)
             "profile": {
                 "Rhetoric": "1/10",
                 "Typing Structure": "1/10",
@@ -217,13 +217,13 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "0/10"
             },
-  "tier": "Low Tier"
+            "tier": "Low Tier"
         },
         "debater2": {
             "name": "Shade",
-            "photo": "Shade.jpeg",  
+            "photo": "Shade.jpeg",  // Pastikan nama file ini benar dan ada di direktori yang sesuai
             "country": "malaysia",
-            "flag": "IMG_0418.png",   
+            "flag": "IMG_0418.png",   // Bendera Malaysia (sesuai contoh Anda)
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -235,18 +235,21 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Low Tier" 
+            "tier": "Low Tier"
         },
-        "type": "Low TIER DEBATE",  
+        "type": "Low TIER DEBATE",  // Sesuaikan dengan tier debat
         "winner": {
             "name": "Thinzel",
-            "method": "limit"
+            "method": "limit" // Metode kemenangan
         },
         "loser": {
             "name": "Shade"
-        
+        } // <-- Pastikan TIDAK ada koma di sini jika ini adalah objek TERAKHIR dalam array debatesData
+    }
+];
+
 // ====== Global variable to store all debater profiles and calculated stats for easy lookup ======
-let allDebaters = {}; 
+let allDebaters = {};
 
 // ====== POPULATE ALLDEBATERS MAP AND ADD RECORDS / MATCH HISTORY ONCE AT SCRIPT INITIALIZATION ======
 debatesData.forEach(debate => {
@@ -294,7 +297,10 @@ debatesData.forEach(debate => {
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
     const now = new Date();
-    const targetDate = new Date(now.getTime() + (2 * 24 * 60 * 60 * 1000)).getTime(); 
+    // Saya menyesuaikan targetDate agar selalu di masa depan (2 hari dari sekarang)
+    // agar countdown selalu berjalan untuk tujuan demonstrasi,
+    // atau Anda bisa atur tanggal spesifik di sini.
+    const targetDate = new Date(now.getTime() + (2 * 24 * 60 * 60 * 1000)).getTime();
 
     const countdownInterval = setInterval(function() {
         const currentTime = new Date().getTime();
@@ -328,13 +334,13 @@ function startCountdown() {
 
 // ====== FUNGSI UNTUK MEMUAT DATA DEBAT DAN MERENDERNYA (UNTUK index.html) ======
 function loadAndRenderDebatesForIndexPage() {
-    const debates = debatesData; 
-    
+    const debates = debatesData;
+
     const container = document.getElementById('debates-container');
-    if (!container) return; 
+    if (!container) return;
 
     let htmlContent = '';
-    
+
     debates.forEach(debate => { // Menampilkan semua debat di halaman utama
         const winnerInfo = debate.winner ? `
             <div class="result-info winner">
@@ -376,11 +382,11 @@ function loadAndRenderDebatesForIndexPage() {
 // ====== FUNGSI UNTUK MERENDER HALAMAN PROFIL (UNTUK profile.html) ======
 function renderProfilePage() {
     const urlParams = new URLSearchParams(window.location.search);
-    const debaterName = urlParams.get('name'); 
+    const debaterName = urlParams.get('name');
 
     const profileCard = document.querySelector('.profile-card');
 
-    if (!profileCard) return; 
+    if (!profileCard) return;
 
     if (!debaterName) {
         profileCard.innerHTML = `<p style="color: red;">Nama debater tidak ditemukan di URL.</p>`;
@@ -445,7 +451,7 @@ function renderProfilePage() {
 
                 profileHtml += `
                     <li>
-                        <strong>${skill}:</strong> 
+                        <strong>${skill}:</strong>
                         <div class="skill-bar-container">
                             <div class="skill-bar" style="width: ${scorePercentage}%;"></div>
                             <span class="skill-score">${debater.profile[skill]}</span>
@@ -466,8 +472,8 @@ function renderProfilePage() {
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN RANKING (UNTUK ranking.html) ======
 function renderRankingPage() {
-    const rankingContainer = document.getElementById('ranking-container'); 
-    if (!rankingContainer) return; 
+    const rankingContainer = document.getElementById('ranking-container');
+    if (!rankingContainer) return;
 
     const allDebatersByTier = {
         "Low Tier": [],
@@ -487,7 +493,7 @@ function renderRankingPage() {
 
     tiersOrder.forEach(tierName => {
         const debatersInTier = allDebatersByTier[tierName];
-        
+
         if (debatersInTier && debatersInTier.length > 0) {
             // Pengurutan kustom untuk Mid Tier
             if (tierName === "Mid Tier") {
@@ -586,7 +592,7 @@ function renderArchivePage() {
 
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN COMPARE (UNTUK compare.html) ======
-let chartInstance = null; 
+let chartInstance = null;
 
 function renderComparePage() {
     const debater1Select = document.getElementById('debater1-select');
@@ -599,8 +605,8 @@ function renderComparePage() {
         return;
     }
 
-    const debaterNames = Object.keys(allDebaters).sort(); 
-    
+    const debaterNames = Object.keys(allDebaters).sort();
+
     debater1Select.innerHTML = '<option value="">Pilih Debater 1</option>';
     debater2Select.innerHTML = '<option value="">Pilih Debater 2</option>';
 
@@ -629,8 +635,8 @@ function renderComparePage() {
             return;
         }
 
-        const debater1 = allDebaters[selectedDebater1Name]; 
-        const debater2 = allDebaters[selectedDebater2Name]; 
+        const debater1 = allDebaters[selectedDebater1Name];
+        const debater2 = allDebaters[selectedDebater2Name];
 
         if (!debater1 || !debater2 || !debater1.profile || !debater2.profile) {
             chartArea.innerHTML = '<p class="chart-message" style="color: red;">Statistik debater tidak lengkap.</p>';
@@ -644,12 +650,12 @@ function renderComparePage() {
         chartArea.innerHTML = '';
         chartArea.appendChild(chartCanvas);
 
-        const labels = Object.keys(debater1.profile); 
+        const labels = Object.keys(debater1.profile);
         const data1 = labels.map(label => parseFloat(debater1.profile[label]));
         const data2 = labels.map(label => parseFloat(debater2.profile[label]));
 
         if (chartInstance) {
-            chartInstance.destroy(); 
+            chartInstance.destroy();
         }
 
         const ctx = chartCanvas.getContext('2d');
@@ -661,7 +667,7 @@ function renderComparePage() {
                     {
                         label: debater1.name,
                         data: data1,
-                        backgroundColor: 'rgba(54, 162, 235, 0.4)', 
+                        backgroundColor: 'rgba(54, 162, 235, 0.4)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(54, 162, 235, 1)',
@@ -672,7 +678,7 @@ function renderComparePage() {
                     {
                         label: debater2.name,
                         data: data2,
-                        backgroundColor: 'rgba(255, 99, 132, 0.4)', 
+                        backgroundColor: 'rgba(255, 99, 132, 0.4)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(255, 99, 132, 1)',
@@ -684,35 +690,35 @@ function renderComparePage() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, 
+                maintainAspectRatio: false,
                 scales: {
                     r: {
                         angleLines: {
-                            color: 'rgba(255, 255, 255, 0.2)' 
+                            color: 'rgba(255, 255, 255, 0.2)'
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.3)' 
+                            color: 'rgba(255, 255, 255, 0.3)'
                         },
                         pointLabels: {
-                            color: 'var(--text-color)', 
+                            color: 'var(--text-color)',
                             font: {
                                 size: 12
                             }
                         },
                         ticks: {
                             beginAtZero: true,
-                            max: 10, 
-                            stepSize: 2, 
-                            color: 'var(--light-grey)', 
-                            backdropColor: 'transparent', 
-                            showLabelBackdrop: false 
+                            max: 10,
+                            stepSize: 2,
+                            color: 'var(--light-grey)',
+                            backdropColor: 'transparent',
+                            showLabelBackdrop: false
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'var(--text-color)' 
+                            color: 'var(--text-color)'
                         }
                     },
                     tooltip: {
@@ -730,7 +736,7 @@ function renderComparePage() {
     debater1Select.addEventListener('change', updateComparison);
     debater2Select.addEventListener('change', updateComparison);
 
-    updateComparison(); 
+    updateComparison();
 }
 
 
@@ -747,7 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (window.location.pathname.endsWith('ranking.html')) {
         // Ini adalah halaman ranking.html
         renderRankingPage();
-    } else if (window.location.pathname.endsWith('archive.html')) { 
+    } else if (window.location.pathname.endsWith('archive.html')) {
         // Ini adalah halaman archive.html
         renderArchivePage();
     } else if (window.location.pathname.endsWith('compare.html')) {
