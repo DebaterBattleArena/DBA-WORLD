@@ -300,7 +300,7 @@ const debatesData = [
             },
             "tier": "High Tier",
             "debateRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
             "achievements": []
         },
         "debater2": {
