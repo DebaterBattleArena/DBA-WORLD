@@ -64,7 +64,7 @@ a:hover {
     color: var(--highlight-color);
 }
 
-/* Gaya untuk Navigation Bar - PERUBAHAN UTAMA DI SINI */
+/* Gaya untuk Navigation Bar */
 .main-nav {
     background-color: transparent;
     padding: 10px 0;
@@ -88,7 +88,6 @@ a:hover {
 }
 .main-nav ul li {
     margin: 0 12px; /* Atur margin horizontal antar item, sesuaikan nilai ini */
-    /* Jika masih melompat, perkecil lagi nilai 12px ini (misal: 8px, 10px) */
     flex-shrink: 0; /* Penting: Mencegah item menyusut jika ruang terbatas */
 }
 .main-nav ul li a {
@@ -233,7 +232,7 @@ section p {
     margin-bottom: 5px;
 }
 
-.event-showbiz-title { /* NEW: Gaya untuk "DBA'S COMBAT SHOWBIZ" */
+.event-showbiz-title { /* NEW: Gaya untuk "DEBATER BATTLE ARENA." */
     font-family: var(--font-heading);
     font-size: 3em; /* Ukuran besar */
     color: var(--text-color);
@@ -243,7 +242,7 @@ section p {
     line-height: 1.2;
 }
 .event-showbiz-title span {
-    color: var(--highlight-color); /* Warna aksen untuk "SHOWBIZ" */
+    color: var(--highlight-color); /* Warna aksen untuk kata "ARENA." */
 }
 
 .contestants {
@@ -661,16 +660,7 @@ footer a:hover {
     object-fit: cover;
 }
 
-.profile-spec {
-    font-size: 1em;
-    color: var(--light-grey);
-    margin: 5px 0;
-}
-.profile-spec span {
-    font-weight: bold;
-    color: var(--text-color);
-    margin-left: 5px;
-}
+/* Dihilangkan: Gaya untuk .profile-spec (height/weight) */
 
 .profile-records-grid {
     display: grid;
@@ -1222,7 +1212,7 @@ footer a:hover {
     .profile-name {
         font-size: 2.2em;
     }
-    .profile-division, .profile-country, .profile-spec {
+    .profile-division, .profile-country { /* Menghilangkan .profile-spec dari sini */
         font-size: 0.9em;
     }
     .profile-country .profile-flag-icon {
@@ -1395,7 +1385,7 @@ footer a:hover {
     .profile-name {
         font-size: 3.5em;
     }
-    .profile-division, .profile-country, .profile-spec {
+    .profile-division, .profile-country { /* Menghilangkan .profile-spec dari sini */
         font-size: 1.1em;
     }
     .profile-country .profile-flag-icon {
