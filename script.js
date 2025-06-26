@@ -109,7 +109,7 @@ const debatesData = [
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
-        "type": "HIGH TIER DEBATE",
+        "type": "MID TIER DEBATE",
         "winner": {
             "name": "ZOGRATIS",
             "method": "point"
@@ -168,7 +168,7 @@ const debatesData = [
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
-        "type": "LOW TIER DEBATE",
+        "type": "MID TIER DEBATE",
         "winner": {
             "name": "ARYANWT",
             "method": "point"
@@ -427,40 +427,48 @@ function loadAndRenderDebatesForIndexPage() {
     let htmlContent = '';
 
     debates.forEach(debate => {
-        let resultContainerHtml = '';
+        let resultSectionHtml = '';
         if (debate.winner && debate.loser) {
-            resultContainerHtml = `
-                <div class="result-info-container">
-                    <div class="result-info winner">
-                        <strong>Winner:</strong> ${debate.winner.name} by ${debate.winner.method}
-                    </div>
-                    <div class="result-info loser">
-                        <strong>Loss:</strong> ${debate.loser.name}
-                    </div>
+            resultSectionHtml = `
+                <div class="match-result-section">
+                    <div class="result-info winner">WINNER: ${debate.winner.name.toUpperCase()} BY ${debate.winner.method.toUpperCase()}</div>
+                    <div class="result-info loser">LOSS: ${debate.loser.name.toUpperCase()}</div>
                 </div>
             `;
         }
 
         htmlContent += `
             <div class="match-card">
-                <div class="match-header">
-                    <span class="category">${debate.category}</span>
-                    <span class="type">${debate.type}</span>
-                </div>
-                <div class="match-details">
-                    <div class="debater-info">
-                        <img src="${debate.debater1.photo}" alt="Foto ${debate.debater1.name}" class="debater-photo">
-                        <a href="profile.html?name=${encodeURIComponent(debate.debater1.name)}" class="name debater-profile-link">${debate.debater1.name}</a>
-                        <span class="origin"><img src="${debate.debater1.flag}" alt="Bendera ${debate.debater1.country}" class="flag-icon"> ${debate.debater1.country.toUpperCase()}</span>
+                <div class="match-card-content">
+                    <div class="debater-info-left">
+                        <span class="category-type-label">
+                            ${debate.category.toUpperCase()} | ${debate.type.toUpperCase()}
+                        </span>
+                        <img src="${debate.debater1.photo}" alt="Foto ${debate.debater1.name}" class="debater-photo-main">
+                        <span class="debater-name-main">${debate.debater1.name.toUpperCase()}</span>
+                        <div class="country-origin-main">
+                            <span>${debate.debater1.country.toUpperCase()}</span>
+                            <img src="${debate.debater1.flag}" alt="Bendera ${debate.debater1.country}" class="flag-icon-main">
+                        </div>
                     </div>
-                    <span class="match-vs">VS</span>
-                    <div class="debater-info">
-                        <img src="${debate.debater2.photo}" alt="Foto ${debate.debater2.name}" class="debater-photo">
-                        <a href="profile.html?name=${encodeURIComponent(debate.debater2.name)}" class="name debater-profile-link">${debate.debater2.name}</a>
-                        <span class="origin"><img src="${debate.debater2.flag}" alt="Bendera ${debate.debater2.country}" class="flag-icon"> ${debate.debater2.country.toUpperCase()}</span>
+
+                    <div class="match-divider">
+                        <span class="match-vs">VS</span>
+                    </div>
+
+                    <div class="debater-info-right">
+                        <span class="category-type-label right-side-label">
+                            ${debate.category.toUpperCase()} | ${debate.type.toUpperCase()}
+                        </span>
+                        <img src="${debate.debater2.photo}" alt="Foto ${debate.debater2.name}" class="debater-photo-main">
+                        <span class="debater-name-main">${debate.debater2.name.toUpperCase()}</span>
+                        <div class="country-origin-main">
+                            <img src="${debate.debater2.flag}" alt="Bendera ${debate.debater2.country}" class="flag-icon-main">
+                            <span>${debate.debater2.country.toUpperCase()}</span>
+                        </div>
                     </div>
                 </div>
-                ${resultContainerHtml}
+                ${resultSectionHtml}
             </div>
         `;
     });
@@ -480,7 +488,6 @@ function renderProfilePage() {
     const countryText = profileCard.querySelector('.profile-country-info .country-text');
     const profileFlagIcon = profileCard.querySelector('.profile-country-info .profile-flag-icon');
 
-    // Selektor baru untuk informasi "Versus Battle Wiki" dan "Infinite Battle Reborn"
     const vbWikiValue = profileCard.querySelector('.profile-info-item .vb-wiki-value');
     const ibrValue = profileCard.querySelector('.profile-info-item .ibr-value');
 
@@ -492,7 +499,6 @@ function renderProfilePage() {
     const achievementsTableBody = profileCard.querySelector('.achievements-table tbody');
     const statsList = profileCard.querySelector('.stats-list');
 
-    // Log untuk membantu debugging jika ada elemen yang null
     console.log('profileDebaterImage:', profileDebaterImage);
     console.log('divisionText:', divisionText);
     console.log('profileName:', profileName);
@@ -507,7 +513,6 @@ function renderProfilePage() {
     console.log('achievementsTableBody:', achievementsTableBody);
     console.log('statsList:', statsList);
 
-    // Cek apakah semua elemen penting ditemukan. Jika tidak, tampilkan error.
     if (!profileCard || !profileDebaterImage || !divisionText || !profileName || !countryText || !profileFlagIcon ||
         !vbWikiValue || !ibrValue ||
         !fightRecordWinNumber || !fightRecordLossNumber || !fightRecordDrawNumber ||
@@ -548,7 +553,6 @@ function renderProfilePage() {
     vbWikiValue.textContent = debater.vbWiki || 'N/A';
     ibrValue.textContent = debater.ibr || 'N/A';
 
-    // Mengisi rekor pertandingan (Fight Record)
     if (debater.fightRecord) {
         fightRecordWinNumber.textContent = debater.fightRecord.win;
         fightRecordLossNumber.textContent = debater.fightRecord.loss;
@@ -559,7 +563,6 @@ function renderProfilePage() {
         fightRecordDrawNumber.textContent = '0';
     }
 
-    // Mengisi DBA Record (Match History)
     let matchHistoryHtml = '';
     if (debater.matchHistory && debater.matchHistory.length > 0) {
         debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -588,7 +591,6 @@ function renderProfilePage() {
     matchHistoryList.innerHTML = matchHistoryHtml;
 
 
-    // Mengisi Achievements
     let achievementsHtml = '';
     if (debater.achievements && debater.achievements.length > 0) {
         debater.achievements.forEach(ach => {
@@ -605,7 +607,6 @@ function renderProfilePage() {
     }
     achievementsTableBody.innerHTML = achievementsHtml;
 
-    // Mengisi Stats Breakdown
     let statsHtml = '';
     if (debater.profile) {
         for (const skill in debater.profile) {
