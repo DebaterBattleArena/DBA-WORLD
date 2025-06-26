@@ -412,42 +412,63 @@ section p {
     text-align: center;
 }
 #match-list h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5em;
     color: var(--white-text-color);
-    margin-bottom: 40px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    font-weight: 700;
 }
+
+/* Container untuk semua match card */
 #debates-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    justify-content: center;
+    display: flex; /* Menggunakan flexbox untuk layout horizontal */
+    flex-wrap: wrap; /* Izinkan kartu untuk wrap ke baris berikutnya */
+    justify-content: center; /* Pusatkan kartu */
+    gap: 30px; /* Jarak antar kartu */
+    padding: 20px 0; /* Tambah padding vertical di container */
 }
+
+/* Gaya untuk setiap match card */
 .match-card {
     background-color: var(--secondary-bg);
     color: var(--white-text-color);
     border-radius: 8px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    padding: 0; /* Hapus padding di sini, akan kita atur di dalam */
+    display: flex; /* Flexbox untuk layout horizontal di dalam kartu */
+    flex-direction: row; /* Default horizontal untuk desktop */
+    align-items: stretch; /* Agar tinggi sama */
+    overflow: hidden; /* Penting untuk border-radius */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%; /* Default 100% untuk mobile */
+    max-width: 600px; /* Batas lebar kartu di desktop */
+    min-height: 220px; /* Tinggi minimum agar konten tidak terlalu rapat */
+}
+
+.match-header {
+    position: absolute; /* Posisikan header di atas kartu */
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto; /* Lebar sesuai konten */
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.7); /* Background gelap transparan */
+    border-radius: 5px;
+    z-index: 2; /* Di atas elemen lain */
+    white-space: nowrap; /* Jangan putus baris */
     border: 1px solid rgba(255,255,255,0.1);
 }
-.match-header {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed rgba(255,255,255,0.1);
-}
-.match-header .category, .match-header .type {
+.match-header .category,
+.match-header .type {
     font-family: var(--font-body);
-    font-size: 0.9em;
+    font-size: 0.75em; /* Ukuran lebih kecil */
     color: var(--light-grey);
     text-transform: uppercase;
     letter-spacing: 1px;
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 3px;
     font-weight: 500;
 }
 .match-header .type {
@@ -457,24 +478,28 @@ section p {
 
 .match-details {
     display: flex;
+    flex: 1; /* Mengambil sisa ruang */
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 20px;
-    flex-wrap: nowrap;
+    justify-content: center; /* Pusatkan konten horizontal */
+    padding: 20px; /* Padding di dalam area detail */
+    position: relative; /* Untuk positioning VS */
+    padding-top: 50px; /* Beri ruang untuk header yang di-absolute */
 }
+
 .debater-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 8px;
-    flex: 1;
+    flex: 1; /* Setiap debater info mengambil ruang yang sama */
     min-width: 100px;
+    padding: 0 10px; /* Padding di sekitar info debater */
 }
+
 .debater-info .debater-photo {
-    width: 120px;
-    height: 120px;
+    width: 100px; /* Ukuran foto lebih kecil agar muat */
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--highlight-color);
@@ -482,7 +507,7 @@ section p {
 }
 .debater-info .name {
     font-family: var(--font-heading);
-    font-size: 1.6em;
+    font-size: 1.4em; /* Nama sedikit lebih kecil */
     color: var(--white-text-color);
     text-transform: uppercase;
     font-weight: 700;
@@ -504,24 +529,29 @@ section p {
     border-radius: 2px;
     object-fit: cover;
 }
+
 .match-vs {
     font-family: var(--font-heading);
-    font-size: 3em;
+    font-size: 2.2em; /* VS lebih kecil agar muat */
     color: var(--light-grey);
-    margin: 0 15px;
     opacity: 0.7;
     font-weight: 700;
+    margin: 0 10px; /* Jarak VS dari foto */
 }
 
-/* Gaya untuk info pemenang/kalah */
-.result-info {
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 15px;
-    padding-top: 15px;
+.result-info-container {
     width: 100%;
+    padding: 15px 20px; /* Padding di sekitar info pemenang/kalah */
+    background-color: rgba(0,0,0,0.3); /* Background di bawah garis */
+    border-top: 1px dashed rgba(255,255,255,0.1); /* Garis pemisah */
     text-align: center;
-    border-top: 1px dashed rgba(255,255,255,0.1);
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+}
+
+.result-info {
+    font-size: 0.9em; /* Ukuran font lebih kecil */
+    font-weight: bold;
+    margin: 5px 0; /* Jarak antar baris info */
 }
 .result-info.winner {
     color: var(--win-color);
@@ -692,16 +722,15 @@ footer a:hover {
 /* Styling untuk group informasi baru (Versus Battle Wiki, Infinite Battle Reborn) */
 .profile-new-info-group {
     display: flex;
-    flex-wrap: wrap; /* Agar bisa wrapping di mobile */
-    gap: 30px; /* Jarak antar item */
-    margin-top: 25px; /* Jarak dari negara */
-    margin-bottom: 30px; /* Jarak ke fight record */
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 25px;
+    margin-bottom: 30px;
 }
 .profile-info-item {
     text-align: left;
-    /* Fleksibilitas untuk dua kolom di desktop, satu di mobile */
-    flex: 1 1 auto; /* Mengizinkan item tumbuh dan menyusut */
-    min-width: 150px; /* Lebar minimum untuk setiap item */
+    flex: 1 1 auto;
+    min-width: 150px;
 }
 .profile-info-item .label {
     display: block;
@@ -959,7 +988,7 @@ footer a:hover {
 
 /* ---- RANKING PAGE SPECIFIC STYLES (ranking.html) ---- */
 #ranking-page {
-    padding-bottom: 50px; /* Tambah padding bawah agar tidak terlalu mepet footer */
+    background-color: var(--primary-bg);
 }
 
 .ranking-tier-header {
@@ -1053,179 +1082,31 @@ footer a:hover {
     color: var(--highlight-color); /* Warna hijau untuk angka atas (misal 8 dari 8/10) */
 }
 
-/* Media Queries untuk Responsivitas */
-@media (max-width: 768px) {
-    .ranking-tier-header {
-        font-size: 2.2em;
-        margin: 30px 0 20px 0;
-    }
-
-    .ranking-table th,
-    .ranking-table td {
-        padding: 12px 15px;
-        font-size: 0.9em;
-    }
-
-    .ranking-table .debater-info img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .ranking-table .debater-info .debater-name {
-        font-size: 1em;
-    }
-
-    .ranking-table .skill-score {
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 480px) {
-    .ranking-tier-header {
-        font-size: 1.8em;
-        margin: 25px 0 15px 0;
-    }
-
-    .ranking-table th,
-    .ranking-table td {
-        padding: 10px;
-        font-size: 0.85em;
-    }
-
-    .ranking-table .debater-info {
-        gap: 10px;
-    }
-
-    .ranking-table .debater-info img {
-        width: 35px;
-        height: 35px;
-    }
-}
-
-
-.debater-cell {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.debater-cell img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--highlight-color);
-}
-.debater-cell .debater-name {
-    color: var(--white-text-color);
-    font-weight: bold;
-    text-transform: uppercase;
-}
-.debater-cell .debater-name:hover {
-    color: var(--highlight-color);
-}
-
-/* ---- ARCHIVE PAGE SPECIFIC STYLES (archive.html) ---- */
-#archive-page {
-    background-color: var(--primary-bg);
-}
-
-#archive-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.archive-item {
-    background-color: var(--secondary-bg);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    border: 1px solid rgba(255,255,255,0.1);
-    text-align: center;
-    color: var(--white-text-color);
-}
-
-.archive-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed rgba(255,255,255,0.1);
-}
-.archive-header .category {
-    font-family: var(--font-body);
-    font-size: 0.9em;
-    color: var(--light-grey);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.archive-header .date {
-    font-size: 0.8em;
-    color: var(--light-grey);
-}
-
-.archive-participants {
-    font-family: var(--font-heading);
-    font-size: 1.8em;
-    color: var(--white-text-color);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-}
-.archive-participants .vs {
-    color: var(--light-grey);
-    font-size: 0.7em;
-    opacity: 0.7;
-}
-
-.archive-result p {
-    margin: 5px 0;
-    font-size: 1em;
-    font-weight: bold;
-}
-.archive-result .winner-name {
-    color: var(--win-color);
-}
-.archive-result .loss-name {
-    color: var(--loss-color);
-}
-.archive-type {
-    font-size: 0.85em;
-    color: var(--light-grey);
-    margin-top: 10px;
-}
 
 /* ---- COMPARE PAGE SPECIFIC STYLES (compare.html) ---- */
 #compare-page {
     background-color: var(--primary-bg);
-    padding-bottom: 50px; /* Tambah padding bawah agar tidak terlalu mepet footer */
+    padding-bottom: 50px;
 }
-
 
 .compare-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px; /* Tambah jarak antar elemen select dan icon */
+    gap: 20px;
     margin-bottom: 40px;
-    padding: 20px; /* Tambah padding di sekitar area controls */
-    background-color: var(--secondary-bg); /* Beri background agar lebih выделено */
+    padding: 20px;
+    background-color: var(--secondary-bg);
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Tambah sedikit shadow */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     flex-wrap: wrap;
 }
 
-
 .compare-controls select {
-    background-color: var(--card-bg-dark); /* Warna background select lebih gelap */
+    background-color: var(--card-bg-dark);
     color: var(--white-text-color);
     border: 1px solid rgba(255,255,255,0.1);
-    padding: 12px 20px; /* Padding lebih besar */
+    padding: 12px 20px;
     border-radius: 5px;
     font-size: 1em;
     cursor: pointer;
@@ -1234,11 +1115,10 @@ footer a:hover {
     -moz-appearance: none;
     background-image: url('data:image/svg+xml;utf8,<svg fill="%23AAAAAA" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
-    background-position: right 15px center; /* Jarak icon panah dari kanan */
-    padding-right: 40px; /* Ruang untuk icon panah */
-    min-width: 200px; /* Lebar minimum untuk select */
+    background-position: right 15px center;
+    padding-right: 40px;
+    min-width: 200px;
 }
-
 
 .compare-controls select:focus {
     outline: none;
@@ -1246,47 +1126,42 @@ footer a:hover {
     box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
 
-
 .compare-vs-icon {
     font-family: var(--font-heading);
-    font-size: 2.5em; /* Icon VS lebih besar */
+    font-size: 2.5em;
     color: var(--light-grey);
     font-weight: bold;
-    opacity: 0.8; /* Lebih jelas */
-    margin: 0 15px; /* Tambah margin kiri kanan icon VS */
+    opacity: 0.8;
+    margin: 0 15px;
 }
 
-
 .chart-container {
-    background-color: var(--card-bg-dark); /* Warna background chart lebih gelap */
+    background-color: var(--card-bg-dark);
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     height: 450px;
-    max-width: 95%; /* Lebar chart lebih responsif */
-    margin: 0 auto 40px auto; /* Tambah margin bawah chart */
+    max-width: 95%;
+    margin: 0 auto 40px auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
 .chart-message {
     color: var(--light-grey);
     font-style: italic;
-    font-size: 1.1em; /* Pesan chart lebih mudah dibaca */
+    font-size: 1.1em;
 }
-
 
 #radarChart {
     width: 100% !important;
     height: 100% !important;
 }
 
+/* Media Queries for Responsive Design */
 
-/* --- GLOBAL MEDIA QUERIES (Responsivitas) --- */
-
-/* Media Queries untuk Mobile (maksimum 767px) */
+/* Mobile devices (max-width: 767px) */
 @media (max-width: 767px) {
     section {
         padding: 30px 15px;
@@ -1374,44 +1249,53 @@ footer a:hover {
         font-size: 1em;
     }
 
+    /* Gaya untuk Section Match List (Jadwal Debat) - MOBILE */
     #debates-container {
-        grid-template-columns: 1fr;
-    }
-    #match-list {
-        margin: 10px auto;
-        padding: 30px 15px;
+        flex-direction: column; /* Jadikan kolom di mobile */
+        gap: 20px;
     }
     .match-card {
-        padding: 15px;
-        gap: 10px;
+        flex-direction: column; /* Kembali ke atas-bawah di mobile */
+        width: 100%; /* Ambil lebar penuh */
+        max-width: none;
+        min-height: auto;
+        padding-top: 40px; /* Beri ruang untuk header yang di-absolute */
+        position: relative; /* Agar match-header bisa di-absolute */
     }
     .match-header {
-        margin-bottom: 10px;
-        padding-bottom: 5px;
-    }
-    .match-header .category, .match-header .type {
-        font-size: 0.75em;
+        position: absolute; /* Posisikan header di atas kartu */
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        padding: 5px 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+        z-index: 2;
     }
     .match-details {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: column; /* Foto di atas VS di atas foto di mobile */
+        padding: 15px; /* Padding lebih kecil */
+        padding-top: 20px; /* Sesuaikan padding-top */
     }
     .debater-info .debater-photo {
-        width: 80px;
+        width: 80px; /* Foto lebih kecil di mobile */
         height: 80px;
     }
     .debater-info .name {
         font-size: 1.2em;
     }
     .match-vs {
-        margin: 5px 0;
         font-size: 1.8em;
+        margin: 10px 0; /* Jarak atas bawah di mobile */
+    }
+    .result-info-container {
+        padding: 10px 15px; /* Padding lebih kecil */
     }
     .result-info {
-        margin-top: 10px;
-        padding-top: 10px;
-        font-size: 0.9em;
+        font-size: 0.85em;
     }
+
 
     /* Profil Page Mobile */
     .profile-card {
@@ -1442,15 +1326,14 @@ footer a:hover {
         justify-content: center;
         font-size: 0.9em;
     }
-    /* Styling untuk group informasi baru (Versus Battle Wiki, Infinite Battle Reborn) di mobile */
     .profile-new-info-group {
-        flex-direction: column; /* Vertikal di mobile */
+        flex-direction: column;
         gap: 15px;
         margin-top: 15px;
         margin-bottom: 20px;
     }
     .profile-info-item {
-        text-align: center; /* Rata tengah di mobile */
+        text-align: center;
     }
     .profile-info-item .label {
         font-size: 0.9em;
@@ -1520,42 +1403,31 @@ footer a:hover {
 
 
     /* Ranking Page Mobile */
-    .ranking-table th, .ranking-table td {
-        padding: 10px;
-        font-size: 0.85em;
+    .ranking-tier-header {
+        font-size: 2.2em;
+        margin: 30px 0 20px 0;
     }
-    .debater-cell img {
+    .ranking-table th,
+    .ranking-table td {
+        padding: 12px 15px;
+        font-size: 0.9em;
+    }
+    .ranking-table .debater-info img {
         width: 40px;
         height: 40px;
     }
-    .debater-cell .debater-name {
-        font-size: 0.9em;
+    .ranking-table .debater-info .debater-name {
+        font-size: 1em;
     }
-
-    /* Archive Page Mobile */
-    .archive-item {
-        padding: 15px;
-    }
-    .archive-header {
-        flex-direction: column;
-        gap: 5px;
-        margin-bottom: 10px;
-    }
-    .archive-header .category, .archive-header .date {
-        font-size: 0.8em;
-    }
-    .archive-participants {
-        font-size: 1.5em;
-        flex-wrap: wrap;
-    }
-    .archive-result p {
-        font-size: 0.9em;
+    .ranking-table .skill-score {
+        font-size: 1em;
     }
 
     /* Compare Page Mobile */
     .compare-controls {
         flex-direction: column;
         gap: 10px;
+        padding: 15px;
     }
     .compare-controls select {
         width: 100%;
@@ -1570,7 +1442,7 @@ footer a:hover {
     }
 }
 
-/* Media Queries untuk Desktop/Tablet (minimum 768px) */
+/* Desktop/Tablet devices (min-width: 768px) */
 @media (min-width: 768px) {
     .main-header h1 {
         font-size: 3em;
@@ -1594,38 +1466,56 @@ footer a:hover {
     .countdown-colon {
         font-size: 2.5em;
     }
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
     .achievement-grid {
         flex-direction: row;
     }
-    #match-list {
-        margin: 20px auto;
-        padding: 50px;
-    }
+
+    /* Gaya untuk Section Match List (Jadwal Debat) - DESKTOP */
     .match-card {
-        flex-direction: column;
+        width: calc(50% - 15px); /* Dua kartu per baris */
+        flex-direction: row; /* Kiri-kanan di desktop */
+        min-height: 250px; /* Tingkatkan tinggi minimum */
+        position: relative; /* Agar match-header bisa di-absolute */
     }
     .match-header {
-        text-align: center;
+        position: absolute; /* Posisikan header di atas kartu */
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        padding: 5px 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+        z-index: 2;
     }
     .match-details {
-        flex-wrap: nowrap;
-        flex-grow: 1;
-        justify-content: center;
+        flex-direction: row; /* Foto-VS-Foto di desktop */
+        padding: 25px; /* Padding lebih besar */
+        padding-top: 50px; /* Beri ruang untuk header yang di-absolute */
     }
     .debater-info .debater-photo {
-        width: 120px;
+        width: 120px; /* Foto lebih besar di desktop */
         height: 120px;
     }
     .debater-info .name {
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
     .match-vs {
         font-size: 3em;
-        margin: 0 20px;
+        margin: 0 15px; /* Jarak kiri kanan di desktop */
+    }
+    .result-info-container {
+        padding: 15px 20px;
     }
     .result-info {
-        text-align: center;
+        font-size: 0.9em;
     }
+
 
     /* Profil Page Desktop */
     .profile-main-info {
@@ -1648,16 +1538,14 @@ footer a:hover {
     .profile-country-info {
         justify-content: flex-start;
     }
-    /* Styling untuk group informasi baru (Versus Battle Wiki, Infinite Battle Reborn) di desktop */
     .profile-new-info-group {
-        flex-direction: row; /* Horizontal di desktop */
+        flex-direction: row;
         gap: 40px;
         margin-top: 30px;
         margin-bottom: 40px;
     }
     .profile-info-item {
-        text-align: left;
-        flex: none; /* Jangan biarkan tumbuh atau menyusut terlalu banyak */
+        flex: none;
     }
     .profile-info-item .label {
         font-size: 0.9em;
