@@ -593,86 +593,58 @@ footer a:hover {
 /* ---- PROFIL PAGE SPECIFIC STYLES (profile.html) ---- */
 #profile-page {
     background-color: var(--primary-bg);
-    padding-top: 0;
+    padding-top: 0; /* Hapus padding atas */
     padding-bottom: 50px;
-    display: flex;
+    display: flex; /* Tambahkan flex untuk mengatur profile-card di tengah */
     justify-content: center;
     align-items: flex-start;
-    min-height: calc(100vh - 150px);
+    min-height: calc(100vh - 150px); /* Sesuaikan tinggi agar card bisa di tengah vertikal */
 }
 
 .profile-card {
-    background-color: var(--secondary-bg);
-    padding: 0;
+    background-color: var(--secondary-bg); /* Latar belakang card adalah secondary-bg */
+    padding: 0; /* Tidak ada padding di level card */
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    max-width: 900px;
-    margin: 40px auto;
+    max-width: 900px; /* Lebar maksimal card */
+    margin: 40px auto; /* Margin atas/bawah agar tidak terlalu mepet header/footer */
     text-align: center;
-    overflow: hidden;
+    overflow: hidden; /* Penting untuk border-radius */
     position: relative;
     color: var(--white-text-color);
     border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Bagian Header Visual (Gambar Ranzt) */
-.profile-header-visual {
-    width: 100%;
-    height: 300px; /* Tinggi visual header */
-    background-image: url('IMG_0555.jpeg'); /* Path gambar Ranzt */
-    background-size: cover;
-    background-position: center 20%; /* Sesuaikan posisi gambar */
-    background-repeat: no-repeat;
-    position: relative;
-    display: flex;
-    align-items: center; /* Vertikal center di dalam visual */
-    justify-content: center; /* Horizontal center di dalam visual */
-    padding: 20px; /* Padding untuk konten di atas gambar */
-    box-sizing: border-box;
+/* Bagian ATAS kartu profil: Gambar Debater & Detail */
+.profile-main-info {
+    display: flex; /* Menggunakan flexbox untuk layout horizontal */
+    align-items: center; /* Sejajarkan vertikal di tengah */
+    gap: 40px; /* Jarak antara gambar dan detail */
+    padding: 40px; /* Padding di sekitar konten utama */
+    background-color: var(--primary-bg); /* Latar belakang area gambar & detail */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: relative; /* Untuk z-index jika ada background lain */
+    z-index: 5;
 }
 
-.profile-header-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, var(--secondary-bg) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.0) 100%);
-    opacity: 0.9;
-}
-
-.profile-header-content {
-    position: relative;
-    z-index: 2;
-    display: flex; /* Untuk menempatkan avatar di kiri dan teks di kanan */
-    align-items: center;
-    gap: 30px; /* Jarak antara avatar dan teks */
-    width: 100%; /* Agar bisa flex justify */
-    max-width: 800px; /* Kontrol lebar konten */
-    margin: 0 auto;
-    text-align: left; /* Teks rata kiri di desktop */
-}
-
-.profile-main-avatar {
-    width: 150px; /* Ukuran avatar utama */
-    height: 150px;
-    border-radius: 50%;
+.profile-debater-image {
+    width: 250px; /* Ukuran gambar debater utama (sesuai Byon) */
+    height: auto; /* Biarkan tinggi menyesuaikan */
     object-fit: cover;
-    border: 5px solid var(--highlight-color);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
-    flex-shrink: 0; /* Pastikan avatar tidak mengecil */
-    background-color: var(--secondary-bg); /* Fallback */
-    margin-left: 20px; /* Jarak dari kiri container */
+    flex-shrink: 0; /* Pastikan gambar tidak mengecil */
+    border-radius: 5px; /* Sedikit rounded corner */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Shadow gambar */
 }
 
-.profile-basic-details {
-    flex-grow: 1; /* Biarkan mengambil sisa ruang */
+.profile-details-wrapper {
+    flex-grow: 1; /* Detail teks mengambil sisa ruang */
+    text-align: left; /* Teks rata kiri */
 }
 
 .profile-division-status {
-    display: flex; /* Untuk membuat label, tier, dan active sejajar */
+    display: flex;
     align-items: center;
-    gap: 8px; /* Jarak antar elemen */
+    gap: 10px;
     margin-bottom: 10px;
     font-size: 0.9em;
     color: var(--light-grey);
@@ -680,18 +652,18 @@ footer a:hover {
     font-weight: 500;
 }
 .profile-division-status .active-status {
-    background-color: var(--highlight-color); /* Latar hijau untuk ACTIVE */
-    color: var(--primary-bg); /* Teks hitam di atas hijau */
+    background-color: var(--highlight-color);
+    color: var(--primary-bg);
     padding: 3px 8px;
     border-radius: 3px;
     font-weight: bold;
     font-size: 0.8em;
-    margin-left: auto; /* Dorong ke kanan jika ada ruang */
+    margin-left: auto; /* Dorong ke kanan */
 }
 
 .profile-name {
     font-family: var(--font-heading);
-    font-size: 3.5em;
+    font-size: 3.5em; /* Nama besar seperti Byon */
     color: var(--white-text-color);
     margin: 0;
     text-transform: uppercase;
@@ -717,70 +689,79 @@ footer a:hover {
     object-fit: cover;
 }
 
-/* Konten utama di bawah header visual */
-.profile-body-content {
-    padding: 30px; /* Padding untuk seluruh body content */
-    text-align: center;
+.profile-stats-group {
+    display: flex;
+    gap: 30px;
+    margin-top: 25px; /* Jarak dari negara */
+    margin-bottom: 30px; /* Jarak ke fight record */
 }
-
-.profile-records-container {
-    display: flex; /* Menggunakan flexbox untuk rekor */
-    flex-wrap: wrap; /* Izinkan wrap di mobile */
-    justify-content: center;
-    gap: 20px; /* Jarak antar record box */
-    margin-top: 20px; /* Jarak dari header visual */
-    margin-bottom: 30px; /* Jarak ke section block berikutnya */
+.profile-stat-item {
+    text-align: left;
 }
-
-.record-box {
-    background-color: var(--card-bg-dark);
+.profile-stat-item .label {
+    display: block;
+    font-size: 0.8em;
+    color: var(--light-grey);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.profile-stat-item .value {
+    font-size: 1.3em;
+    font-weight: bold;
     color: var(--white-text-color);
-    padding: 20px; /* Padding lebih besar */
-    border-radius: 8px; /* Sudut lebih membulat */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    text-align: center;
-    border: 1px solid rgba(255,255,255,0.05);
-    flex: 1 1 200px; /* Flex basis untuk dua kolom di desktop */
-    max-width: 400px; /* Batasi lebar agar tidak terlalu lebar */
 }
-.record-box.total-record, .record-box.special-category-record {
-    /* Spesifik untuk record box */
-}
-.record-title {
-    font-size: 1em; /* Judul rekor lebih besar */
-    color: var(--light-grey);
-    text-transform: uppercase;
-    margin-bottom: 15px; /* Jarak lebih besar ke angka */
-    letter-spacing: 1px;
-    font-weight: 500;
-}
-.record-stats {
-    display: flex;
-    justify-content: space-around;
-    font-family: var(--font-heading);
-    font-size: 5em; /* Angka SANGAT BESAR seperti Byon */
-    font-weight: 700;
-    line-height: 1; /* Pastikan tidak ada spasi vertikal ekstra */
-    margin-bottom: 10px; /* Jarak ke label */
-}
-.record-stats .win-stat { color: var(--win-color); }
-.record-stats .loss-stat { color: var(--loss-color); }
-.record-stats .draw-stat { color: var(--draw-color); }
 
-.record-labels {
+.profile-fight-record {
+    text-align: left; /* Rata kiri */
+}
+.profile-fight-record .label {
+    font-size: 0.9em;
+    color: var(--light-grey);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.record-numbers {
     display: flex;
-    justify-content: space-around;
-    font-size: 0.9em; /* Label lebih besar */
+    gap: 30px; /* Jarak antar win/loss/draw */
+}
+.record-item {
+    text-align: center;
+}
+.record-item .number {
+    font-family: var(--font-heading);
+    font-size: 5em; /* Angka super besar Byon */
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+}
+.record-item.win .number { color: var(--win-color); }
+.record-item.loss .number { color: var(--loss-color); }
+.record-item.draw .number { color: var(--draw-color); }
+
+.record-item .label-small {
+    font-size: 0.8em;
     color: var(--light-grey);
     text-transform: uppercase;
     font-weight: 500;
 }
+
+
+/* Konten di bawah bagian utama profil */
+.profile-body-content {
+    padding: 30px; /* Padding di sekitar semua section block */
+    text-align: center; /* Default rata tengah */
+}
+
+/* Hapus .profile-records-container yang lama, karena rekor sudah di atas */
+
 
 .profile-section-block {
     background-color: var(--card-bg-dark);
     padding: 25px;
     border-radius: 8px;
-    margin-top: 30px; /* Jarak dari elemen di atasnya */
+    margin-top: 30px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     text-align: left;
     color: var(--white-text-color);
@@ -794,7 +775,7 @@ footer a:hover {
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    text-align: left; /* Rata kiri */
+    text-align: left;
     letter-spacing: 1px;
     font-weight: 700;
 }
@@ -1322,33 +1303,20 @@ footer a:hover {
     .profile-card {
         padding: 0;
     }
-    .profile-header-visual {
-        height: 200px;
-        padding: 10px;
+    .profile-main-info {
+        flex-direction: column; /* Gambar di atas detail di mobile */
+        gap: 20px;
+        padding: 20px;
     }
-    .profile-header-overlay {
-        opacity: 0.8;
+    .profile-debater-image {
+        width: 180px; /* Ukuran gambar debater utama di mobile */
+        border-radius: 5px;
     }
-    .profile-header-content {
-        flex-direction: column; /* Avatar di atas detail di mobile */
-        text-align: center;
-        gap: 15px;
-        margin-top: -80px; /* Geser avatar ke atas, menumpuk di visual */
-        align-items: center;
-    }
-    .profile-main-avatar {
-        width: 120px;
-        height: 120px;
-        border-width: 3px;
-        margin-left: 0; /* Hapus margin-left */
-    }
-    .profile-basic-details {
+    .profile-details-wrapper {
         text-align: center;
     }
     .profile-division-status {
         justify-content: center; /* Rata tengah */
-        gap: 5px;
-        margin-bottom: 5px;
     }
     .profile-division-status .active-status {
         margin-left: 0; /* Jangan dorong ke kanan */
@@ -1360,15 +1328,30 @@ footer a:hover {
         justify-content: center; /* Rata tengah */
         font-size: 0.9em;
     }
-    .profile-country-info .profile-flag-icon {
-        width: 25px;
-        height: 18px;
+    .profile-stats-group {
+        flex-direction: column; /* Vertikal di mobile */
+        gap: 15px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .profile-stat-item {
+        text-align: center; /* Rata tengah */
+    }
+    .profile-fight-record {
+        text-align: center; /* Rata tengah */
+    }
+    .record-numbers {
+        justify-content: center; /* Rata tengah */
+        gap: 20px;
+    }
+    .record-item .number {
+        font-size: 3em; /* Angka tetap besar tapi disesuaikan */
     }
 
     .profile-body-content {
         padding: 20px;
     }
-    .profile-records-container {
+    .profile-records-container { /* Ini tidak lagi digunakan, tapi biarkan dulu agar tidak crash */
         flex-direction: column;
         gap: 15px;
         margin-top: 20px;
@@ -1545,60 +1528,59 @@ footer a:hover {
     }
 
     /* Profil Page Desktop */
-    .profile-header-visual {
-        height: 400px; /* Tinggi lebih besar di desktop */
-        padding: 40px;
+    .profile-main-info {
+        flex-direction: row; /* Gambar di kiri, detail di kanan */
+        gap: 50px; /* Jarak lebih lebar */
+        padding: 50px; /* Padding lebih besar */
     }
-    .profile-header-overlay {
-        opacity: 0.9;
+    .profile-debater-image {
+        width: 300px; /* Ukuran gambar debater utama di desktop (sesuaikan jika perlu) */
     }
-    .profile-header-content {
-        flex-direction: row; /* Avatar di kiri, detail di kanan */
-        text-align: left;
-        align-items: center;
-        margin-top: 0; /* Reset margin-top */
-    }
-    .profile-main-avatar {
-        width: 200px; /* Avatar lebih besar di desktop */
-        height: 200px;
-        border-width: 5px;
-        margin-left: 0; /* Reset margin */
-    }
-    .profile-basic-details {
+    .profile-details-wrapper {
         text-align: left;
     }
     .profile-division-status {
-        justify-content: flex-start; /* Rata kiri */
-        gap: 10px;
-    }
-    .profile-division-status .active-status {
-        margin-left: auto; /* Dorong ke kanan */
+        justify-content: flex-start;
     }
     .profile-name {
-        font-size: 4em; /* Nama lebih besar di desktop */
+        font-size: 4em;
     }
     .profile-country-info {
-        justify-content: flex-start; /* Rata kiri */
-        font-size: 1.2em;
+        justify-content: flex-start;
     }
-    .profile-country-info .profile-flag-icon {
-        width: 40px;
-        height: 30px;
+    .profile-stats-group {
+        flex-direction: row;
+        gap: 40px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+    .profile-stat-item {
+        text-align: left;
+    }
+    .profile-fight-record {
+        text-align: left;
+    }
+    .record-numbers {
+        justify-content: flex-start;
+        gap: 40px;
+    }
+    .record-item .number {
+        font-size: 6em; /* Angka super besar Byon */
     }
 
     .profile-body-content {
-        padding: 50px; /* Padding lebih besar di desktop */
+        padding: 50px;
     }
-    .profile-records-container {
-        flex-direction: row; /* Kembali ke layout baris */
+    .profile-records-container { /* Tidak lagi digunakan */
+        flex-direction: row;
         justify-content: center;
         gap: 30px;
         margin-top: 40px;
         margin-bottom: 50px;
     }
     .record-box {
-        flex: 1 1 300px; /* Untuk dua kolom di desktop */
-        max-width: none; /* Hapus batasan lebar */
+        flex: 1 1 300px;
+        max-width: none;
         padding: 25px;
         border-radius: 8px;
     }
@@ -1607,7 +1589,7 @@ footer a:hover {
         margin-bottom: 20px;
     }
     .record-stats {
-        font-size: 6em; /* Angka super besar Byon! */
+        font-size: 6em; /* Tetap besar */
         margin-bottom: 15px;
     }
     .record-labels {
@@ -1632,9 +1614,9 @@ footer a:hover {
         font-size: 0.8em;
     }
     .dba-result-badge {
-        position: static; /* Biarkan statis untuk kesederhanaan */
-        margin-left: auto; /* Dorong ke kanan */
-        align-self: center; /* Vertikal center di dalam dba-record-item */
+        position: static;
+        margin-left: auto;
+        align-self: center;
     }
     .achievements-table th, .achievements-table td {
         font-size: 0.9em;
