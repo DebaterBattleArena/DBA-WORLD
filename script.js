@@ -24,8 +24,8 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
-                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Champion", "date": "2025"},
-                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Gold Medalist", "date": "2024"}
+                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
+                {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Champion", "date": "2025"}
             ]
         },
         "debater2": {
@@ -47,7 +47,7 @@ const debatesData = [
             "tier": "Mid Tier",
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": [] // Tidak ada perubahan jika sudah kosong
+            "achievements": [] // Tetap kosong jika tidak ada achievement
         },
         "type": "MID TIER DEBATE",
         "winner": {
@@ -82,6 +82,7 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
             "achievements": [
+                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
                 {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Semi Finalist", "date": "2024"}
             ]
         },
@@ -139,6 +140,7 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
+                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
                 {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Champion", "date": "2023"}
             ]
         },
@@ -196,6 +198,7 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
+                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
                 {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Gold Medalist", "date": "2024"}
             ]
         },
@@ -253,6 +256,7 @@ const debatesData = [
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": [
+                // HANYA SATU ACHIEVEMENT DAN NAMANYA SUDAH SERAGAM
                 {"event": "DBA Series 1 Indonesia vs Malaysia", "achievement": "Participant", "date": "2024"}
             ]
         },
@@ -491,6 +495,7 @@ function renderProfilePage() {
     `;
 
     if (debater.matchHistory && debater.matchHistory.length > 0) {
+        // Mengambil hanya satu riwayat pertandingan terbaru untuk DBA RECORD
         const latestMatch = debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
         if (latestMatch) {
@@ -536,17 +541,19 @@ function renderProfilePage() {
     `;
 
     if (debater.achievements && debater.achievements.length > 0) {
-        debater.achievements.forEach(ach => {
-            // Semua event achievement akan diubah menjadi "DBA Series 1 Indonesia vs Malaysia"
-            let eventName = "DBA Series 1 Indonesia vs Malaysia";
-            profileHtml += `
-                <tr>
-                    <td>${eventName}</td>
-                    <td>${ach.achievement}</td>
-                    <td>${ach.date}</td>
-                </tr>
-            `;
-        });
+        // Karena Anda hanya ingin SATU achievement dan namanya seragam, kita ambil yang pertama saja
+        const achievementToDisplay = debater.achievements[0];
+
+        // Pastikan nama event selalu "DBA Series 1 Indonesia vs Malaysia"
+        const eventName = "DBA Series 1 Indonesia vs Malaysia";
+
+        profileHtml += `
+            <tr>
+                <td>${eventName}</td>
+                <td>${achievementToDisplay.achievement}</td>
+                <td>${achievementToDisplay.date}</td>
+            </tr>
+        `;
     } else {
         profileHtml += `<tr><td colspan="3" class="no-history-message">Belum ada pencapaian.</td></tr>`;
     }
@@ -622,14 +629,9 @@ function renderRankingPage() {
                         return a.name.localeCompare(b.name);
                     }
                     return indexA - indexB;
-                    // Sortir berdasarkan jumlah kemenangan jika ingin
-                    // return b.wins - a.wins;
                 });
             } else {
-                // Untuk tier lain, bisa disortir berdasarkan nama atau kriteria lain
                 debatersInTier.sort((a, b) => a.name.localeCompare(b.name));
-                // Atau berdasarkan kemenangan:
-                // debatersInTier.sort((a, b) => b.wins - a.wins);
             }
 
             rankingHtml += `
