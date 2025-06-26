@@ -439,9 +439,9 @@ section p {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%; /* Default 100% untuk mobile */
-    max-width: 500px; /* Lebar maksimum kartu */
+    max-width: 400px; /* Lebar maksimum kartu agar mirip Byon */
     display: flex;
-    flex-direction: column; /* Konten di dalam kartu tetap kolom (gambar di atas teks) */
+    flex-direction: column; /* Konten di dalam kartu: gambar di atas teks */
     position: relative; /* Untuk label kategori di-absolute */
 }
 
@@ -466,8 +466,7 @@ section p {
 .match-category-label {
     position: absolute;
     top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 15px; /* Posisikan di kiri atas gambar */
     background-color: rgba(0, 0, 0, 0.7);
     color: var(--light-grey);
     padding: 5px 10px;
@@ -1236,18 +1235,6 @@ footer a:hover {
         max-width: none;
         min-height: auto;
     }
-    .match-card-content {
-        flex-direction: column;
-        padding: 15px;
-        gap: 10px;
-    }
-    .debater-info-left,
-    .debater-info-right {
-        padding: 0;
-    }
-    .category-type-label {
-        font-size: 0.75em;
-    }
     .match-image-container {
         padding-top: 56.25%; /* 16:9 ratio */
         height: 0;
@@ -1460,16 +1447,17 @@ footer a:hover {
     .match-card {
         width: calc(50% - 15px); /* Dua kartu per baris di desktop */
         max-width: 500px;
-        min-height: auto; /* Biarkan tinggi menyesuaikan konten */
+        min-height: auto;
     }
-    .match-card-content {
-        flex-direction: column; /* Konten di dalam kartu tetap kolom */
-        padding: 20px; /* Padding sedikit lebih kecil */
-        gap: 15px;
+    .match-image-container {
+        padding-top: 56.25%; /* Aspek rasio 16:9 */
+        height: 0;
     }
-    .category-type-label {
+    .match-category-label {
         font-size: 0.85em; /* Ukuran label lebih besar di desktop */
         top: 20px; /* Jarak dari atas */
+        left: 20px; /* Jarak dari kiri */
+        transform: none; /* Hapus transform centering */
     }
     .debater-names-row {
         font-size: 2.2em; /* Ukuran nama debater di desktop */
@@ -1479,17 +1467,6 @@ footer a:hover {
     }
     .match-topic {
         font-size: 1em;
-    }
-
-    /* Hilangkan gaya yang tidak terpakai lagi */
-    .debater-info-left,
-    .debater-info-right,
-    .match-divider { /* Pastikan ini tidak mengganggu flex-direction column dari match-card-content */
-        width: 100%; /* Ambil lebar penuh */
-        text-align: center; /* Pusatkan konten */
-        flex: none; /* Jangan biarkan tumbuh */
-        padding: 0; /* Hapus padding lama */
-        margin: 0; /* Hapus margin lama */
     }
 
 
