@@ -64,7 +64,7 @@ a:hover {
     color: var(--highlight-color);
 }
 
-/* Gaya untuk Navigation Bar */
+/* Gaya untuk Navigation Bar - PERUBAHAN UTAMA DI SINI */
 .main-nav {
     background-color: transparent;
     padding: 10px 0;
@@ -78,22 +78,28 @@ a:hover {
 }
 .main-nav ul {
     list-style: none;
-    padding: 0;
+    padding: 0 15px; /* Tambahkan padding horizontal agar tidak menempel tepi */
     margin: 0;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 0px 25px;
+    flex-wrap: nowrap; /* Penting: Pastikan TIDAK wrap secara default di desktop */
+    overflow-x: auto; /* Memungkinkan scroll horizontal jika item terlalu banyak di layar sempit non-mobile */
+    -webkit-overflow-scrolling: touch; /* Untuk scrolling halus di iOS */
+}
+.main-nav ul li {
+    margin: 0 12px; /* Atur margin horizontal antar item, sesuaikan nilai ini */
+    /* Jika masih melompat, perkecil lagi nilai 12px ini (misal: 8px, 10px) */
+    flex-shrink: 0; /* Penting: Mencegah item menyusut jika ruang terbatas */
 }
 .main-nav ul li a {
     color: var(--light-grey);
     text-decoration: none;
     font-weight: normal;
-    font-size: 0.95em;
+    font-size: 0.9em; /* Sedikit perkecil ukuran font */
     padding: 6px 0;
     border-radius: 0;
     transition: all 0.3s ease;
-    white-space: nowrap;
+    white-space: nowrap; /* Mencegah teks link terpotong ke baris baru */
     display: block;
     position: relative;
 }
@@ -1110,11 +1116,16 @@ footer a:hover {
         padding: 5px 0;
     }
     .main-nav ul {
-        gap: 5px 10px;
+        flex-wrap: wrap; /* Izinkan wrap di mobile */
+        gap: 5px 10px; /* Atur gap untuk mobile */
+        padding: 0 10px;
+    }
+    .main-nav ul li {
+        margin: 0; /* Reset margin untuk mobile karena sudah pakai gap */
     }
     .main-nav ul li a {
-        font-size: 0.8em;
-        padding: 3px 6px;
+        font-size: 0.75em; /* Lebih kecil lagi di mobile */
+        padding: 3px 6px; /* Lebih kecil lagi di mobile */
     }
 
     #main-event {
@@ -1386,6 +1397,10 @@ footer a:hover {
     }
     .profile-division, .profile-country, .profile-spec {
         font-size: 1.1em;
+    }
+    .profile-country .profile-flag-icon {
+        width: 40px; /* Ukuran lebih besar di desktop */
+        height: 30px;
     }
     .profile-records-grid {
         grid-template-columns: repeat(2, 1fr); /* Dua kolom untuk record box */
