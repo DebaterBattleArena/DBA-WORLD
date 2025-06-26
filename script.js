@@ -280,7 +280,7 @@ const debatesData = [
         "id": "debate-006",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-26",
-        "matchBanner": "cdf5db1e-6410-4df1-a920-6d4f4e41b412.jpeg", // Path gambar match banner
+        "matchBanner": "7a47b236-a78a-4b2f-bbce-9cadecef6843.jpeg", // Path gambar match banner
         "debater1": {
             "name": "Lianx",
             "photo": "Lianx.jpeg",
