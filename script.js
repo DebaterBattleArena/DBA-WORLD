@@ -274,9 +274,8 @@ const debatesData = [
         "type": "LOW TIER DEBATE", // Digunakan sebagai topik
         "winner": { "name": "Thinzel", "method": "limit" },
         "loser": { "name": "Shade" }
-    }
-];
- {
+    },
+    {
         "id": "debate-006",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-26",
