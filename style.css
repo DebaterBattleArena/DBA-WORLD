@@ -202,7 +202,8 @@ section p {
     background-color: var(--primary-bg);
     padding: 0;
     position: relative;
-    background-image: url('60bd86fc-0490-445e-843b-79298aa84ed3.jpeg');
+    /* GANTI PATH GAMBAR DI SINI */
+    background-image: url('dc468717-5f12-406f-a591-9dffdb13e725.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -261,61 +262,7 @@ section p {
     color: var(--highlight-color);
 }
 
-.contestants {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    font-family: var(--font-heading);
-    font-size: 3em;
-    text-transform: uppercase;
-    color: var(--white-text-color);
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-.contestants .vs {
-    color: var(--light-grey);
-    font-size: 0.7em;
-    margin: 0 5px;
-}
-
-/* Gaya Countdown */
-.countdown {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-.countdown-item {
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 8px 12px;
-    border-radius: 4px;
-    min-width: 55px;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-.countdown-item .number {
-    font-family: var(--font-heading);
-    font-size: 2.5em;
-    color: var(--highlight-color);
-    line-height: 1;
-    margin-bottom: 3px;
-    font-weight: 700;
-}
-.countdown-item .label {
-    font-size: 0.7em;
-    color: var(--light-grey);
-    text-transform: uppercase;
-    font-weight: normal;
-}
-.countdown-colon {
-    font-family: var(--font-heading);
-    font-size: 2.2em;
-    color: var(--light-grey);
-    line-height: 1;
-    margin: 0 -3px;
-}
+/* Bagian .contestants dan .countdown DIHAPUS dari CSS karena elemennya sudah dihapus dari HTML */
 
 /* Tombol CTA (Call to Action) */
 .cta-button {
