@@ -312,15 +312,15 @@ const debatesData = [
             "vbWiki": "Low 1-C",
             "ibr": "High 1-B",
             "profile": {
-                "Rhetoric": "8/10",
-                "Typing Structure": "8/10",
+                "Rhetoric": "5/10",
+                "Typing Structure": "6/10",
                 "Critical Thinking": "7/10",
                 "Logical Fallacies": "6/10",
-                "Typing Strenght": "7/10",
-                "Tiering Sistem": "9/10",
-                "Calculation": "7/10",
+                "Typing Strenght": "5/10",
+                "Tiering Sistem": "7/10",
+                "Calculation": "6/10",
                 "Philisophy": "0/10",
-                "General Knowledge": "10/10"
+                "General Knowledge": "6/10"
             },
             "tier": "High Tier",
             // Rekor awal Adyy sesuai dengan permintaan (0-1-0)
@@ -341,78 +341,57 @@ debatesData.forEach(debate => {
     const debater1Name = debate.debater1.name;
     const debater2Name = debate.debater2.name;
 
-    // Inisialisasi debater jika belum ada, atau update jika sudah ada
-    // Pastikan properti fightRecord dan boxingRecord diinisialisasi
+    // Inisialisasi debater jika belum ada
     if (!allDebaters[debater1Name]) {
         allDebaters[debater1Name] = {
             ...debate.debater1,
-            // Inisialisasi ulang rekor untuk memastikan perhitungan dari awal
-            fightRecord: { win: 0, loss: 0, draw: 0 },
-            boxingRecord: { win: 0, loss: 0, draw: 0 },
+            fightRecord: { win: 0, loss: 0, draw: 0 }, // Inisialisasi awal ke nol
+            boxingRecord: { win: 0, loss: 0, draw: 0 }, // Inisialisasi awal ke nol
             matchHistory: [],
             achievements: []
         };
-    } else {
-        // Jika debater sudah ada, pastikan properti tetap ada
-        if (!allDebaters[debater1Name].achievements) allDebaters[debater1Name].achievements = [];
-        if (!allDebaters[debater1Name].matchHistory) allDebaters[debater1Name].matchHistory = [];
-        // Jangan menginisialisasi ulang fightRecord/boxingRecord di sini
-        // agar tidak menimpa nilai dari debatesData jika ada multiple debat untuk debater yang sama
     }
-
     if (!allDebaters[debater2Name]) {
         allDebaters[debater2Name] = {
             ...debate.debater2,
-            // Inisialisasi ulang rekor untuk memastikan perhitungan dari awal
-            fightRecord: { win: 0, loss: 0, draw: 0 },
-            boxingRecord: { win: 0, loss: 0, draw: 0 },
+            fightRecord: { win: 0, loss: 0, draw: 0 }, // Inisialisasi awal ke nol
+            boxingRecord: { win: 0, loss: 0, draw: 0 }, // Inisialisasi awal ke nol
             matchHistory: [],
             achievements: []
         };
-    } else {
-        if (!allDebaters[debater2Name].achievements) allDebaters[debater2Name].achievements = [];
-        if (!allDebaters[debater2Name].matchHistory) allDebaters[debater2Name].matchHistory = [];
     }
 
-    // --- Perbaikan logika untuk mengakumulasi rekor ---
-    // Gunakan rekor awal dari debatesData sebagai base
+    // Akumulasi rekor dari data debat
     const d1 = allDebaters[debater1Name];
     const d2 = allDebaters[debater2Name];
 
-    // Salin rekor awal jika belum ada
-    if (debate.debater1.fightRecord) {
-        d1.fightRecord.win += debate.debater1.fightRecord.win;
-        d1.fightRecord.loss += debate.debater1.fightRecord.loss;
-        d1.fightRecord.draw += debate.debater1.fightRecord.draw;
-    }
-    if (debate.debater1.boxingRecord) {
+    // Tambahkan rekor dari debater1
+    d1.fightRecord.win += debate.debater1.fightRecord.win;
+    d1.fightRecord.loss += debate.debater1.fightRecord.loss;
+    d1.fightRecord.draw += debate.debater1.fightRecord.draw;
+
+    if (debate.debater1.boxingRecord) { // Pastikan boxingRecord ada sebelum menambahkan
         d1.boxingRecord.win += debate.debater1.boxingRecord.win;
         d1.boxingRecord.loss += debate.debater1.boxingRecord.loss;
         d1.boxingRecord.draw += debate.debater1.boxingRecord.draw;
     }
 
-    if (debate.debater2.fightRecord) {
-        d2.fightRecord.win += debate.debater2.fightRecord.win;
-        d2.fightRecord.loss += debate.debater2.fightRecord.loss;
-        d2.fightRecord.draw += debate.debater2.fightRecord.draw;
-    }
-    if (debate.debater2.boxingRecord) {
+    // Tambahkan rekor dari debater2
+    d2.fightRecord.win += debate.debater2.fightRecord.win;
+    d2.fightRecord.loss += debate.debater2.fightRecord.loss;
+    d2.fightRecord.draw += debate.debater2.fightRecord.draw;
+
+    if (debate.debater2.boxingRecord) { // Pastikan boxingRecord ada sebelum menambahkan
         d2.boxingRecord.win += debate.debater2.boxingRecord.win;
         d2.boxingRecord.loss += debate.debater2.boxingRecord.loss;
         d2.boxingRecord.draw += debate.debater2.boxingRecord.draw;
     }
-    // --- Akhir perbaikan logika untuk mengakumulasi rekor ---
 
 
     if (debate.winner && debate.loser) {
         const winnerName = debate.winner.name;
         const loserName = debate.loser.name;
         const debateYear = new Date(debate.date).getFullYear().toString();
-
-        // Update match history
-        // PERHATIAN: Hapus penambahan .wins dan .losses di sini jika fightRecord sudah diupdate
-        // allDebaters[winnerName].wins += 1;
-        // allDebaters[loserName].losses += 1;
 
         allDebaters[winnerName].matchHistory.push({
             opponent: loserName,
@@ -475,32 +454,35 @@ function startCountdown() {
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
 
-    // Tanggal target acara utama. Sesuaikan jika diperlukan di masa depan.
-    // Saat ini, kita akan langsung menampilkan "00" karena sudah lewat.
-    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime();
+    // Tanggal target acara utama (1 Juli 2025, 10:00:00 WIB)
+    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime(); // +07:00 untuk WIB
 
     const countdownInterval = setInterval(function() {
         const currentTime = new Date().getTime();
         const distance = targetDate - currentTime;
 
-        // Pastikan angka selalu dua digit (atau nol untuk hari jika tidak relevan)
-        const days = Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)));
-        const hours = Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-        const minutes = Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-        const seconds = Math.max(0, Math.floor((distance % (1000 * 60)) / 1000));
+        let days = 0;
+        let hours = 0;
+        let minutes = 0;
+        let seconds = 0;
 
-        // Terapkan String().padStart(2, '0') untuk semua elemen waktu
-        if (daysEl) daysEl.innerHTML = String(days); // Days tidak perlu 2 digit jika bisa lebih dari 9
+        if (distance > 0) {
+            days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        } else {
+            // Jika waktu sudah lewat, set semua ke 0 dan hentikan interval
+            clearInterval(countdownInterval);
+        }
+
+        // Pastikan semua angka memiliki dua digit (kecuali hari, yang bisa lebih dari 99)
+        if (daysEl) daysEl.innerHTML = String(days).padStart(2, '0'); // Days juga 2 digit sekarang
         if (hoursEl) hoursEl.innerHTML = String(hours).padStart(2, '0');
         if (minutesEl) minutesEl.innerHTML = String(minutes).padStart(2, '0');
         if (secondsEl) secondsEl.innerHTML = String(seconds).padStart(2, '0');
 
         if (distance < 0) {
-            clearInterval(countdownInterval);
-            if (daysEl) daysEl.innerHTML = "0";
-            if (hoursEl) hoursEl.innerHTML = "00";
-            if (minutesEl) minutesEl.innerHTML = "00";
-            if (secondsEl) secondsEl.innerHTML = "00";
             console.log("Countdown Selesai!");
         }
     }, 1000);
@@ -744,11 +726,13 @@ function renderRankingPage() {
                     return indexA - indexB;
                 });
             } else if (tierName === "High Tier") {
-                const highTierCustomOrder = ["ZOGRATIS", "Lianx", "MUCHIBEI", "Adyy"]; // Urutan spesifik dengan Lianx & Adyy
+                // Urutan spesifik sesuai permintaan: Lianx, Adyy, MUCHIBEI, ZOGRATIS
+                const highTierCustomOrder = ["Lianx", "Adyy", "MUCHIBEI", "ZOGRATIS"];
                 debatersInTier.sort((a, b) => {
                     const indexA = highTierCustomOrder.indexOf(a.name);
                     const indexB = highTierCustomOrder.indexOf(b.name);
                     if (indexA === -1 || indexB === -1) {
+                        // Jika nama tidak ada di urutan kustom, sortir secara alfabetis atau biarkan urutan aslinya
                         return a.name.localeCompare(b.name);
                     }
                     return indexA - indexB;
