@@ -299,7 +299,7 @@ const debatesData = [
                 "General Knowledge": "8/10"
             },
             "tier": "High Tier",
-            "debateRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "fightRecord": { "win": 1, "loss": 0, "draw": 0 }, // Diperbaiki: Menggunakan fightRecord
             "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -322,7 +322,7 @@ const debatesData = [
                 "General Knowledge": "10/10"
             },
             "tier": "High Tier",
-            "debateRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 1, "draw": 0 }, // Diperbaiki: Menggunakan fightRecord
             "boxingRecord": { "win": 0, "loss": 1, "draw": 0 },
             "achievements": []
         },
@@ -341,18 +341,42 @@ debatesData.forEach(debate => {
 
     // Inisialisasi debater jika belum ada, termasuk achievements array kosong
     if (!allDebaters[debater1Name]) {
-        allDebaters[debater1Name] = { ...debate.debater1, wins: 0, losses: 0, matchHistory: [], achievements: [] };
+        // Menggunakan fightRecord dan boxingRecord dari data awal sebagai inisialisasi
+        allDebaters[debater1Name] = { 
+            ...debate.debater1, 
+            wins: 0, 
+            losses: 0, 
+            draws: 0, // Inisialisasi draw
+            matchHistory: [], 
+            achievements: [] 
+        };
     } else {
         // Jika debater sudah ada, pastikan properti baru disalin dan achievements array tetap ada
         Object.assign(allDebaters[debater1Name], debate.debater1);
         if (!allDebaters[debater1Name].achievements) allDebaters[debater1Name].achievements = [];
+        if (typeof allDebaters[debater1Name].wins === 'undefined') allDebaters[debater1Name].wins = 0;
+        if (typeof allDebaters[debater1Name].losses === 'undefined') allDebaters[debater1Name].losses = 0;
+        if (typeof allDebaters[debater1Name].draws === 'undefined') allDebaters[debater1Name].draws = 0;
+        if (!allDebaters[debater1Name].matchHistory) allDebaters[debater1Name].matchHistory = [];
     }
 
     if (!allDebaters[debater2Name]) {
-        allDebaters[debater2Name] = { ...debate.debater2, wins: 0, losses: 0, matchHistory: [], achievements: [] };
+        // Menggunakan fightRecord dan boxingRecord dari data awal sebagai inisialisasi
+        allDebaters[debater2Name] = { 
+            ...debate.debater2, 
+            wins: 0, 
+            losses: 0, 
+            draws: 0, // Inisialisasi draw
+            matchHistory: [], 
+            achievements: [] 
+        };
     } else {
         Object.assign(allDebaters[debater2Name], debate.debater2);
         if (!allDebaters[debater2Name].achievements) allDebaters[debater2Name].achievements = [];
+        if (typeof allDebaters[debater2Name].wins === 'undefined') allDebaters[debater2Name].wins = 0;
+        if (typeof allDebaters[debater2Name].losses === 'undefined') allDebaters[debater2Name].losses = 0;
+        if (typeof allDebaters[debater2Name].draws === 'undefined') allDebaters[debater2Name].draws = 0;
+        if (!allDebaters[debater2Name].matchHistory) allDebaters[debater2Name].matchHistory = [];
     }
 
 
@@ -361,8 +385,15 @@ debatesData.forEach(debate => {
         const loserName = debate.loser.name;
         const debateYear = new Date(debate.date).getFullYear().toString();
 
-        // Update match history
+        // Update match history dan records
         allDebaters[winnerName].wins += 1;
+        // Gunakan properti 'fightRecord' yang sudah ada atau inisialisasi jika belum
+        if (allDebaters[winnerName].fightRecord) {
+            allDebaters[winnerName].fightRecord.win = (allDebaters[winnerName].fightRecord.win || 0) + 1;
+        } else {
+            allDebaters[winnerName].fightRecord = { "win": 1, "loss": 0, "draw": 0 };
+        }
+
         allDebaters[winnerName].matchHistory.push({
             opponent: loserName,
             result: "Win",
@@ -375,6 +406,13 @@ debatesData.forEach(debate => {
         });
 
         allDebaters[loserName].losses += 1;
+        // Gunakan properti 'fightRecord' yang sudah ada atau inisialisasi jika belum
+        if (allDebaters[loserName].fightRecord) {
+            allDebaters[loserName].fightRecord.loss = (allDebaters[loserName].fightRecord.loss || 0) + 1;
+        } else {
+            allDebaters[loserName].fightRecord = { "win": 0, "loss": 1, "draw": 0 };
+        }
+
         allDebaters[loserName].matchHistory.push({
             opponent: winnerName,
             result: "Loss",
@@ -419,37 +457,19 @@ Object.values(allDebaters).forEach(debater => {
 
 // ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
 function startCountdown() {
-    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime();
+    // Target date sudah berlalu, jadi langsung set ke 00.00.00.00
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
 
-    const countdownInterval = setInterval(function() {
-        const currentTime = new Date().getTime();
-        const distance = targetDate - currentTime;
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
-
-        if (daysEl) daysEl.innerHTML = days;
-        if (hoursEl) hoursEl.innerHTML = String(hours).padStart(2, '0');
-        if (minutesEl) minutesEl.innerHTML = String(minutes).padStart(2, '0');
-        if (secondsEl) secondsEl.innerHTML = String(seconds).padStart(2, '0');
-
-        if (distance < 0) {
-            clearInterval(countdownInterval);
-            if (daysEl) daysEl.innerHTML = "0";
-            if (hoursEl) hoursEl.innerHTML = "00";
-            if (minutesEl) minutesEl.innerHTML = "00";
-            if (secondsEl) secondsEl.innerHTML = "00";
-            console.log("Countdown Selesai!");
-        }
-    }, 1000);
+    if (daysEl) daysEl.innerHTML = "0";
+    if (hoursEl) hoursEl.innerHTML = "00";
+    if (minutesEl) minutesEl.innerHTML = "00";
+    if (secondsEl) secondsEl.innerHTML = "00";
+    console.log("Countdown Selesai (Diset manual ke 00.00.00.00).");
 }
+
 
 // ====== FUNGSI UNTUK MEMUAT DATA DEBAT DAN MERENDERNYA (UNTUK index.html) ======
 function loadAndRenderDebatesForIndexPage() {
@@ -592,15 +612,13 @@ function renderProfilePage() {
     vbWikiValue.textContent = debater.vbWiki || 'N/A';
     ibrValue.textContent = debater.ibr || 'N/A';
 
-    if (debater.fightRecord) {
-        fightRecordWinNumber.textContent = debater.fightRecord.win;
-        fightRecordLossNumber.textContent = debater.fightRecord.loss;
-        fightRecordDrawNumber.textContent = debater.fightRecord.draw;
-    } else {
-        fightRecordWinNumber.textContent = '0';
-        fightRecordLossNumber.textContent = '0';
-        fightRecordDrawNumber.textContent = '0';
-    }
+    // Mengisi data rekor dari fightRecord atau boxingRecord
+    // Perbaikan: Gunakan fightRecord jika ada, jika tidak, inisialisasi sebagai 0
+    const currentFightRecord = debater.fightRecord || { win: 0, loss: 0, draw: 0 };
+    fightRecordWinNumber.textContent = currentFightRecord.win;
+    fightRecordLossNumber.textContent = currentFightRecord.loss;
+    fightRecordDrawNumber.textContent = currentFightRecord.draw;
+
 
     let matchHistoryHtml = '';
     if (debater.matchHistory && debater.matchHistory.length > 0) {
@@ -708,7 +726,8 @@ function renderRankingPage() {
                     return indexA - indexB;
                 });
             } else if (tierName === "High Tier") {
-                const highTierCustomOrder = ["ZOGRATIS", "MUCHIBEI"];
+                // Tambahkan Lianx dan Adyy ke dalam urutan kustom High Tier
+                const highTierCustomOrder = ["ZOGRATIS", "Lianx", "MUCHIBEI", "Adyy"];
                 debatersInTier.sort((a, b) => {
                     const indexA = highTierCustomOrder.indexOf(a.name);
                     const indexB = highTierCustomOrder.indexOf(b.name);
