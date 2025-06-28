@@ -1,12 +1,14 @@
 // script.js
 
 // ====== DATA DEBAT SEKARANG LANGSUNG ADA DI SINI ======
+// CATATAN: Karena struktur data Anda menyimpan detail debater langsung di dalam setiap debat,
+//         kita akan memproses ini terlebih dahulu untuk membangun 'allDebaters' yang terpusat.
 const debatesData = [
     {
         "id": "debate-001",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-15",
-        "matchBanner": "4ba98405-9174-4806-86b0-48db675ff249.jpeg", // Path gambar match banner
+        "matchBanner": "4ba98405-9174-4806-86b0-48db675ff249.jpeg",
         "debater1": {
             "name": "HIROO",
             "photo": "IMG_0524.jpeg",
@@ -25,10 +27,7 @@ const debatesData = [
                 "Philisophy": "9/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "Mid Tier"
         },
         "debater2": {
             "name": "RENJI",
@@ -48,12 +47,9 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Mid Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "Mid Tier"
         },
-        "type": "MID TIER DEBATE", // Digunakan sebagai topik
+        "type": "MID TIER DEBATE",
         "winner": { "name": "HIROO", "method": "limit" },
         "loser": { "name": "RENJI" }
     },
@@ -61,7 +57,7 @@ const debatesData = [
         "id": "debate-002",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-10",
-        "matchBanner": "5c6e6c7b-dc86-4ca3-a496-6b0d34eefa77.jpeg", // Path gambar match banner
+        "matchBanner": "5c6e6c7b-dc86-4ca3-a496-6b0d34eefa77.jpeg",
         "debater1": {
             "name": "ZOGRATIS",
             "photo": "IMG_0526.jpeg",
@@ -80,10 +76,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "7/10"
             },
-            "tier": "High Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "High Tier"
         },
         "debater2": {
             "name": "MUCHIBEI",
@@ -103,12 +96,9 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "8/10"
             },
-            "tier": "High Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "High Tier"
         },
-        "type": "HIGH TIER DEBATE", // Digunakan sebagai topik
+        "type": "HIGH TIER DEBATE",
         "winner": { "name": "ZOGRATIS", "method": "point" },
         "loser": { "name": "MUCHIBEI" }
     },
@@ -116,7 +106,7 @@ const debatesData = [
         "id": "debate-003",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-05",
-        "matchBanner": "0fa5d532-e863-4322-aefd-31e538cf2bcc.jpeg", // Path gambar match banner
+        "matchBanner": "0fa5d532-e863-4322-aefd-31e538cf2bcc.jpeg",
         "debater1": {
             "name": "ARYANWT",
             "photo": "IMG_0525.jpeg",
@@ -135,10 +125,7 @@ const debatesData = [
                 "Philisophy": "7/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Low Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "Low Tier"
         },
         "debater2": {
             "name": "RIM",
@@ -158,12 +145,9 @@ const debatesData = [
                 "Philisophy": "3/10",
                 "General Knowledge": "7/10"
             },
-            "tier": "Low Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "Low Tier"
         },
-        "type": "LOW TIER DEBATE", // Digunakan sebagai topik
+        "type": "LOW TIER DEBATE",
         "winner": { "name": "ARYANWT", "method": "point" },
         "loser": { "name": "RIM" }
     },
@@ -171,7 +155,7 @@ const debatesData = [
         "id": "debate-004",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-01",
-        "matchBanner": "79194c7a-6e34-4bbd-a21e-9e9c918c4707.jpeg", // Path gambar match banner
+        "matchBanner": "79194c7a-6e34-4bbd-a21e-9e9c918c4707.jpeg",
         "debater1": {
             "name": "RANZT",
             "photo": "IMG_0555.jpeg",
@@ -190,10 +174,7 @@ const debatesData = [
                 "Philisophy": "9/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "Mid Tier"
         },
         "debater2": {
             "name": "RYUU",
@@ -213,12 +194,9 @@ const debatesData = [
                 "Philisophy": "4/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Mid Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "Mid Tier"
         },
-        "type": "MID TIER DEBATE", // Digunakan sebagai topik
+        "type": "MID TIER DEBATE",
         "winner": { "name": "RANZT", "method": "point" },
         "loser": { "name": "RYUU" }
     },
@@ -226,7 +204,7 @@ const debatesData = [
         "id": "debate-005",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-26",
-        "matchBanner": "cdf5db1e-6410-4df1-a920-6d4f4e41b412.jpeg", // Path gambar match banner
+        "matchBanner": "cdf5db1e-6410-4df1-a920-6d4f4e41b412.jpeg",
         "debater1": {
             "name": "Thinzel",
             "photo": "IMG_0819.jpeg",
@@ -245,10 +223,7 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "0/10"
             },
-            "tier": "Low Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "Low Tier"
         },
         "debater2": {
             "name": "Shade",
@@ -268,12 +243,9 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "1/10"
             },
-            "tier": "Low Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "Low Tier"
         },
-        "type": "LOW TIER DEBATE", // Digunakan sebagai topik
+        "type": "LOW TIER DEBATE",
         "winner": { "name": "Thinzel", "method": "limit" },
         "loser": { "name": "Shade" }
     },
@@ -281,7 +253,6 @@ const debatesData = [
         "id": "debate-006",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-26",
-        // Ganti matchBanner untuk Lianx vs Adyy ke foto baru
         "matchBanner": "dc468717-5f12-406f-a591-9dffdb13e725.jpeg",
         "debater1": {
             "name": "Lianx",
@@ -301,10 +272,7 @@ const debatesData = [
                 "Philisophy": "8/10",
                 "General Knowledge": "8/10"
             },
-            "tier": "High Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "achievements": []
+            "tier": "High Tier"
         },
         "debater2": {
             "name": "Adyy",
@@ -324,12 +292,9 @@ const debatesData = [
                 "Philisophy": "0/10",
                 "General Knowledge": "7/10"
             },
-            "tier": "High Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "achievements": []
+            "tier": "High Tier"
         },
-        "type": "HIGH TIER DEBATE", // Digunakan sebagai topik
+        "type": "HIGH TIER DEBATE",
         "winner": { "name": "Lianx", "method": "Point" },
         "loser": { "name": "Adyy" }
     }
@@ -341,90 +306,106 @@ let allDebaters = {};
 // ====== POPULATE ALLDEBATERS MAP AND ADD RECORDS / MATCH HISTORY ONCE AT SCRIPT INITIALIZATION ======
 debatesData.forEach(debate => {
     // Fungsi pembantu untuk menginisialisasi atau memperbarui data debater
-    const processDebater = (debaterData, isWinner, opponentName, debateId, debateDate, debateCategory, debateRound, debateTime, method) => {
-        const name = debaterData.name;
+    const processDebater = (debaterObj, isWinner, opponentName, debateId, debateDate, debateCategory, debateType, method) => {
+        const name = debaterObj.name;
+
         if (!allDebaters[name]) {
             // Inisialisasi debater jika belum ada
             allDebaters[name] = {
-                ...debaterData,
+                name: debaterObj.name,
+                photo: debaterObj.photo,
+                country: debaterObj.country,
+                flag: debaterObj.flag,
+                tier: debaterObj.tier,
+                vbWiki: debaterObj.vbWiki,
+                ibr: debaterObj.ibr,
+                profile: {}, // Inisialisasi profil kosong, akan diisi dan dikonversi
                 fightRecord: { win: 0, loss: 0, draw: 0 },
-                boxingRecord: { win: 0, loss: 0, draw: 0 },
+                boxingRecord: { win: 0, loss: 0, draw: 0 }, // Tambahkan boxingRecord jika ada
                 matchHistory: [],
                 achievements: []
             };
-            // Pastikan profile skills diubah menjadi angka jika perlu
-            for (const skill in allDebaters[name].profile) {
-                if (typeof allDebaters[name].profile[skill] === 'string' && allDebaters[name].profile[skill].includes('/')) {
-                    const parts = allDebaters[name].profile[skill].split('/');
-                    allDebaters[name].profile[skill] = parseFloat(parts[0]); // Ambil hanya nilai numerik pertama
+
+            // Konversi nilai profile skill dari "X/10" ke angka
+            for (const skill in debaterObj.profile) {
+                if (debaterObj.profile.hasOwnProperty(skill)) {
+                    if (typeof debaterObj.profile[skill] === 'string' && debaterObj.profile[skill].includes('/')) {
+                        const parts = debaterObj.profile[skill].split('/');
+                        allDebaters[name].profile[skill] = parseFloat(parts[0]);
+                    } else {
+                        allDebaters[name].profile[skill] = parseFloat(debaterObj.profile[skill]); // Handle jika sudah angka
+                    }
                 }
             }
         }
 
-        // Akumulasi rekor
-        allDebaters[name].fightRecord.win += debaterData.fightRecord.win || 0;
-        allDebaters[name].fightRecord.loss += debaterData.fightRecord.loss || 0;
-        allDebaters[name].fightRecord.draw += debaterData.fightRecord.draw || 0;
-
-        if (debaterData.boxingRecord) {
-            allDebaters[name].boxingRecord.win += debaterData.boxingRecord.win || 0;
-            allDebater[name].boxingRecord.loss += debaterData.boxingRecord.loss || 0;
-            allDebater[name].boxingRecord.draw += debaterData.boxingRecord.draw || 0;
+        // Akumulasi rekor pertarungan
+        if (isWinner) {
+            allDebaters[name].fightRecord.win++;
+        } else {
+            allDebaters[name].fightRecord.loss++;
         }
+        // Tambahkan logika untuk draw jika data Anda memiliki draw
+
+        // Akumulasi rekor tinju (jika ada) - Anda tidak memiliki data boxingRecord per debat di `debatesData` Anda,
+        // jadi ini tidak akan terakumulasi dari sana. Abaikan baris ini jika Anda tidak memiliki boxing record per debat.
+        // allDebaters[name].boxingRecord.win += debaterObj.boxingRecord ? debaterObj.boxingRecord.win : 0;
+        // allDebaters[name].boxingRecord.loss += debaterObj.boxingRecord ? debaterObj.boxingRecord.loss : 0;
+        // allDebaters[name].boxingRecord.draw += debaterObj.boxingRecord ? debaterObj.boxingRecord.draw : 0;
+
 
         // Tambahkan ke riwayat pertandingan
         allDebaters[name].matchHistory.push({
             opponent: opponentName,
             result: isWinner ? "Win" : "Loss",
-            method: isWinner ? method : "",
+            method: method || 'N/A',
             date: debateDate,
             category: debateCategory,
-            id: debateId,
-            round: debateRound, // Mungkin tidak ada di data Anda
-            time: debateTime // Mungkin tidak ada di data Anda
+            type: debateType, // Tambahkan 'type' dari debat
+            id: debateId
         });
 
-        // Tambahkan ke pencapaian (pastikan tidak duplikat untuk event yang sama)
-        const debateYear = new Date(debateDate).getFullYear().toString();
-        const achievementType = isWinner ? "Winner" : "Participant";
-        const eventName = `DBA Match vs ${opponentName}`;
-
-        const existingAchievement = allDebaters[name].achievements.find(
-            ach => ach.event === eventName && ach.date === debateYear && ach.achievement === achievementType
-        );
-        if (!existingAchievement) {
-            allDebaters[name].achievements.push({
-                "event": eventName,
-                "achievement": achievementType,
-                "date": debateYear
-            });
+        // Tambahkan ke pencapaian (jika menang)
+        if (isWinner) {
+            const achievementEvent = `DBA ${debateType} vs ${opponentName} (${debateCategory})`;
+            const achievementDate = new Date(debateDate).getFullYear().toString(); // Ambil tahun saja
+            const existingAchievement = allDebaters[name].achievements.find(
+                ach => ach.event === achievementEvent && ach.date === achievementDate && ach.achievement === 'Winner'
+            );
+            if (!existingAchievement) {
+                allDebaters[name].achievements.push({
+                    "event": achievementEvent,
+                    "achievement": "Winner",
+                    "date": achievementDate
+                });
+            }
         }
     };
 
-    // Proses debater 1
+    // Proses debater 1 dan 2 dari setiap debat
+    const winnerName = debate.winner ? debate.winner.name : null;
+    const method = debate.winner ? debate.winner.method : null;
+
     processDebater(
         debate.debater1,
-        debate.winner && debate.winner.name === debate.debater1.name,
+        winnerName === debate.debater1.name,
         debate.debater2.name,
         debate.id,
         debate.date,
         debate.category,
-        debate.round,
-        debate.time,
-        debate.winner ? debate.winner.method : ''
+        debate.type,
+        method
     );
 
-    // Proses debater 2
     processDebater(
         debate.debater2,
-        debate.winner && debate.winner.name === debate.debater2.name,
+        winnerName === debate.debater2.name,
         debate.debater1.name,
         debate.id,
         debate.date,
         debate.category,
-        debate.round,
-        debate.time,
-        debate.winner ? debate.winner.method : ''
+        debate.type,
+        method
     );
 });
 
@@ -438,57 +419,107 @@ Object.values(allDebaters).forEach(debater => {
 
 // ====== FUNGSI UNTUK MEMUAT DATA DEBAT DAN MERENDERNYA (UNTUK index.html) ======
 function loadAndRenderDebatesForIndexPage() {
-    // Gunakan debatesData yang sudah ada
-    const debates = debatesData;
-
     const container = document.getElementById('debates-container');
-    if (!container) return;
+    const upcomingDebatesContainer = document.getElementById('upcoming-debates-container'); // Pastikan ini ada di index.html jika ingin menampilkan upcoming
+    
+    // Jika tidak ada container utama, keluar
+    if (!container) {
+        console.warn("Element 'debates-container' not found in index.html. Cannot render debates.");
+        return;
+    }
 
-    let htmlContent = '';
+    const now = new Date();
+    let activeDebateHtml = '';
+    let upcomingDebatesHtml = ''; // Untuk bagian "DEBAT MENDATANG."
+    let activeDebateFound = false;
 
-    debates.forEach(debate => {
-        let resultSectionHtml = '';
-        if (debate.winner && debate.loser) {
-            resultSectionHtml = `
-                <div class="match-result-section">
-                    <div class="result-info winner">WINNER: ${debate.winner.name.toUpperCase()} BY ${debate.winner.method.toUpperCase()}</div>
-                    <div class="result-info loser">LOSS: ${debate.loser.name.toUpperCase()}</div>
-                </div>
-            `;
+    // Filter debat yang sudah terjadi, yang sedang berlangsung, dan yang akan datang
+    const filteredDebates = debatesData.map(debate => {
+        const debateDate = new Date(debate.date);
+        if (debateDate < now) {
+            return { ...debate, status: 'archived' };
         }
+        // Asumsi debat aktif jika dalam waktu dekat atau belum lama berlalu
+        // Untuk sekarang, kita tidak punya logika "active" di data Anda, jadi semua dianggap archived/upcoming
+        return { ...debate, status: 'upcoming' }; // Default status untuk yang belum archived
+    });
 
-        const matchTopicText = debate.type ? debate.type.toUpperCase() : 'NO TOPIC';
+    // Urutkan debat berdasarkan tanggal
+    filteredDebates.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        htmlContent += `
-            <div class="match-card">
-                <div class="match-image-container">
-                    <img src="${debate.matchBanner}" alt="Debat antara ${debate.debater1.name} vs ${debate.debater2.name}" class="match-banner-img">
-                    <div class="match-category-label">${debate.category.toUpperCase()} | ${matchTopicText}</div>
-                </div>
-                <div class="match-details-bottom">
-                    <div class="debater-names-row">
-                        <div class="debater-entry">
-                            <a href="profile.html?name=${encodeURIComponent(debate.debater1.name)}" class="debater-name-link">
-                                ${debate.debater1.name.toUpperCase()}
-                            </a>
-                            <img src="${debate.debater1.flag}" alt="Bendera ${debate.debater1.country}" class="flag-icon-small">
-                        </div>
-                        <span class="match-vs-text">VS</span>
-                        <div class="debater-entry">
-                            <a href="profile.html?name=${encodeURIComponent(debate.debater2.name)}" class="debater-name-link">
-                                ${debate.debater2.name.toUpperCase()}
-                            </a>
-                            <img src="${debate.debater2.flag}" alt="Bendera ${debate.debater2.country}" class="flag-icon-small">
-                        </div>
+    // Render debat aktif/terbaru (sesuai data Anda, ini akan menjadi yang terbaru di `debatesData`)
+    // Mengambil debat terbaru dari debatesData sebagai "active" atau "featured"
+    const latestDebate = debatesData.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+
+    if (latestDebate) {
+        activeDebateFound = true;
+        const debater1 = allDebaters[latestDebate.debater1.name];
+        const debater2 = allDebaters[latestDebate.debater2.name];
+
+        activeDebateHtml = `
+            <div class="active-match-banner" style="background-image: url('${latestDebate.matchBanner}');">
+                <div class="overlay"></div>
+                <div class="match-info">
+                    <h2 class="match-title">DEBATER BATTLE ARENA</h2>
+                    <p class="match-subtitle">${latestDebate.type || 'THE ULTIMATE FICTIONAL SHOWDOWN'}</p>
+                    <div class="debaters">
+                        <span class="debater-name debater1-name">${debater1.name.toUpperCase()}</span>
+                        <span class="vs">VS</span>
+                        <span class="debater-name debater2-name">${debater2.name.toUpperCase()}</span>
                     </div>
-                    <p class="match-topic">${matchTopicText}</p>
+                    <div class="countdown">
+                        <div class="countdown-item"><span class="number">--</span><span class="label">HARI</span></div>
+                        <div class="countdown-item"><span class="number">--</span><span class="label">JAM</span></div>
+                        <div class="countdown-item"><span class="number">--</span><span class="label">MENIT</span></div>
+                        <div class="countdown-item"><span class="number">--</span><span class="label">DETIK</span></div>
+                    </div>
+                    <div class="match-type">${latestDebate.category.toUpperCase()}</div>
+                    <button class="watch-button">NONTON <span class="arrow">→</span></button>
                 </div>
-                ${resultSectionHtml}
             </div>
         `;
-    });
-    container.innerHTML = htmlContent;
+    }
+
+    container.innerHTML = activeDebateHtml;
+
+
+    // Bagian "DEBAT MENDATANG." - Jika Anda memiliki data debat dengan `status: "upcoming"` di `debatesData`
+    // Saat ini, data Anda hanya memiliki tanggal di masa lalu.
+    // Jika Anda ingin menampilkan jadwal mendatang, Anda perlu menambahkan debat dengan tanggal di masa depan.
+    const upcomingDebates = debatesData.filter(debate => new Date(debate.date) > now).sort((a, b) => new Date(a.date) - new Date(b.date)); // Urutkan dari yang terdekat
+
+    if (upcomingDebatesContainer) {
+        if (upcomingDebates.length > 0) {
+            upcomingDebatesHtml = '<h3 class="section-title">DEBAT MENDATANG.</h3><div class="upcoming-matches-grid">';
+            upcomingDebates.forEach(debate => {
+                const debater1 = allDebaters[debate.debater1.name];
+                const debater2 = allDebaters[debate.debater2.name];
+                upcomingDebatesHtml += `
+                    <div class="upcoming-match-card">
+                        <img src="${debate.matchBanner}" alt="Banner ${debate.debater1.name} vs ${debate.debater2.name}" class="upcoming-match-banner-img">
+                        <div class="upcoming-match-details">
+                            <p class="upcoming-match-type">${debate.type.toUpperCase()}</p>
+                            <p class="upcoming-match-category">${debate.category.toUpperCase()}</p>
+                            <div class="upcoming-debaters">
+                                <span class="upcoming-debater-name">${debater1.name.toUpperCase()}</span>
+                                <span class="upcoming-vs">VS</span>
+                                <span class="upcoming-debater-name">${debater2.name.toUpperCase()}</span>
+                            </div>
+                            <p class="upcoming-match-date">${new Date(debate.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })} WIB</p>
+                        </div>
+                    </div>
+                `;
+            });
+            upcomingDebatesHtml += '</div>';
+        } else {
+            upcomingDebatesHtml = `<div class="no-upcoming-debates">
+                                        <p>Belum ada jadwal debat mendatang.</p>
+                                   </div>`;
+        }
+        upcomingDebatesContainer.innerHTML = upcomingDebatesHtml;
+    }
 }
+
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN PROFIL (UNTUK profile.html) ======
 function renderProfilePage() {
@@ -542,7 +573,7 @@ function renderProfilePage() {
 
     if (!debaterName) {
         console.error("ERROR: Nama debater tidak ditemukan di URL.");
-        profileCard.innerHTML = `<p style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">Nama debater tidak ditemukan di URL. Pastikan Anda mengaksesnya dengan format seperti: profile.html?name=RANZT</p>`;
+        profileCard.innerHTML = `<p style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">Nama debater tidak ditemukan di URL. Pastikan Anda mengaksesnya dengan format seperti: profile.html?name=HIROO</p>`;
         return;
     }
 
@@ -575,12 +606,10 @@ function renderProfilePage() {
 
     let matchHistoryHtml = '';
     if (debater.matchHistory && debater.matchHistory.length > 0) {
-        debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
-
+        // matchHistory sudah diurutkan berdasarkan tanggal terbaru saat inisialisasi allDebaters
         debater.matchHistory.forEach(match => {
             const resultClass = match.result === "Win" ? "win" : "loss";
             const opponentDebater = allDebaters[match.opponent];
-            // Pastikan opponentDebater ada dan memiliki foto
             const opponentPhotoSrc = (opponentDebater && opponentDebater.photo) ? opponentDebater.photo : 'placeholder.jpg';
 
             matchHistoryHtml += `
@@ -622,8 +651,8 @@ function renderProfilePage() {
     if (debater.profile) {
         for (const skill in debater.profile) {
             if (debater.profile.hasOwnProperty(skill)) {
-                const scoreValue = parseFloat(debater.profile[skill]); // Sudah diubah ke float saat inisialisasi allDebaters
-                const scorePercentage = (scoreValue / 10) * 100; // Asumsi skor maksimal 10
+                const scoreValue = parseFloat(debater.profile[skill]);
+                const scorePercentage = (scoreValue / 10) * 100;
 
                 statsHtml += `
                     <li>
@@ -644,7 +673,10 @@ function renderProfilePage() {
 // ====== FUNGSI UNTUK MERENDER HALAMAN RANKING (UNTUK ranking.html) ======
 function renderRankingPage() {
     const rankingContainer = document.getElementById('ranking-container');
-    if (!rankingContainer) return;
+    if (!rankingContainer) {
+        console.warn("Element 'ranking-container' not found. Not rendering ranking page.");
+        return;
+    }
 
     const allDebatersByTier = {
         "Low Tier": [],
@@ -659,7 +691,9 @@ function renderRankingPage() {
         }
     });
 
-    let rankingHtml = '';
+    let rankingHtml = `
+        <h2 class="section-title">RANKING DEBATER.</h2>
+    `;
     const tiersOrder = ["Low Tier", "Mid Tier", "High Tier"]; // Urutan tier yang diinginkan
 
     tiersOrder.forEach(tierName => {
@@ -668,42 +702,37 @@ function renderRankingPage() {
         if (debatersInTier && debatersInTier.length > 0) {
             // Sorting kustom untuk setiap Tier
             if (tierName === "Mid Tier") {
-                // Urutan spesifik RANZT, HIROO, RYUU, RENJI
                 const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"];
                 debatersInTier.sort((a, b) => {
                     const indexA = midTierCustomOrder.indexOf(a.name);
                     const indexB = midTierCustomOrder.indexOf(b.name);
                     if (indexA === -1 || indexB === -1) {
-                        return a.name.localeCompare(b.name); // Default jika tidak ada di daftar kustom
+                        return a.name.localeCompare(b.name);
                     }
                     return indexA - indexB;
                 });
             } else if (tierName === "High Tier") {
-                // Urutan spesifik Lianx, Adyy, MUCHIBEI, ZOGRATIS
                 const highTierCustomOrder = ["Lianx", "Adyy", "MUCHIBEI", "ZOGRATIS"];
                 debatersInTier.sort((a, b) => {
                     const indexA = highTierCustomOrder.indexOf(a.name);
                     const indexB = highTierCustomOrder.indexOf(b.name);
                     if (indexA === -1 || indexB === -1) {
-                        return a.name.localeCompare(b.name); // Default jika tidak ada di daftar kustom
+                        return a.name.localeCompare(b.name);
                     }
                     return indexA - indexB;
                 });
             } else if (tierName === "Low Tier") {
-                // URUTAN KUSTOM UNTUK LOW TIER: ARYANWT (1), RIM (2), Shade (3), Thinzel (4)
                 const lowTierCustomOrder = ["ARYANWT", "RIM", "Shade", "Thinzel"];
                 debatersInTier.sort((a, b) => {
                     const indexA = lowTierCustomOrder.indexOf(a.name);
                     const indexB = lowTierCustomOrder.indexOf(b.name);
                     if (indexA === -1 || indexB === -1) {
-                        // Jika nama tidak ada di urutan kustom, biarkan mereka di akhir (atau sesuaikan logika jika ada debater lain di Low Tier yang tidak masuk daftar ini)
                         return a.name.localeCompare(b.name);
                     }
                     return indexA - indexB;
                 });
             }
             else {
-                // Urutan default (alfabetis berdasarkan nama) jika tidak ada urutan kustom
                 debatersInTier.sort((a, b) => a.name.localeCompare(b.name));
             }
 
@@ -723,7 +752,6 @@ function renderRankingPage() {
                         <tbody>
             `;
             debatersInTier.forEach((debater, index) => {
-                // Pastikan nilai profile diambil dengan benar (sudah diubah ke float di awal)
                 const rhetoricScore = debater.profile['Rhetoric'] || 0;
                 const criticalThinkingScore = debater.profile['Critical Thinking'] || 0;
                 const generalKnowledgeScore = debater.profile['General Knowledge'] || 0;
@@ -757,8 +785,12 @@ function renderRankingPage() {
 // ====== FUNGSI UNTUK MERENDER HALAMAN ARSIP (UNTUK archive.html) ======
 function renderArchivePage() {
     const archiveListContainer = document.getElementById('archive-list');
-    if (!archiveListContainer) return;
+    if (!archiveListContainer) {
+        console.warn("Element 'archive-list' not found. Not rendering archive page.");
+        return;
+    }
 
+    // Hanya tampilkan debat yang memiliki pemenang dan pecundang (sudah selesai)
     const archivedDebates = debatesData.filter(debate => debate.winner && debate.loser);
 
     // Urutkan debat berdasarkan tanggal terbaru
@@ -799,7 +831,7 @@ function renderComparePage() {
     const debater1Select = document.getElementById('debater1-select');
     const debater2Select = document.getElementById('debater2-select');
     const chartArea = document.getElementById('chart-area');
-    const chartCanvas = document.getElementById('radarChart');
+    const chartCanvas = document.getElementById('radarChart'); // Pastikan ini adalah ID canvas Anda
 
     // Pastikan elemen-elemen ada
     if (!debater1Select || !debater2Select || !chartArea || !chartCanvas) {
@@ -860,7 +892,6 @@ function renderComparePage() {
 
         // Siapkan data untuk Chart.js
         const labels = Object.keys(debater1.profile); // Skill sebagai label
-        // Data sudah diubah menjadi float saat inisialisasi allDebaters
         const data1 = labels.map(label => debater1.profile[label]);
         const data2 = labels.map(label => debater2.profile[label]);
 
@@ -901,27 +932,27 @@ function renderComparePage() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Penting agar bisa diatur tinggi/lebarnya oleh CSS
+                maintainAspectRatio: false,
                 scales: {
                     r: {
                         angleLines: {
-                            color: 'rgba(255, 255, 255, 0.2)' // Warna garis radial
+                            color: 'rgba(255, 255, 255, 0.2)'
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.3)' // Warna grid
+                            color: 'rgba(255, 255, 255, 0.3)'
                         },
                         pointLabels: {
-                            color: 'var(--white-text-color)', // Warna label skill
+                            color: 'var(--white-text-color)',
                             font: {
                                 size: 12
                             }
                         },
                         ticks: {
                             beginAtZero: true,
-                            max: 10, // Maksimal skor skill
+                            max: 10,
                             stepSize: 2,
-                            color: 'var(--light-grey)', // Warna angka tick
-                            backdropColor: 'transparent', // Hapus background di belakang angka
+                            color: 'var(--light-grey)',
+                            backdropColor: 'transparent',
                             showLabelBackdrop: false
                         }
                     }
@@ -929,7 +960,7 @@ function renderComparePage() {
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'var(--white-text-color)' // Warna teks legend
+                            color: 'var(--white-text-color)'
                         }
                     },
                     tooltip: {
@@ -949,12 +980,10 @@ function renderComparePage() {
     debater2Select.addEventListener('change', updateComparison);
 
     // Panggil pertama kali untuk menampilkan grafik awal (jika ada pilihan default)
-    // Berikan sedikit penundaan jika elemen belum sepenuhnya dirender atau data belum siap
     setTimeout(() => {
         if (debaterNames.length >= 2) {
-            // Set default selections jika belum ada, lalu picu update
             if (!debater1Select.value) debater1Select.value = debaterNames[0];
-            if (!debater2Select.value) debater2Select.value = debaterNames[1] || debaterNames[0];
+            if (!debater2Select.value) debater2Select.value = debaterNames[1];
             updateComparison();
         }
     }, 100);
@@ -965,13 +994,12 @@ function renderComparePage() {
 document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname;
 
+    // Logika untuk menandai navigasi aktif
     const navLinks = document.querySelectorAll('.main-nav ul li a');
     navLinks.forEach(link => {
-        // Ambil path yang bersih dari link dan path saat ini
         const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
         const cleanedCurrentPath = currentPath.replace(/\/$/, '');
 
-        // Logika untuk menandai link aktif
         const isHomeActive = (cleanedCurrentPath === '/index.html' || cleanedCurrentPath === '/') && (linkPath === '/index.html' || linkPath === '/');
 
         if (isHomeActive || (cleanedCurrentPath !== '/' && cleanedCurrentPath === linkPath)) {
@@ -983,7 +1011,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Panggil fungsi rendering yang sesuai berdasarkan halaman saat ini
     if (currentPath.endsWith('/') || currentPath.endsWith('index.html')) {
-        // startCountdown(); // Baris ini DIHAPUS
         loadAndRenderDebatesForIndexPage();
     } else if (currentPath.endsWith('profile.html')) {
         renderProfilePage();
