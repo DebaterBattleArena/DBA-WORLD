@@ -10,8 +10,8 @@ const debatesData = [
             "photo": "IMG_0524.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "vbWiki": "Outerversal+",
-            "ibr": "High 1-A",
+            "vbWiki": "Outerversal+", // Ini akan diubah namanya di tampilan
+            "ibr": "High 1-A",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "9/10",
                 "Typing Structure": "9/10",
@@ -33,8 +33,8 @@ const debatesData = [
             "photo": "IMG_0523.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "vbWiki": "Low 1-A",
-            "ibr": "High 1-A",
+            "vbWiki": "Low 1-A", // Ini akan diubah namanya di tampilan
+            "ibr": "High 1-A",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -65,8 +65,8 @@ const debatesData = [
             "photo": "IMG_0526.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "vbWiki": "Boundless",
-            "ibr": "Beyond Dimensionality",
+            "vbWiki": "Boundless", // Ini akan diubah namanya di tampilan
+            "ibr": "Beyond Dimensionality",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "6/10",
                 "Typing Structure": "5/10",
@@ -88,8 +88,8 @@ const debatesData = [
             "photo": "IMG_0530.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "vbWiki": "Low 1-A",
-            "ibr": "High 1-A",
+            "vbWiki": "Low 1-A", // Ini akan diubah namanya di tampilan
+            "ibr": "High 1-A",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "5/10",
                 "Typing Structure": "5/10",
@@ -120,8 +120,8 @@ const debatesData = [
             "photo": "IMG_0525.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "vbWiki": "Low 1-A",
-            "ibr": "High 1-A",
+            "vbWiki": "Low 1-A", // Ini akan diubah namanya di tampilan
+            "ibr": "High 1-A",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "8/10",
                 "Typing Structure": "7/10",
@@ -143,8 +143,8 @@ const debatesData = [
             "photo": "IMG_0527.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "vbWiki": "High 1-B",
-            "ibr": "Low 1-A",
+            "vbWiki": "High 1-B", // Ini akan diubah namanya di tampilan
+            "ibr": "Low 1-A",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "4/10",
                 "Typing Structure": "5/10",
@@ -175,8 +175,8 @@ const debatesData = [
             "photo": "IMG_0555.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "vbWiki": "Outerversal+",
-            "ibr": "High 1-A",
+            "vbWiki": "Outerversal+", // Ini akan diubah namanya di tampilan
+            "ibr": "High 1-A",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "10/10",
                 "Typing Structure": "10/10",
@@ -198,8 +198,8 @@ const debatesData = [
             "photo": "IMG_0556.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "vbWiki": "Low 1-A",
-            "ibr": "High 1-A",
+            "vbWiki": "Low 1-A", // Ini akan diubah namanya di tampilan
+            "ibr": "High 1-A",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "8.5/10",
                 "Typing Structure": "8/10",
@@ -230,8 +230,8 @@ const debatesData = [
             "photo": "IMG_0819.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "vbWiki": "High 1-B",
-            "ibr": "Low 1-A",
+            "vbWiki": "High 1-B", // Ini akan diubah namanya di tampilan
+            "ibr": "Low 1-A",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "1/10",
                 "Typing Structure": "1/10",
@@ -253,8 +253,8 @@ const debatesData = [
             "photo": "IMG_0820.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "vbWiki": "Low 1-C",
-            "ibr": "High 1-B",
+            "vbWiki": "Low 1-C", // Ini akan diubah namanya di tampilan
+            "ibr": "High 1-B",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "3/10",
                 "Typing Structure": "2/10",
@@ -285,8 +285,8 @@ const debatesData = [
             "photo": "IMG_0935.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
-            "vbWiki": "High 1-B",
-            "ibr": "Low 1-A",
+            "vbWiki": "High 1-B", // Ini akan diubah namanya di tampilan
+            "ibr": "Low 1-A",       // Ini akan diubah namanya di tampilan
             "profile": {
                 "Rhetoric": "8/10",
                 "Typing Structure": "9/10",
@@ -309,18 +309,18 @@ const debatesData = [
             "photo": "IMG_0934.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
-            "vbWiki": "Low 1-C",
-            "ibr": "High 1-B",
+            "vbWiki": "Low 1-C", // Ini akan diubah namanya di tampilan
+            "ibr": "High 1-B",       // Ini akan diubah namanya di tampilan
             "profile": {
-                "Rhetoric": "5/10",
-                "Typing Structure": "6/10",
+                "Rhetoric": "8/10",
+                "Typing Structure": "8/10",
                 "Critical Thinking": "7/10",
                 "Logical Fallacies": "6/10",
-                "Typing Strenght": "5/10",
-                "Tiering Sistem": "7/10",
-                "Calculation": "6/10",
+                "Typing Strenght": "7/10",
+                "Tiering Sistem": "9/10",
+                "Calculation": "7/10",
                 "Philisophy": "0/10",
-                "General Knowledge": "6/10"
+                "General Knowledge": "10/10"
             },
             "tier": "High Tier",
             // Rekor awal Adyy sesuai dengan permintaan (0-1-0)
@@ -476,8 +476,8 @@ function startCountdown() {
             clearInterval(countdownInterval);
         }
 
-        // Pastikan semua angka memiliki dua digit (kecuali hari, yang bisa lebih dari 99)
-        if (daysEl) daysEl.innerHTML = String(days).padStart(2, '0'); // Days juga 2 digit sekarang
+        // Pastikan semua angka memiliki dua digit, termasuk hari
+        if (daysEl) daysEl.innerHTML = String(days).padStart(2, '0');
         if (hoursEl) hoursEl.innerHTML = String(hours).padStart(2, '0');
         if (minutesEl) minutesEl.innerHTML = String(minutes).padStart(2, '0');
         if (secondsEl) secondsEl.innerHTML = String(seconds).padStart(2, '0');
@@ -555,8 +555,12 @@ function renderProfilePage() {
     const countryText = profileCard.querySelector('.profile-country-info .country-text');
     const profileFlagIcon = profileCard.querySelector('.profile-country-info .profile-flag-icon');
 
-    const vbWikiValue = profileCard.querySelector('.profile-info-item .vb-wiki-value');
-    const ibrValue = profileCard.querySelector('.profile-info-item .ibr-value');
+    // Perubahan di sini: Mengambil elemen label dan nilai yang baru
+    const tvcCompanyLabel = profileCard.querySelector('.profile-info-item .tvc-company-label');
+    const tvcCompanyValue = profileCard.querySelector('.profile-info-item .tvc-company-value');
+    const dbaLabel = profileCard.querySelector('.profile-info-item .dba-label');
+    const dbaValue = profileCard.querySelector('.profile-info-item .dba-value');
+
 
     const fightRecordWinNumber = profileCard.querySelector('.profile-fight-record .win-number');
     const fightRecordLossNumber = profileCard.querySelector('.profile-fight-record .loss-number');
@@ -568,7 +572,7 @@ function renderProfilePage() {
 
     // Pastikan semua elemen yang dibutuhkan ada sebelum mencoba menggunakannya
     if (!profileCard || !profileDebaterImage || !divisionText || !profileName || !countryText || !profileFlagIcon ||
-        !vbWikiValue || !ibrValue ||
+        !tvcCompanyLabel || !tvcCompanyValue || !dbaLabel || !dbaValue || // Perbarui pemeriksaan ini
         !fightRecordWinNumber || !fightRecordLossNumber || !fightRecordDrawNumber ||
         !matchHistoryList || !achievementsTableBody || !statsList) {
         console.error("ERROR: Satu atau lebih elemen profil tidak ditemukan di DOM. Mohon periksa kembali HTML profile.html dan selektor di script.js.");
@@ -611,8 +615,13 @@ function renderProfilePage() {
     profileFlagIcon.src = debater.flag;
     profileFlagIcon.alt = `Bendera ${debater.country}`;
 
-    vbWikiValue.textContent = debater.vbWiki || 'N/A';
-    ibrValue.textContent = debater.ibr || 'N/A';
+    // Perubahan di sini: Mengisi teks dan nilai baru
+    tvcCompanyLabel.textContent = "TVC COMPANY:"; // Ubah label
+    tvcCompanyValue.textContent = debater.vbWiki || 'N/A'; // Tetap gunakan data vbWiki untuk nilai
+
+    dbaLabel.textContent = "DEBATER BATTLE ARENA:"; // Ubah label
+    dbaValue.textContent = debater.ibr || 'N/A'; // Tetap gunakan data ibr untuk nilai
+
 
     // Perbaikan: Pastikan `fightRecord` digunakan dengan benar
     const fightRecord = debater.fightRecord || { "win": 0, "loss": 0, "draw": 0 };
