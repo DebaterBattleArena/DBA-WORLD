@@ -454,8 +454,15 @@ function startCountdown() {
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
 
+    // Pastikan elemen ada di halaman sebelum mencoba mengaksesnya
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+        console.error("ERROR: Elemen countdown (days, hours, minutes, or seconds) tidak ditemukan di DOM.");
+        return; // Hentikan fungsi jika elemen tidak ada
+    }
+
     // Tanggal target acara utama (1 Juli 2025, 10:00:00 WIB)
-    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime(); // +07:00 untuk WIB
+    // Perhatikan: Saya menggunakan +07:00 untuk zona waktu WIB.
+    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime();
 
     const countdownInterval = setInterval(function() {
         const currentTime = new Date().getTime();
@@ -472,19 +479,21 @@ function startCountdown() {
             minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             seconds = Math.floor((distance % (1000 * 60)) / 1000);
         } else {
-            // Jika waktu sudah lewat, set semua ke 0 dan hentikan interval
-            clearInterval(countdownInterval);
-        }
-
-        // Pastikan semua angka memiliki dua digit (termasuk hari)
-        if (daysEl) daysEl.innerHTML = String(days).padStart(2, '0');
-        if (hoursEl) hoursEl.innerHTML = String(hours).padStart(2, '0');
-        if (minutesEl) minutesEl.innerHTML = String(minutes).padStart(2, '0');
-        if (secondsEl) secondsEl.innerHTML = String(seconds).padStart(2, '0');
-
-        if (distance < 0) {
+            // Jika waktu sudah lewat atau negatif, set semua ke 0 dan hentikan interval
+            days = 0;
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+            clearInterval(countdownInterval); // Hentikan interval saat countdown selesai
             console.log("Countdown Selesai!");
         }
+
+        // Pastikan semua angka memiliki dua digit, termasuk hari
+        daysEl.innerHTML = String(days).padStart(2, '0');
+        hoursEl.innerHTML = String(hours).padStart(2, '0');
+        minutesEl.innerHTML = String(minutes).padStart(2, '0');
+        secondsEl.innerHTML = String(seconds).padStart(2, '0');
+
     }, 1000);
 }
 
