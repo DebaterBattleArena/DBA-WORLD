@@ -279,7 +279,8 @@ const debatesData = [
         "id": "debate-006",
         "category": "FICTIONAL DEBATE",
         "date": "2025-06-26",
-        "matchBanner": "7a47b236-a78a-4b2f-bbce-9cadecef6843.jpeg", // Path gambar match banner
+        // Ganti matchBanner untuk Lianx vs Adyy ke foto baru
+        "matchBanner": "dc468717-5f12-406f-a591-9dffdb13e725.jpeg",
         "debater1": {
             "name": "Lianx",
             "photo": "IMG_0935.jpeg",
@@ -299,7 +300,6 @@ const debatesData = [
                 "General Knowledge": "8/10"
             },
             "tier": "High Tier",
-            // Rekor awal Lianx sesuai dengan permintaan (1-0-0)
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
             "achievements": []
@@ -312,18 +312,17 @@ const debatesData = [
             "vbWiki": "Low 1-C",
             "ibr": "High 1-B",
             "profile": {
-                "Rhetoric": "8/10",
-                "Typing Structure": "8/10",
+                "Rhetoric": "6/10",
+                "Typing Structure": "7/10",
                 "Critical Thinking": "7/10",
                 "Logical Fallacies": "6/10",
                 "Typing Strenght": "7/10",
-                "Tiering Sistem": "9/10",
+                "Tiering Sistem": "4/10",
                 "Calculation": "7/10",
                 "Philisophy": "0/10",
-                "General Knowledge": "10/10"
+                "General Knowledge": "6/10",
             },
             "tier": "High Tier",
-            // Rekor awal Adyy sesuai dengan permintaan (0-1-0)
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 1, "draw": 0 },
             "achievements": []
@@ -447,57 +446,6 @@ Object.values(allDebaters).forEach(debater => {
 });
 
 
-// ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
-function startCountdown() {
-    const daysEl = document.getElementById("days");
-    const hoursEl = document.getElementById("hours");
-    const minutesEl = document.getElementById("minutes");
-    const secondsEl = document.getElementById("seconds");
-
-    // Pastikan elemen ada di halaman sebelum mencoba mengaksesnya
-    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
-        console.error("ERROR: Elemen countdown (days, hours, minutes, or seconds) tidak ditemukan di DOM.");
-        return; // Hentikan fungsi jika elemen tidak ada
-    }
-
-    // Tanggal target acara utama (1 Juli 2025, 10:00:00 WIB)
-    // Perhatikan: Saya menggunakan +07:00 untuk zona waktu WIB.
-    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime();
-
-    const countdownInterval = setInterval(function() {
-        const currentTime = new Date().getTime();
-        const distance = targetDate - currentTime;
-
-        let days = 0;
-        let hours = 0;
-        let minutes = 0;
-        let seconds = 0;
-
-        if (distance > 0) {
-            days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        } else {
-            // Jika waktu sudah lewat atau negatif, set semua ke 0 dan hentikan interval
-            days = 0;
-            hours = 0;
-            minutes = 0;
-            seconds = 0;
-            clearInterval(countdownInterval); // Hentikan interval saat countdown selesai
-            console.log("Countdown Selesai!");
-        }
-
-        // Pastikan semua angka memiliki dua digit, termasuk hari
-        daysEl.innerHTML = String(days).padStart(2, '0');
-        hoursEl.innerHTML = String(hours).padStart(2, '0');
-        minutesEl.innerHTML = String(minutes).padStart(2, '0');
-        secondsEl.innerHTML = String(seconds).padStart(2, '0');
-
-    }, 1000);
-}
-
-
 // ====== FUNGSI UNTUK MEMUAT DATA DEBAT DAN MERENDERNYA (UNTUK index.html) ======
 function loadAndRenderDebatesForIndexPage() {
     const debates = debatesData;
@@ -558,13 +506,22 @@ function renderProfilePage() {
 
     const profileCard = document.querySelector('.profile-card');
 
+    // Pastikan profileCard ditemukan sebelum mencoba mengakses elemen di dalamnya
+    if (!profileCard) {
+        document.body.innerHTML = `<div style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px; margin: 20px;">
+                                    <h2>Terjadi kesalahan. Container utama profil tidak ditemukan.</h2>
+                                    <p>Mohon periksa kembali HTML Anda untuk memastikan ada div dengan class "profile-card".</p>
+                                   </div>`;
+        console.error("ERROR: Elemen '.profile-card' tidak ditemukan di DOM. Pastikan struktur HTML sesuai.");
+        return;
+    }
+
     const profileDebaterImage = profileCard.querySelector('.profile-debater-image');
     const divisionText = profileCard.querySelector('.profile-division-status .division-text');
     const profileName = profileCard.querySelector('.profile-name');
     const countryText = profileCard.querySelector('.profile-country-info .country-text');
     const profileFlagIcon = profileCard.querySelector('.profile-country-info .profile-flag-icon');
 
-    // Selektor untuk nilai VSB Wiki dan IBR (yang sekarang jadi TVC Company dan Debater Battle Arena)
     const vbWikiValue = profileCard.querySelector('.profile-info-item .vb-wiki-value');
     const ibrValue = profileCard.querySelector('.profile-info-item .ibr-value');
 
@@ -573,27 +530,23 @@ function renderProfilePage() {
     const fightRecordDrawNumber = profileCard.querySelector('.profile-fight-record .draw-number');
 
     const matchHistoryList = profileCard.querySelector('.match-history-list');
-    // Perbaikan selektor tbody untuk achievements
     const achievementsTableBody = profileCard.querySelector('.achievements-table tbody');
     const statsList = profileCard.querySelector('.stats-list');
 
-    // Pastikan semua elemen yang dibutuhkan ada sebelum mencoba menggunakannya
-    if (!profileCard || !profileDebaterImage || !divisionText || !profileName || !countryText || !profileFlagIcon ||
-        !vbWikiValue || !ibrValue || // Ini adalah pemeriksaan yang benar untuk elemen nilai saja
-        !fightRecordWinNumber || !fightRecordLossNumber || !fightRecordDrawNumber ||
-        !matchHistoryList || !achievementsTableBody || !statsList) {
-        console.error("ERROR: Satu atau lebih elemen profil tidak ditemukan di DOM. Mohon periksa kembali HTML profile.html dan selektor di script.js.");
-        if (profileCard) {
-            profileCard.innerHTML = `<div style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">
-                                        <h2>Terjadi kesalahan dalam memuat elemen profil.</h2>
-                                        <p>Mohon periksa konsol browser (F12) untuk detail lebih lanjut dan pastikan struktur HTML Anda sesuai.</p>
-                                     </div>`;
-        } else {
-            document.body.innerHTML = `<div style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">
-                                        <h2>Terjadi kesalahan. Container utama profil tidak ditemukan.</h2>
-                                        <p>Mohon periksa kembali HTML Anda.</p>
-                                     </div>`;
-        }
+    // Periksa kembali semua elemen penting
+    const requiredElements = [
+        profileDebaterImage, divisionText, profileName, countryText, profileFlagIcon,
+        vbWikiValue, ibrValue, fightRecordWinNumber, fightRecordLossNumber,
+        fightRecordDrawNumber, matchHistoryList, achievementsTableBody, statsList
+    ];
+
+    const missingElement = requiredElements.some(el => !el);
+    if (missingElement) {
+        profileCard.innerHTML = `<div style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">
+                                    <h2>Terjadi kesalahan dalam memuat elemen profil.</h2>
+                                    <p>Mohon periksa konsol browser (F12) untuk detail lebih lanjut dan pastikan struktur HTML Anda sesuai dengan selektor di script.js.</p>
+                                 </div>`;
+        console.error("ERROR: Satu atau lebih elemen profil yang dibutuhkan tidak ditemukan di DOM. Ini mungkin disebabkan oleh ketidaksesuaian antara HTML dan JavaScript selektor.");
         return;
     }
 
@@ -607,7 +560,7 @@ function renderProfilePage() {
 
     if (!debater) {
         console.error(`ERROR: Profil untuk "${debaterName}" tidak ditemukan dalam data 'allDebaters'.`);
-        profileCard.innerHTML = `<p style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">Profil untuk debater "${debaterName}" tidak ditemukan dalam database.</p>`;
+        profileCard.innerHTML = `<p style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">Profil untuk debater "${debaterName}" tidak ditemukan dalam database. Mohon cek kembali data debatesData.</p>`;
         return;
     }
 
@@ -622,12 +575,9 @@ function renderProfilePage() {
     profileFlagIcon.src = debater.flag;
     profileFlagIcon.alt = `Bendera ${debater.country}`;
 
-    // Mengisi nilai untuk TVC Company (sebelumnya vbWiki) dan Debater Battle Arena (sebelumnya IBR)
-    vbWikiValue.textContent = debater.vbWiki || 'N/A'; // Nilai tetap diambil dari vbWiki
-    ibrValue.textContent = debater.ibr || 'N/A';       // Nilai tetap diambil dari ibr
+    vbWikiValue.textContent = debater.vbWiki || 'N/A';
+    ibrValue.textContent = debater.ibr || 'N/A';
 
-
-    // Pastikan `fightRecord` digunakan dengan benar
     const fightRecord = debater.fightRecord || { "win": 0, "loss": 0, "draw": 0 };
     fightRecordWinNumber.textContent = fightRecord.win;
     fightRecordLossNumber.textContent = fightRecord.loss;
@@ -635,13 +585,13 @@ function renderProfilePage() {
 
     let matchHistoryHtml = '';
     if (debater.matchHistory && debater.matchHistory.length > 0) {
-        // Sortir riwayat pertandingan berdasarkan tanggal terbaru
         debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         debater.matchHistory.forEach(match => {
             const resultClass = match.result === "Win" ? "win" : "loss";
             const opponentDebater = allDebaters[match.opponent];
-            const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg'; // Gunakan placeholder jika foto lawan tidak ada
+            // Pastikan opponentDebater ada dan memiliki foto
+            const opponentPhotoSrc = (opponentDebater && opponentDebater.photo) ? opponentDebater.photo : 'placeholder.jpg';
 
             matchHistoryHtml += `
                 <div class="dba-record-item ${resultClass}">
@@ -661,7 +611,6 @@ function renderProfilePage() {
         matchHistoryHtml = `<p class="no-history-message">Belum ada riwayat pertandingan DBA.</p>`;
     }
     matchHistoryList.innerHTML = matchHistoryHtml;
-
 
     let achievementsHtml = '';
     if (debater.achievements && debater.achievements.length > 0) {
@@ -1028,7 +977,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Panggil fungsi rendering yang sesuai berdasarkan halaman saat ini
     if (currentPath.endsWith('/') || currentPath.endsWith('index.html')) {
-        startCountdown();
+        // startCountdown(); // Baris ini DIHAPUS
         loadAndRenderDebatesForIndexPage();
     } else if (currentPath.endsWith('profile.html')) {
         renderProfilePage();
