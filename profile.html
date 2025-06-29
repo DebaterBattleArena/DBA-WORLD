@@ -28,20 +28,19 @@
 
     <section id="profile-page" class="content-section">
         <div class="profile-card">
-            <div class="profile-main-info">
-                <img src="" alt="Foto Debater" class="profile-debater-image">
-
+            <div class="profile-header-background"></div> <div class="profile-main-info-wrapper">
+                <div class="profile-image-container">
+                    <img src="" alt="Foto Debater" class="profile-debater-image">
+                    <span class="active-status">ACTIVE</span>
+                </div>
                 <div class="profile-details-wrapper">
-                    <div class="profile-division-status">
-                        <span class="division-text"></span>
-                        <span class="active-status">ACTIVE</span>
-                    </div>
                     <h2 class="profile-name"></h2>
-                    <div class="profile-country-info">
+                    <div class="profile-country-division">
                         <span class="country-text"></span>
                         <img src="" alt="Bendera" class="profile-flag-icon">
+                        <span class="division-text"></span>
                     </div>
-                    <div class="profile-new-info-group">
+                    <div class="profile-tier-info">
                         <div class="profile-info-item">
                             <span class="label">TVC COMPANY:</span> <span class="value vb-wiki-value"></span>
                         </div>
@@ -49,22 +48,35 @@
                             <span class="label">DEBATER BATTLE ARENA:</span> <span class="value ibr-value"></span>
                         </div>
                     </div>
-                    <div class="profile-fight-record">
-                        <span class="label">FIGHT RECORD</span>
-                        <div class="record-numbers">
-                            <div class="record-item win">
-                                <span class="number win-number"></span>
-                                <span class="label-small">WIN</span>
-                            </div>
-                            <div class="record-item loss">
-                                <span class="number loss-number"></span>
-                                <span class="label-small">LOSS</span>
-                            </div>
-                            <div class="record-item draw">
-                                <span class="number draw-number"></span>
-                                <span class="label-small">DRAW</span>
-                            </div>
-                        </div>
+                </div>
+            </div>
+
+            <div class="profile-overall-stats">
+                <h3>OVERALL STATS</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">FIGHT WIN</span>
+                        <span class="stat-value win-number"></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">FIGHT LOSS</span>
+                        <span class="stat-value loss-number"></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">FIGHT DRAW</span>
+                        <span class="stat-value draw-number"></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">BOXING WIN</span>
+                        <span class="stat-value boxing-win-number">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">BOXING LOSS</span>
+                        <span class="stat-value boxing-loss-number">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">BOXING DRAW</span>
+                        <span class="stat-value boxing-draw-number">0</span>
                     </div>
                 </div>
             </div>
@@ -108,6 +120,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 </html>
