@@ -312,15 +312,15 @@ const debatesData = [
             "vbWiki": "Low 1-C",
             "ibr": "High 1-B",
             "profile": {
-                "Rhetoric": "8/10",
-                "Typing Structure": "8/10",
-                "Critical Thinking": "7/10",
+                "Rhetoric": "6/10",
+                "Typing Structure": "5/10",
+                "Critical Thinking": "6/10",
                 "Logical Fallacies": "6/10",
-                "Typing Strenght": "7/10",
-                "Tiering Sistem": "9/10",
+                "Typing Strenght": "5/10",
+                "Tiering Sistem": "6/10",
                 "Calculation": "7/10",
                 "Philisophy": "0/10",
-                "General Knowledge": "10/10"
+                "General Knowledge": "5/10"
             },
             "tier": "High Tier",
             // Rekor awal Adyy sesuai dengan permintaan (0-1-0)
