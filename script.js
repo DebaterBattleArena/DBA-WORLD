@@ -332,6 +332,66 @@ const debatesData = [
         "winner": { "name": "Lianx", "method": "Point" },
         "loser": { "name": "Adyy" }
     }
+    
+];// ====== DATA DEBAT SEKARANG LANGSUNG ADA DI SINI ======
+const debatesData = [
+    // ... (data debat yang sudah ada sebelumnya) ...
+
+    {
+        "id": "debate-007", // ID unik untuk debat baru
+        "category": "FICTIONAL DEBATE",
+        "date": "2025-07-15", // Tanggal di masa depan
+        "matchBanner": "placeholder-upcoming.jpeg", // <-- Ganti dengan banner match yang relevan jika ada
+        "debater1": {
+            "name": "ARYANWT",
+            "photo": "IMG_0525.jpeg", // Menggunakan foto Aryanwt yang sudah ada
+            "country": "indonesia",
+            "flag": "IMG_0417.png",
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
+            "profile": { // Profil Aryanwt dari data yang sudah ada
+                "Rhetoric": "8/10",
+                "Typing Structure": "7/10",
+                "Critical Thinking": "9/10",
+                "Logical Fallacies": "1/10",
+                "Typing Strenght": "7/10",
+                "Tiering Sistem": "9/10",
+                "Calculation": "0/10",
+                "Philisophy": "7/10",
+                "General Knowledge": "10/10"
+            },
+            "tier": "High Tier", // Diubah ke High Tier sesuai Functional debate High tier debate
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 }, // Atur ulang untuk debat mendatang
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
+        },
+        "debater2": {
+            "name": "Aaron",
+            "photo": "IMG_1177.jpeg", // <-- Pastikan file ini ada!
+            "country": "mexico",
+            "flag": "mexico_flag.png", // <-- Asumsi Anda memiliki bendera Meksiko (ganti jika beda)
+            "vbWiki": "Outerversal+", // Asumsi Tiering untuk High Tier
+            "ibr": "High 1-A", // Asumsi Tiering untuk High Tier
+            "profile": { // Profil Aaron seperti yang Anda berikan
+                "Rhetoric": "10/10",
+                "Typing Structure": "10/10",
+                "Critical Thinking": "10/10",
+                "Logical Fallacies": "10/10",
+                "Typing Strenght": "10/10",
+                "Tiering Sistem": "10/10",
+                "Calculation": "8/10",
+                "Philisophy": "7/10",
+                "General Knowledge": "10/10"
+            },
+            "tier": "High Tier", // Diubah ke High Tier sesuai Functional debate High tier debate
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 }, // Atur ulang untuk debat mendatang
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
+        },
+        "type": "HIGH TIER DEBATE", // Sesuai permintaan "High tier debate"
+        "winner": null, // <-- Ini penting untuk "upcoming debate"
+        "loser": null   // <-- Ini penting untuk "upcoming debate"
+    }
 ];
 // ====== Global variable to store all debater profiles and calculated stats for easy lookup ======
 let allDebaters = {};
