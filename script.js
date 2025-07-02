@@ -133,7 +133,7 @@ const debatesData = [
                 "Philisophy": "7/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "Low Tier", // Ini adalah data Aryanwt yang lama, untuk debat-003
+            "tier": "Low Tier",
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -299,7 +299,6 @@ const debatesData = [
                 "General Knowledge": "8/10"
             },
             "tier": "High Tier",
-            // Rekor awal Lianx sesuai dengan permintaan (1-0-0)
             "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
             "achievements": []
@@ -323,7 +322,6 @@ const debatesData = [
                 "General Knowledge": "5/10"
             },
             "tier": "High Tier",
-            // Rekor awal Adyy sesuai dengan permintaan (0-1-0)
             "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 1, "draw": 0 },
             "achievements": []
@@ -334,18 +332,18 @@ const debatesData = [
     },
     // ====== DEBAT YANG AKAN DATANG: ARYANWT VS AARON ======
     {
-        "id": "debate-007", // ID unik untuk debat baru
+        "id": "debate-007",
         "category": "FICTIONAL DEBATE",
-        "date": "2025-07-15", // Tanggal di masa depan
+        "date": "2025-07-15",
         "matchBanner": "placeholder-upcoming.jpeg", // <-- Ganti dengan banner match yang relevan jika ada
         "debater1": {
             "name": "ARYANWT",
-            "photo": "IMG_0525.jpeg", // Menggunakan foto Aryanwt yang sudah ada
+            "photo": "IMG_0525.jpeg",
             "country": "indonesia",
             "flag": "IMG_0417.png",
             "vbWiki": "Low 1-A",
             "ibr": "High 1-A",
-            "profile": { // Profil Aryanwt dari data yang sudah ada
+            "profile": {
                 "Rhetoric": "8/10",
                 "Typing Structure": "7/10",
                 "Critical Thinking": "9/10",
@@ -356,7 +354,7 @@ const debatesData = [
                 "Philisophy": "7/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "High Tier", // Diubah ke High Tier sesuai Functional debate High tier debate
+            "tier": "High Tier",
             "fightRecord": { "win": 0, "loss": 0, "draw": 0 }, // Atur ulang untuk debat mendatang
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -366,9 +364,9 @@ const debatesData = [
             "photo": "IMG_1177.jpeg", // <-- Pastikan file ini ada!
             "country": "mexico",
             "flag": "mexico_flag.png", // <-- Asumsi Anda memiliki bendera Meksiko (ganti jika beda)
-            "vbWiki": "Outerversal+", // Asumsi Tiering untuk High Tier
-            "ibr": "High 1-A", // Asumsi Tiering untuk High Tier
-            "profile": { // Profil Aaron seperti yang Anda berikan
+            "vbWiki": "Outerversal+",
+            "ibr": "High 1-A",
+            "profile": {
                 "Rhetoric": "10/10",
                 "Typing Structure": "10/10",
                 "Critical Thinking": "10/10",
@@ -379,7 +377,7 @@ const debatesData = [
                 "Philisophy": "7/10",
                 "General Knowledge": "10/10"
             },
-            "tier": "High Tier", // Diubah ke High Tier sesuai Functional debate High tier debate
+            "tier": "High Tier",
             "fightRecord": { "win": 0, "loss": 0, "draw": 0 }, // Atur ulang untuk debat mendatang
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
@@ -397,7 +395,7 @@ debatesData.forEach(debate => {
     const debater1Name = debate.debater1.name;
     const debater2Name = debate.debater2.name;
 
-    // Inisialisasi debater jika belum ada
+    // Inisialisasi debater jika belum ada, salin semua properti kecuali fightRecord/boxingRecord
     if (!allDebaters[debater1Name]) {
         allDebaters[debater1Name] = {
             ...debate.debater1,
@@ -417,38 +415,30 @@ debatesData.forEach(debate => {
         };
     }
 
-    // Akumulasi rekor dari data debat
-    const d1 = allDebaters[debater1Name];
-    const d2 = allDebaters[debater2Name];
-
-    // Hanya tambahkan rekor jika debat sudah selesai (ada pemenang dan pecundang)
+    // Akumulasi rekor hanya untuk debat yang sudah selesai
     if (debate.winner && debate.loser) {
-        // Tambahkan rekor dari debater1
-        d1.fightRecord.win += debate.debater1.fightRecord.win;
-        d1.fightRecord.loss += debate.debater1.fightRecord.loss;
-        d1.fightRecord.draw += debate.debater1.fightRecord.draw;
-
-        if (debate.debater1.boxingRecord) {
-            d1.boxingRecord.win += debate.debater1.boxingRecord.win;
-            d1.boxingRecord.loss += debate.debater1.boxingRecord.loss;
-            d1.boxingRecord.draw += debate.debater1.boxingRecord.draw;
-        }
-
-        // Tambahkan rekor dari debater2
-        d2.fightRecord.win += debate.debater2.fightRecord.win;
-        d2.fightRecord.loss += debate.debater2.fightRecord.loss;
-        d2.fightRecord.draw += debate.debater2.fightRecord.draw;
-
-        if (debate.debater2.boxingRecord) {
-            d2.boxingRecord.win += debate.debater2.boxingRecord.win;
-            d2.boxingRecord.loss += debate.debater2.boxingRecord.loss;
-            d2.boxingRecord.draw += debate.debater2.boxingRecord.draw;
-        }
-
-
         const winnerName = debate.winner.name;
         const loserName = debate.loser.name;
         const debateYear = new Date(debate.date).getFullYear().toString();
+
+        // Update winner's record
+        allDebaters[winnerName].fightRecord.win++;
+        // Update loser's record
+        allDebaters[loserName].fightRecord.loss++;
+
+        // Untuk boxingRecord, jika ada, anggap sama dengan fightRecord untuk tujuan akumulasi di sini
+        // Jika Anda memiliki logika boxing yang terpisah, Anda perlu menambahkan bidang boxingWinner/boxingLoser ke data debat
+        // Untuk saat ini, asumsikan jika ada winner/loser di debate, maka ini juga dianggap pertarungan boxing jika relevan
+        // (ini mungkin perlu disesuaikan jika Boxing Record Anda benar-benar terpisah dari Fight Record biasa)
+        // Saya akan menggunakan properti boxingRecord yang ada di data debater awal untuk inisialisasi,
+        // tapi akumulasi di sini akan mengikuti hasil debat umum
+        if (allDebaters[winnerName].boxingRecord) { // Pastikan properti boxingRecord ada
+             allDebaters[winnerName].boxingRecord.win++;
+        }
+        if (allDebaters[loserName].boxingRecord) { // Pastikan properti boxingRecord ada
+            allDebaters[loserName].boxingRecord.loss++;
+        }
+
 
         allDebaters[winnerName].matchHistory.push({
             opponent: loserName,
@@ -504,12 +494,19 @@ Object.values(allDebaters).forEach(debater => {
 });
 
 
-// ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA ======
+// ====== FUNGSI UNTUK COUNTDOWN ACARA UTAMA (opsional, karena tidak ada elemen countdown di index.html yang Anda berikan) ======
 function startCountdown() {
+    // Fungsi ini tidak akan melakukan apa-apa jika elemen countdown tidak ada di DOM
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
+
+    // Jika tidak ada elemen countdown, jangan jalankan interval
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+        // console.log("Elemen countdown tidak ditemukan. Menghentikan fungsi countdown.");
+        return;
+    }
 
     // Tanggal target acara utama (1 Juli 2025, 10:00:00 WIB)
     const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime(); // +07:00 untuk WIB
@@ -529,19 +526,17 @@ function startCountdown() {
             minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             seconds = Math.floor((distance % (1000 * 60)) / 1000);
         } else {
-            // Jika waktu sudah lewat, set semua ke 0 dan hentikan interval
             clearInterval(countdownInterval);
-        }
-
-        // Pastikan semua angka memiliki dua digit (termasuk hari)
-        if (daysEl) daysEl.innerHTML = String(days).padStart(2, '0');
-        if (hoursEl) hoursEl.innerHTML = String(hours).padStart(2, '0');
-        if (minutesEl) minutesEl.innerHTML = String(minutes).padStart(2, '0');
-        if (secondsEl) secondsEl.innerHTML = String(seconds).padStart(2, '0');
-
-        if (distance < 0) {
             console.log("Countdown Selesai!");
+            // Opsional: Perbarui tampilan agar menunjukkan 00:00:00:00 setelah selesai
+            days = hours = minutes = seconds = 0;
         }
+
+        daysEl.innerHTML = String(days).padStart(2, '0');
+        hoursEl.innerHTML = String(hours).padStart(2, '0');
+        minutesEl.innerHTML = String(minutes).padStart(2, '0');
+        secondsEl.innerHTML = String(seconds).padStart(2, '0');
+
     }, 1000);
 }
 
@@ -551,7 +546,10 @@ function loadAndRenderDebatesForIndexPage() {
     const debates = debatesData;
 
     const container = document.getElementById('debates-container');
-    if (!container) return;
+    if (!container) {
+        console.warn("Element with ID 'debates-container' not found. Cannot render debates on index page.");
+        return; // Hentikan eksekusi jika container tidak ditemukan
+    }
 
     // Filter debat yang akan datang dan debat yang sudah selesai
     const upcomingDebates = debates.filter(debate => debate.winner === null && debate.loser === null);
@@ -566,7 +564,7 @@ function loadAndRenderDebatesForIndexPage() {
 
     // Render debat yang akan datang terlebih dahulu
     if (upcomingDebates.length > 0) {
-        htmlContent += '<h3 class="section-title" style="margin-top: 40px;">DEBAT MENDATANG</h3>';
+        htmlContent += '<h3 class="section-subtitle">DEBAT MENDATANG</h3>'; // Menggunakan subtitle baru
         upcomingDebates.forEach(debate => {
             const matchTopicText = debate.type ? debate.type.toUpperCase() : 'NO TOPIC';
             const debater1ProfileLink = `profile.html?name=${encodeURIComponent(debate.debater1.name)}`;
@@ -608,7 +606,13 @@ function loadAndRenderDebatesForIndexPage() {
 
     // Render debat yang sudah selesai
     if (finishedDebates.length > 0) {
-        htmlContent += '<h3 class="section-title" style="margin-top: 40px;">DEBAT SELESAI</h3>';
+        // Hanya tambahkan judul "Debat Selesai" jika ada debat mendatang sebelumnya, atau jika ini satu-satunya jenis debat.
+        if (upcomingDebates.length > 0) {
+             htmlContent += '<h3 class="section-subtitle" style="margin-top: 40px;">DEBAT SELESAI</h3>';
+        } else {
+            htmlContent += '<h3 class="section-subtitle">DEBAT SELESAI</h3>';
+        }
+
         finishedDebates.forEach(debate => {
             let resultSectionHtml = '';
             if (debate.winner && debate.loser) {
@@ -664,42 +668,28 @@ function renderProfilePage() {
 
     const profileCard = document.querySelector('.profile-card');
 
-    const profileDebaterImage = profileCard.querySelector('.profile-debater-image');
-    const divisionText = profileCard.querySelector('.profile-division-status .division-text');
-    const profileName = profileCard.querySelector('.profile-name');
-    const countryText = profileCard.querySelector('.profile-country-info .country-text');
-    const profileFlagIcon = profileCard.querySelector('.profile-country-info .profile-flag-icon');
+    // Dapatkan semua elemen yang dibutuhkan. Tambahkan null check di sini.
+    const profileDebaterImage = profileCard ? profileCard.querySelector('.profile-debater-image') : null;
+    const divisionText = profileCard ? profileCard.querySelector('.profile-division-status .division-text') : null;
+    const profileName = profileCard ? profileCard.querySelector('.profile-name') : null;
+    const countryText = profileCard ? profileCard.querySelector('.profile-country-info .country-text') : null;
+    const profileFlagIcon = profileCard ? profileCard.querySelector('.profile-country-info .profile-flag-icon') : null;
+    const vbWikiValue = profileCard ? profileCard.querySelector('.profile-info-item .vb-wiki-value') : null;
+    const ibrValue = profileCard ? profileCard.querySelector('.profile-info-item .ibr-value') : null;
+    const fightRecordWinNumber = profileCard ? profileCard.querySelector('.profile-fight-record .win-number') : null;
+    const fightRecordLossNumber = profileCard ? profileCard.querySelector('.profile-fight-record .loss-number') : null;
+    const fightRecordDrawNumber = profileCard ? profileCard.querySelector('.profile-fight-record .draw-number') : null;
+    const matchHistoryList = profileCard ? profileCard.querySelector('.match-history-list') : null;
+    const achievementsTableBody = profileCard ? profileCard.querySelector('.achievements-table tbody') : null;
+    const statsList = profileCard ? profileCard.querySelector('.stats-list') : null;
 
-    // Selektor untuk nilai VSB Wiki dan IBR (yang sekarang jadi TVC Company dan Debater Battle Arena)
-    const vbWikiValue = profileCard.querySelector('.profile-info-item .vb-wiki-value');
-    const ibrValue = profileCard.querySelector('.profile-info-item .ibr-value');
 
-    const fightRecordWinNumber = profileCard.querySelector('.profile-fight-record .win-number');
-    const fightRecordLossNumber = profileCard.querySelector('.profile-fight-record .loss-number');
-    const fightRecordDrawNumber = profileCard.querySelector('.profile-fight-record .draw-number');
-
-    const matchHistoryList = profileCard.querySelector('.match-history-list');
-    // Perbaikan selektor tbody untuk achievements
-    const achievementsTableBody = profileCard.querySelector('.achievements-table tbody');
-    const statsList = profileCard.querySelector('.stats-list');
-
-    // Pastikan semua elemen yang dibutuhkan ada sebelum mencoba menggunakannya
-    if (!profileCard || !profileDebaterImage || !divisionText || !profileName || !countryText || !profileFlagIcon ||
-        !vbWikiValue || !ibrValue || // Ini adalah pemeriksaan yang benar untuk elemen nilai saja
-        !fightRecordWinNumber || !fightRecordLossNumber || !fightRecordDrawNumber ||
-        !matchHistoryList || !achievementsTableBody || !statsList) {
-        console.error("ERROR: Satu atau lebih elemen profil tidak ditemukan di DOM. Mohon periksa kembali HTML profile.html dan selektor di script.js.");
-        if (profileCard) {
-            profileCard.innerHTML = `<div style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">
-                                        <h2>Terjadi kesalahan dalam memuat elemen profil.</h2>
-                                        <p>Mohon periksa konsol browser (F12) untuk detail lebih lanjut dan pastikan struktur HTML Anda sesuai.</p>
-                                     </div>`;
-        } else {
-            document.body.innerHTML = `<div style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">
-                                        <h2>Terjadi kesalahan. Container utama profil tidak ditemukan.</h2>
-                                        <p>Mohon periksa kembali HTML Anda.</p>
-                                     </div>`;
-        }
+    if (!profileCard) {
+        console.error("ERROR: Elemen .profile-card tidak ditemukan di DOM. Pastikan Anda berada di profile.html dan struktur HTML sudah benar.");
+        document.body.innerHTML = `<div style="text-align: center; padding: 40px; background-color: #333; color: red; border-radius: 8px;">
+                                    <h2>Terjadi kesalahan. Container utama profil tidak ditemukan.</h2>
+                                    <p>Mohon periksa kembali HTML Anda atau pastikan ini adalah halaman profile.html.</p>
+                                 </div>`;
         return;
     }
 
@@ -717,100 +707,109 @@ function renderProfilePage() {
         return;
     }
 
-    // Mengisi data ke elemen HTML
-    profileDebaterImage.src = debater.photo;
-    profileDebaterImage.alt = `Foto ${debater.name}`;
+    // Mengisi data ke elemen HTML, dengan null check sebelum mengakses properti
+    if (profileDebaterImage) {
+        profileDebaterImage.src = debater.photo;
+        profileDebaterImage.alt = `Foto ${debater.name}`;
+    }
+    if (divisionText) divisionText.textContent = `${debater.tier.toUpperCase()} DEBATE DIVISION`;
+    if (profileName) profileName.textContent = debater.name;
 
-    divisionText.textContent = `${debater.tier.toUpperCase()} DEBATE DIVISION`;
-    profileName.textContent = debater.name;
+    if (countryText) countryText.textContent = debater.country.toUpperCase();
+    if (profileFlagIcon) {
+        profileFlagIcon.src = debater.flag;
+        profileFlagIcon.alt = `Bendera ${debater.country}`;
+    }
 
-    countryText.textContent = debater.country.toUpperCase();
-    profileFlagIcon.src = debater.flag;
-    profileFlagIcon.alt = `Bendera ${debater.country}`;
+    if (vbWikiValue) vbWikiValue.textContent = debater.vbWiki || 'N/A';
+    if (ibrValue) ibrValue.textContent = debater.ibr || 'N/A';
 
-    // Mengisi nilai untuk TVC Company (sebelumnya vbWiki) dan Debater Battle Arena (sebelumnya IBR)
-    vbWikiValue.textContent = debater.vbWiki || 'N/A'; // Nilai tetap diambil dari vbWiki
-    ibrValue.textContent = debater.ibr || 'N/A';       // Nilai tetap diambil dari ibr
-
-
-    // Pastikan `fightRecord` digunakan dengan benar
     const fightRecord = debater.fightRecord || { "win": 0, "loss": 0, "draw": 0 };
-    fightRecordWinNumber.textContent = fightRecord.win;
-    fightRecordLossNumber.textContent = fightRecord.loss;
-    fightRecordDrawNumber.textContent = fightRecord.draw;
+    if (fightRecordWinNumber) fightRecordWinNumber.textContent = fightRecord.win;
+    if (fightRecordLossNumber) fightRecordLossNumber.textContent = fightRecord.loss;
+    if (fightRecordDrawNumber) fightRecordDrawNumber.textContent = fightRecord.draw;
 
     let matchHistoryHtml = '';
-    if (debater.matchHistory && debater.matchHistory.length > 0) {
-        // Sortir riwayat pertandingan berdasarkan tanggal terbaru
-        debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+    if (matchHistoryList) {
+        if (debater.matchHistory && debater.matchHistory.length > 0) {
+            debater.matchHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        debater.matchHistory.forEach(match => {
-            const resultClass = match.result === "Win" ? "win" : "loss";
-            const opponentDebater = allDebaters[match.opponent];
-            const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg'; // Gunakan placeholder jika foto lawan tidak ada
+            debater.matchHistory.forEach(match => {
+                const resultClass = match.result === "Win" ? "win" : "loss";
+                const opponentDebater = allDebaters[match.opponent];
+                const opponentPhotoSrc = opponentDebater && opponentDebater.photo ? opponentDebater.photo : 'placeholder.jpg';
 
-            matchHistoryHtml += `
-                <div class="dba-record-item ${resultClass}">
-                    <div class="dba-match-info">
-                        <img src="${debater.photo}" alt="Foto ${debater.name}" class="dba-debater-thumb">
-                        <img src="${opponentPhotoSrc}" alt="Foto ${match.opponent}" class="dba-debater-thumb">
-                        <div class="dba-details">
-                            <p class="dba-vs-opponent">VS ${match.opponent.toUpperCase()}</p>
-                            <p class="dba-match-spec">Date: ${match.date} Method: ${match.method || 'N/A'}</p>
+                matchHistoryHtml += `
+                    <div class="dba-record-item ${resultClass}">
+                        <div class="dba-match-info">
+                            <img src="${debater.photo}" alt="Foto ${debater.name}" class="dba-debater-thumb">
+                            <img src="${opponentPhotoSrc}" alt="Foto ${match.opponent}" class="dba-debater-thumb">
+                            <div class="dba-details">
+                                <p class="dba-vs-opponent">VS ${match.opponent.toUpperCase()}</p>
+                                <p class="dba-match-spec">Date: ${new Date(match.date).toLocaleDateString('id-ID')} Method: ${match.method || 'N/A'}</p>
+                            </div>
                         </div>
+                        <span class="dba-result-badge">${match.result.toUpperCase()}</span>
                     </div>
-                    <span class="dba-result-badge">${match.result.toUpperCase()}</span>
-                </div>
-            `;
-        });
-    } else {
-        matchHistoryHtml = `<p class="no-history-message">Belum ada riwayat pertandingan DBA.</p>`;
+                `;
+            });
+        } else {
+            matchHistoryHtml = `<p class="no-history-message">Belum ada riwayat pertandingan DBA.</p>`;
+        }
+        matchHistoryList.innerHTML = matchHistoryHtml;
     }
-    matchHistoryList.innerHTML = matchHistoryHtml;
 
 
     let achievementsHtml = '';
-    if (debater.achievements && debater.achievements.length > 0) {
-        debater.achievements.forEach(ach => {
-            achievementsHtml += `
-                <tr>
-                    <td>${ach.event}</td>
-                    <td>${ach.achievement}</td>
-                    <td>${ach.date}</td>
-                </tr>
-            `;
-        });
-    } else {
-        achievementsHtml = `<tr><td colspan="3" class="no-history-message">Belum ada pencapaian.</td></tr>`;
+    if (achievementsTableBody) {
+        if (debater.achievements && debater.achievements.length > 0) {
+            debater.achievements.forEach(ach => {
+                achievementsHtml += `
+                    <tr>
+                        <td>${ach.event}</td>
+                        <td>${ach.achievement}</td>
+                        <td>${ach.date}</td>
+                    </tr>
+                `;
+            });
+        } else {
+            achievementsHtml = `<tr><td colspan="3" class="no-history-message">Belum ada pencapaian.</td></tr>`;
+        }
+        achievementsTableBody.innerHTML = achievementsHtml;
     }
-    achievementsTableBody.innerHTML = achievementsHtml;
+
 
     let statsHtml = '';
-    if (debater.profile) {
-        for (const skill in debater.profile) {
-            if (debater.profile.hasOwnProperty(skill)) {
-                const scoreValue = parseFloat(debater.profile[skill]);
-                const scorePercentage = (scoreValue / 10) * 100; // Asumsi skor maksimal 10
+    if (statsList) {
+        if (debater.profile) {
+            for (const skill in debater.profile) {
+                if (debater.profile.hasOwnProperty(skill)) {
+                    const scoreValue = parseFloat(debater.profile[skill]);
+                    const scorePercentage = (scoreValue / 10) * 100;
 
-                statsHtml += `
-                    <li>
-                        <strong>${skill}:</strong>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: ${scorePercentage}%;"></div>
-                            <span class="skill-score">${debater.profile[skill]}</span>
-                        </div>
-                    </li>
-                `;
+                    statsHtml += `
+                        <li>
+                            <strong>${skill}:</strong>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" style="width: ${scorePercentage}%;"></div>
+                                <span class="skill-score">${debater.profile[skill]}</span>
+                            </div>
+                        </li>
+                    `;
+                }
             }
         }
+        statsList.innerHTML = statsHtml;
     }
-    statsList.innerHTML = statsHtml;
 }
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN RANKING (UNTUK ranking.html) ======
 function renderRankingPage() {
     const rankingContainer = document.getElementById('ranking-container');
-    if (!rankingContainer) return;
+    if (!rankingContainer) {
+        console.warn("Element with ID 'ranking-container' not found. Cannot render ranking page.");
+        return;
+    }
 
     const allDebatersByTier = {
         "Low Tier": [],
@@ -818,7 +817,6 @@ function renderRankingPage() {
         "High Tier": []
     };
 
-    // Mengisi array tier dengan debater yang sesuai
     Object.values(allDebaters).forEach(debater => {
         if (debater.tier && allDebatersByTier[debater.tier]) {
             allDebatersByTier[debater.tier].push(debater);
@@ -826,7 +824,7 @@ function renderRankingPage() {
     });
 
     let rankingHtml = '';
-    const tiersOrder = ["Low Tier", "Mid Tier", "High Tier"]; // Urutan tier yang diinginkan
+    const tiersOrder = ["Low Tier", "Mid Tier", "High Tier"];
 
     tiersOrder.forEach(tierName => {
         const debatersInTier = allDebatersByTier[tierName];
@@ -834,19 +832,17 @@ function renderRankingPage() {
         if (debatersInTier && debatersInTier.length > 0) {
             // Sorting kustom untuk setiap Tier
             if (tierName === "Mid Tier") {
-                const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"]; // Urutan spesifik
+                const midTierCustomOrder = ["RANZT", "HIROO", "RYUU", "RENJI"];
                 debatersInTier.sort((a, b) => {
                     const indexA = midTierCustomOrder.indexOf(a.name);
                     const indexB = midTierCustomOrder.indexOf(b.name);
-                    // Jika nama tidak ada di urutan kustom, biarkan mereka di akhir atau urutkan berdasarkan nama
                     if (indexA === -1 || indexB === -1) {
                         return a.name.localeCompare(b.name);
                     }
                     return indexA - indexB;
                 });
             } else if (tierName === "High Tier") {
-                // Urutan spesifik sesuai permintaan, Aaron akan otomatis diurutkan secara alfabetis setelah yang ditentukan jika tidak ditambahkan
-                const highTierCustomOrder = ["Lianx", "Adyy", "MUCHIBEI", "ZOGRATIS", "Aaron", "ARYANWT"]; // Tambahkan Aaron dan Aryanwt ke urutan kustom jika diinginkan
+                const highTierCustomOrder = ["Lianx", "Adyy", "MUCHIBEI", "ZOGRATIS", "Aaron", "ARYANWT"];
                 debatersInTier.sort((a, b) => {
                     const indexA = highTierCustomOrder.indexOf(a.name);
                     const indexB = highTierCustomOrder.indexOf(b.name);
@@ -867,7 +863,6 @@ function renderRankingPage() {
                 });
             }
             else {
-                // Urutan default (alfabetis berdasarkan nama) jika tidak ada urutan kustom
                 debatersInTier.sort((a, b) => a.name.localeCompare(b.name));
             }
 
@@ -916,12 +911,13 @@ function renderRankingPage() {
 // ====== FUNGSI UNTUK MERENDER HALAMAN ARSIP (UNTUK archive.html) ======
 function renderArchivePage() {
     const archiveListContainer = document.getElementById('archive-list');
-    if (!archiveListContainer) return;
+    if (!archiveListContainer) {
+        console.warn("Element with ID 'archive-list' not found. Cannot render archive page.");
+        return;
+    }
 
-    // Hanya tampilkan debat yang sudah selesai (ada pemenang dan pecundang)
     const archivedDebates = debatesData.filter(debate => debate.winner && debate.loser);
 
-    // Urutkan debat berdasarkan tanggal terbaru
     archivedDebates.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     let archiveHtml = '';
@@ -933,7 +929,7 @@ function renderArchivePage() {
                 <div class="archive-item">
                     <div class="archive-header">
                         <span class="category">${debate.category}</span>
-                        <span class="date">${debate.date}</span>
+                        <span class="date">${new Date(debate.date).toLocaleDateString('id-ID')}</span>
                     </div>
                     <div class="archive-participants">
                         <span><a href="profile.html?name=${encodeURIComponent(debate.debater1.name)}">${debate.debater1.name}</a></span> <span class="vs">VS</span> <span><a href="profile.html?name=${encodeURIComponent(debate.debater2.name)}">${debate.debater2.name}</a></span>
@@ -953,26 +949,25 @@ function renderArchivePage() {
 
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN COMPARE (UNTUK compare.html) ======
-let chartInstance = null; // Variabel global untuk menyimpan instance Chart.js
+let chartInstance = null;
 
 function renderComparePage() {
     const debater1Select = document.getElementById('debater1-select');
     const debater2Select = document.getElementById('debater2-select');
     const chartArea = document.getElementById('chart-area');
-    const chartCanvas = document.getElementById('radarChart');
+    const chartCanvas = document.getElementById('radarChart'); // Canvas untuk Chart.js
 
-    // Pastikan elemen-elemen ada
     if (!debater1Select || !debater2Select || !chartArea || !chartCanvas) {
         console.error("Elemen-elemen untuk halaman compare tidak ditemukan.");
+        // Anda mungkin ingin menampilkan pesan error di UI juga
+        if (chartArea) chartArea.innerHTML = '<p class="chart-message" style="color: red;">Terjadi kesalahan: Elemen perbandingan tidak lengkap di halaman ini.</p>';
         return;
     }
 
-    // Ambil semua nama debater yang tersedia dan urutkan secara alfabetis
     const debaterNames = Object.keys(allDebaters).sort();
 
-    // Isi dropdown dengan opsi debater
-    debater1Select.innerHTML = '<option value="">Pilih Debater 1</option>'; // Opsi default
-    debater2Select.innerHTML = '<option value="">Pilih Debater 2</option>'; // Opsi default
+    debater1Select.innerHTML = '<option value="">Pilih Debater 1</option>';
+    debater2Select.innerHTML = '<option value="">Pilih Debater 2</option>';
 
     debaterNames.forEach(name => {
         const option1 = document.createElement('option');
@@ -986,12 +981,10 @@ function renderComparePage() {
         debater2Select.appendChild(option2);
     });
 
-    // Fungsi untuk memperbarui grafik perbandingan
     function updateComparison() {
         const selectedDebater1Name = debater1Select.value;
         const selectedDebater2Name = debater2Select.value;
 
-        // Jika salah satu debater belum dipilih, tampilkan pesan dan hancurkan grafik sebelumnya
         if (!selectedDebater1Name || !selectedDebater2Name) {
             chartArea.innerHTML = '<p class="chart-message">Pilih dua debater untuk membandingkan statistik mereka.</p>';
             if (chartInstance) {
@@ -1004,7 +997,6 @@ function renderComparePage() {
         const debater1 = allDebaters[selectedDebater1Name];
         const debater2 = allDebaters[selectedDebater2Name];
 
-        // Pastikan data profil debater tersedia
         if (!debater1 || !debater2 || !debater1.profile || !debater2.profile) {
             chartArea.innerHTML = `<p class="chart-message" style="color: red;">Statistik debater untuk ${!debater1 ? selectedDebater1Name : selectedDebater2Name} tidak lengkap.</p>`;
             if (chartInstance) {
@@ -1014,16 +1006,16 @@ function renderComparePage() {
             return;
         }
 
-        // Hapus pesan jika ada dan pastikan canvas Chart.js terlihat
-        chartArea.innerHTML = '';
-        chartArea.appendChild(chartCanvas); // Pastikan canvas ada di dalam chart-area
+        // Pastikan canvas ada di dalam chartArea sebelum merender chart
+        if (!chartArea.contains(chartCanvas)) {
+            chartArea.innerHTML = ''; // Hapus pesan sebelumnya
+            chartArea.appendChild(chartCanvas);
+        }
 
-        // Siapkan data untuk Chart.js
-        const labels = Object.keys(debater1.profile); // Skill sebagai label
+        const labels = Object.keys(debater1.profile);
         const data1 = labels.map(label => parseFloat(debater1.profile[label]));
         const data2 = labels.map(label => parseFloat(debater2.profile[label]));
 
-        // Hancurkan instance chart yang ada sebelum membuat yang baru
         if (chartInstance) {
             chartInstance.destroy();
         }
@@ -1037,7 +1029,7 @@ function renderComparePage() {
                     {
                         label: debater1.name,
                         data: data1,
-                        backgroundColor: 'rgba(54, 162, 235, 0.4)', // Warna biru
+                        backgroundColor: 'rgba(54, 162, 235, 0.4)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(54, 162, 235, 1)',
@@ -1048,7 +1040,7 @@ function renderComparePage() {
                     {
                         label: debater2.name,
                         data: data2,
-                        backgroundColor: 'rgba(255, 99, 132, 0.4)', // Warna merah
+                        backgroundColor: 'rgba(255, 99, 132, 0.4)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 2,
                         pointBackgroundColor: 'rgba(255, 99, 132, 1)',
@@ -1060,27 +1052,27 @@ function renderComparePage() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Penting agar bisa diatur tinggi/lebarnya oleh CSS
+                maintainAspectRatio: false,
                 scales: {
                     r: {
                         angleLines: {
-                            color: 'rgba(255, 255, 255, 0.2)' // Warna garis radial
+                            color: 'rgba(255, 255, 255, 0.2)'
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.3)' // Warna grid
+                            color: 'rgba(255, 255, 255, 0.3)'
                         },
                         pointLabels: {
-                            color: 'var(--white-text-color)', // Warna label skill
+                            color: 'var(--white-text-color)',
                             font: {
                                 size: 12
                             }
                         },
                         ticks: {
                             beginAtZero: true,
-                            max: 10, // Maksimal skor skill
+                            max: 10,
                             stepSize: 2,
-                            color: 'var(--light-grey)', // Warna angka tick
-                            backdropColor: 'transparent', // Hapus background di belakang angka
+                            color: 'var(--light-grey)',
+                            backdropColor: 'transparent',
                             showLabelBackdrop: false
                         }
                     }
@@ -1088,7 +1080,7 @@ function renderComparePage() {
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'var(--white-text-color)' // Warna teks legend
+                            color: 'var(--white-text-color)'
                         }
                     },
                     tooltip: {
@@ -1103,12 +1095,10 @@ function renderComparePage() {
         });
     }
 
-    // Tambahkan event listener untuk perubahan pada dropdown
     debater1Select.addEventListener('change', updateComparison);
     debater2Select.addEventListener('change', updateComparison);
 
-    // Panggil pertama kali untuk menampilkan grafik awal (jika ada pilihan default)
-    updateComparison();
+    updateComparison(); // Panggil pertama kali untuk menampilkan grafik awal
 }
 
 
@@ -1116,16 +1106,21 @@ function renderComparePage() {
 document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname;
 
+    // Logika untuk menandai link navigasi yang aktif
     const navLinks = document.querySelectorAll('.main-nav ul li a');
     navLinks.forEach(link => {
-        // Ambil path yang bersih dari link dan path saat ini
         const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
         const cleanedCurrentPath = currentPath.replace(/\/$/, '');
 
-        // Logika untuk menandai link aktif
-        const isHomeActive = (cleanedCurrentPath === '/index.html' || cleanedCurrentPath === '/') && (linkPath === '/index.html' || linkPath === '/');
+        // Khusus untuk 'index.html' dan root '/'
+        const isHomeLink = link.getAttribute('href') === 'index.html' || link.getAttribute('href') === '/';
+        const isCurrentPathHome = cleanedCurrentPath === '/index.html' || cleanedCurrentPath === '/';
 
-        if (isHomeActive || (cleanedCurrentPath !== '/' && cleanedCurrentPath === linkPath)) {
+        if (isHomeLink && isCurrentPathHome) {
+            link.classList.add('active');
+        } else if (!isHomeLink && cleanedCurrentPath.includes(linkPath) && linkPath !== '/') {
+            // Untuk link lain, cek apakah path saat ini mengandung path link
+            // Hindari menandai link '/' jika sedang di halaman lain
             link.classList.add('active');
         } else {
             link.classList.remove('active');
@@ -1134,7 +1129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Panggil fungsi rendering yang sesuai berdasarkan halaman saat ini
     if (currentPath.endsWith('/') || currentPath.endsWith('index.html')) {
-        startCountdown();
+        startCountdown(); // Ini akan berjalan tapi tidak tampilkan apapun jika elemen countdown tidak ada
         loadAndRenderDebatesForIndexPage();
     } else if (currentPath.endsWith('profile.html')) {
         renderProfilePage();
