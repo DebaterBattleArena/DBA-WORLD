@@ -335,7 +335,7 @@ const debatesData = [
         "id": "debate-007",
         "category": "FICTIONAL DEBATE",
         "date": "2025-07-15",
-        "matchBanner": "placeholder-upcoming.jpeg", // <-- Ganti dengan banner match yang relevan jika ada
+        "matchBanner": "Proyek Baru 73.png", // <-- Ganti dengan banner match yang relevan jika ada
         "debater1": {
             "name": "ARYANWT",
             "photo": "IMG_0525.jpeg",
@@ -361,9 +361,9 @@ const debatesData = [
         },
         "debater2": {
             "name": "Aaron",
-            "photo": "IMG_1177.jpeg", // <-- Pastikan file ini ada!
+            "photo": "IMG_1269.jpeg", // <-- Pastikan file ini ada!
             "country": "mexico",
-            "flag": "mexico_flag.png", // <-- Asumsi Anda memiliki bendera Meksiko (ganti jika beda)
+            "flag": "IMG_1177.jpeg", // <-- Asumsi Anda memiliki bendera Meksiko (ganti jika beda)
             "vbWiki": "Outerversal+",
             "ibr": "High 1-A",
             "profile": {
