@@ -305,7 +305,7 @@ const debatesData = [
         },
         "debater2": {
             "name": "Adyy",
-            "photo": "IMG_0934.jpeg",
+            "photo": "IMG-20250721-WA0005.jpeg",
             "country": "malaysia",
             "flag": "IMG_0418.png",
             "vbWiki": "Low 1-C",
