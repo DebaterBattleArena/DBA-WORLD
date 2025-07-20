@@ -395,8 +395,8 @@ const debatesData = [
         "debater1": {
             "name": "KYUKI",
             "photo": "a45117bc6e1a73cac3a74563ca3172c4_1.jpeg", // <-- Pastikan file ini ada!
-            "country": "indonesia", // Sesuaikan negara jika perlu
-            "flag": "IMG_0417.png", // Bendera Indonesia
+            "country": "malaysia", // Sesuaikan negara jika perlu
+            "flag": "IMG_0418.png", // Bendera Indonesia
             "vbWiki": "Unknown", // Atau sesuaikan jika ada informasi
             "ibr": "Unknown", // Atau sesuaikan jika ada informasi
             "profile": {
