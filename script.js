@@ -385,6 +385,62 @@ const debatesData = [
         "type": "HIGH TIER DEBATE", // Sesuai permintaan "High tier debate"
         "winner": null, // <-- Ini penting untuk "upcoming debate"
         "loser": null   // <-- Ini penting untuk "upcoming debate"
+    },
+    // ====== DEBAT YANG AKAN DATANG: KYUKI VS SHADE ======
+    {
+        "id": "debate-008", // ID baru untuk debat ini
+        "category": "FICTIONAL DEBATE",
+        "date": "2025-08-01", // Tanggal debat mendatang (sesuaikan jika perlu)
+        "matchBanner": "KYUKI_VS_SHADE_BANNER.jpeg", // <-- Ganti dengan path gambar banner yang sesuai
+        "debater1": {
+            "name": "KYUKI",
+            "photo": "IMG_KYUKI.jpeg", // <-- Pastikan file ini ada!
+            "country": "indonesia", // Sesuaikan negara jika perlu
+            "flag": "IMG_0417.png", // Bendera Indonesia
+            "vbWiki": "Unknown", // Atau sesuaikan jika ada informasi
+            "ibr": "Unknown", // Atau sesuaikan jika ada informasi
+            "profile": {
+                "Rhetoric": "0/10",
+                "Typing Structure": "0/10",
+                "Critical Thinking": "0/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "0/10",
+                "Tiering Sistem": "0/10",
+                "Calculation": "0/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "0/10"
+            },
+            "tier": "Low Tier", // Sesuaikan Tier jika perlu
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
+        },
+        "debater2": {
+            "name": "Shade",
+            "photo": "IMG_0820.jpeg",
+            "country": "malaysia",
+            "flag": "IMG_0418.png",
+            "vbWiki": "Low 1-C",
+            "ibr": "High 1-B",
+            "profile": {
+                "Rhetoric": "3/10",
+                "Typing Structure": "2/10",
+                "Critical Thinking": "1/10",
+                "Logical Fallacies": "0/10",
+                "Typing Strenght": "4/10",
+                "Tiering Sistem": "1/10",
+                "Calculation": "0/10",
+                "Philisophy": "0/10",
+                "General Knowledge": "1/10"
+            },
+            "tier": "Low Tier",
+            "fightRecord": { "win": 0, "loss": 1, "draw": 0 }, // Ini akan direset oleh logika akumulasi di bawah jika debat ini dihitung sebagai "future"
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
+        },
+        "type": "LOW TIER DEBATE", // Sesuaikan tipe debat jika perlu
+        "winner": null, // Debat akan datang, jadi belum ada pemenang
+        "loser": null
     }
 ];
 // ====== Global variable to store all debater profiles and calculated stats for easy lookup ======
@@ -852,11 +908,13 @@ function renderRankingPage() {
                     return indexA - indexB;
                 });
             } else if (tierName === "Low Tier") {
-                const lowTierCustomOrder = ["ARYANWT", "Thinzel", "RIM", "Shade"];
+                // Tambahkan KYUKI ke urutan kustom Low Tier jika diinginkan
+                const lowTierCustomOrder = ["ARYANWT", "Thinzel", "RIM", "Shade", "KYUKI"];
                 debatersInTier.sort((a, b) => {
                     const indexA = lowTierCustomOrder.indexOf(a.name);
                     const indexB = lowTierCustomOrder.indexOf(b.name);
                     if (indexA === -1 || indexB === -1) {
+                        // Jika nama tidak ada dalam daftar kustom, urutkan berdasarkan abjad
                         return a.name.localeCompare(b.name);
                     }
                     return indexA - indexB;
