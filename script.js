@@ -394,7 +394,7 @@ const debatesData = [
         "matchBanner": "KYUKI_VS_SHADE_BANNER.jpeg", // <-- Ganti dengan path gambar banner yang sesuai
         "debater1": {
             "name": "KYUKI",
-            "photo": "IMG_KYUKI.jpeg", // <-- Pastikan file ini ada!
+            "photo": "a45117bc6e1a73cac3a74563ca3172c4_1.jpeg", // <-- Pastikan file ini ada!
             "country": "indonesia", // Sesuaikan negara jika perlu
             "flag": "IMG_0417.png", // Bendera Indonesia
             "vbWiki": "Unknown", // Atau sesuaikan jika ada informasi
