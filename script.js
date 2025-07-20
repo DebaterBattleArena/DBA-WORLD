@@ -391,7 +391,7 @@ const debatesData = [
         "id": "debate-008", // ID baru untuk debat ini
         "category": "FICTIONAL DEBATE",
         "date": "2025-08-01", // Tanggal debat mendatang (sesuaikan jika perlu)
-        "matchBanner": "KYUKI_VS_SHADE_BANNER.jpeg", // <-- Ganti dengan path gambar banner yang sesuai
+        "matchBanner": "quality_restoration_20250710133701290.png", // <-- Ganti dengan path gambar banner yang sesuai
         "debater1": {
             "name": "KYUKI",
             "photo": "a45117bc6e1a73cac3a74563ca3172c4_1.jpeg", // <-- Pastikan file ini ada!
