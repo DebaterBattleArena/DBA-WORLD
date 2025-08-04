@@ -18,7 +18,7 @@
     --one-green: #38C751; /* Hijau untuk Win */
 
     /* Gunakan variabel baru ini untuk konsistensi */
-    --highlight-color: var(--one-yellow); 
+    --highlight-color: var(--one-yellow);
     --win-color: var(--one-green);
     --loss-color: var(--one-red);
     --draw-color: #FFD700;
@@ -273,7 +273,7 @@ section p {
     line-height: 1.2;
     font-weight: 700;
 }
-/* PERUBAHAN: Warna highlight di judul banner */
+/* PERUBAHAN: Warna highlight span di judul banner */
 .event-showbiz-title span {
     color: var(--highlight-color);
 }
