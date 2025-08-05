@@ -3,111 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Debater - Debater Battle Arena</title>
+    <title>Profil Debater | Debater Battle Arena</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
     <header class="main-header">
-        <img src="IMG_0362.png" alt="Debater Battle Arena Logo" class="header-logo-image">
-        <h1>DEBATER BATTLE <span>ARENA.</span></h1>
-    </header>
-
-    <nav class="main-nav">
-        <ul>
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="index.html#about">Tentang Kami</a></li>
-            <li><a href="index.html#match-list">Jadwal Debat</a></li>
-            <li><a href="ranking.html">Ranking</a></li>
-            <li><a href="archive.html">Arsip Debat</a></li>
-            <li><a href="compare.html">Bandingkan Debater</a></li>
-            <li><a href="index.html#contact">Kontak</a></li>
-        </ul>
-    </nav>
-
-    <section id="profile-page" class="content-section">
-        <div class="profile-card">
-            <div class="profile-main-info">
-                <img src="" alt="Foto Debater" class="profile-debater-image">
-
-                <div class="profile-details-wrapper">
-                    <div class="profile-division-status">
-                        <span class="division-text"></span>
-                        <span class="active-status">ACTIVE</span>
-                    </div>
-                    <h2 class="profile-name"></h2>
-                    <div class="profile-country-info">
-                        <span class="country-text"></span>
-                        <img src="" alt="Bendera" class="profile-flag-icon">
-                    </div>
-                    <div class="profile-new-info-group">
-                        <div class="profile-info-item">
-                            <span class="label">TVC COMPANY:</span> <span class="value vb-wiki-value"></span>
-                        </div>
-                        <div class="profile-info-item">
-                            <span class="label">DEBATER BATTLE ARENA:</span> <span class="value ibr-value"></span>
-                        </div>
-                    </div>
-                    <div class="profile-fight-record">
-                        <span class="label">FIGHT RECORD</span>
-                        <div class="record-numbers">
-                            <div class="record-item win">
-                                <span class="number win-number"></span>
-                                <span class="label-small">WIN</span>
-                            </div>
-                            <div class="record-item loss">
-                                <span class="number loss-number"></span>
-                                <span class="label-small">LOSS</span>
-                            </div>
-                            <div class="record-item draw">
-                                <span class="number draw-number"></span>
-                                <span class="label-small">DRAW</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="profile-body-content">
-                <div class="profile-section-block">
-                    <h3 class="section-block-title">DBA RECORD</h3>
-                    <div class="match-history-list">
-                        </div>
-                </div>
-
-                <div class="profile-section-block">
-                    <h3 class="section-block-title">ACHIEVEMENTS</h3>
-                    <div class="achievements-table-container">
-                        <table class="achievements-table">
-                            <thead>
-                                <tr>
-                                    <th>EVENTS</th>
-                                    <th>ACHIEVEMENTS</th>
-                                    <th>DATE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="profile-section-block">
-                    <h3 class="section-block-title">STATS BREAKDOWN</h3>
-                    <ul class="stats-list">
-                        </ul>
-                </div>
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <img src="IMG_0362.png" alt="Debater Battle Arena Logo" class="header-logo-image">
+                <h1>DEBATER BATTLE <span>ARENA.</span></h1>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Beranda</a></li>
+                    <li><a href="index.html#match-list" class="nav-link">Jadwal Debat</a></li>
+                    <li><a href="ranking.html" class="nav-link">Ranking</a></li>
+                    <li><a href="archive.html" class="nav-link">Arsip Debat</a></li>
+                    <li><a href="compare.html" class="nav-link">Bandingkan Debater</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
-    </section>
+    </header>
 
-    <footer>
-        <a href="https://debaterbattlearena.com" target="_blank">debaterbattlearena.com</a>
-        <p>&copy; 2025 Debater Battle Arena. Hak Cipta Dilindungi.</p>
+    <main>
+        <section id="profile-page" class="section-container content-section-alt">
+            <div class="profile-card">
+                <div class="profile-main-info">
+                    <img src="" alt="Foto Debater" class="profile-debater-image" id="profile-image">
+                    <div class="profile-details-wrapper">
+                        <div class="profile-division-status">
+                            <span class="division-text" id="debater-tier"></span>
+                            <span class="active-status">ACTIVE</span>
+                        </div>
+                        <h2 class="profile-name" id="debater-name"></h2>
+                        <div class="profile-country-info">
+                            <span class="country-text" id="debater-country"></span>
+                            <img src="" alt="Bendera" class="profile-flag-icon" id="debater-flag">
+                        </div>
+                        <div class="profile-new-info-group">
+                            <div class="profile-info-item">
+                                <span class="label">TVC COMPANY:</span> <span class="value" id="debater-vbwiki"></span>
+                            </div>
+                            <div class="profile-info-item">
+                                <span class="label">DEBATER BATTLE ARENA:</span> <span class="value" id="debater-ibr"></span>
+                            </div>
+                        </div>
+                        <div class="profile-fight-record">
+                            <span class="label">FIGHT RECORD</span>
+                            <div class="record-numbers">
+                                <div class="record-item win">
+                                    <span class="number" id="debater-win"></span>
+                                    <span class="label-small">WIN</span>
+                                </div>
+                                <div class="record-item loss">
+                                    <span class="number" id="debater-loss"></span>
+                                    <span class="label-small">LOSS</span>
+                                </div>
+                                <div class="record-item draw">
+                                    <span class="number" id="debater-draw"></span>
+                                    <span class="label-small">DRAW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-body-content">
+                    <div class="profile-section-block">
+                        <h3 class="section-block-title">DBA RECORD</h3>
+                        <div class="match-history-list" id="match-history-container">
+                            </div>
+                    </div>
+
+                    <div class="profile-section-block">
+                        <h3 class="section-block-title">ACHIEVEMENTS</h3>
+                        <div class="achievements-table-container">
+                            <table class="achievements-table">
+                                <thead>
+                                    <tr>
+                                        <th>EVENTS</th>
+                                        <th>ACHIEVEMENTS</th>
+                                        <th>DATE</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="achievements-table-body">
+                                    </tbody>
+                            </table>
+                            <p id="no-achievements" class="no-data-message" style="display: none;">Tidak ada pencapaian yang tercatat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="index.html#about">Tentang Kami</a>
+                <a href="index.html#contact">Kontak</a>
+                <a href="ranking.html">Ranking</a>
+                <a href="archive.html">Arsip</a>
+            </div>
+            <div class="social-links">
+                <a href="https://instagram.com/debaterbattlearena" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/dbarena" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://youtube.com/debaterbattlearena" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">© 2025 Debater Battle Arena. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>
