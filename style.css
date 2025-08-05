@@ -184,6 +184,17 @@ section p {
     max-width: 800px;
     margin: 0 auto 20px auto;
 }
+.section-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.5em;
+    color: var(--highlight-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin: 40px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
 /* Gaya untuk Section About */
 #about {
@@ -407,6 +418,11 @@ section p {
     display: flex;
     flex-direction: column;
     position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.match-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 192, 0, 0.2);
 }
 
 .match-image-container {
@@ -443,6 +459,30 @@ section p {
     white-space: nowrap;
     border: none; /* Hapus border */
     z-index: 2;
+}
+
+/* Gaya overlay untuk debat yang akan datang */
+.upcoming-match-card .upcoming-date-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--white-text-color);
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 2;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.upcoming-label {
+    background-color: rgba(255, 192, 0, 0.1);
+    color: var(--highlight-color);
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .match-details-bottom {
@@ -1158,6 +1198,9 @@ footer a:hover {
     section p {
         font-size: 0.95em;
     }
+    .section-subtitle {
+        font-size: 1.2em;
+    }
 
     .main-header h1 {
         font-size: 1.8em;
@@ -1418,6 +1461,9 @@ footer a:hover {
     .cta-button {
         padding: 12px 25px;
         font-size: 1em;
+    }
+    .section-subtitle {
+        font-size: 1.8em;
     }
 
     .achievement-grid {
