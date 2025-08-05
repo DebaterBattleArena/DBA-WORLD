@@ -24,7 +24,7 @@ const debatesData = [
                 "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -47,7 +47,7 @@ const debatesData = [
                 "General Knowledge": "1/10"
             },
             "tier": "Mid Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -79,8 +79,8 @@ const debatesData = [
                 "General Knowledge": "7/10"
             },
             "tier": "High Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
         "debater2": {
@@ -102,7 +102,7 @@ const debatesData = [
                 "General Knowledge": "8/10"
             },
             "tier": "High Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -134,7 +134,7 @@ const debatesData = [
                 "General Knowledge": "10/10"
             },
             "tier": "Low Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -157,7 +157,7 @@ const debatesData = [
                 "General Knowledge": "7/10"
             },
             "tier": "Low Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -189,7 +189,7 @@ const debatesData = [
                 "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -212,7 +212,7 @@ const debatesData = [
                 "General Knowledge": "10/10"
             },
             "tier": "Mid Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -244,7 +244,7 @@ const debatesData = [
                 "General Knowledge": "0/10"
             },
             "tier": "Low Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -267,7 +267,7 @@ const debatesData = [
                 "General Knowledge": "1/10"
             },
             "tier": "Low Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
             "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
@@ -299,8 +299,8 @@ const debatesData = [
                 "General Knowledge": "8/10"
             },
             "tier": "High Tier",
-            "fightRecord": { "win": 1, "loss": 0, "draw": 0 },
-            "boxingRecord": { "win": 1, "loss": 0, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
         "debater2": {
@@ -322,8 +322,8 @@ const debatesData = [
                 "General Knowledge": "5/10"
             },
             "tier": "High Tier",
-            "fightRecord": { "win": 0, "loss": 1, "draw": 0 },
-            "boxingRecord": { "win": 0, "loss": 1, "draw": 0 },
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "boxingRecord": { "win": 0, "loss": 0, "draw": 0 },
             "achievements": []
         },
         "type": "HIGH TIER DEBATE", // Digunakan sebagai topik
@@ -722,6 +722,16 @@ function renderProfilePage() {
     const urlParams = new URLSearchParams(window.location.search);
     const debaterName = urlParams.get('name');
 
+    // Tampilkan section profile dan sembunyikan yang lain
+    document.getElementById('profile-page').style.display = 'block';
+    document.getElementById('ranking-page').style.display = 'none';
+    document.getElementById('archive-page').style.display = 'none';
+    document.getElementById('compare-page').style.display = 'none';
+    document.getElementById('main-event').style.display = 'none';
+    document.getElementById('about').style.display = 'none';
+    document.getElementById('achievement').style.display = 'none';
+    document.getElementById('match-list').style.display = 'none';
+
     const profileCard = document.querySelector('.profile-card');
 
     // Dapatkan semua elemen yang dibutuhkan. Tambahkan null check di sini.
@@ -861,6 +871,16 @@ function renderProfilePage() {
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN RANKING (UNTUK ranking.html) ======
 function renderRankingPage() {
+    // Tampilkan section ranking dan sembunyikan yang lain
+    document.getElementById('ranking-page').style.display = 'block';
+    document.getElementById('profile-page').style.display = 'none';
+    document.getElementById('archive-page').style.display = 'none';
+    document.getElementById('compare-page').style.display = 'none';
+    document.getElementById('main-event').style.display = 'none';
+    document.getElementById('about').style.display = 'none';
+    document.getElementById('achievement').style.display = 'none';
+    document.getElementById('match-list').style.display = 'none';
+
     const rankingContainer = document.getElementById('ranking-container');
     if (!rankingContainer) {
         console.warn("Element with ID 'ranking-container' not found. Cannot render ranking page.");
@@ -968,6 +988,16 @@ function renderRankingPage() {
 
 // ====== FUNGSI UNTUK MERENDER HALAMAN ARSIP (UNTUK archive.html) ======
 function renderArchivePage() {
+    // Tampilkan section archive dan sembunyikan yang lain
+    document.getElementById('archive-page').style.display = 'block';
+    document.getElementById('ranking-page').style.display = 'none';
+    document.getElementById('profile-page').style.display = 'none';
+    document.getElementById('compare-page').style.display = 'none';
+    document.getElementById('main-event').style.display = 'none';
+    document.getElementById('about').style.display = 'none';
+    document.getElementById('achievement').style.display = 'none';
+    document.getElementById('match-list').style.display = 'none';
+
     const archiveListContainer = document.getElementById('archive-list');
     if (!archiveListContainer) {
         console.warn("Element with ID 'archive-list' not found. Cannot render archive page.");
@@ -1010,6 +1040,16 @@ function renderArchivePage() {
 let chartInstance = null;
 
 function renderComparePage() {
+    // Tampilkan section compare dan sembunyikan yang lain
+    document.getElementById('compare-page').style.display = 'block';
+    document.getElementById('ranking-page').style.display = 'none';
+    document.getElementById('profile-page').style.display = 'none';
+    document.getElementById('archive-page').style.display = 'none';
+    document.getElementById('main-event').style.display = 'none';
+    document.getElementById('about').style.display = 'none';
+    document.getElementById('achievement').style.display = 'none';
+    document.getElementById('match-list').style.display = 'none';
+
     const debater1Select = document.getElementById('debater1-select');
     const debater2Select = document.getElementById('debater2-select');
     const chartArea = document.getElementById('chart-area');
@@ -1162,23 +1202,13 @@ function renderComparePage() {
 
 // ====== PANGGIL FUNGSI SAAT HALAMAN SELESAI DIMUAT ======
 document.addEventListener('DOMContentLoaded', () => {
-    const currentPath = window.location.pathname;
-
+    const currentPath = window.location.pathname.split('/').pop().replace(/\.html.*$/, '.html');
+    
     // Logika untuk menandai link navigasi yang aktif
     const navLinks = document.querySelectorAll('.main-nav ul li a');
     navLinks.forEach(link => {
-        const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
-        const cleanedCurrentPath = currentPath.replace(/\/$/, '');
-
-        // Khusus untuk 'index.html' dan root '/'
-        const isHomeLink = link.getAttribute('href') === 'index.html' || link.getAttribute('href') === '/';
-        const isCurrentPathHome = cleanedCurrentPath === '/index.html' || cleanedCurrentPath === '/';
-
-        if (isHomeLink && isCurrentPathHome) {
-            link.classList.add('active');
-        } else if (!isHomeLink && cleanedCurrentPath.includes(linkPath) && linkPath !== '/') {
-            // Untuk link lain, cek apakah path saat ini mengandung path link
-            // Hindari menandai link '/' jika sedang di halaman lain
+        const linkHref = link.getAttribute('href').split('/').pop().replace(/\.html.*$/, '.html');
+        if (linkHref === currentPath || (linkHref === 'index.html' && currentPath === '')) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
@@ -1186,16 +1216,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Panggil fungsi rendering yang sesuai berdasarkan halaman saat ini
-    if (currentPath.endsWith('/') || currentPath.endsWith('index.html')) {
-        startCountdown(); // Ini akan berjalan tapi tidak tampilkan apapun jika elemen countdown tidak ada
-        loadAndRenderDebatesForIndexPage();
-    } else if (currentPath.endsWith('profile.html')) {
-        renderProfilePage();
-    } else if (currentPath.endsWith('ranking.html')) {
+    const sections = ['profile-page', 'ranking-page', 'archive-page', 'compare-page', 'main-event', 'about', 'achievement', 'match-list'];
+    sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) section.style.display = 'none';
+    });
+
+    if (currentPath === 'ranking.html') {
+        document.getElementById('ranking-page').style.display = 'block';
+        document.getElementById('contact').style.display = 'block';
         renderRankingPage();
-    } else if (currentPath.endsWith('archive.html')) {
+    } else if (currentPath === 'archive.html') {
+        document.getElementById('archive-page').style.display = 'block';
+        document.getElementById('contact').style.display = 'block';
         renderArchivePage();
-    } else if (currentPath.endsWith('compare.html')) {
+    } else if (currentPath === 'compare.html') {
+        document.getElementById('compare-page').style.display = 'block';
+        document.getElementById('contact').style.display = 'block';
         renderComparePage();
+    } else if (currentPath === 'profile.html') {
+        document.getElementById('profile-page').style.display = 'block';
+        document.getElementById('contact').style.display = 'block';
+        renderProfilePage();
+    } else {
+        // Default untuk index.html atau halaman root
+        document.getElementById('main-event').style.display = 'flex';
+        document.getElementById('about').style.display = 'block';
+        document.getElementById('achievement').style.display = 'block';
+        document.getElementById('match-list').style.display = 'block';
+        document.getElementById('contact').style.display = 'block';
+        loadAndRenderDebatesForIndexPage();
     }
 });
