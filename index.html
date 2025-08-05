@@ -32,7 +32,7 @@
                 <p class="event-type-text">FICTIONAL DEBATE</p>
                 <h2 class="event-showbiz-title">DEBATER BATTLE ARENA 2 <span>ARYANWT VS AARON</span></h2>
                 <a href="#match-list" class="cta-button">
-                    LIHAT DEBAT SEBELUMNYA <span class="arrow">&#x2192;</span>
+                    LIHAT DEBAT TERAKHIR <span class="arrow">→</span>
                 </a>
             </div>
         </section>
@@ -66,7 +66,101 @@
         <section id="match-list" class="content-section">
             <h2>JADWAL DEBAT.</h2>
             <div id="debates-container">
+            </div>
+        </section>
+        
+        <section id="ranking-page" style="display: none;">
+            <div id="ranking-container"></div>
+        </section>
+        
+        <section id="archive-page" style="display: none;">
+            <div id="archive-list"></div>
+        </section>
+        
+        <section id="compare-page" style="display: none;">
+            <div class="compare-controls">
+                <select id="debater1-select"></select>
+                <span class="compare-vs-icon">VS</span>
+                <select id="debater2-select"></select>
+            </div>
+            <div id="chart-area" class="chart-container">
+                <p class="chart-message">Pilih dua debater untuk membandingkan statistik mereka.</p>
+                <canvas id="radarChart"></canvas>
+            </div>
+        </section>
+        
+        <section id="profile-page" style="display: none;">
+            <div class="profile-card">
+                <div class="profile-main-info">
+                    <img src="" alt="Foto Debater" class="profile-debater-image">
+                    <div class="profile-details-wrapper">
+                        <div class="profile-division-status">
+                            <span class="division-text"></span>
+                            <span class="active-status">ACTIVE</span>
+                        </div>
+                        <h2 class="profile-name"></h2>
+                        <div class="profile-country-info">
+                            <span class="country-text"></span>
+                            <img src="" alt="Bendera Negara" class="profile-flag-icon">
+                        </div>
+                        <div class="profile-new-info-group">
+                            <div class="profile-info-item">
+                                <span class="label">VERSUS BATTLE WIKI TIER</span>
+                                <span class="value vb-wiki-value"></span>
+                            </div>
+                            <div class="profile-info-item">
+                                <span class="label">INFINITE BATTLE REBORN TIER</span>
+                                <span class="value ibr-value"></span>
+                            </div>
+                        </div>
+                        <div class="profile-fight-record">
+                            <span class="label">DBA FIGHT RECORD</span>
+                            <div class="record-numbers">
+                                <div class="record-item win">
+                                    <span class="number win-number"></span>
+                                    <span class="label-small">WINS</span>
+                                </div>
+                                <div class="record-item loss">
+                                    <span class="number loss-number"></span>
+                                    <span class="label-small">LOSSES</span>
+                                </div>
+                                <div class="record-item draw">
+                                    <span class="number draw-number"></span>
+                                    <span class="label-small">DRAWS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="profile-body-content">
+                    <div class="profile-section-block">
+                        <h3 class="section-block-title">MATCH HISTORY</h3>
+                        <div class="match-history-list">
+                            </div>
+                    </div>
+                    <div class="profile-section-block">
+                        <h3 class="section-block-title">STATISTIK KEAHLIAN</h3>
+                        <ul class="stats-list">
+                            </ul>
+                    </div>
+                    <div class="profile-section-block">
+                        <h3 class="section-block-title">PENCAPAIAN</h3>
+                        <div class="achievements-table-container">
+                            <table class="achievements-table">
+                                <thead>
+                                    <tr>
+                                        <th>Acara</th>
+                                        <th>Pencapaian</th>
+                                        <th>Tahun</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="contact">
