@@ -1319,3 +1319,81 @@ document.addEventListener('DOMContentLoaded', function() {
     // Kode yang sudah ada, jangan dihapus
     loadAndRenderDebatesForIndexPage();
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // Pastikan semua variabel DOM diinisialisasi di sini
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const searchBtn = document.getElementById('search-btn');
+    const searchContainer = document.getElementById('search-container');
+    const closeSearchBtn = document.getElementById('close-search-btn');
+    const searchInput = document.getElementById('search-input');
+    const overlay = document.getElementById('overlay');
+
+    // ... (kode untuk menu hamburger) ...
+    if (menuBtn && mobileMenu && closeMenuBtn) {
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+            overlay.style.display = 'block';
+        });
+        closeMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            overlay.style.display = 'none';
+        });
+    }
+
+    // Fungsi untuk menampilkan dan menutup pencarian
+    if (searchBtn && searchContainer && closeSearchBtn && searchInput) {
+        searchBtn.addEventListener('click', function() {
+            searchContainer.classList.add('active');
+            searchInput.focus();
+            overlay.style.display = 'block';
+        });
+
+        closeSearchBtn.addEventListener('click', function() {
+            searchContainer.classList.remove('active');
+            overlay.style.display = 'none';
+            searchInput.value = '';
+            // Panggil ulang fungsi render tanpa filter untuk menampilkan semua debat
+            loadAndRenderDebatesForIndexPage();
+        });
+    }
+
+    // Event listener untuk overlay
+    if (overlay) {
+        overlay.addEventListener('click', function() {
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+            }
+            if (searchContainer && searchContainer.classList.contains('active')) {
+                searchContainer.classList.remove('active');
+                searchInput.value = '';
+                loadAndRenderDebatesForIndexPage();
+            }
+            overlay.style.display = 'none';
+        });
+    }
+
+    // Event listener untuk input pencarian yang memfilter debat
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            let debatesToRender = debatesData; // Default ke semua data
+
+            if (query.length > 0) {
+                debatesToRender = debatesData.filter(debate => {
+                    const debater1Name = debate.debater1.name.toLowerCase();
+                    const debater2Name = debate.debater2.name.toLowerCase();
+                    const topic = debate.type ? debate.type.toLowerCase() : '';
+
+                    return debater1Name.includes(query) || debater2Name.includes(query) || topic.includes(query);
+                });
+            }
+            // Panggil fungsi render dengan data yang sudah difilter
+            loadAndRenderDebatesForIndexPage(debatesToRender);
+        });
+    }
+
+    // Panggil fungsi ini saat halaman dimuat untuk pertama kali
+    loadAndRenderDebatesForIndexPage();
+});
