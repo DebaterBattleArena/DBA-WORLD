@@ -1825,3 +1825,146 @@ footer a:hover {
         gap: 25px;
     }
 }
+/* Styling untuk Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #1a1a1a; /* Sesuaikan dengan warna latar belakang web Anda */
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-icons {
+    display: flex;
+    gap: 15px; /* Jarak antara ikon pencarian dan menu */
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.icon-button svg {
+    width: 24px;
+    height: 24px;
+    stroke: #ffcc00; /* Warna kuning untuk ikon */
+}
+
+/* Styling untuk Menu Hamburger */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Sembunyikan menu di luar layar */
+    width: 250px;
+    height: 100%;
+    background-color: #2c2c2c; /* Warna latar belakang menu */
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    transition: right 0.3s ease-in-out;
+    z-index: 2000;
+}
+
+.mobile-menu.active {
+    right: 0; /* Tampilkan menu saat aktif */
+}
+
+.mobile-menu .close-btn {
+    font-size: 30px;
+    color: #ffcc00;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-menu .menu-list {
+    list-style: none;
+    padding: 50px 0 0 0;
+    margin: 0;
+}
+
+.mobile-menu .menu-list li {
+    margin-bottom: 20px;
+}
+
+.mobile-menu .menu-list a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Styling untuk Search Box */
+.search-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    display: none; /* Sembunyikan secara default */
+    z-index: 1500;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.search-container.active {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ffcc00;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.close-search-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Styling untuk Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1001;
+    display: none;
+}
+
+/* Animasi untuk search box */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
