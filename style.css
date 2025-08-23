@@ -1,36 +1,36 @@
 /* ========================================================================= */
-/* STYLE CSS DENGAN MODIFIKASI ONE CHAMPIONSHIP (VERSI PENUH)          */
+/* PROFESSIONAL DARK & LIGHT THEME CSS STYLE (FULL VERSION)                  */
 /* ========================================================================= */
 
-/* Variabel CSS yang diperbarui */
+/* Updated CSS variables */
 :root {
-    --primary-bg: #000;
-    --secondary-bg: #1a1a1a;
+    --primary-bg: #141414; /* Dark gray for main background */
+    --secondary-bg: #1f1f1f; /* Slightly lighter dark gray for sections/cards */
     --card-bg-dark: #2a2a2a;
     --white-section-bg: #FFFFFF;
     --card-bg-light: #F9F9F9;
-    --white-text-color: #F0F0F0;
+    --white-text-color: #f0f0f0; /* Off-white for main text */
     --dark-text-color: #333333;
 
-    /* --- PERUBAHAN UTAMA: Warna aksen dari hijau ke kuning ONE Championship --- */
-    --one-yellow: #FFC000; /* Kuning/Emas khas ONE */
-    --one-red: #E83F3F; /* Merah untuk Loss */
-    --one-green: #38C751; /* Hijau untuk Win */
+    /* --- KEY CHANGE: Swapping accent color from yellow to a neutral silver/blue --- */
+    --main-accent: #b0c4de; /* Sleek slate blue/silver */
+    --win-color: #38c751; /* Green for wins */
+    --loss-color: #e83f3f; /* Red for losses */
+    --draw-color: #ffd700; /* Gold for draws */
 
-    /* Gunakan variabel baru ini untuk konsistensi */
-    --highlight-color: var(--one-yellow);
-    --win-color: var(--one-green);
-    --loss-color: var(--one-red);
-    --draw-color: #FFD700;
+    /* New variables for consistency */
+    --highlight-color: var(--main-accent);
+    --secondary-accent: #6c757d; /* Muted gray for secondary highlights */
+    --link-color: var(--highlight-color);
 
-    --light-grey: #AAAAAA;
+    --light-grey: #a0a0a0; /* Muted light gray for subtle text */
     --dark-grey-text: #666666;
 
     --font-heading: 'Oswald', sans-serif;
     --font-body: 'Roboto', sans-serif;
 }
 
-/* Gaya dasar untuk body */
+/* Base styles for body */
 body {
     font-family: var(--font-body);
     margin: 0;
@@ -42,16 +42,17 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Gaya umum untuk link */
+/* General link styles */
 a {
-    color: var(--white-text-color);
+    color: var(--highlight-color);
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 a:hover {
-    color: var(--highlight-color);
+    color: var(--white-text-color);
 }
 
-/* Gaya untuk Header/Logo */
+/* Header/Logo styles */
 .main-header {
     background-color: transparent;
     padding: 20px 0 10px 0;
@@ -76,12 +77,12 @@ a:hover {
     text-transform: uppercase;
     font-weight: 700;
 }
-/* PERUBAHAN: Warna highlight span di header */
+/* Highlighted span color in header */
 .main-header h1 span {
     color: var(--highlight-color);
 }
 
-/* Gaya untuk Navigation Bar */
+/* Navigation Bar styles */
 .main-nav {
     background-color: transparent;
     padding: 10px 0;
@@ -91,7 +92,7 @@ a:hover {
     top: 0;
     width: 100%;
     z-index: 999;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .main-nav ul {
     list-style: none;
@@ -130,14 +131,12 @@ a:hover {
     left: 0;
     width: 0%;
     height: 3px;
-    /* PERUBAHAN: Warna underline aktif */
     background-color: var(--highlight-color);
     border-radius: 3px;
     transition: width 0.3s ease-out;
 }
 
 .main-nav ul li a.active {
-    /* PERUBAHAN: Warna teks aktif */
     color: var(--highlight-color);
 }
 .main-nav ul li a.active .active-underline {
@@ -152,18 +151,18 @@ a:hover {
 }
 
 
-/* --- Penyesuaian untuk Animasi dan Transisi Halus (Umum) --- */
+/* --- General adjustments for smooth animations and transitions --- */
 a, button, .cta-button, .match-card, .profile-card, .archive-item, .achievement-item, .main-nav ul li a, .debater-photo, select {
     transition: all 0.3s ease-in-out;
 }
 
-/* Gaya umum untuk semua section */
+/* General section styles */
 section {
     padding: 40px 20px;
     text-align: center;
 }
 
-/* Class untuk section konten umum */
+/* Common content section class */
 .content-section {
     padding: 60px 20px;
     max-width: 1200px;
@@ -193,10 +192,10 @@ section p {
     font-weight: 700;
     margin: 40px 0 20px 0;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Gaya untuk Section About */
+/* About Section styles */
 #about {
     background-color: var(--primary-bg);
     padding: 60px 20px;
@@ -223,12 +222,11 @@ section p {
     letter-spacing: 0;
 }
 
-/* Gaya untuk Section Main Event (Banner) */
+/* Main Event (Banner) Section styles */
 #main-event {
     background-color: var(--primary-bg);
     padding: 0;
     position: relative;
-    /* GANTI PATH GAMBAR DI SINI */
     background-image: url('Proyek Baru 103.png');
     background-size: cover;
     background-position: center;
@@ -247,7 +245,7 @@ section p {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 0;
 }
 
@@ -284,15 +282,14 @@ section p {
     line-height: 1.2;
     font-weight: 700;
 }
-/* PERUBAHAN: Warna highlight span di judul banner */
+/* Highlighted span color in banner title */
 .event-showbiz-title span {
     color: var(--highlight-color);
 }
 
-/* Tombol CTA (Call to Action) */
+/* Call to Action (CTA) button */
 .cta-button {
     display: inline-block;
-    /* PERUBAHAN: Background dan warna teks tombol */
     background-color: var(--highlight-color);
     color: var(--primary-bg);
     padding: 12px 25px;
@@ -305,22 +302,22 @@ section p {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-/* PERUBAHAN: Warna hover tombol */
+/* Hover color for the button */
 .cta-button:hover {
-    background-color: #d1a300;
+    background-color: #92b0d0;
 }
 .cta-button .arrow {
     margin-left: 10px;
 }
 
-/* Gaya untuk Section Achievement */
+/* Achievement Section styles */
 #achievement {
     background-color: var(--secondary-bg);
     padding: 50px 20px;
     position: relative;
     overflow: hidden;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 #achievement::before {
     content: '';
@@ -362,7 +359,6 @@ section p {
 .achievement-item .number {
     font-family: var(--font-heading);
     font-size: 3.5em;
-    /* PERUBAHAN: Warna angka pencapaian */
     color: var(--highlight-color);
     margin-bottom: 8px;
     line-height: 1;
@@ -375,7 +371,7 @@ section p {
     letter-spacing: 0.5px;
 }
 
-/* Gaya untuk Section Match List (Jadwal Debat) */
+/* Match List Section styles (Debate Schedule) */
 #match-list {
     background-color: var(--primary-bg);
     color: var(--white-text-color);
@@ -396,7 +392,7 @@ section p {
     font-weight: 700;
 }
 
-/* Container untuk semua match card */
+/* Container for all match cards */
 #debates-container {
     display: flex;
     flex-wrap: wrap;
@@ -405,14 +401,14 @@ section p {
     padding: 20px 0;
 }
 
-/* Gaya untuk setiap match card */
+/* Individual match card styles */
 .match-card {
     background-color: var(--secondary-bg);
     color: var(--white-text-color);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     width: 100%;
     max-width: 400px;
     display: flex;
@@ -422,7 +418,7 @@ section p {
 }
 .match-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(255, 192, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(176, 196, 222, 0.2);
 }
 
 .match-image-container {
@@ -442,12 +438,11 @@ section p {
     display: block;
 }
 
-/* PERUBAHAN: Gaya label kategori */
+/* Match category label styles */
 .match-category-label {
     position: absolute;
     top: 15px;
     left: 15px;
-    /* PERUBAHAN: Warna label menjadi kuning */
     background-color: var(--highlight-color);
     color: var(--primary-bg);
     padding: 5px 10px;
@@ -455,13 +450,13 @@ section p {
     font-size: 0.8em;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-weight: 600; /* Lebih tebal */
+    font-weight: 600;
     white-space: nowrap;
-    border: none; /* Hapus border */
+    border: none;
     z-index: 2;
 }
 
-/* Gaya overlay untuk debat yang akan datang */
+/* Overlay for upcoming debates */
 .upcoming-match-card .upcoming-date-overlay {
     position: absolute;
     bottom: 0;
@@ -476,10 +471,10 @@ section p {
     text-align: center;
     box-sizing: border-box;
     z-index: 2;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
 .upcoming-label {
-    background-color: rgba(255, 192, 0, 0.1);
+    background-color: rgba(176, 196, 222, 0.1);
     color: var(--highlight-color);
     font-weight: bold;
     text-transform: uppercase;
@@ -520,7 +515,7 @@ section p {
     text-transform: inherit;
     transition: color 0.3s ease;
 }
-/* PERUBAHAN: Warna hover nama debater */
+/* Debater name link hover color */
 .debater-name-link:hover {
     color: var(--highlight-color);
 }
@@ -572,12 +567,12 @@ section p {
     font-weight: bold;
 }
 
-/* Gaya untuk Section Kontak */
+/* Contact Section styles */
 #contact {
     background-color: var(--secondary-bg);
     padding-bottom: 50px;
     padding-top: 50px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
 #contact h2 {
     color: var(--white-text-color);
@@ -602,7 +597,7 @@ section p {
     border-radius: 5px;
     transition: all 0.3s ease;
 }
-/* PERUBAHAN: Hover link sosial media */
+/* Social media link hover */
 .social-links a:hover {
     background-color: var(--highlight-color);
     color: var(--primary-bg);
@@ -616,7 +611,7 @@ footer {
     text-align: center;
     padding: 20px;
     font-size: 0.9em;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
 footer a {
     color: var(--light-grey);
@@ -628,7 +623,7 @@ footer a:hover {
     color: var(--white-text-color);
 }
 
-/* ---- PROFIL PAGE SPECIFIC STYLES (profile.html) ---- */
+/* ---- PROFILE PAGE SPECIFIC STYLES (profile.html) ---- */
 #profile-page {
     background-color: var(--primary-bg);
     padding-top: 0;
@@ -650,17 +645,17 @@ footer a:hover {
     overflow: hidden;
     position: relative;
     color: var(--white-text-color);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Bagian ATAS kartu profil: Gambar Debater & Detail */
+/* TOP section of the profile card: Debater Image & Details */
 .profile-main-info {
     display: flex;
     align-items: center;
     gap: 40px;
     padding: 40px;
     background-color: var(--primary-bg);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     position: relative;
     z-index: 5;
 }
@@ -689,7 +684,7 @@ footer a:hover {
     text-transform: uppercase;
     font-weight: 500;
 }
-/* PERUBAHAN: Status aktif di profil */
+/* Active status badge in profile */
 .profile-division-status .active-status {
     background-color: var(--highlight-color);
     color: var(--primary-bg);
@@ -728,7 +723,7 @@ footer a:hover {
     object-fit: cover;
 }
 
-/* Styling untuk group informasi baru (Versus Battle Wiki, Infinite Battle Reborn) */
+/* Styling for new info groups (e.g., Versus Battle Wiki) */
 .profile-new-info-group {
     display: flex;
     flex-wrap: wrap;
@@ -779,7 +774,7 @@ footer a:hover {
     line-height: 1;
     display: block;
 }
-/* PERUBAHAN: Warna angka win/loss/draw */
+/* Win/Loss/Draw number colors */
 .record-item.win .number { color: var(--win-color); }
 .record-item.loss .number { color: var(--loss-color); }
 .record-item.draw .number { color: var(--draw-color); }
@@ -792,7 +787,7 @@ footer a:hover {
 }
 
 
-/* Konten di bawah bagian utama profil */
+/* Content below the main profile section */
 .profile-body-content {
     padding: 30px;
     text-align: center;
@@ -806,7 +801,7 @@ footer a:hover {
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     text-align: left;
     color: var(--white-text-color);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.05);
 }
 .section-block-title {
     font-family: var(--font-heading);
@@ -815,13 +810,13 @@ footer a:hover {
     text-transform: uppercase;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     text-align: left;
     letter-spacing: 1px;
     font-weight: 700;
 }
 
-/* DBA Record (Match History di halaman profil) */
+/* Match History (DBA Record) on profile page */
 .dba-record-item {
     background-color: var(--secondary-bg);
     padding: 15px 20px;
@@ -837,7 +832,7 @@ footer a:hover {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     border: 1px solid rgba(255,255,255,0.05);
 }
-/* PERUBAHAN: Warna border left win/loss */
+/* Left border colors for win/loss */
 .dba-record-item.win {
     border-left: 5px solid var(--win-color);
 }
@@ -852,7 +847,7 @@ footer a:hover {
     flex-grow: 1;
 }
 
-/* PERUBAHAN: Border thumbnail debater */
+/* Debater thumbnail border */
 .dba-debater-thumb {
     width: 60px;
     height: 60px;
@@ -887,7 +882,7 @@ footer a:hover {
     flex-shrink: 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
-/* PERUBAHAN: Warna badge win/loss */
+/* Win/Loss badge colors */
 .dba-record-item.win .dba-result-badge {
     background-color: var(--win-color);
 }
@@ -935,7 +930,7 @@ footer a:hover {
 .achievements-table tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.02);
 }
-/* PERUBAHAN: Warna teks achievement di tabel */
+/* Achievement text color in table */
 .achievements-table td:nth-child(2) {
     color: var(--highlight-color);
     font-weight: bold;
@@ -981,7 +976,7 @@ footer a:hover {
     position: relative;
 }
 
-/* PERUBAHAN: Warna skill bar */
+/* Skill bar color */
 .skill-bar {
     height: 100%;
     background-color: var(--highlight-color);
@@ -1006,15 +1001,14 @@ footer a:hover {
     background-color: var(--primary-bg);
 }
 
-/* PERUBAHAN: Header ranking */
+/* Ranking header */
 .ranking-tier-header {
     font-size: 2.8em;
     color: var(--highlight-color);
     text-align: center;
     margin: 40px 0 30px 0;
     font-weight: 700;
-    /* PERUBAHAN: Bayangan teks */
-    text-shadow: 0 0 10px rgba(255, 192, 0, 0.4);
+    text-shadow: 0 0 10px rgba(176, 196, 222, 0.4);
     letter-spacing: 2px;
 }
 
@@ -1058,14 +1052,13 @@ footer a:hover {
     border-bottom: none;
 }
 
-/* PERUBAHAN: Warna hover tabel */
+/* Table row hover color */
 .ranking-table tbody tr:hover {
-    background-color: rgba(255, 192, 0, 0.05);
+    background-color: rgba(176, 196, 222, 0.05);
 }
 
 .ranking-table td:first-child {
     font-weight: 700;
-    /* PERUBAHAN: Warna rank */
     color: var(--highlight-color);
     font-size: 1.1em;
 }
@@ -1081,9 +1074,8 @@ footer a:hover {
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    /* PERUBAHAN: Warna border dan bayangan foto */
     border: 2px solid var(--highlight-color);
-    box-shadow: 0 0 8px rgba(255, 192, 0, 0.3);
+    box-shadow: 0 0 8px rgba(176, 196, 222, 0.3);
 }
 
 .ranking-table .debater-info .debater-name {
@@ -1098,7 +1090,7 @@ footer a:hover {
     font-size: 1.05em;
 }
 
-/* PERUBAHAN: Warna skill score */
+/* Skill score text color */
 .ranking-table .skill-score span.numerator {
     color: var(--highlight-color);
 }
@@ -1141,11 +1133,11 @@ footer a:hover {
     min-width: 200px;
 }
 
-/* PERUBAHAN: Focus select */
+/* Select element focus state */
 .compare-controls select:focus {
     outline: none;
     border-color: var(--highlight-color);
-    box-shadow: 0 0 5px rgba(255, 192, 0, 0.5);
+    box-shadow: 0 0 5px rgba(176, 196, 222, 0.5);
 }
 
 .compare-vs-icon {
@@ -1257,7 +1249,7 @@ footer a:hover {
         font-size: 1em;
     }
 
-    /* Gaya untuk Section Match List (Jadwal Debat) - MOBILE */
+    /* Match List Section styles - MOBILE */
     #debates-container {
         flex-direction: column;
         gap: 20px;
@@ -1298,7 +1290,7 @@ footer a:hover {
     }
 
 
-    /* Profil Page Mobile */
+    /* Profile Page Mobile */
     .profile-card {
         padding: 0;
     }
@@ -1470,7 +1462,7 @@ footer a:hover {
         flex-direction: row;
     }
 
-    /* Gaya untuk Section Match List (Jadwal Debat) - DESKTOP */
+    /* Match List Section styles - DESKTOP */
     #debates-container {
         justify-content: center;
         gap: 30px;
@@ -1515,7 +1507,7 @@ footer a:hover {
     }
 
 
-    /* Profil Page Desktop */
+    /* Profile Page Desktop */
     .profile-main-info {
         flex-direction: row;
         gap: 50px;
@@ -1645,7 +1637,7 @@ footer a:hover {
         font-size: 2.2em;
     }
 }
-/* ---- GAYA KHUSUS HALAMAN ARSIP (archive.html) ---- */
+/* ---- ARCHIVE PAGE SPECIFIC STYLES (archive.html) ---- */
 #archive-page {
     background-color: var(--primary-bg);
     padding-top: 50px;
@@ -1682,13 +1674,13 @@ footer a:hover {
     padding: 20px;
 }
 
-/* PERUBAHAN: Hover item arsip */
+/* Archive item hover effect */
 .archive-item {
     background-color: var(--secondary-bg);
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -1699,7 +1691,7 @@ footer a:hover {
 
 .archive-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(255, 192, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(176, 196, 222, 0.2);
 }
 
 .archive-header {
@@ -1711,7 +1703,7 @@ footer a:hover {
     padding-bottom: 10px;
 }
 
-/* PERUBAHAN: Kategori arsip */
+/* Archive category styling */
 .archive-header .category {
     background-color: var(--highlight-color);
     color: var(--primary-bg);
@@ -1745,7 +1737,7 @@ footer a:hover {
     transition: color 0.3s ease;
 }
 
-/* PERUBAHAN: Hover nama debater di arsip */
+/* Debater name hover in archive */
 .archive-participants a:hover {
     color: var(--highlight-color);
 }
@@ -1760,7 +1752,7 @@ footer a:hover {
 .archive-result {
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .archive-result p {
@@ -1769,7 +1761,7 @@ footer a:hover {
     color: var(--light-grey);
 }
 
-/* PERUBAHAN: Warna nama pemenang/kalah */
+/* Winner/loser name colors */
 .archive-result .winner-name {
     color: var(--win-color);
     font-weight: bold;
@@ -1782,7 +1774,7 @@ footer a:hover {
     text-transform: uppercase;
 }
 
-/* PERUBAHAN: Tipe arsip */
+/* Archive type text */
 .archive-type {
     font-size: 0.8em;
     color: var(--highlight-color);
@@ -1791,7 +1783,7 @@ footer a:hover {
     font-weight: 500;
 }
 
-/* Tambahkan Penyesuaian Responsif untuk Halaman Arsip di dalam media query yang sudah ada atau di akhir */
+/* Responsive adjustments for Archive Page in existing media queries */
 @media (max-width: 767px) {
     #archive-list {
         grid-template-columns: 1fr;
@@ -1825,56 +1817,65 @@ footer a:hover {
         gap: 25px;
     }
 }
-/* Styling untuk Header */
+/* Styling for Header */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #1a1a1a; /* Sesuaikan dengan warna latar belakang web Anda */
-    color: #fff;
+    background-color: var(--secondary-bg);
+    color: var(--white-text-color);
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
     box-sizing: border-box;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .logo a {
     font-size: 24px;
     font-weight: bold;
-    color: #fff;
+    color: var(--white-text-color);
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+.logo a:hover {
+    color: var(--highlight-color);
 }
 
 .header-icons {
     display: flex;
-    gap: 15px; /* Jarak antara ikon pencarian dan menu */
+    gap: 15px;
 }
 
 .icon-button {
     background: none;
     border: none;
-    color: #fff;
+    color: var(--white-text-color);
     cursor: pointer;
     padding: 5px;
+    transition: color 0.3s ease;
+}
+.icon-button:hover {
+    color: var(--highlight-color);
 }
 
 .icon-button svg {
     width: 24px;
     height: 24px;
-    stroke: #ffcc00; /* Warna kuning untuk ikon */
+    stroke: var(--highlight-color);
 }
 
-/* Styling untuk Menu Hamburger */
+/* Hamburger Menu styles */
 .mobile-menu {
     position: fixed;
     top: 0;
-    right: -300px; /* Sembunyikan menu di luar layar */
+    right: -300px;
     width: 250px;
     height: 100%;
-    background-color: #2c2c2c; /* Warna latar belakang menu */
+    background-color: #2c2c2c;
     padding: 20px;
     box-shadow: -2px 0 5px rgba(0,0,0,0.5);
     transition: right 0.3s ease-in-out;
@@ -1882,12 +1883,12 @@ footer a:hover {
 }
 
 .mobile-menu.active {
-    right: 0; /* Tampilkan menu saat aktif */
+    right: 0;
 }
 
 .mobile-menu .close-btn {
     font-size: 30px;
-    color: #ffcc00;
+    color: var(--highlight-color);
     position: absolute;
     top: 10px;
     right: 20px;
@@ -1907,24 +1908,25 @@ footer a:hover {
 }
 
 .mobile-menu .menu-list a {
-    color: #ffcc00;
+    color: var(--highlight-color);
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
 }
 
-/* Styling untuk Search Box */
+/* Search Box styles */
 .search-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #1a1a1a;
+    background-color: var(--secondary-bg);
     padding: 15px 20px;
     box-sizing: border-box;
-    display: none; /* Sembunyikan secara default */
+    display: none;
     z-index: 1500;
     animation: fadeIn 0.3s ease-in-out;
+    border-bottom: 1px solid var(--highlight-color);
 }
 
 .search-container.active {
@@ -1936,9 +1938,9 @@ footer a:hover {
 .search-input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ffcc00;
-    background: #333;
-    color: #fff;
+    border: 1px solid var(--highlight-color);
+    background: var(--card-bg-dark);
+    color: var(--white-text-color);
     border-radius: 5px;
     font-size: 16px;
 }
@@ -1946,12 +1948,16 @@ footer a:hover {
 .close-search-btn {
     background: none;
     border: none;
-    color: #fff;
+    color: var(--white-text-color);
     font-size: 30px;
     cursor: pointer;
+    transition: color 0.3s ease;
+}
+.close-search-btn:hover {
+    color: var(--highlight-color);
 }
 
-/* Styling untuk Overlay */
+/* Overlay styles */
 .overlay {
     position: fixed;
     top: 0;
@@ -1963,7 +1969,7 @@ footer a:hover {
     display: none;
 }
 
-/* Animasi untuk search box */
+/* Search box animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
