@@ -584,20 +584,75 @@ const debatesData = [
         "type": "HIGH TIER DEBATE",
         "winner": null,
         "loser": null
+    },
+    {
+        "id": "debate-012",
+        "category": "FICTIONAL DEBATE",
+        "date": "2025-08-01",
+        "matchBanner": "path/to/aaron-vs-aryanwt-banner.jpeg",
+        "debater1": {
+            "name": "Aaron",
+            "photo": "IMG_1269.jpeg",
+            "country": "mexico",
+            "flag": "IMG_1177.jpeg",
+            "vbWiki": "Outerversal+",
+            "ibr": "High 1-A",
+            "profile": {
+                "Rhetoric": "10/10",
+                "Typing Structure": "10/10",
+                "Critical Thinking": "10/10",
+                "Logical Fallacies": "10/10",
+                "Typing Strenght": "10/10",
+                "Tiering Sistem": "10/10",
+                "Calculation": "8/10",
+                "Philosophy": "7/10",
+                "General Knowledge": "10/10"
+            },
+            "tier": "High Tier",
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
+        },
+        "debater2": {
+            "name": "ARYANWT",
+            "photo": "IMG_0525.jpeg",
+            "country": "indonesia",
+            "flag": "IMG_0417.png",
+            "vbWiki": "Low 1-A",
+            "ibr": "High 1-A",
+            "profile": {
+                "Rhetoric": "8/10",
+                "Typing Structure": "7/10",
+                "Critical Thinking": "9/10",
+                "Logical Fallacies": "1/10",
+                "Typing Strenght": "7/10",
+                "Tiering Sistem": "9/10",
+                "Calculation": "0/10",
+                "Philosophy": "7/10",
+                "General Knowledge": "10/10"
+            },
+            "tier": "High Tier",
+            "fightRecord": { "win": 0, "loss": 0, "draw": 0 },
+            "achievements": []
+        },
+        "type": "HIGH TIER DEBATE",
+        "winner": { "name": "Aaron", "method": "point" },
+        "loser": { "name": "ARYANWT" }
     }
 ];
 
-// Variabel global untuk menyimpan profil semua debater dan statistik yang dihitung
+// Global variable to store all debater profiles and calculated stats
 let allDebaters = {};
 
-// Fungsi untuk mengisi map allDebaters dan mengakumulasi rekor
+/**
+ * Initializes debater data by populating the allDebaters map and calculating fight records and achievements.
+ */
 function initializeDebaterData() {
     allDebaters = {};
 
     debatesData.forEach(debate => {
         const debater1 = debate.debater1;
         const debater2 = debate.debater2;
-        
+
         const initializeDebater = (debater) => {
             if (!allDebaters[debater.name]) {
                 allDebaters[debater.name] = {
@@ -620,98 +675,70 @@ function initializeDebaterData() {
             const winner = allDebaters[winnerName];
             const loser = allDebaters[loserName];
 
-            winner.fightRecord.win++;
-            loser.fightRecord.loss++;
-            
-            winner.matchHistory.push({
-                opponent: loserName,
-                result: "Win",
-                method: debate.winner.method,
-                date: debate.date,
-                category: debate.category,
-                id: debate.id
-            });
-            loser.matchHistory.push({
-                opponent: winnerName,
-                result: "Loss",
-                method: "",
-                date: debate.date,
-                category: debate.category,
-                id: debate.id
-            });
+            if (winner && loser) {
+                winner.fightRecord.win++;
+                loser.fightRecord.loss++;
 
-            winner.achievements.push({
-                "event": `Mengalahkan ${loserName}`,
-                "achievement": "Pemenang Debat",
-                "date": debateYear
-            });
-            loser.achievements.push({
-                "event": `Kalah dari ${winnerName}`,
-                "achievement": "Peserta Debat",
-                "date": debateYear
-            });
+                winner.matchHistory.push({
+                    opponent: loserName,
+                    result: "Win",
+                    method: debate.winner.method,
+                    date: debate.date,
+                    category: debate.category,
+                    id: debate.id
+                });
+                loser.matchHistory.push({
+                    opponent: winnerName,
+                    result: "Loss",
+                    method: "",
+                    date: debate.date,
+                    category: debate.category,
+                    id: debate.id
+                });
+
+                winner.achievements.push({
+                    "event": `Defeated ${loserName}`,
+                    "achievement": "Debate Winner",
+                    "date": debateYear
+                });
+                loser.achievements.push({
+                    "event": `Lost to ${winnerName}`,
+                    "achievement": "Debate Participant",
+                    "date": debateYear
+                });
+            }
         }
     });
-    
+
     Object.values(allDebaters).forEach(debater => {
         debater.achievements.sort((a, b) => new Date(b.date) - new Date(a.date));
     });
 }
-initializeDebaterData();
 
-// FUNGSI UNTUK COUNTDOWN ACARA UTAMA
-function startCountdown() {
-    const [daysEl, hoursEl, minutesEl, secondsEl] = [
-        document.getElementById("days"),
-        document.getElementById("hours"),
-        document.getElementById("minutes"),
-        document.getElementById("seconds")
-    ];
-
-    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
-
-    const targetDate = new Date("2025-07-01T10:00:00+07:00").getTime();
-    const countdownInterval = setInterval(() => {
-        const distance = targetDate - new Date().getTime();
-        if (distance <= 0) {
-            clearInterval(countdownInterval);
-            [daysEl, hoursEl, minutesEl, secondsEl].forEach(el => el.innerHTML = '00');
-            return;
-        }
-
-        const [days, hours, minutes, seconds] = [
-            Math.floor(distance / (1000 * 60 * 60 * 24)),
-            Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-            Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-            Math.floor((distance % (1000 * 60)) / 1000)
-        ];
-
-        daysEl.innerHTML = String(days).padStart(2, '0');
-        hoursEl.innerHTML = String(hours).padStart(2, '0');
-        minutesEl.innerHTML = String(minutes).padStart(2, '0');
-        secondsEl.innerHTML = String(seconds).padStart(2, '0');
-    }, 1000);
-}
-
-// FUNGSI UNTUK MEMUAT DATA DEBAT DAN MERENDERNYA (UNTUK index.html)
-function loadAndRenderDebatesForIndexPage(filteredDebates = debatesData) {
+/**
+ * Renders the main page content with upcoming and finished debates.
+ * @param {Array} debatesToRender - The array of debate objects to display.
+ */
+function renderIndexPage(debatesToRender = debatesData) {
     const container = document.getElementById('debates-container');
     if (!container) return;
 
-    const upcomingDebates = filteredDebates.filter(d => !d.winner).sort((a, b) => new Date(a.date) - new Date(b.date));
-    const finishedDebates = filteredDebates.filter(d => d.winner).sort((a, b) => new Date(b.date) - new Date(a.date));
+    const upcomingDebates = debatesToRender.filter(d => !d.winner).sort((a, b) => new Date(a.date) - new Date(b.date));
+    const finishedDebates = debatesToRender.filter(d => d.winner).sort((a, b) => new Date(b.date) - new Date(a.date));
 
     let htmlContent = '';
     const renderDebateCard = (debate, isUpcoming) => {
         const debater1 = allDebaters[debate.debater1.name];
         const debater2 = allDebaters[debate.debater2.name];
+        if (!debater1 || !debater2) return '';
+
         const topic = debate.type ? debate.type.toUpperCase() : 'NO TOPIC';
-        const dateFormatted = new Date(debate.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+        const dateFormatted = new Date(debate.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
         const winner = debate.winner;
         const loser = debate.loser;
 
         const resultHtml = isUpcoming ?
-            `<div class="match-result-section upcoming-label"><div class="result-info">AKAN DATANG</div></div>` :
+            `<div class="match-result-section upcoming-label"><div class="result-info">UPCOMING</div></div>` :
             `<div class="match-result-section">
                 <div class="result-info winner">WINNER: ${winner.name.toUpperCase()} BY ${winner.method.toUpperCase()}</div>
                 <div class="result-info loser">LOSS: ${loser.name.toUpperCase()}</div>
@@ -720,7 +747,7 @@ function loadAndRenderDebatesForIndexPage(filteredDebates = debatesData) {
         return `
             <div class="match-card ${isUpcoming ? 'upcoming-match-card' : ''}">
                 <div class="match-image-container">
-                    <img src="${debate.matchBanner}" alt="Debat antara ${debater1.name} vs ${debater2.name}" class="match-banner-img">
+                    <img src="${debate.matchBanner}" alt="Debate between ${debater1.name} vs ${debater2.name}" class="match-banner-img">
                     <div class="match-category-label">${debate.category.toUpperCase()} | ${topic}</div>
                     ${isUpcoming ? `<div class="upcoming-date-overlay">${dateFormatted}</div>` : ''}
                 </div>
@@ -728,12 +755,12 @@ function loadAndRenderDebatesForIndexPage(filteredDebates = debatesData) {
                     <div class="debater-names-row">
                         <div class="debater-entry">
                             <a href="profile.html?name=${encodeURIComponent(debater1.name)}" class="debater-name-link">${debater1.name.toUpperCase()}</a>
-                            <img src="${debater1.flag}" alt="Bendera ${debater1.country}" class="flag-icon-small">
+                            <img src="${debater1.flag}" alt="${debater1.country} flag" class="flag-icon-small">
                         </div>
                         <span class="match-vs-text">VS</span>
                         <div class="debater-entry">
                             <a href="profile.html?name=${encodeURIComponent(debater2.name)}" class="debater-name-link">${debater2.name.toUpperCase()}</a>
-                            <img src="${debater2.flag}" alt="Bendera ${debater2.country}" class="flag-icon-small">
+                            <img src="${debater2.flag}" alt="${debater2.country} flag" class="flag-icon-small">
                         </div>
                     </div>
                     <p class="match-topic">${topic}</p>
@@ -744,33 +771,35 @@ function loadAndRenderDebatesForIndexPage(filteredDebates = debatesData) {
     };
 
     if (upcomingDebates.length > 0) {
-        htmlContent += '<h3 class="section-subtitle">DEBAT MENDATANG</h3>';
+        htmlContent += '<h3 class="section-subtitle">UPCOMING DEBATES</h3>';
         htmlContent += upcomingDebates.map(debate => renderDebateCard(debate, true)).join('');
     }
 
     if (finishedDebates.length > 0) {
-        if (upcomingDebates.length > 0) htmlContent += '<h3 class="section-subtitle" style="margin-top: 40px;">DEBAT SELESAI</h3>';
-        else htmlContent += '<h3 class="section-subtitle">DEBAT SELESAI</h3>';
+        if (upcomingDebates.length > 0) htmlContent += '<h3 class="section-subtitle" style="margin-top: 40px;">FINISHED DEBATES</h3>';
+        else htmlContent += '<h3 class="section-subtitle">FINISHED DEBATES</h3>';
         htmlContent += finishedDebates.map(debate => renderDebateCard(debate, false)).join('');
     }
 
     container.innerHTML = htmlContent;
 }
 
-// FUNGSI UNTUK MERENDER HALAMAN PROFIL (UNTUK profile.html)
+/**
+ * Renders the profile page for a specific debater.
+ */
 function renderProfilePage() {
     const urlParams = new URLSearchParams(window.location.search);
     const debaterName = urlParams.get('name');
     const profileCard = document.querySelector('.profile-card');
 
     if (!profileCard || !debaterName) {
-        if (profileCard) profileCard.innerHTML = `<p class="error-message">Profil tidak ditemukan.</p>`;
+        if (profileCard) profileCard.innerHTML = `<p class="error-message">Profile not found.</p>`;
         return;
     }
 
     const debater = allDebaters[debaterName];
     if (!debater) {
-        profileCard.innerHTML = `<p class="error-message">Profil untuk debater "${debaterName}" tidak ditemukan.</p>`;
+        profileCard.innerHTML = `<p class="error-message">Profile for debater "${debaterName}" not found.</p>`;
         return;
     }
 
@@ -794,24 +823,24 @@ function renderProfilePage() {
             return `
                 <div class="dba-record-item ${resultClass}">
                     <div class="dba-match-info">
-                        <img src="${debater.photo}" alt="Foto ${debater.name}" class="dba-debater-thumb">
-                        <img src="${opponentDebater ? opponentDebater.photo : ''}" alt="Foto ${match.opponent}" class="dba-debater-thumb">
+                        <img src="${debater.photo}" alt="${debater.name} photo" class="dba-debater-thumb">
+                        <img src="${opponentDebater ? opponentDebater.photo : ''}" alt="${match.opponent} photo" class="dba-debater-thumb">
                         <div class="dba-details">
                             <p class="dba-vs-opponent">VS ${match.opponent.toUpperCase()}</p>
-                            <p class="dba-match-spec">Date: ${new Date(match.date).toLocaleDateString('id-ID')} Method: ${match.method || 'N/A'}</p>
+                            <p class="dba-match-spec">Date: ${new Date(match.date).toLocaleDateString('en-US')} Method: ${match.method || 'N/A'}</p>
                         </div>
                     </div>
                     <span class="dba-result-badge">${match.result.toUpperCase()}</span>
                 </div>
             `;
-        }).join('') : `<p class="no-history-message">Belum ada riwayat pertandingan.</p>`;
+        }).join('') : `<p class="no-history-message">No match history available.</p>`;
     }
 
     const achievementsTableBody = profileCard.querySelector('.achievements-table tbody');
     if (achievementsTableBody) {
-        achievementsTableBody.innerHTML = debater.achievements.length > 0 ? debater.achievements.map(ach => `<tr><td>${ach.event}</td><td>${ach.achievement}</td><td>${ach.date}</td></tr>`).join('') : `<tr><td colspan="3" class="no-history-message">Belum ada pencapaian.</td></tr>`;
+        achievementsTableBody.innerHTML = debater.achievements.length > 0 ? debater.achievements.map(ach => `<tr><td>${ach.event}</td><td>${ach.achievement}</td><td>${ach.date}</td></tr>`).join('') : `<tr><td colspan="3" class="no-history-message">No achievements yet.</td></tr>`;
     }
-    
+
     const statsList = profileCard.querySelector('.stats-list');
     if (statsList) {
         statsList.innerHTML = Object.entries(debater.profile).map(([skill, score]) => {
@@ -830,7 +859,9 @@ function renderProfilePage() {
     }
 }
 
-// FUNGSI UNTUK MERENDER HALAMAN RANKING (UNTUK ranking.html)
+/**
+ * Renders the ranking page by tier.
+ */
 function renderRankingPage() {
     const rankingContainer = document.getElementById('ranking-container');
     if (!rankingContainer) return;
@@ -860,7 +891,7 @@ function renderRankingPage() {
                 <table class="ranking-table">
                     <thead>
                         <tr>
-                            <th>Peringkat</th>
+                            <th>Rank</th>
                             <th>Debater</th>
                             <th>Win</th>
                             <th>Loss</th>
@@ -873,7 +904,7 @@ function renderRankingPage() {
                                 <td>${index + 1}</td>
                                 <td>
                                     <div class="debater-info">
-                                        <img src="${debater.photo}" alt="Foto ${debater.name}">
+                                        <img src="${debater.photo}" alt="${debater.name} photo">
                                         <a href="profile.html?name=${encodeURIComponent(debater.name)}" class="debater-name">${debater.name}</a>
                                     </div>
                                 </td>
@@ -890,7 +921,9 @@ function renderRankingPage() {
     rankingContainer.innerHTML = rankingHtml;
 }
 
-// FUNGSI UNTUK MERENDER HALAMAN ARSIP (UNTUK archive.html)
+/**
+ * Renders the archive page with finished debates.
+ */
 function renderArchivePage() {
     const archiveListContainer = document.getElementById('archive-list');
     if (!archiveListContainer) return;
@@ -898,12 +931,12 @@ function renderArchivePage() {
     const archivedDebates = debatesData.filter(d => d.winner).sort((a, b) => new Date(b.date) - new Date(a.date));
 
     archiveListContainer.innerHTML = archivedDebates.length === 0
-        ? '<p class="no-history-message">Belum ada arsip debat yang tersedia.</p>'
+        ? '<p class="no-history-message">No archived debates available.</p>'
         : archivedDebates.map(d => `
             <div class="archive-item">
                 <div class="archive-header">
                     <span class="category">${d.category}</span>
-                    <span class="date">${new Date(d.date).toLocaleDateString('id-ID')}</span>
+                    <span class="date">${new Date(d.date).toLocaleDateString('en-US')}</span>
                 </div>
                 <div class="archive-participants">
                     <span><a href="profile.html?name=${encodeURIComponent(d.debater1.name)}">${d.debater1.name}</a></span> <span class="vs">VS</span> <span><a href="profile.html?name=${encodeURIComponent(d.debater2.name)}">${d.debater2.name}</a></span>
@@ -917,8 +950,12 @@ function renderArchivePage() {
           `).join('');
 }
 
-// FUNGSI UNTUK MERENDER HALAMAN COMPARE (UNTUK compare.html)
+// Global variable for Chart.js instance
 let chartInstance = null;
+
+/**
+ * Renders the compare page with debater selection and a radar chart.
+ */
 function renderComparePage() {
     const [debater1Select, debater2Select, chartArea, chartCanvas] = [
         document.getElementById('debater1-select'),
@@ -933,13 +970,13 @@ function renderComparePage() {
 
     const debaterNames = Object.keys(allDebaters).sort();
     const createOptions = names => names.map(name => `<option value="${name}">${name}</option>`).join('');
-    debater1Select.innerHTML = '<option value="">Pilih Debater 1</option>' + createOptions(debaterNames);
-    debater2Select.innerHTML = '<option value="">Pilih Debater 2</option>' + createOptions(debaterNames);
+    debater1Select.innerHTML = '<option value="">Select Debater 1</option>' + createOptions(debaterNames);
+    debater2Select.innerHTML = '<option value="">Select Debater 2</option>' + createOptions(debaterNames);
 
     const updateComparison = () => {
         const [name1, name2] = [debater1Select.value, debater2Select.value];
         if (!name1 || !name2) {
-            chartArea.innerHTML = '<p class="chart-message">Pilih dua debater untuk membandingkan statistik mereka.</p>';
+            chartArea.innerHTML = '<p class="chart-message">Select two debaters to compare their stats.</p>';
             if (chartInstance) chartInstance.destroy();
             return;
         }
@@ -982,80 +1019,145 @@ function renderComparePage() {
     updateComparison();
 }
 
-// Logika menu dan pencarian
-document.addEventListener('DOMContentLoaded', () => {
-    initializeDebaterData();
-    
-    const sections = document.querySelectorAll('section');
+/**
+ * Manages the single-page application (SPA) routing.
+ */
+function handleRouting() {
     const path = window.location.pathname.split('/').pop();
-
+    const sections = document.querySelectorAll('section');
     sections.forEach(s => s.style.display = 'none');
-    
-    if (path.includes('ranking.html')) {
-        document.getElementById('ranking-page').style.display = 'block';
-        document.getElementById('contact').style.display = 'block';
-        renderRankingPage();
-    } else if (path.includes('archive.html')) {
-        document.getElementById('archive-page').style.display = 'block';
-        document.getElementById('contact').style.display = 'block';
-        renderArchivePage();
-    } else if (path.includes('compare.html')) {
-        document.getElementById('compare-page').style.display = 'block';
-        document.getElementById('contact').style.display = 'block';
-        renderComparePage();
-    } else if (path.includes('profile.html')) {
-        document.getElementById('profile-page').style.display = 'block';
-        document.getElementById('contact').style.display = 'block';
-        renderProfilePage();
-    } else {
-        document.getElementById('main-event').style.display = 'flex';
-        document.getElementById('about').style.display = 'block';
-        document.getElementById('achievement').style.display = 'block';
-        document.getElementById('match-list').style.display = 'block';
-        document.getElementById('contact').style.display = 'block';
-        loadAndRenderDebatesForIndexPage();
-    }
 
+    switch (true) {
+        case path.includes('ranking.html'):
+            document.getElementById('ranking-page').style.display = 'block';
+            document.getElementById('contact').style.display = 'block';
+            renderRankingPage();
+            break;
+        case path.includes('archive.html'):
+            document.getElementById('archive-page').style.display = 'block';
+            document.getElementById('contact').style.display = 'block';
+            renderArchivePage();
+            break;
+        case path.includes('compare.html'):
+            document.getElementById('compare-page').style.display = 'block';
+            document.getElementById('contact').style.display = 'block';
+            renderComparePage();
+            break;
+        case path.includes('profile.html'):
+            document.getElementById('profile-page').style.display = 'block';
+            document.getElementById('contact').style.display = 'block';
+            renderProfilePage();
+            break;
+        case path.includes('index.html') || path === '':
+        default:
+            document.getElementById('main-event').style.display = 'flex';
+            document.getElementById('about').style.display = 'block';
+            document.getElementById('achievement').style.display = 'block';
+            document.getElementById('match-list').style.display = 'block';
+            document.getElementById('contact').style.display = 'block';
+            renderIndexPage();
+            startCountdown();
+            break;
+    }
+}
+
+/**
+ * Handles the search functionality with debouncing.
+ */
+function setupSearch() {
+    const searchInput = document.getElementById('search-input');
+    if (!searchInput) return;
+
+    let timeout = null;
+    searchInput.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            const query = searchInput.value.toLowerCase();
+            const debatesToRender = query.length > 0
+                ? debatesData.filter(d =>
+                    (d.debater1.name && d.debater1.name.toLowerCase().includes(query)) ||
+                    (d.debater2.name && d.debater2.name.toLowerCase().includes(query)) ||
+                    (d.type && d.type.toLowerCase().includes(query))
+                )
+                : debatesData;
+            renderIndexPage(debatesToRender);
+        }, 300);
+    });
+}
+
+/**
+ * Handles UI interactions for mobile menu and search bar.
+ */
+function setupUI() {
     const [menuBtn, mobileMenu, closeMenuBtn, searchBtn, searchContainer, closeSearchBtn, searchInput, overlay] = [
         document.getElementById('menu-btn'), document.getElementById('mobile-menu'), document.getElementById('close-menu-btn'),
         document.getElementById('search-btn'), document.getElementById('search-container'), document.getElementById('close-search-btn'),
         document.getElementById('search-input'), document.getElementById('overlay')
     ];
-    
+
     if (menuBtn) menuBtn.addEventListener('click', () => { mobileMenu.classList.add('active'); overlay.style.display = 'block'; });
     if (closeMenuBtn) closeMenuBtn.addEventListener('click', () => { mobileMenu.classList.remove('active'); overlay.style.display = 'none'; });
-    
     if (searchBtn) searchBtn.addEventListener('click', () => { searchContainer.classList.add('active'); searchInput.focus(); overlay.style.display = 'block'; });
-    if (closeSearchBtn) closeSearchBtn.addEventListener('click', () => { searchContainer.classList.remove('active'); overlay.style.display = 'none'; searchInput.value = ''; loadAndRenderDebatesForIndexPage(); });
-
+    if (closeSearchBtn) closeSearchBtn.addEventListener('click', () => {
+        searchContainer.classList.remove('active');
+        overlay.style.display = 'none';
+        searchInput.value = '';
+        renderIndexPage();
+    });
     if (overlay) overlay.addEventListener('click', () => {
         if (mobileMenu && mobileMenu.classList.contains('active')) mobileMenu.classList.remove('active');
         if (searchContainer && searchContainer.classList.contains('active')) {
             searchContainer.classList.remove('active');
             searchInput.value = '';
-            loadAndRenderDebatesForIndexPage();
+            renderIndexPage();
         }
         overlay.style.display = 'none';
     });
-    
-    if (searchInput) {
-        let timeout = null;
-        searchInput.addEventListener('input', () => {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                const query = searchInput.value.toLowerCase();
-                const debatesToRender = query.length > 0
-                    ? debatesData.filter(d => 
-                        (d.debater1.name && d.debater1.name.toLowerCase().includes(query)) || 
-                        (d.debater2.name && d.debater2.name.toLowerCase().includes(query)) || 
-                        (d.type && d.type.toLowerCase().includes(query))
-                    )
-                    : debatesData;
-                loadAndRenderDebatesForIndexPage(debatesToRender);
-            }, 300);
-        });
-    }
+}
 
-    startCountdown();
+/**
+ * Starts the main countdown timer for an event.
+ */
+function startCountdown() {
+    const [daysEl, hoursEl, minutesEl, secondsEl] = [
+        document.getElementById("days"),
+        document.getElementById("hours"),
+        document.getElementById("minutes"),
+        document.getElementById("seconds")
+    ];
+
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+    // Use a date that exists in your data
+    const targetDate = new Date("2025-07-28T00:00:00").getTime();
+    const countdownInterval = setInterval(() => {
+        const distance = targetDate - new Date().getTime();
+        if (distance <= 0) {
+            clearInterval(countdownInterval);
+            [daysEl, hoursEl, minutesEl, secondsEl].forEach(el => el.innerHTML = '00');
+            return;
+        }
+
+        const [days, hours, minutes, seconds] = [
+            Math.floor(distance / (1000 * 60 * 60 * 24)),
+            Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+            Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+            Math.floor((distance % (1000 * 60)) / 1000)
+        ];
+
+        daysEl.innerHTML = String(days).padStart(2, '0');
+        hoursEl.innerHTML = String(hours).padStart(2, '0');
+        minutesEl.innerHTML = String(minutes).padStart(2, '0');
+        secondsEl.innerHTML = String(seconds).padStart(2, '0');
+    }, 1000);
+}
+
+/**
+ * Main function to run the application on page load.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    initializeDebaterData();
+    handleRouting();
+    setupSearch();
+    setupUI();
 });
-
